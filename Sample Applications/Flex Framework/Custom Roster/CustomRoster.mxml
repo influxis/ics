@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute"
+	xmlns:rtc="http://ns.adobe.com/rtc">
+
+<!-- 
+	This example demonstrates how to use UserManager and UserRoles to promote, demote, and remove people
+	by calling various UserManager API's and listening to its events to make user interface changes. 
+	The UserManager acts as the base model for any such application which involves user list changes.
+	
+	For more information, refer to the LCCS API Reference:
+	com.adobe.rtc.sharedManagers.UserManager 
+	com.adobe.rtc.messaging.UserRoles
+	com.adobe.rtc.sharedManagers.descriptors.UserDescriptor
+-->
+
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.rtc.events.UserEvent;
+			import com.adobe.rtc.messaging.UserRoles;
+			import com.adobe.rtc.sharedManagers.descriptors.UserDescriptor;
+			import com.adobe.rtc.sharedManagers.UserManager;
+			
+			/**
+			 * When the roles ComboBox selection changes, it changes the role of the selected user.
+			 */
+			 
+			  /**********************************************************
+			   * ADOBE SYSTEMS INCORPORATED
+			   * Copyright [2007-2010] Adobe Systems Incorporated
+			   * All Rights Reserved.
+			   * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			   * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			   * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			   * written permission of Adobe.
+			   * *********************************/
+			protected function onUserRole():void
+			{
+				var userID:String=UserDescriptor(rosterList.selectedItem).userID;
+				if (roleCombo.selectedIndex==0) {
+					cSession.userManager.setUserRole(userID, UserRoles.OWNER);
+				} else if (roleCombo.selectedIndex==1) {
+					cSession.userManager.setUserRole(userID, UserRoles.PUBLISHER);
+				} else if (roleCombo.selectedIndex==2) {
+					cSession.userManager.setUserRole(userID, UserRoles.VIEWER);
+				} 
+			}
+			
+			/**
+			 * When the roster selection changes, it changes the role displayed on the ComboBox to the selected user's role.
+			 */			
+			protected function currentRole():void
+			{
+				var userRole:int=UserDescriptor(rosterList.selectedItem).role;
+				if (userRole==UserRoles.OWNER) {
+					roleCombo.selectedIndex=0;
+				} else if (userRole==UserRoles.PUBLISHER) {
+					roleCombo.selectedIndex=1;
+				} else if (userRole==UserRoles.VIEWER) {
+					roleCombo.selectedIndex=2;
+				}
+			}
+
+			/**
+			 * Kick out the selected user.
+			 */			
+			protected function kickOut():void
+			{
+				var userID:String=UserDescriptor(rosterList.selectedItem).userID;
+				cSession.userManager.removeUser(userID);
+			}
+
+			/**
+			 * Provides a formatted string to display in the list for each user (name & role).
+			 */				
+			protected function userLabel(p_data:Object):String
+			{
+				var uDesc:UserDescriptor=p_data as UserDescriptor;
+				if (uDesc) {
+					var role:String;
+					if (uDesc.role==UserRoles.OWNER) {
+						role="Host";
+					} else if (uDesc.role==UserRoles.PUBLISHER) {
+						role="Participant";
+					} else if (uDesc.role==UserRoles.VIEWER) {
+						role="Audience";
+					}
+					return uDesc.displayName+", "+role;
+				}
+				return "";
+			}				
+		]]>
+	</mx:Script>
+	
+	
+	
+	<rtc:ConnectSessionContainer roomURL="Your RoomUrl" id="cSession" >
+		<rtc:authenticator>
+			<rtc:AdobeHSAuthenticator 
+			id="auth" 
+			userName="Your Username" 
+			password="Your password"  />
+		</rtc:authenticator>
+	<!-- 
+		You would likely use external authentication here for a deployed application; 
+		you would certainly not hard code Adobe IDs here.
+	-->
+		<mx:VBox visible="{cSession.isSynchronized}" horizontalAlign="center">
+			<!-- Binding the list dataProvider to userManager.userCollection -->
+			<mx:List id="rosterList" width="300" height="550" dataProvider="{cSession.userManager.userCollection}" labelFunction="userLabel" change="currentRole()"/>
+			<!-- Kick out and Promote is only visible for UserRoles.OWNER -->
+			<mx:HBox visible="{cSession.userManager.myUserRole==UserRoles.OWNER}">
+				<mx:Button label="Kick Out" enabled="{rosterList.selectedIndex!=-1}" click="kickOut()"/>
+				<mx:ComboBox dataProvider="{['Host', 'Participant', 'Audience']}" id="roleCombo" enabled="{rosterList.selectedIndex!=-1}" change="onUserRole()" />
+			</mx:HBox>
+		</mx:VBox>
+	</rtc:ConnectSessionContainer> 
+</mx:Application>

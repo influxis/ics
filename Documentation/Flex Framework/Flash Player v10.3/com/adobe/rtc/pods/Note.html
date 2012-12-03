@@ -1,0 +1,586 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<meta content="Note,com.adobe.rtc.pods.Note,connectSession,editing,groupName,htmlText,isSynchronized,model,sessionDependentItems,sharedID,clear,close,getUserRole,preventTyping,redo,setUserRole,subscribe,undo" name="keywords">
+<title>com.adobe.rtc.pods.Note</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'Note - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS API Reference Player 10.3</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?com/adobe/rtc/pods/Note.html&amp;com/adobe/rtc/pods/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;Note</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a>&nbsp;| <a href="#styleSummary">Styles</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class Note"); titleBar_setSubNav(false,true,true,false,true,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.pods</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class Note</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">Note <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> mx.core.UIComponent</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../session/ISessionSubscriber.html">ISessionSubscriber</a>, mx.managers.IFocusManagerComponent</td>
+</tr>
+</table>
+<p></p>
+  The Note component is a high-level pod component which allows multiple users to 
+  collaboratively edit within a text editor. In the model-view-controller sense, the note is the view 
+  and controller to the NoteModel's model since it consumes user events, drives them 
+  to the model, accepts model events, and updates the view.
+  <p>
+  In general, users with publisher role and higher can edit the note while users with 
+  a viewer role can see the note. The note pod features synchronized text, selection, and 
+  scroll position, as well as a list of users who are currently editing.
+  
+  <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">
+<a href="noteClasses/NoteModel.html" target="">com.adobe.rtc.pods.noteClasses.NoteModel</a>
+</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#connectSession">connectSession</a> : <a href="../session/IConnectSession.html">IConnectSession</a>
+<div class="summaryTableDescription">
+   The IConnectSession with which this component is associated.</div>
+</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#editing">editing</a> : Boolean<div class="summaryTableDescription">[read-only]
+   Determines whether the current user is editing the note.</div>
+</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#groupName">groupName</a> : String<div class="summaryTableDescription">
+   Components (pods) are assigned to a group via <code class="property">groupName</code>; if not specified, 
+   the component is assigned to the default, public group (the room at large).</div>
+</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#htmlText">htmlText</a> : String<div class="summaryTableDescription">[read-only]
+   Determines the text in the note.</div>
+</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#isSynchronized">isSynchronized</a> : Boolean<div class="summaryTableDescription">[read-only]
+   Returns true if the model is synchronized; otherwise, false.</div>
+</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#model">model</a> : <a href="noteClasses/NoteModel.html">NoteModel</a>
+<div class="summaryTableDescription">[read-only]
+   Allows access to the model component of the note.</div>
+</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#sessionDependentItems">sessionDependentItems</a> : Boolean<div class="summaryTableDescription">
+   Specifies whether or not the data in the note will persist after the session ends.</div>
+</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#sharedID">sharedID</a> : String<div class="summaryTableDescription">
+   Defines the logical location of the component on the service, usually the <code>sharedID</code> of the collectionNode 
+   the component uses.</div>
+</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#Note()">Note</a>()</div>
+<div class="summaryTableDescription">
+         Constructor.</div>
+</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#clear()">clear</a>():void</div>
+<div class="summaryTableDescription">
+   Clears all text from the note.</div>
+</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#close()">close</a>():void</div>
+<div class="summaryTableDescription">
+   Disposes all listeners to the network and framework classes.</div>
+</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getUserRole()">getUserRole</a>(p_userID:String):int</div>
+<div class="summaryTableDescription">
+    Returns the role of a given user for the note.</div>
+</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#redo()">redo</a>():void</div>
+<div class="summaryTableDescription">
+   Performs a redo on the last un-done text edit.</div>
+</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setUserRole()">setUserRole</a>(p_userID:String, p_userRole:int):void</div>
+<div class="summaryTableDescription">
+    Sets the role of a given user for the note.</div>
+</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#subscribe()">subscribe</a>():void</div>
+<div class="summaryTableDescription">
+   Tells the component to begin synchronizing with the service.</div>
+</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#undo()">undo</a>():void</div>
+<div class="summaryTableDescription">
+   Performs an undo on the last text edit.</div>
+</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+</table>
+</div>
+<a name="protectedMethodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Methods</div>
+<table id="summaryTableProtectedMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#preventTyping()">preventTyping</a>(p_event:TextEvent):void</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+</table>
+</div>
+<a name="eventSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Events</div>
+<table id="summaryTableEvent" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Event</th><th>Summary</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:change">change</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the note text changes.</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:myRoleChange">myRoleChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the user's role with respect to the component changes.</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:synchronizationChange">synchronizationChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the component either loses its connection to the session or regains it
+  and has finished re-synchronizing itself to the rest of the room.</td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+</table>
+</div>
+<a name="styleSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Styles</div>
+<table id="summaryTableStyle" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Style</th><th>Description</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol"><a name="style:fillAlphas"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<span class="signatureLink">fillAlphas</span>
+</div>
+</td><td class="summaryTableDescription"><span class="label">Type: </span>Array &nbsp; <span class="label">CSS Inheritance: </span>no<br></td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol"><a name="style:fillColors"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<span class="signatureLink">fillColors</span>
+</div>
+</td><td class="summaryTableDescription"><span class="label">Type: </span>Array &nbsp; <span class="label">CSS Inheritance: </span>no<br></td><td class="summaryTableOwnerCol">Note</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="connectSession"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">connectSession</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>connectSession:<a href="../session/IConnectSession.html">IConnectSession</a></code>&nbsp;&nbsp;[read-write]<p>
+   The IConnectSession with which this component is associated. 
+   Note that this may only be set once before <code>subscribe()</code>
+   is called; re-sessioning of components is not supported. 
+   Defaults to the first IConnectSession created in the application.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get connectSession():<a href="../session/IConnectSession.html">IConnectSession</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set connectSession(value:<a href="../session/IConnectSession.html">IConnectSession</a>):void</code>
+<br>
+</div>
+<a name="editing"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">editing</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>editing:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+   Determines whether the current user is editing the note.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get editing():Boolean</code>
+<br>
+</div>
+<a name="groupName"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">groupName</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>groupName:String</code>&nbsp;&nbsp;[read-write]<p>
+   Components (pods) are assigned to a group via <code class="property">groupName</code>; if not specified, 
+   the component is assigned to the default, public group (the room at large). Groups are like separate 
+   conversations within the room, but each conversation could employ one or more pods; for example, one 
+   "conversation" may use a web camera, chat, and whiteboard pod, with each pod using different access 
+   and publish models. Users are members of and can only see components within the group they are assigned. 
+   Room hosts can see all the groups and all the members in those groups.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get groupName():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set groupName(value:String):void</code>
+<br>
+</div>
+<a name="htmlText"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">htmlText</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>htmlText:String</code>&nbsp;&nbsp;[read-only]<p>
+   Determines the text in the note.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get htmlText():String</code>
+<br>
+</div>
+<a name="isSynchronized"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isSynchronized</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>isSynchronized:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+   Returns true if the model is synchronized; otherwise, false.
+   </p><p>This property can be used as the source for data binding.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get isSynchronized():Boolean</code>
+<br>
+</div>
+<a name="model"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">model</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>model:<a href="noteClasses/NoteModel.html">NoteModel</a></code>&nbsp;&nbsp;[read-only]<p>
+   Allows access to the model component of the note.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get model():<a href="noteClasses/NoteModel.html">NoteModel</a></code>
+<br>
+</div>
+<a name="sessionDependentItems"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">sessionDependentItems</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>sessionDependentItems:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+   Specifies whether or not the data in the note will persist after the session ends.
+   
+   </p><p>The default value is <code>false</code>.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get sessionDependentItems():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set sessionDependentItems(value:Boolean):void</code>
+<br>
+</div>
+<a name="sharedID"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">sharedID</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>sharedID:String</code>&nbsp;&nbsp;[read-write]<p>
+   Defines the logical location of the component on the service, usually the <code>sharedID</code> of the collectionNode 
+   the component uses. <code>sharedIDs</code> should be unique within a room if they're expressing two unique locations. 
+   Note that this can only be assigned once and it is assigned before <code>subscribe()</code> is called. 
+   For components with an <code class="property">id</code> property, <code>sharedID</code> defaults to that value.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get sharedID():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set sharedID(value:String):void</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="Note()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">Note</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function Note()</code><p>
+         Constructor.
+         </p></div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="clear()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">clear</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function clear():void</code><p>
+   Clears all text from the note.
+   </p></div>
+<a name="close()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">close</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function close():void</code><p>
+   Disposes all listeners to the network and framework classes. 
+   Recommended for proper garbage collection of the component.
+   </p></div>
+<a name="getUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getUserRole(p_userID:String):int</code><p>
+    Returns the role of a given user for the note.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The user ID for the user being queried.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>int</code></td>
+</tr>
+</table>
+</div>
+<a name="preventTyping()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">preventTyping</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function preventTyping(p_event:TextEvent):void</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_event</span>:TextEvent</code></td>
+</tr>
+</table>
+</div>
+<a name="redo()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">redo</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function redo():void</code><p>
+   Performs a redo on the last un-done text edit.
+   </p></div>
+<a name="setUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setUserRole(p_userID:String, p_userRole:int):void</code><p>
+    Sets the role of a given user for the note.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The role value to set on the specified user.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userRole</span>:int</code> &mdash; The ID of the user whose role should be set.
+   </td>
+</tr>
+</table>
+</div>
+<a name="subscribe()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">subscribe</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function subscribe():void</code><p>
+   Tells the component to begin synchronizing with the service. 
+   For UIComponent-based components such as this one,
+   <code>subscribe()</code> is called automatically upon being added to the <code>displayList</code>. 
+   For "headless" components, this method must be called explicitly.
+   </p></div>
+<a name="undo()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">undo</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function undo():void</code><p>
+   Performs an undo on the last text edit.
+   </p></div>
+<div class="detailSectionHeader">Event detail</div>
+<a name="event:change"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">change</td><td class="detailHeaderType">event&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/SharedPropertyEvent.html"><code>com.adobe.rtc.events.SharedPropertyEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the note text changes.
+  </p></div>
+<a name="event:myRoleChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">myRoleChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the user's role with respect to the component changes.
+  </p></div>
+<a name="event:synchronizationChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">synchronizationChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the component either loses its connection to the session or regains it
+  and has finished re-synchronizing itself to the rest of the room.
+  </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

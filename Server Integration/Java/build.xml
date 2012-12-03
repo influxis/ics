@@ -1,0 +1,111 @@
+
+<project default="bundle" basedir=".">
+
+  <!-- =================================================================== -->
+  <!-- Configuration                                                       -->
+  <!-- =================================================================== -->
+  <property name="src.dir"       value="src"/>
+  <property name="lib.dir"       value="lib"/>
+  <property name="doc.dir"       value="doc"/>
+  <property name="build.dir"     value="bin"/>
+  <property name="jar.file"      value="LCCS.jar"/>
+  <property name="manifest.file" value="package.mf"/>
+  <property name="bundle.file"   value="package.bnd"/>
+  <property name="debug"         value="true"/>
+
+  <!-- =================================================================== -->
+  <!-- CLASSPATH (used for RTCServlet)                                     -->
+  <!-- =================================================================== -->
+  <path id="build.classpath">
+    <fileset dir="${lib.dir}">
+      <include name="**/*.jar" />
+    </fileset>
+  </path>
+
+  <!-- =================================================================== -->
+  <!-- Prepares the build directory                                        -->
+  <!-- =================================================================== -->
+  <target name="prepare-compile">
+    <mkdir dir="${build.dir}"/>
+    <delete includeemptydirs="true">
+      <fileset dir="${build.dir}" includes="**/*"/>
+    </delete>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Compiles the source directory                                       -->
+  <!-- =================================================================== -->
+  <target name="compile" depends="prepare-compile">
+    <javac srcdir="${src.dir}"
+           destdir="${build.dir}"
+           classpathref="build.classpath"
+           debug="${debug}"
+           target="5">
+      <compilerarg value="-Xlint:unchecked"/>
+    </javac>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Creates the class package                                           -->
+  <!-- =================================================================== -->
+  <target name="package" depends="compile">
+    <jar jarfile="${jar.file}"
+	 manifest="${manifest.file}"
+         basedir="${build.dir}"
+         compress="false"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Creates the OSGi bundle                                             -->
+  <!-- =================================================================== -->
+  <target name="bundle" depends="compile">
+    <taskdef resource="aQute/bnd/ant/taskdef.properties"
+      classpath="../../../../tools/bnd/bnd-0.0.384.jar"/>
+   <bnd 
+      classpath="bin" 
+      eclipse="false" 
+      failok="false" 
+      exceptions="true" 
+      files="${bundle.file}"
+      output="${jar.file}"/> 
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Creates the documentation                                           -->
+  <!-- =================================================================== -->
+  <target name="docs" depends="compile">
+    <javadoc destdir="${doc.dir}"
+        classpathref="build.classpath"
+	author="true"
+	version="true"
+	use="true"
+	windowtitle="LCCS API">
+	<packageset dir="${src.dir}" defaultexcludes="yes"/>
+
+	<doctitle><![CDATA[<h1>LCCS Management APIs</h1>]]></doctitle>
+	<bottom><![CDATA[<b>ADOBE SYSTEMS INCORPORATED</b>
+<p>
+  Copyright 2007-2011 Adobe Systems Incorporated
+  <br/>
+  All Rights Reserved.
+</p>
+
+<p>  
+  <b>NOTICE:</b> Adobe permits you to use, modify, and distribute this file in accordance with the
+  terms of the Adobe license agreement accompanying it.  If you have received this file from a
+  source other than Adobe, then your use, modification, or distribution of it requires the prior
+  written permission of Adobe.
+</p>
+        ]]></bottom>
+    </javadoc>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Clean targets                                                       -->
+  <!-- =================================================================== -->
+  <target name="clean" depends="prepare-compile">
+    <delete file="${jar.file}"/>
+  </target>
+</project>
+
+<!-- End of file -->

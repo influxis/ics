@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" width="250" height="132" showCloseButton="true" verticalGap="2" headerHeight="20">
+	<mx:Label text="Address : " fontWeight="bold"/>
+	<mx:Text id="addressField" width="222" height="26"/>
+	<mx:Label text="Submitted By : " fontWeight="bold"/>
+	<mx:Text id="userField" width="221"/>
+	
+</mx:TitleWindow>

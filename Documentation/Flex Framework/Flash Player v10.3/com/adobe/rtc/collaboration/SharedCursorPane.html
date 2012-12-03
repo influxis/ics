@@ -1,0 +1,611 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<meta content="SharedCursorPane,com.adobe.rtc.collaboration.SharedCursorPane,ABSOLUTE_MODE,RELATIVE_MODE,defaultCursorClass,pollInterval,collectionNode,connectSession,isSynchronized,labelField,labelFunction,myCursorClass,nodeName,sizingMode,sharedID,close,getNodeConfiguration,getUserRole,onUserDescriptorFetch,setNodeConfiguration,setUserRole,subscribe" name="keywords">
+<title>com.adobe.rtc.collaboration.SharedCursorPane</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'SharedCursorPane - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS API Reference Player 10.3</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?com/adobe/rtc/collaboration/SharedCursorPane.html&amp;com/adobe/rtc/collaboration/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;SharedCursorPane</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class SharedCursorPane"); titleBar_setSubNav(true,true,false,false,true,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.collaboration</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class SharedCursorPane</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">SharedCursorPane <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> mx.core.UIComponent</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../session/ISessionSubscriber.html">ISessionSubscriber</a></td>
+</tr>
+</table>
+<p></p>
+  SharedCursorPane is a UIComponent that, when stretched over a region, tracks the cursor positions 
+  of any user with role of <code>UserRoles.PUBLISHER</code> or higher within it and reports that position to 
+  other users. The pane is also responsible for rendering the remote cursors corresponding to 
+  these positions.
+  <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#collectionNode">collectionNode</a> : <a href="../sharedModel/CollectionNode.html">CollectionNode</a>
+<div class="summaryTableDescription">
+   SharedCursorPane allows developers to "piggyback" the message traffic of the pane on an existing CollectionNode.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#connectSession">connectSession</a> : <a href="../session/IConnectSession.html">IConnectSession</a>
+<div class="summaryTableDescription">
+   The IConnectSession with which this component is associated; it defaults to the first 
+   IConnectSession created in the application.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#defaultCursorClass">defaultCursorClass</a> : Class<div class="summaryTableDescription">[static]
+  The default class used for rendering remote pointers.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#isSynchronized">isSynchronized</a> : Boolean<div class="summaryTableDescription">[read-only]
+   Returns true is synchronized; false if not synchronized.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#labelField">labelField</a> : String<div class="summaryTableDescription">
+   The field of UserDescriptor you want to show as label with your cursor.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#labelFunction">labelFunction</a> : Function<div class="summaryTableDescription">
+   The function you want to set as labelFunction
+      </div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#myCursorClass">myCursorClass</a> : Class<div class="summaryTableDescription">
+   Class to use for the current user's cursor.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#nodeName">nodeName</a> : String<div class="summaryTableDescription">
+   When specifying an existing CollectionNode, <code class="property">nodeName</code> specifies a 
+   <code class="property">nodeName</code>  to use within that collectionNode for
+   all message traffic.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#pollInterval">pollInterval</a> : int = 500<div class="summaryTableDescription">
+   The time in milliseconds of the polling interval for cursor positions.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#sharedID">sharedID</a> : String<div class="summaryTableDescription">
+   Defines the logical location of the component on the service; typically this assigns the <code class="property">sharedID</code> of the collectionNode
+   used by the component.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#sizingMode">sizingMode</a> : String<div class="summaryTableDescription">
+   Property for sharing mode.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#close()">close</a>():void</div>
+<div class="summaryTableDescription">
+   Closes any event listeners and network operations.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getNodeConfiguration()">getNodeConfiguration</a>():<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>
+</div>
+<div class="summaryTableDescription">
+   Gets the NodeConfiguration of the shared cursor node.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getUserRole()">getUserRole</a>(p_userID:String):int</div>
+<div class="summaryTableDescription">
+    Returns the role of a given user for sharing cursors.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setNodeConfiguration()">setNodeConfiguration</a>(p_nodeConfiguration:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>):void</div>
+<div class="summaryTableDescription">
+   Sets the NodeConfiguration.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setUserRole()">setUserRole</a>(p_userID:String, p_role:Number, p_nodeName:String = null):void</div>
+<div class="summaryTableDescription">
+   Sets the role of a given user for sharing cursors in the component's group
+   specified by <code class="property">groupName</code>.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#subscribe()">subscribe</a>():void</div>
+<div class="summaryTableDescription">
+   Tells the component to begin synchronizing with the service.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+</table>
+</div>
+<a name="protectedMethodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Methods</div>
+<table id="summaryTableProtectedMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#onUserDescriptorFetch()">onUserDescriptorFetch</a>(p_evt:<a href="../events/UserEvent.html">UserEvent</a>):void</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+</table>
+</div>
+<a name="eventSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Events</div>
+<table id="summaryTableEvent" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Event</th><th>Summary</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:synchronizationChange">synchronizationChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the component either loses its connection to the session or regains it
+  and has finished re-synchronizing itself to the rest of the room.</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ABSOLUTE_MODE">ABSOLUTE_MODE</a> : String = "absolute"<div class="summaryTableDescription">[static]
+   Constant for supplying sizingMode settings.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RELATIVE_MODE">RELATIVE_MODE</a> : String = "relative"<div class="summaryTableDescription">[static]
+   Constant for supplying sizingMode settings.</div>
+</td><td class="summaryTableOwnerCol">SharedCursorPane</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="collectionNode"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">collectionNode</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>collectionNode:<a href="../sharedModel/CollectionNode.html">CollectionNode</a></code>&nbsp;&nbsp;[read-write]<p>
+   SharedCursorPane allows developers to "piggyback" the message traffic of the pane on an existing CollectionNode.
+   The name of the node to use may also be specified using the <code class="property">nodeName</code> property.
+   This avoids CollectionNode proliferation for a component that requires only one node. If not set, SharedCursorPane
+   creates its own CollectionNode.
+   
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get collectionNode():<a href="../sharedModel/CollectionNode.html">CollectionNode</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set collectionNode(value:<a href="../sharedModel/CollectionNode.html">CollectionNode</a>):void</code>
+<br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">nodeName</div>
+</div>
+<a name="connectSession"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">connectSession</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>connectSession:<a href="../session/IConnectSession.html">IConnectSession</a></code>&nbsp;&nbsp;[read-write]<p>
+   The IConnectSession with which this component is associated; it defaults to the first 
+   IConnectSession created in the application.  Note that this may only be set once before 
+   <code>subscribe()</code> is called, and re-sessioning of components is not supported.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get connectSession():<a href="../session/IConnectSession.html">IConnectSession</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set connectSession(value:<a href="../session/IConnectSession.html">IConnectSession</a>):void</code>
+<br>
+</div>
+<a name="defaultCursorClass"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">defaultCursorClass</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static var defaultCursorClass:Class</code><p>
+  The default class used for rendering remote pointers.
+  </p></div>
+<a name="isSynchronized"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isSynchronized</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>isSynchronized:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+   Returns true is synchronized; false if not synchronized.
+   </p><p>This property can be used as the source for data binding.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get isSynchronized():Boolean</code>
+<br>
+</div>
+<a name="labelField"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">labelField</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>labelField:String</code>&nbsp;&nbsp;[read-write]<p>
+   The field of UserDescriptor you want to show as label with your cursor. You can also show custom fields
+   </p><p>The default value is <code>displayname</code>.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get labelField():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set labelField(value:String):void</code>
+<br>
+</div>
+<a name="labelFunction"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">labelFunction</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>labelFunction:Function</code>&nbsp;&nbsp;[read-write]<p>
+   The function you want to set as labelFunction
+      </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get labelFunction():Function</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set labelFunction(value:Function):void</code>
+<br>
+</div>
+<a name="myCursorClass"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">myCursorClass</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>myCursorClass:Class</code>&nbsp;&nbsp;[read-write]<p>
+   Class to use for the current user's cursor. This will be sent to other users  
+   who will use it in rendering that user's remote cursor.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get myCursorClass():Class</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set myCursorClass(value:Class):void</code>
+<br>
+</div>
+<a name="nodeName"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">nodeName</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>nodeName:String</code>&nbsp;&nbsp;[read-write]<p>
+   When specifying an existing CollectionNode, <code class="property">nodeName</code> specifies a 
+   <code class="property">nodeName</code>  to use within that collectionNode for
+   all message traffic. Defaults to "Shared_Cursors".
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get nodeName():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set nodeName(value:String):void</code>
+<br>
+</div>
+<a name="pollInterval"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">pollInterval</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var pollInterval:int = 500</code><p>
+   The time in milliseconds of the polling interval for cursor positions. 
+   Note that setting this to a higher number reduces 
+   network message traffic but also reduces responsiveness. Setting it to a lower 
+   number uses more bandwidth.
+   </p></div>
+<a name="sharedID"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">sharedID</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>sharedID:String</code>&nbsp;&nbsp;[read-write]<p>
+   Defines the logical location of the component on the service; typically this assigns the <code class="property">sharedID</code> of the collectionNode
+   used by the component. <code class="property">sharedIDs</code> should be unique within a room if they're expressing two 
+   unique locations. Note that this can only be assigned once before <code>subscribe()</code> is called. For components 
+   with an <code class="property">id</code> property, <code class="property">sharedID</code> defaults to that value.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get sharedID():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set sharedID(value:String):void</code>
+<br>
+</div>
+<a name="sizingMode"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">sizingMode</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>sizingMode:String</code>&nbsp;&nbsp;[read-write]<p>
+   Property for sharing mode. There are two modes of sharing, ABSOLUTE_MODE and  RELATIVE_MODE.
+   In ABSOLUTE_MODE you get the exact position of the cursor of the sharing user.
+   In RELATIVE_MODE you get the relative position with respect to the size of your own cursor pane.
+   Default mode is RELATIVE_MODE.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get sizingMode():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set sizingMode(value:String):void</code>
+<br>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="close()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">close</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function close():void</code><p>
+   Closes any event listeners and network operations. Using this function 
+   is recommended for garbage collection.
+   </p></div>
+<a name="getNodeConfiguration()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getNodeConfiguration</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getNodeConfiguration():<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code><p>
+   Gets the NodeConfiguration of the shared cursor node. 
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code></td>
+</tr>
+</table>
+</div>
+<a name="getUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getUserRole(p_userID:String):int</code><p>
+    Returns the role of a given user for sharing cursors.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The user ID of the user whose role we should get.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>int</code></td>
+</tr>
+</table>
+</div>
+<a name="onUserDescriptorFetch()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">onUserDescriptorFetch</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function onUserDescriptorFetch(p_evt:<a href="../events/UserEvent.html">UserEvent</a>):void</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_evt</span>:<a href="../events/UserEvent.html">UserEvent</a></code></td>
+</tr>
+</table>
+</div>
+<a name="setNodeConfiguration()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setNodeConfiguration</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setNodeConfiguration(p_nodeConfiguration:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>):void</code><p>
+   Sets the NodeConfiguration.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_nodeConfiguration</span>:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code> &mdash; The node Configuration of the SharedCursor node.
+   
+   </td>
+</tr>
+</table>
+</div>
+<a name="setUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setUserRole(p_userID:String, p_role:Number, p_nodeName:String = null):void</code><p>
+   Sets the role of a given user for sharing cursors in the component's group
+   specified by <code class="property">groupName</code>.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The user ID of the user whose role should be set.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_role</span>:Number</code> &mdash; The role value to assign to the user with this user ID.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_nodeName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The nodename to set the role on, if nothing is specified, it applies to the entire collectionNode.
+   </td>
+</tr>
+</table>
+</div>
+<a name="subscribe()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">subscribe</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function subscribe():void</code><p>
+   Tells the component to begin synchronizing with the service. For UIComponent-based components such as this one,
+   this is called automatically upon being added to the <code class="property">displayList</code>. 
+   For "headless" components, this method must be called explicitly.
+   </p></div>
+<div class="detailSectionHeader">Event detail</div>
+<a name="event:synchronizationChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">synchronizationChange</td><td class="detailHeaderType">event&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the component either loses its connection to the session or regains it
+  and has finished re-synchronizing itself to the rest of the room.
+  </p></div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="ABSOLUTE_MODE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ABSOLUTE_MODE</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ABSOLUTE_MODE:String = "absolute"</code><p>
+   Constant for supplying sizingMode settings. In ABSOLUTE_MODE, the position of the cursors is determined 
+   in absolute pixel values.
+   </p></div>
+<a name="RELATIVE_MODE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">RELATIVE_MODE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const RELATIVE_MODE:String = "relative"</code><p>
+   Constant for supplying sizingMode settings. In RELATIVE_MODE, the position of the cursors is determined 
+   relative to the size of the sharedCursorPane.
+   </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

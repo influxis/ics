@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute" 
+	horizontalAlign="center" 
+	backgroundGradientAlphas="[1.0, 1.0]" 
+	backgroundGradientColors="[#000000, #000000]"
+	xmlns:rtc="http://ns.adobe.com/rtc">
+	
+	<!-- 
+		You would likely use external authentication here for a deployed application; 
+		you would certainly not hard code Adobe IDs here.
+		This application shows how the different default pods work. They give you an idea of the things you can do 
+		with LiveCycle Collaboration Service. This is a very good example app for first reference
+	-->
+	
+	<mx:Script>
+		<![CDATA[
+				
+			/**********************************************************
+			 * ADOBE SYSTEMS INCORPORATED
+			 * Copyright [2007-2010] Adobe Systems Incorporated
+			 * All Rights Reserved.
+			 * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			 * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			 * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			 * written permission of Adobe.
+			 * *********************************/
+		]]>
+	</mx:Script>
+	
+	<rtc:AdobeHSAuthenticator 
+		id="auth" 
+		userName="Your Username" 
+		password="Your password"  />
+	
+<rtc:ConnectSessionContainer 
+	roomURL="Your RoomUrl" 
+	id="cSession" 
+	authenticator="{auth}">
+
+    <mx:VBox borderStyle="solid" 
+        paddingTop="10"
+        paddingBottom="10" 
+        paddingLeft="5" 
+        paddingRight="5" 
+        width="382" 
+        horizontalCenter="0" 
+        top="5" 
+        backgroundColor="#767676" 
+        cornerRadius="15" 
+        borderThickness="3" height="640" horizontalAlign="left">
+	     <mx:Label text="Simple Pods Sample" color="#FAFCFC" fontWeight="bold" width="340" textAlign="center" fontSize="12"/>
+	     <mx:Panel width="365" height="97" layout="absolute" title="Current room users" color="#000000">
+	     <mx:List 
+			width="100%" height="100%" 
+			dataProvider="{cSession.userManager.userCollection}" 
+			labelField="displayName" color="#000000" fontWeight="bold"/>
+	     </mx:Panel>
+	     <mx:Panel width="365" height="200" layout="absolute" title="Default WebCamera" color="#000000" backgroundColor="#000000">
+			<rtc:WebCamera width="100%" height="150"/>
+	     </mx:Panel>
+	    	<rtc:AudioPublisher id="audioPub"/><rtc:AudioSubscriber/>
+		<mx:Button label="Audio" 
+			toggle="true" id="audioButt" color="#000000"
+			click="(audioButt.selected) ? audioPub.publish() : audioPub.stop()"/>
+	     <mx:Panel width="365" height="235" layout="absolute" title="Default Simple Chat" color="#000000">
+			<rtc:SimpleChat width="100%" height="100%"/>
+	     </mx:Panel>
+
+    </mx:VBox>
+	
+</rtc:ConnectSessionContainer>
+</mx:Application>

@@ -1,0 +1,1436 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>LCCS JavaScript Reference - Baton</title>
+
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+	width: 800px;
+}
+
+.header
+{
+	clear: both;
+	background-color: #ccc;
+	padding: 8px;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+	margin: 1em 0 0 .3em;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #7F8FB1;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	background-color: #F3F3F3;
+	padding: 8px;
+}
+
+#content
+{
+	margin-left: 190px;
+	width: 600px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #7F8FB1;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #7F8FB1 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #7F8FB1 solid;
+	border-right: 1px #7F8FB1 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #7F8FB1 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #002EBE;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px; 
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	text-align: right;
+	font-size: 10px;
+}
+		</style>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2>Classes</h2>
+<ul class="classList">
+	
+	<li><i><a href="../symbols/_global_.html">_global_</a></i></li>
+	
+	<li><a href="../symbols/Baton.html">Baton</a></li>
+	
+	<li><a href="../symbols/BatonObject.html">BatonObject</a></li>
+	
+	<li><a href="../symbols/BatonProperty.html">BatonProperty</a></li>
+	
+	<li><a href="../symbols/CollectionNode.html">CollectionNode</a></li>
+	
+	<li><a href="../symbols/ConnectSession.html">ConnectSession</a></li>
+	
+	<li><a href="../symbols/EventDispatcher.html">EventDispatcher</a></li>
+	
+	<li><a href="../symbols/SharedCollection.html">SharedCollection</a></li>
+	
+	<li><a href="../symbols/SharedCursorPane.html">SharedCursorPane</a></li>
+	
+	<li><a href="../symbols/SharedObject.html">SharedObject</a></li>
+	
+	<li><a href="../symbols/SharedProperty.html">SharedProperty</a></li>
+	
+	<li><a href="../symbols/SimpleChatModel.html">SimpleChatModel</a></li>
+	
+	<li><a href="../symbols/Tween.html">Tween</a></li>
+	
+	<li><a href="../symbols/UserManager.html">UserManager</a></li>
+	
+</ul>
+<hr />
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Class Baton
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				
+			
+				Baton is a model class which provides a workflow between users. Essentially, it tracks the "holder" of a given resource and provides APIs for grabbing, putting down, and giving control to others. Users with an owner role always have the power to grab the baton, put it down, or give it to others regardless of who has the baton. Users with a publisher role must wait according to the grabbable property:   * If the baton is set to grabbable, they may grab the baton as soon as it is available (since it will then have no controller).   * If the baton is not grabbable, the owner must explicitly pass the baton to someone else. Note that users with an owner role may adjust the roles of other users relative to the baton using allowUserToGrab (which makes that user a publisher) and allowUserToAdminister (which makes that user an owner).This component also supports "piggybacking" on existing CollectionNodes through its constructor. Developers can avoid CollectionNode proliferation in their applications by pre-supplying a CollectionNode and a nodeName for the baton to use. If none is supplied, the baton will create its own collection node for sending and receiving messages.<table><tr><th><b>Event</b></th><th><b>Summary</b></th></tr><tr><td valign="top"><code>batonHolderChange </code></td> <td> Dispatched when the baton is given to someone or put down.</td></tr><tr><td valign="top"><code>synchronizationChange</code></td> <td> Dispatched when the component has fully connected and synchronized with the service or when it loses the connection.</td></tr></table>
+				
+				
+					<br /><i>Defined in: </i> <a href="../symbols/src/E__flashfarm_main_connect_build_JavaScript_tools_jsdoc-toolkit_LCCS_JS_Bridge.js.html">LCCS_JS_Bridge.js</a>.
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class Baton.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/Baton.html#constructor">Baton</a></b>()
+							</div>
+							<div class="description"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class Baton.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/Baton.html#accessModel">accessModel</a></b>
+								</div>
+								<div class="description">Role value which is required for seeing the baton</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/Baton.html#collectionNode">collectionNode</a></b>
+								</div>
+								<div class="description">The Collection Node to which the shared property subscribes/publishes</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/Baton.html#connectSession">connectSession</a></b>
+								</div>
+								<div class="description">The ConnectSession with which this component is associated.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/Baton.html#holderID">holderID</a></b>
+								</div>
+								<div class="description">Specifies the <code>userID</code> of the person controlling the baton.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/Baton.html#nodeName">nodeName</a></b>
+								</div>
+								<div class="description">The the Node Name to which the value is published</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/Baton.html#publishModel">publishModel</a></b>
+								</div>
+								<div class="description">Role value which is required for publishing to the baton</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/Baton.html#sharedID">sharedID</a></b>
+								</div>
+								<div class="description">Defines the logical location of the component on the service - typically this assigns the sharedID of the collectionNodeused by the component.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/Baton.html#timeOut">timeOut</a></b>
+								</div>
+								<div class="description">Number of seconds after which the baton times out</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class Baton.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#amIHolding">amIHolding</a></b>()
+								</div>
+								<div class="description">Determines whether the current user is holding the baton.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#available">available</a></b>()
+								</div>
+								<div class="description">Determines whether the baton is up for grabs because it has no current holder.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#canIAdminister">canIAdminister</a></b>()
+								</div>
+								<div class="description">Determines whether the current user has permission to administer the baton by taking it from someone or forcing them to put it down.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#canIGrab">canIGrab</a></b>()
+								</div>
+								<div class="description">Determines whether the current user has permission to grab the baton when available.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#canUserAdminister">canUserAdminister</a></b>(p_userID)
+								</div>
+								<div class="description">Determines whether a specified user can administer the baton from others.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#canUserGrab">canUserGrab</a></b>(p_userID)
+								</div>
+								<div class="description">Determines whether a specified user can grab the baton if it's available.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#close">close</a></b>()
+								</div>
+								<div class="description">Cleans up all networking and event handling; recommended for garbage collection.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#extendTimer">extendTimer</a></b>()
+								</div>
+								<div class="description">Extends the timeout if the baton has one.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#getAccessModel">getAccessModel</a></b>()
+								</div>
+								<div class="description">Role value which is required for seeing the baton</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#getNodeConfiguration">getNodeConfiguration</a></b>()
+								</div>
+								<div class="description">Gets the NodeConfiguration of the Baton Node.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#getPublishModel">getPublishModel</a></b>()
+								</div>
+								<div class="description">Role Value required to publish the baton</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#getUserRole">getUserRole</a></b>(p_userID)
+								</div>
+								<div class="description">Returns the role of a given user for the baton.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#giveTo">giveTo</a></b>(p_userID)
+								</div>
+								<div class="description">If the baton is grabbable, the holding user can hand the baton to a specified user.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#grab">grab</a></b>()
+								</div>
+								<div class="description">If grabbable, users with a publisher role can grab the control if it's available by using this method.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#isSynchronized">isSynchronized</a></b>()
+								</div>
+								<div class="description">Determines whether the component has connected to the server and has fully synchronized.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#putDown">putDown</a></b>()
+								</div>
+								<div class="description">Users with an publisher role in control can use this method to release their control.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#setAccessModel">setAccessModel</a></b>(p_accessModel)
+								</div>
+								<div class="description">Set the role value which is required for seeing the baton</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#setNodeConfiguration">setNodeConfiguration</a></b>(p_nodeConfiguration)
+								</div>
+								<div class="description">Sets the NodeConfiguration on the baton node.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#setPublishModel">setPublishModel</a></b>(p_publishModel)
+								</div>
+								<div class="description">Set the Role Value required to publish the baton</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#setUserRole">setUserRole</a></b>(p_userID, p_role)
+								</div>
+								<div class="description">When called by an owner, <code>setUserRole()</code> sets the role of the specified user with respect to this baton.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Baton.html#subscribe">subscribe</a></b>()
+								</div>
+								<div class="description">Tells the component to begin synchronizing with the service.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>Baton</b>()
+				</div>
+				
+				<div class="description">
+					
+					
+				</div>
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+					
+
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name="accessModel"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>accessModel</b>
+					
+					</div>
+					<div class="description">
+						Role value which is required for seeing the baton
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="collectionNode"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>collectionNode</b>
+					
+					</div>
+					<div class="description">
+						The Collection Node to which the shared property subscribes/publishes
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="connectSession"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>connectSession</b>
+					
+					</div>
+					<div class="description">
+						The ConnectSession with which this component is associated. Note that this may only be set once before <code>subscribe</code>is called; re-sessioning of components is not supported.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="holderID"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>holderID</b>
+					
+					</div>
+					<div class="description">
+						Specifies the <code>userID</code> of the person controlling the baton. Returns null if noone has the baton. For example, this function might be used to create a "controlled by XXX" tooltip for your component.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="nodeName"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>nodeName</b>
+					
+					</div>
+					<div class="description">
+						The the Node Name to which the value is published
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="publishModel"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>publishModel</b>
+					
+					</div>
+					<div class="description">
+						Role value which is required for publishing to the baton
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="sharedID"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>sharedID</b>
+					
+					</div>
+					<div class="description">
+						Defines the logical location of the component on the service - typically this assigns the sharedID of the collectionNodeused by the component. sharedIDs should be unique within a room (if they're expressing 2 unique locations). Note thatthis can only be assigned once (before <code>subscribe()</code> is called). For components with an <code>id</code> property, sharedID defaults to that value.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="timeOut"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>timeOut</b>
+					
+					</div>
+					<div class="description">
+						Number of seconds after which the baton times out
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="amIHolding"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>amIHolding</b>()
+					
+					</div>
+					<div class="description">
+						Determines whether the current user is holding the baton.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="available"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>available</b>()
+					
+					</div>
+					<div class="description">
+						Determines whether the baton is up for grabs because it has no current holder.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="canIAdminister"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>canIAdminister</b>()
+					
+					</div>
+					<div class="description">
+						Determines whether the current user has permission to administer the baton by taking it from someone or forcing them to put it down.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="canIGrab"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>canIGrab</b>()
+					
+					</div>
+					<div class="description">
+						Determines whether the current user has permission to grab the baton when available.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="canUserAdminister"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>canUserAdminister</b>(p_userID)
+					
+					</div>
+					<div class="description">
+						Determines whether a specified user can administer the baton from others.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The <code>userID</code> of the user to check if they have adminstrator rights.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="canUserGrab"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>canUserGrab</b>(p_userID)
+					
+					</div>
+					<div class="description">
+						Determines whether a specified user can grab the baton if it's available.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The <code>userID</code> of the user to check if they can grab the baton.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="close"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>close</b>()
+					
+					</div>
+					<div class="description">
+						Cleans up all networking and event handling; recommended for garbage collection.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="extendTimer"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>extendTimer</b>()
+					
+					</div>
+					<div class="description">
+						Extends the timeout if the baton has one.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getAccessModel"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getAccessModel</b>()
+					
+					</div>
+					<div class="description">
+						Role value which is required for seeing the baton
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getNodeConfiguration"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getNodeConfiguration</b>()
+					
+					</div>
+					<div class="description">
+						Gets the NodeConfiguration of the Baton Node.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getPublishModel"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getPublishModel</b>()
+					
+					</div>
+					<div class="description">
+						Role Value required to publish the baton
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getUserRole"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getUserRole</b>(p_userID)
+					
+					</div>
+					<div class="description">
+						Returns the role of a given user for the baton.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>UserID of the user in question</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="giveTo"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>giveTo</b>(p_userID)
+					
+					</div>
+					<div class="description">
+						If the baton is grabbable, the holding user can hand the baton to a specified user. A user with an owner role can give a baton to anyone with the required permissions at any time.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The <code>userID</code> of the user to allow to grab the baton.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="grab"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>grab</b>()
+					
+					</div>
+					<div class="description">
+						If grabbable, users with a publisher role can grab the control if it's available by using this method. Users with an owner role may grab the baton at any time.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="isSynchronized"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>isSynchronized</b>()
+					
+					</div>
+					<div class="description">
+						Determines whether the component has connected to the server and has fully synchronized.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="putDown"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>putDown</b>()
+					
+					</div>
+					<div class="description">
+						Users with an publisher role in control can use this method to release their control. Users with an owner role  can use this method to remove the baton from a user who has it.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setAccessModel"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setAccessModel</b>(p_accessModel)
+					
+					</div>
+					<div class="description">
+						Set the role value which is required for seeing the baton
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_accessModel</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setNodeConfiguration"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setNodeConfiguration</b>(p_nodeConfiguration)
+					
+					</div>
+					<div class="description">
+						Sets the NodeConfiguration on the baton node.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_nodeConfiguration</b>
+									
+								</dt>
+								<dd>The node Configuration of the baton node to be set.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setPublishModel"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setPublishModel</b>(p_publishModel)
+					
+					</div>
+					<div class="description">
+						Set the Role Value required to publish the baton
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_publishModel</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setUserRole"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setUserRole</b>(p_userID, p_role)
+					
+					</div>
+					<div class="description">
+						When called by an owner, <code>setUserRole()</code> sets the role of the specified user with respect to this baton. The following rules apply: <ul><li>Setting the role to <code>UserRoles.PUBLISHER</code> allows the user to grab the baton. </li><li>Setting the role to <code>UserRoles.OWNER</code> allows the user to administer the baton.</li> <li>Setting to <code>UserRoles.VIEWER</code> will allow neither.</li></ul>
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The <code>userID</code> of the user to set the role for.</dd>
+							
+								<dt>
+									<b>p_role</b>
+									
+								</dt>
+								<dd>The new role for that user.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="subscribe"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>subscribe</b>()
+					
+					</div>
+					<div class="description">
+						Tells the component to begin synchronizing with the service.  This method must be called explicitly.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a><br/>
+			2008-2011 Adobe Systems Incorporated. All rights reserved.
+		</div>
+	</body>
+</html>

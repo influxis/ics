@@ -1,0 +1,853 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<meta content="SimpleChatModel,com.adobe.rtc.sharedModel.SimpleChatModel,TIMEFORMAT_24H,TIMEFORMAT_AM_PM,nameColor,timeStampColor,accessModel,allowPrivateChat,connectSession,history,isSynchronized,maxSavedMessages,publishModel,timeFormat,useTimeStamps,usersTyping,sharedID,clear,close,formatMessageDescriptor,getNodeConfiguration,getUserRole,iAmTyping,sendMessage,setNodeConfiguration,setUserRole,subscribe" name="keywords">
+<title>com.adobe.rtc.sharedModel.SimpleChatModel</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'SimpleChatModel - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS API Reference Player 10.1</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?com/adobe/rtc/sharedModel/SimpleChatModel.html&amp;com/adobe/rtc/sharedModel/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;SimpleChatModel</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class SimpleChatModel"); titleBar_setSubNav(true,true,false,false,true,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.sharedModel</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class SimpleChatModel</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">SimpleChatModel <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> flash.events.EventDispatcher</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../session/ISessionSubscriber.html">ISessionSubscriber</a></td>
+</tr>
+</table>
+<p></p>
+  SimpleChatModel is a model component which drives the SimpleChat pod. 
+  Its job is to keep the shared state of the chat pod synchronized across
+  multiple users using an internal CollectionNode. It exposes methods for 
+  manipulating that shared model as well as events indicating when that 
+  model changes. In general, user with the viewer role and higher can both 
+  add new messages and view those messages.
+  
+  <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../pods/SimpleChat.html" target="">com.adobe.rtc.pods.SimpleChat</a>
+<br>
+<a href="descriptors/ChatMessageDescriptor.html" target="">com.adobe.rtc.sharedModel.descriptors.ChatMessageDescriptor</a>
+<br>
+<a href="../sharedModel/CollectionNode.html" target="">com.adobe.rtc.sharedModel.CollectionNode</a>
+</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#accessModel">accessModel</a> : int<div class="summaryTableDescription">
+   The role value required for accessing the chat history
+   </div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#allowPrivateChat">allowPrivateChat</a> : Boolean<div class="summaryTableDescription">
+   Specifies whether private chat is allowed.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#connectSession">connectSession</a> : <a href="../session/IConnectSession.html">IConnectSession</a>
+<div class="summaryTableDescription">
+   The IConnectSession with which this component is associated.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#history">history</a> : String<div class="summaryTableDescription">[read-only]
+   Returns the current history of chat messages as a string.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#isSynchronized">isSynchronized</a> : Boolean<div class="summaryTableDescription">[read-only]
+   Determines whether the Model is connected and fully synchronized with the service.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#maxSavedMessages">maxSavedMessages</a> : int<div class="summaryTableDescription">
+   Specifies the number of messages that should be saved by the service.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#nameColor">nameColor</a> : Number = 0x000000<div class="summaryTableDescription">
+   The default color used in formatting messages for the user's name
+   </div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#publishModel">publishModel</a> : int<div class="summaryTableDescription">
+   The role value required for publishing to the chat
+   </div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#sharedID">sharedID</a> : String<div class="summaryTableDescription">
+   Defines the logical location of the component on the service - typically this assigns the sharedID of the collectionNode
+   used by the component.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#timeFormat">timeFormat</a> : String<div class="summaryTableDescription">
+   Specifies the format of timestamps (see the constants on this class).</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#timeStampColor">timeStampColor</a> : Number = 0x999999<div class="summaryTableDescription">
+   The default color used in formatting messages for the timestamp
+   </div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#usersTyping">usersTyping</a> : String<div class="summaryTableDescription">[read-only]
+   Returns a list of currently typing users as a string.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#useTimeStamps">useTimeStamps</a> : Boolean<div class="summaryTableDescription">
+   Specifies whether or not to display timestamps next to each message.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#SimpleChatModel()">SimpleChatModel</a>(p_isClearAfterSessionRemoved:Boolean = false)</div>
+<div class="summaryTableDescription">
+   Constructor
+   </div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#clear()">clear</a>():void</div>
+<div class="summaryTableDescription">
+   Clears all chat history.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#close()">close</a>():void</div>
+<div class="summaryTableDescription">
+   Disposes all listeners to the network and framework classes.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#formatMessageDescriptor()">formatMessageDescriptor</a>(p_msgDesc:<a href="descriptors/ChatMessageDescriptor.html">ChatMessageDescriptor</a>):String</div>
+<div class="summaryTableDescription">
+   Formats a given MessageDescriptor into a readable string
+   </div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getNodeConfiguration()">getNodeConfiguration</a>(p_nodeName:String):<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>
+</div>
+<div class="summaryTableDescription">
+   Gets the NodeConfiguration on a specific node in the ChatModel.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getUserRole()">getUserRole</a>(p_userID:String):int</div>
+<div class="summaryTableDescription">
+    Returns the role of a given user for the chat.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#iAmTyping()">iAmTyping</a>():void</div>
+<div class="summaryTableDescription">
+   Updates the model to notify others that the current user is typing.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#sendMessage()">sendMessage</a>(p_msgDesc:<a href="descriptors/ChatMessageDescriptor.html">ChatMessageDescriptor</a>):void</div>
+<div class="summaryTableDescription">
+   Sends a message which is specified by the ChatMessageDescriptor.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setNodeConfiguration()">setNodeConfiguration</a>(p_nodeName:String, p_nodeConfiguration:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>):void</div>
+<div class="summaryTableDescription">
+   Sets the NodeConfiguration on a already defined node in chatModel.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setUserRole()">setUserRole</a>(p_userID:String, p_userRole:int, p_nodeName:String = null):void</div>
+<div class="summaryTableDescription">
+    Sets the role of a given user for the chat.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#subscribe()">subscribe</a>():void</div>
+<div class="summaryTableDescription">
+   Tells the component to begin synchronizing with the service.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+</table>
+</div>
+<a name="eventSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Events</div>
+<table id="summaryTableEvent" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Event</th><th>Summary</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:allowPrivateChatChange">allowPrivateChatChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when private chat is turned on or off.</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:historyChange">historyChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the message history changes; for example, when there is a new message
+  or the messages are cleared.</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:synchronizationChange">synchronizationChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the NoteModel has fully connected and synchronized with the service
+  or when it loses that connection.</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:timeFormatChange">timeFormatChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the timestamp time format changes.</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:typingListUpdate">typingListUpdate</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the list of currently typing users is updated.</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:useTimeStampsChange">useTimeStampsChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when timestamps are turned on or off.</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#TIMEFORMAT_24H">TIMEFORMAT_24H</a> : String = "24h"<div class="summaryTableDescription">[static]
+   Constant for setting the time format of timestamps to 24 hour mode.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#TIMEFORMAT_AM_PM">TIMEFORMAT_AM_PM</a> : String = "ampm"<div class="summaryTableDescription">[static]
+   Constant for setting the time format of timestamps to AM/PM mode.</div>
+</td><td class="summaryTableOwnerCol">SimpleChatModel</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="accessModel"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">accessModel</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>accessModel:int</code>&nbsp;&nbsp;[read-write]<p>
+   The role value required for accessing the chat history
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get accessModel():int</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set accessModel(value:int):void</code>
+<br>
+</div>
+<a name="allowPrivateChat"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">allowPrivateChat</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>allowPrivateChat:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+   Specifies whether private chat is allowed. Note that only users with the
+   owner role can configure this setting.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get allowPrivateChat():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set allowPrivateChat(value:Boolean):void</code>
+<br>
+</div>
+<a name="connectSession"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">connectSession</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>connectSession:<a href="../session/IConnectSession.html">IConnectSession</a></code>&nbsp;&nbsp;[read-write]<p>
+   The IConnectSession with which this component is associated. Note that this may only be set once before <code>subscribe</code>
+   is called; re-sessioning of components is not supported. Defaults to the first IConnectSession created in the application.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get connectSession():<a href="../session/IConnectSession.html">IConnectSession</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set connectSession(value:<a href="../session/IConnectSession.html">IConnectSession</a>):void</code>
+<br>
+</div>
+<a name="history"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">history</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>history:String</code>&nbsp;&nbsp;[read-only]<p>
+   Returns the current history of chat messages as a string.
+   </p><p>This property can be used as the source for data binding.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get history():String</code>
+<br>
+</div>
+<a name="isSynchronized"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isSynchronized</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>isSynchronized:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+   Determines whether the Model is connected and fully synchronized with the service.
+   </p><p>This property can be used as the source for data binding.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get isSynchronized():Boolean</code>
+<br>
+</div>
+<a name="maxSavedMessages"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">maxSavedMessages</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>maxSavedMessages:int</code>&nbsp;&nbsp;[read-write]<p>
+   Specifies the number of messages that should be saved by the service. Only the last number of messages specified will be kept on the service;
+   older messages are forgotten. Note that this only affects newcomers to the room - the chat client will remember all messages it has seen while
+   it was in the room. Newcomers depend on the service to bring them "up to speed", so this will specify how much history is important for them
+   to fetch upon their arrival. Also note, only a user with OWNER level credentials may set this property.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get maxSavedMessages():int</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set maxSavedMessages(value:int):void</code>
+<br>
+</div>
+<a name="nameColor"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">nameColor</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var nameColor:Number = 0x000000</code><p>
+   The default color used in formatting messages for the user's name
+   </p></div>
+<a name="publishModel"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">publishModel</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>publishModel:int</code>&nbsp;&nbsp;[read-write]<p>
+   The role value required for publishing to the chat
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get publishModel():int</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set publishModel(value:int):void</code>
+<br>
+</div>
+<a name="sharedID"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">sharedID</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>sharedID:String</code>&nbsp;&nbsp;[read-write]<p>
+   Defines the logical location of the component on the service - typically this assigns the sharedID of the collectionNode
+   used by the component. sharedIDs should be unique within a room (if they're expressing 2 unique locations). Note that
+   this can only be assigned once (before <code>subscribe()</code> is called). For components with an <code class="property">id</code> property, 
+   sharedID defaults to that value.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get sharedID():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set sharedID(value:String):void</code>
+<br>
+</div>
+<a name="timeFormat"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">timeFormat</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>timeFormat:String</code>&nbsp;&nbsp;[read-write]<p>
+   Specifies the format of timestamps (see the constants on this class). 
+   Note that only a user with a publisher role or higher can change this setting.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get timeFormat():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set timeFormat(value:String):void</code>
+<br>
+</div>
+<a name="timeStampColor"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">timeStampColor</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var timeStampColor:Number = 0x999999</code><p>
+   The default color used in formatting messages for the timestamp
+   </p></div>
+<a name="usersTyping"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">usersTyping</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>usersTyping:String</code>&nbsp;&nbsp;[read-only]<p>
+   Returns a list of currently typing users as a string.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get usersTyping():String</code>
+<br>
+</div>
+<a name="useTimeStamps"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">useTimeStamps</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>useTimeStamps:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+   Specifies whether or not to display timestamps next to each message. 
+   Only users with a publisher role or higher can configure this setting.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get useTimeStamps():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set useTimeStamps(value:Boolean):void</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="SimpleChatModel()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SimpleChatModel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function SimpleChatModel(p_isClearAfterSessionRemoved:Boolean = false)</code><p>
+   Constructor
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_isClearAfterSessionRemoved</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Whether or not the history should be cleared once the session ends.
+   </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="clear()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">clear</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function clear():void</code><p>
+   Clears all chat history. Note that only a user with role UserRoles.OWNER may clear the chat
+   </p></div>
+<a name="close()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">close</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function close():void</code><p>
+   Disposes all listeners to the network and framework classes. Recommended for 
+   proper garbage collection of the component.
+   </p></div>
+<a name="formatMessageDescriptor()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">formatMessageDescriptor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function formatMessageDescriptor(p_msgDesc:<a href="descriptors/ChatMessageDescriptor.html">ChatMessageDescriptor</a>):String</code><p>
+   Formats a given MessageDescriptor into a readable string
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_msgDesc</span>:<a href="descriptors/ChatMessageDescriptor.html">ChatMessageDescriptor</a></code> &mdash; the desired ChatMessageDescriptor to format
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="getNodeConfiguration()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getNodeConfiguration</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getNodeConfiguration(p_nodeName:String):<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code><p>
+   Gets the NodeConfiguration on a specific node in the ChatModel. If the node is not defined, it will return null
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_nodeName</span>:String</code> &mdash; The name of the node.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code></td>
+</tr>
+</table>
+</div>
+<a name="getUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getUserRole(p_userID:String):int</code><p>
+    Returns the role of a given user for the chat.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; UserID of the user in question
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>int</code></td>
+</tr>
+</table>
+</div>
+<a name="iAmTyping()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">iAmTyping</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function iAmTyping():void</code><p>
+   Updates the model to notify others that the current user is typing. This is automatically withdrawn after 2 seconds, unless this method is called again
+   during that time, at which point the 2 second timeout is reset. Typically, chaining this call to a TextInput's CHANGE event is effective - iAmTyping will 
+   avoid re-broadcasting the notification if not needed.
+   </p></div>
+<a name="sendMessage()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">sendMessage</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function sendMessage(p_msgDesc:<a href="descriptors/ChatMessageDescriptor.html">ChatMessageDescriptor</a>):void</code><p>
+   Sends a message which is specified by the ChatMessageDescriptor.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_msgDesc</span>:<a href="descriptors/ChatMessageDescriptor.html">ChatMessageDescriptor</a></code> &mdash; the message to send
+   </td>
+</tr>
+</table>
+</div>
+<a name="setNodeConfiguration()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setNodeConfiguration</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setNodeConfiguration(p_nodeName:String, p_nodeConfiguration:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>):void</code><p>
+   Sets the NodeConfiguration on a already defined node in chatModel. If the node is not defined, it will not do anything.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_nodeName</span>:String</code> &mdash; The node Configuration on a node in the NodeConfiguration.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_nodeConfiguration</span>:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code> &mdash; The name of the node.
+   </td>
+</tr>
+</table>
+</div>
+<a name="setUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setUserRole(p_userID:String, p_userRole:int, p_nodeName:String = null):void</code><p>
+    Sets the role of a given user for the chat.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; UserID of the user whose role we are setting
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userRole</span>:int</code> &mdash; Role value we are setting
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_nodeName</span>:String</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="subscribe()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">subscribe</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function subscribe():void</code><p>
+   Tells the component to begin synchronizing with the service.  
+   For "headless" components such as this one, this method must be called explicitly.
+   </p></div>
+<div class="detailSectionHeader">Event detail</div>
+<a name="event:allowPrivateChatChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">allowPrivateChatChange</td><td class="detailHeaderType">event&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/ChatEvent.html"><code>com.adobe.rtc.events.ChatEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when private chat is turned on or off.
+  </p></div>
+<a name="event:historyChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">historyChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/ChatEvent.html"><code>com.adobe.rtc.events.ChatEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the message history changes; for example, when there is a new message
+  or the messages are cleared.
+  </p></div>
+<a name="event:synchronizationChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">synchronizationChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the NoteModel has fully connected and synchronized with the service
+  or when it loses that connection.
+  </p></div>
+<a name="event:timeFormatChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">timeFormatChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/ChatEvent.html"><code>com.adobe.rtc.events.ChatEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the timestamp time format changes.
+  </p></div>
+<a name="event:typingListUpdate"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">typingListUpdate</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/ChatEvent.html"><code>com.adobe.rtc.events.ChatEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the list of currently typing users is updated.
+  </p></div>
+<a name="event:useTimeStampsChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">useTimeStampsChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/ChatEvent.html"><code>com.adobe.rtc.events.ChatEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when timestamps are turned on or off.
+  </p></div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="TIMEFORMAT_24H"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">TIMEFORMAT_24H</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const TIMEFORMAT_24H:String = "24h"</code><p>
+   Constant for setting the time format of timestamps to 24 hour mode.
+   </p></div>
+<a name="TIMEFORMAT_AM_PM"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">TIMEFORMAT_AM_PM</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const TIMEFORMAT_AM_PM:String = "ampm"</code><p>
+   Constant for setting the time format of timestamps to AM/PM mode.
+   </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

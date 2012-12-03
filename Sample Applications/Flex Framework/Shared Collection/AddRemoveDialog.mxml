@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="180"
+	paddingLeft="0" paddingRight="0" paddingTop="10" 
+	horizontalAlign="right" cornerRadius="0" 
+	creationComplete="initMe()">
+	<mx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.utils.StringUtil ;
+			
+			/**
+			 * Provides the user interface for adding and removing groups.
+			 */
+			 
+			 /**********************************************************
+			  * ADOBE SYSTEMS INCORPORATED
+			  * Copyright [2007-2010] Adobe Systems Incorporated
+			  * All Rights Reserved.
+			  * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			  * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			  * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			  * written permission of Adobe.
+		     	  * *********************************/
+			private function initMe(): void {
+				
+				stateText.setFocus() ;
+			}
+			
+			
+			public function set option(p_option:String):void
+			{
+				if ( p_option == "Add" ){
+					capital.visible = true ;
+				} else if ( p_option == "Remove" ) {
+					capital.visible = false ;
+				}
+			}
+			
+			
+			/**
+			 * Handles a click on the OK button.
+			 */
+			protected function onOkBtnClick(p_evt:MouseEvent):void
+			{	
+				
+				var closeEvent:CloseEvent = new CloseEvent(CloseEvent.CLOSE) ;
+				closeEvent.detail = Alert.OK ;
+				dispatchEvent(closeEvent);
+			}
+			
+			/**
+			 * Handles a click on the Cancel button.
+			 */
+			protected function onCancelBtnClick(p_evt:MouseEvent):void
+			{
+				var closeEvent:CloseEvent = new CloseEvent(CloseEvent.CLOSE) ;
+				closeEvent.detail = Alert.CANCEL ;
+				dispatchEvent(closeEvent);
+			}
+		]]>
+	</mx:Script>
+	<mx:VBox>
+		<mx:HBox id="country">
+			 <mx:Label text="Enter State Name: "/>
+			 <mx:TextInput id="stateText" maxChars="20"/>
+		</mx:HBox>
+		<mx:HBox id="capital">
+			 <mx:Label text="Enter Capital Name:   " />
+			 <mx:TextInput id="capitalText" maxChars="20"/>
+		</mx:HBox>
+	</mx:VBox>
+	<mx:ControlBar>
+		<mx:Spacer width="100%" />
+		<mx:Button id="saveBtn" label="Ok"  click="onOkBtnClick(event)"/>
+		<mx:Button id="cancelBtn" label="Cancel" click="onCancelBtnClick(event)" />
+	</mx:ControlBar>
+</mx:Panel>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="120"
+	paddingLeft="0" paddingRight="0" paddingTop="10" 
+	horizontalAlign="right" cornerRadius="0" 
+	creationComplete="initMe()">
+	<mx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.utils.StringUtil ;
+			
+			/**********************************************************
+			 * ADOBE SYSTEMS INCORPORATED
+			 * Copyright [2007-2010] Adobe Systems Incorporated
+			 * All Rights Reserved.
+			 * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			 * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			 * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			 * written permission of Adobe.
+		     	 * *********************************/
+			
+			/**
+			 * Initialized the user interface for adding and removing groups.
+			 */
+			private function initMe(): void {
+				
+				titleTextInput.setFocus() ;
+			}
+			
+			/**
+			 * Handler for a click on the OK button.
+			 */
+			protected function onOkBtnClick(p_evt:MouseEvent):void
+			{	
+				
+				var closeEvent:CloseEvent = new CloseEvent(CloseEvent.CLOSE) ;
+				closeEvent.detail = Alert.OK ;
+				dispatchEvent(closeEvent);
+			}
+			
+			/**
+			 * Handler for a click on the Cancel button.
+			 */
+			protected function onCancelBtnClick(p_evt:MouseEvent):void
+			{
+				var closeEvent:CloseEvent = new CloseEvent(CloseEvent.CLOSE) ;
+				closeEvent.detail = Alert.CANCEL ;
+				dispatchEvent(closeEvent);
+			}
+		]]>
+	</mx:Script>
+	<mx:VBox>
+		<mx:HBox>
+			 <mx:Label text="Enter Group Name"/>
+			 <mx:TextInput id="titleTextInput" maxChars="50"/>
+		</mx:HBox>
+	</mx:VBox>
+	<mx:ControlBar>
+		<mx:Spacer width="100%" />
+		<mx:Button id="saveBtn" label="Ok"  click="onOkBtnClick(event)"/>
+		<mx:Button id="cancelBtn" label="Cancel" click="onCancelBtnClick(event)" />
+	</mx:ControlBar>
+</mx:Panel>

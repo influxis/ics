@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute" 
+	xmlns:rtc="http://ns.adobe.com/rtc">
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.rtc.sharedManagers.constants.UserStatuses;
+			import com.adobe.rtc.sharedModel.UserQueue;
+			import com.adobe.rtc.sharedModel.userQueueClasses.UserQueueItem;
+			import com.adobe.rtc.messaging.UserRoles;
+			import com.adobe.rtc.sharedManagers.RoomManager;
+			import com.adobe.rtc.events.UserQueueEvent;
+		
+			/*************************************************
+			 * 
+			 * This example demonstrates the use of knocking Queue. When one or more users arrive when the host 
+			 * is already there and the room requires knocking (guestsHaveToKnock = true in RoomManager), users 
+			 * are placed in a pending queue. Once the host accepts the users, the users go into accepted list.
+			 * Denied users go into denied list. All lists are updated every time a user leaves or is accepted
+			 * or denied. userQueue and user Manager performs the list bookkeeping.
+			 * 
+			 * cSession.roomManager.knockingQueue.pendingQueue provides the list of pending users, while 
+			 * cSession.roomManager.knockingQueue.queue maintains the list of all accepted and denied users.
+			 * In this example, the host views the pending, accepted, denied queue and a chat window. Pending users
+			 * see a blank screen until they accepted, at which point they see the chat window.
+			 *
+			 * The host has to come in first with username/password to accept users. For the guests, the app has to 
+			 * to run without user credentials and with only room url and username. If the host isn't there yet, guests will see a blank screen.
+			 ******************************************************/
+			 
+			  /**********************************************************
+			   * ADOBE SYSTEMS INCORPORATED
+			   * Copyright [2007-2010] Adobe Systems Incorporated
+			   * All Rights Reserved.
+			   * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			   * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			   * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			   * written permission of Adobe.
+		     	   * *********************************/
+			private function onCreationComplete():void
+			{
+				// Require that guests must knock.Note that this line changes the setting of your room so that in future anyone guest coming in
+				// has to knock. You can change this setting again either from code by making roomManager.guestsHaveToKnock as false or from the DevConsole's manage tab
+				cSession.roomManager.guestsHaveToKnock = true ;
+				
+				// For owners that arrive late, the pending queue is populated with waiting users.
+				if ( cSession.userManager.myUserRole == UserRoles.OWNER ) {
+					
+					var pendingArray:Array = new Array();
+					var queue:Array = cSession.roomManager.knockingQueue.pendingQueue ;
+					for ( var i:int = 0 ; i < queue.length ; i++ ) {
+						var item:UserQueueItem = queue[i] as UserQueueItem ;
+						pendingArray.push({label:item.descriptor.displayName,descriptor:item.descriptor});
+					}
+					knockingList.dataProvider = pendingArray ;
+					cSession.roomManager.knockingQueue.addEventListener(UserQueueEvent.ITEM_UPDATE,onKnockingQueueUpdate);
+				}else {
+					//Else, remove all UI from seeing.
+					knockingUI.removeAllChildren() ;
+				}
+				
+				
+				if ( cSession.userManager.myUserRole == UserRoles.LOBBY ) {
+					cSession.roomManager.knockingQueue.addEventListener(UserQueueEvent.ACCEPT,onMyAccept);
+					cSession.roomManager.knockingQueue.addEventListener(UserQueueEvent.DENY,onMyDeny);
+				}
+				
+			}
+			
+			// When the queue changes, update the pending, knocking, and denied list
+			private function onKnockingQueueUpdate(p_evt:UserQueueEvent):void
+			{
+				var pendingArray:Array = new Array(); 
+				// For the pending list you can directly use the pendingQueue property in UserQueue. For details, 
+				// see the onCreationComplete documentation in the LCCS API Reference. 
+				
+				var acceptedArray:Array = new Array();
+				var deniedArray:Array = new Array();
+				
+				var queue:Array = cSession.roomManager.knockingQueue.queue ;
+				
+				for ( var i:int = 0 ; i < queue.length ; i++ ) {
+					var item:UserQueueItem = queue[i] as UserQueueItem ;
+					if ( item.status == UserQueueItem.STATUS_PENDING ) {
+						pendingArray.push({label:item.descriptor.displayName,descriptor:item.descriptor});
+					}
+					
+					if ( item.status == UserQueueItem.STATUS_ACCEPTED ) {
+						acceptedArray.push({label:item.descriptor.displayName,descriptor:item.descriptor});
+					}
+					if ( item.status == UserQueueItem.STATUS_DENIED ) {
+						deniedArray.push({label:item.descriptor.displayName,descriptor:item.descriptor});
+					}
+					
+				}
+				
+				
+				knockingList.dataProvider = pendingArray ;
+				acceptedList.dataProvider = acceptedArray ;
+				deniedList.dataProvider = deniedArray ;
+				
+			}
+			
+			// Accept the knocker.
+			private function onAcceptClick(p_evt:MouseEvent):void
+			{
+				if ( cSession.userManager.myUserRole == UserRoles.OWNER ) {
+					cSession.roomManager.knockingQueue.acceptUser(knockingList.selectedItem.descriptor.userID);
+				}
+			}
+			
+			
+			// Deny the knocker.
+			private function onDenyClick(p_evt:MouseEvent):void
+			{
+				if ( cSession.userManager.myUserRole == UserRoles.OWNER )
+					cSession.roomManager.knockingQueue.denyUser(knockingList.selectedItem.descriptor.userID);
+			}
+			
+			
+			
+			// Update the user's user interface when they are accepted by letting them see the chat window. 
+			private function onMyAccept(p_evt:UserQueueEvent):void
+			{
+				knockingUI.addChild(simpleChat);
+				simpleChat.width = 300 ;
+				simpleChat.height = 150 ;
+			}
+			
+			// Show denied users a blank screen.
+			private function onMyDeny(p_evt:UserQueueEvent):void
+			{
+				knockingUI.removeAllChildren();
+			}
+			
+			
+		]]>
+	</mx:Script>
+	
+	<!-- 
+		You would likely use external authentication here for a deployed application; 
+		you would certainly not hard code Adobe IDs here.
+	-->
+	<rtc:AdobeHSAuthenticator 
+		id="auth" 
+		userName="Your Username" 
+		password="Your password"  />
+		
+	<rtc:ConnectSessionContainer id="cSession" authenticator="{auth}" width="100%"
+		 height="100%" creationComplete="onCreationComplete()" roomURL="Your RoomUrl" >
+			<mx:VBox id="knockingUI">
+				<mx:HBox  horizontalGap="15">
+					<mx:VBox>
+						<mx:Label text="Pending User List" />
+						<mx:List id="knockingList" width="100%" height="200"/>
+						<mx:HBox>
+							<mx:Button label="accept" enabled="{knockingList.selectedItem}" click="onAcceptClick(event)" />
+							<mx:Button label="deny" enabled="{knockingList.selectedItem}" click="onDenyClick(event)"/>
+						</mx:HBox>
+					</mx:VBox>
+					<mx:VBox>
+						<mx:Label text="Accepted User List" />
+						<mx:List id="acceptedList" width="100%" height="200" />
+					</mx:VBox>
+					<mx:VBox>
+						<mx:Label text="Denied User List" />
+						<mx:List id="deniedList" width="100%" height="200" />
+					</mx:VBox>
+				</mx:HBox>
+				<rtc:SimpleChat id="simpleChat" width="100%" height="100%"/>
+			</mx:VBox>
+		
+		
+	</rtc:ConnectSessionContainer>
+</mx:Application>

@@ -1,0 +1,392 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<meta content="AccountManagerEvent,com.adobe.rtc.events.AccountManagerEvent,ACCESS_ERROR,ARCHIVE_DELETE,ARCHIVE_LIST_RECEIVE,ARCHIVE_MOVE,LOGIN_FAILURE,LOGIN_SUCCESS,ROOM_CREATE,ROOM_DELETE,ROOM_LIST_RECEIVE,TEMPLATE_CLONE,TEMPLATE_DELETE,TEMPLATE_LIST_RECEIVE,archiveName,list,roomName,templateName" name="keywords">
+<title>com.adobe.rtc.events.AccountManagerEvent</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'AccountManagerEvent - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS Flash-Only Player 10.3 API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?com/adobe/rtc/events/AccountManagerEvent.html&amp;com/adobe/rtc/events/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;AccountManagerEvent</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class AccountManagerEvent"); titleBar_setSubNav(true,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.events</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class AccountManagerEvent</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">AccountManagerEvent <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> flash.events.Event</td>
+</tr>
+</table>
+<p></p>
+  AccountManagerEvent details the set of event types dispatched by an AccountManager, and includes properties
+  concerning the events.
+  
+  <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">com.adobe.rtc.util.AccountManager</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#archiveName">archiveName</a> : String<div class="summaryTableDescription">
+   For ARCHIVE_DELETE, the name of the archive affected
+   </div>
+</td><td class="summaryTableOwnerCol">AccountManagerEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#list">list</a> : Array<div class="summaryTableDescription">
+   For TEMPLATE_LIST_RECEIVE, ROOM_LIST_RECEIVE, or ARCHIVE_LIST_RECEIVE the list of templates, rooms, or archives.</div>
+</td><td class="summaryTableOwnerCol">AccountManagerEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#roomName">roomName</a> : String<div class="summaryTableDescription">
+   For ROOM_DELETE or ROOM_CREATE, the name of the room affected
+   </div>
+</td><td class="summaryTableOwnerCol">AccountManagerEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#templateName">templateName</a> : String<div class="summaryTableDescription">
+   For TEMPLATE_CREATE, the name of the template affected
+   </div>
+</td><td class="summaryTableOwnerCol">AccountManagerEvent</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#AccountManagerEvent()">AccountManagerEvent</a>(type:String, bubbles:Boolean = false, cancelable:Boolean = false)</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">AccountManagerEvent</td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ACCESS_ERROR">ACCESS_ERROR</a> : String = "accessError"<div class="summaryTableDescription">[static]
+         Event type emitted when a request fails (probably because invalid permissions)
+         </div>
+</td><td class="summaryTableOwnerCol">AccountManagerEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ARCHIVE_DELETE">ARCHIVE_DELETE</a> : String = "archiveDelete"<div class="summaryTableDescription">[static]
+   Event type emitted when a call to <code>deleteArchive</code> has returned
+   </div>
+</td><td class="summaryTableOwnerCol">AccountManagerEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ARCHIVE_LIST_RECEIVE">ARCHIVE_LIST_RECEIVE</a> : String = "archiveListReceive"<div class="summaryTableDescription">[static]
+   Event type emitted when a call to <code>requestArchiveList</code> has returned
+   </div>
+</td><td class="summaryTableOwnerCol">AccountManagerEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ARCHIVE_MOVE">ARCHIVE_MOVE</a> : String = "archiveMove"<div class="summaryTableDescription">[static]
+   Event type emitted when a call to <code>moveArchive</code> has returned
+   </div>
+</td><td class="summaryTableOwnerCol">AccountManagerEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#LOGIN_FAILURE">LOGIN_FAILURE</a> : String = "loginFailure"<div class="summaryTableDescription">[static]
+         Event type emitted when a call to <code>login</code> to the service has failed
+         </div>
+</td><td class="summaryTableOwnerCol">AccountManagerEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#LOGIN_SUCCESS">LOGIN_SUCCESS</a> : String = "loginSuccess"<div class="summaryTableDescription">[static]
+   Event type emitted when a call to <code>login</code> to the service has succeeded
+   </div>
+</td><td class="summaryTableOwnerCol">AccountManagerEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ROOM_CREATE">ROOM_CREATE</a> : String = "roomCreate"<div class="summaryTableDescription">[static]
+   Event type emitted when a call to <code>createRoom</code> has returned
+   </div>
+</td><td class="summaryTableOwnerCol">AccountManagerEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ROOM_DELETE">ROOM_DELETE</a> : String = "roomDelete"<div class="summaryTableDescription">[static]
+   Event type emitted when a call to <code>deleteRoom</code> has returned
+   </div>
+</td><td class="summaryTableOwnerCol">AccountManagerEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ROOM_LIST_RECEIVE">ROOM_LIST_RECEIVE</a> : String = "roomListReceive"<div class="summaryTableDescription">[static]
+   Event type emitted when a call to <code>requestRoomList</code> has returned
+   </div>
+</td><td class="summaryTableOwnerCol">AccountManagerEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#TEMPLATE_CLONE">TEMPLATE_CLONE</a> : String = "templateClone"<div class="summaryTableDescription">[static]
+   Event type emitted when a call to <code>createTemplate</code> has returned
+   </div>
+</td><td class="summaryTableOwnerCol">AccountManagerEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#TEMPLATE_DELETE">TEMPLATE_DELETE</a> : String = "templateDelete"<div class="summaryTableDescription">[static]
+   Event type emitted when a call to <code>deleteTemplate</code> has returned
+   </div>
+</td><td class="summaryTableOwnerCol">AccountManagerEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#TEMPLATE_LIST_RECEIVE">TEMPLATE_LIST_RECEIVE</a> : String = "templateListReceive"<div class="summaryTableDescription">[static]
+   Event type emitted when a call to <code>requestTemplateList</code> has returned
+   </div>
+</td><td class="summaryTableOwnerCol">AccountManagerEvent</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="archiveName"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">archiveName</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var archiveName:String</code><p>
+   For ARCHIVE_DELETE, the name of the archive affected
+   </p></div>
+<a name="list"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">list</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var list:Array</code><p>
+   For TEMPLATE_LIST_RECEIVE, ROOM_LIST_RECEIVE, or ARCHIVE_LIST_RECEIVE the list of templates, rooms, or archives. 
+   This is returned as an array of objects with details about the rooms, templates, or archives.
+   </p></div>
+<a name="roomName"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomName</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var roomName:String</code><p>
+   For ROOM_DELETE or ROOM_CREATE, the name of the room affected
+   </p></div>
+<a name="templateName"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">templateName</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var templateName:String</code><p>
+   For TEMPLATE_CREATE, the name of the template affected
+   </p></div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="AccountManagerEvent()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AccountManagerEvent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function AccountManagerEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false)</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">type</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">bubbles</span>:Boolean</code> (default = <code>false</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">cancelable</span>:Boolean</code> (default = <code>false</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="ACCESS_ERROR"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ACCESS_ERROR</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ACCESS_ERROR:String = "accessError"</code><p>
+         Event type emitted when a request fails (probably because invalid permissions)
+         </p></div>
+<a name="ARCHIVE_DELETE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ARCHIVE_DELETE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ARCHIVE_DELETE:String = "archiveDelete"</code><p>
+   Event type emitted when a call to <code>deleteArchive</code> has returned
+   </p></div>
+<a name="ARCHIVE_LIST_RECEIVE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ARCHIVE_LIST_RECEIVE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ARCHIVE_LIST_RECEIVE:String = "archiveListReceive"</code><p>
+   Event type emitted when a call to <code>requestArchiveList</code> has returned
+   </p></div>
+<a name="ARCHIVE_MOVE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ARCHIVE_MOVE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ARCHIVE_MOVE:String = "archiveMove"</code><p>
+   Event type emitted when a call to <code>moveArchive</code> has returned
+   </p></div>
+<a name="LOGIN_FAILURE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">LOGIN_FAILURE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const LOGIN_FAILURE:String = "loginFailure"</code><p>
+         Event type emitted when a call to <code>login</code> to the service has failed
+         </p></div>
+<a name="LOGIN_SUCCESS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">LOGIN_SUCCESS</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const LOGIN_SUCCESS:String = "loginSuccess"</code><p>
+   Event type emitted when a call to <code>login</code> to the service has succeeded
+   </p></div>
+<a name="ROOM_CREATE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ROOM_CREATE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ROOM_CREATE:String = "roomCreate"</code><p>
+   Event type emitted when a call to <code>createRoom</code> has returned
+   </p></div>
+<a name="ROOM_DELETE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ROOM_DELETE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ROOM_DELETE:String = "roomDelete"</code><p>
+   Event type emitted when a call to <code>deleteRoom</code> has returned
+   </p></div>
+<a name="ROOM_LIST_RECEIVE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ROOM_LIST_RECEIVE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ROOM_LIST_RECEIVE:String = "roomListReceive"</code><p>
+   Event type emitted when a call to <code>requestRoomList</code> has returned
+   </p></div>
+<a name="TEMPLATE_CLONE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">TEMPLATE_CLONE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const TEMPLATE_CLONE:String = "templateClone"</code><p>
+   Event type emitted when a call to <code>createTemplate</code> has returned
+   </p></div>
+<a name="TEMPLATE_DELETE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">TEMPLATE_DELETE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const TEMPLATE_DELETE:String = "templateDelete"</code><p>
+   Event type emitted when a call to <code>deleteTemplate</code> has returned
+   </p></div>
+<a name="TEMPLATE_LIST_RECEIVE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">TEMPLATE_LIST_RECEIVE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const TEMPLATE_LIST_RECEIVE:String = "templateListReceive"</code><p>
+   Event type emitted when a call to <code>requestTemplateList</code> has returned
+   </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

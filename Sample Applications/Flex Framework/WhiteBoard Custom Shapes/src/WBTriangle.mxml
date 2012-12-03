@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" minWidth="1024" minHeight="768" xmlns:rtc="http://ns.adobe.com/rtc">
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.coreUI.controls.whiteboardClasses.shapes.WBPropertiesToolBar;
+			import com.adobe.coreUI.controls.whiteboardClasses.shapeDescriptors.WBMarkerShapeDescriptor;
+			import com.adobe.coreUI.controls.whiteboardClasses.shapes.WBMarkerShapeFactory;
+			import com.adobe.coreUI.controls.whiteboardClasses.shapes.WBMarkerShape;
+			import com.adobe.coreUI.controls.whiteboardClasses.shapes.WBSimpleShape;
+			import com.adobe.coreUI.controls.whiteboardClasses.shapes.WBTextToolBar;
+			import com.adobe.coreUI.controls.EditorToolBar;
+			import com.adobe.coreUI.controls.whiteboardClasses.shapes.WBTextShape;
+			import com.adobe.coreUI.controls.whiteboardClasses.shapes.WBTextShapeFactory;
+			import com.adobe.coreUI.controls.whiteboardClasses.shapes.WBCustomShapeFactory;
+			import com.adobe.coreUI.controls.whiteboardClasses.ToolBarDescriptors.WBToolBarDescriptor;
+			import com.adobe.coreUI.controls.whiteboardClasses.shapes.WBSimpleShapeFactory;
+			import com.adobe.coreUI.controls.whiteboardClasses.shapes.WBHighlightAreaShapeFactory;
+			import com.adobe.rtc.events.CollectionNodeEvent;
+			import com.adobe.coreUI.controls.whiteboardClasses.ToolBarDescriptors.WBShapeToolBarDescriptor;
+			import com.adobe.coreUI.controls.whiteboardClasses.WBShapesToolBar;
+			import com.adobe.coreUI.events.WBCanvasEvent;
+			import com.adobe.rtc.events.SessionEvent;
+			
+			/**********************************************************
+			 * ADOBE SYSTEMS INCORPORATED
+			 * Copyright [2007-2010] Adobe Systems Incorporated
+			 * All Rights Reserved.
+			 * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			 * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+		 	 * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			 * written permission of Adobe.
+	  		 * *********************************/
+			
+			[Embed (source = '../assets/WBCustomMarker.png')]
+			public static var ICON_CUSTOM_MARKER:Class;
+			
+			[Embed (source = '../assets/WBFileImage.png')]
+			public static var ICON_IMAGE:Class;
+
+			[Embed (source = '../assets/WBTriangle.png')]
+			public static var ICON_TRIANGLE:Class;
+
+			
+			// NOTE : RUN AS OWNER FIRST TO SET ALL THE COLLECTIONNODES NEEDED
+			
+			protected function roomConnector_synchronizationChangeHandler(event:SessionEvent):void
+			{
+				if (roomConnector.isSynchronized) {
+					//Modify the toolBar after the white board is synchronized
+					sharedWB.addEventListener(CollectionNodeEvent.SYNCHRONIZATION_CHANGE, onToolBarAdd);
+				}
+			}
+			
+			// Modify the toolbar. Demonstrating the WBCustomShapeFactory.
+			// So to add a custom shape we need the following
+			// 1.) The shape class that defines what should be drawn when the mouse is dragged
+			// 2.) Custom Cursor
+			// 3.) Icon on the toolBar for the shape
+			// 4.) The Property ToolBar for the shape
+			
+			// So the toughest part is defining the shape and its property toolbar
+			protected function onToolBarAdd(p_evt:Event):void
+			{
+				if (sharedWB.isSynchronized) {
+					//Label Shape
+					var toolShape:WBShapeToolBarDescriptor = new WBShapeToolBarDescriptor(WBShapeToolBarDescriptor.LABEL);
+					toolShape.label = "CShape";
+					var toolBar:WBShapesToolBar = sharedWB.shapesToolBar as WBShapesToolBar;
+					toolBar.addCustomShapeToToolBar(toolShape);
+					
+					//Custom Marker or Wave Pen. Refer to WBCustomMarkerShape to check what the shape does
+					var wavePenToolShape:WBShapeToolBarDescriptor = new WBShapeToolBarDescriptor(WBShapeToolBarDescriptor.TOOL);
+					wavePenToolShape.toolTip ="Custom Highlighter Pen Tool";
+					var markerShape:WBMarkerShapeFactory = new WBMarkerShapeFactory();
+					wavePenToolShape.shapeFactory = new WBCustomShapeFactory(WBCustomMarkerShape, WBMarkerShapeFactory.CURSOR_HIGHLIGHTER_PEN, new WBCustomMarkerToolBar());
+					wavePenToolShape.icon = ICON_CUSTOM_MARKER;
+					toolBar.addCustomShapeToToolBar(wavePenToolShape);
+					
+ 					//Triangle Shape
+					var triangleShape:WBShapeToolBarDescriptor = new WBShapeToolBarDescriptor(WBShapeToolBarDescriptor.TOOL);
+					triangleShape.toolTip ="Triangle";
+					triangleShape.shapeFactory = new WBCustomShapeFactory(WBTriangleShape, WBMarkerShapeFactory.CURSOR_PEN, new WBPropertiesToolBar());
+					triangleShape.icon = ICON_TRIANGLE;
+					toolBar.addCustomShapeToToolBar(triangleShape);
+					
+					//A bit buggy or incomplete.. Adding Images to the WhiteBoard
+					//Modify WBFileImageShape or WBFileImageShapeToolBar for your custom Needs
+					var imageShape:WBShapeToolBarDescriptor = new WBShapeToolBarDescriptor(WBShapeToolBarDescriptor.TOOL);
+					imageShape.toolTip ="Image";
+					imageShape.shapeFactory = new WBCustomShapeFactory(WBFileImageShape, WBSimpleShapeFactory.CURSOR_RECTANGLE, new WBFileImageShapeToolBar());
+					imageShape.icon = ICON_IMAGE;
+					toolBar.addCustomShapeToToolBar(imageShape); 
+				}
+			}
+			
+		]]>
+	</mx:Script>
+	<rtc:AdobeHSAuthenticator id="guestAuthenticator" userName="Your Username" password="Your password"/>
+	<rtc:ConnectSessionContainer id="roomConnector" borderStyle="none" synchronizationChange="roomConnector_synchronizationChangeHandler(event)" authenticator="{guestAuthenticator}" roomURL="Your RoomUrl" width="100%" height="100%">
+		<rtc:SharedWhiteBoard id="sharedWB" width="100%" height="100%" />
+	</rtc:ConnectSessionContainer>
+</mx:Application>

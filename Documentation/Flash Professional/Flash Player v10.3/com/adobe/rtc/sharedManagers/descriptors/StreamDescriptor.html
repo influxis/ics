@@ -1,0 +1,390 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../../print.css" type="text/css" media="print">
+<meta content="StreamDescriptor,com.adobe.rtc.sharedManagers.descriptors.StreamDescriptor,finishPublishing,groupName,id,initiatorID,kBps,mute,nativeHeight,nativeWidth,originalScreenPublisher,pause,recipientIDs,requestControl,streamPublisherID,type,volume,createValueObject,readValueObject" name="keywords">
+<title>com.adobe.rtc.sharedManagers.descriptors.StreamDescriptor</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'StreamDescriptor - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS Flash-Only Player 10.3 API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../../all-classes.html')" href="../../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../../all-classes.html')" href="../../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../../index-list.html')" href="../../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../../index.html?com/adobe/rtc/sharedManagers/descriptors/StreamDescriptor.html&amp;com/adobe/rtc/sharedManagers/descriptors/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;StreamDescriptor</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class StreamDescriptor"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.sharedManagers.descriptors</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class StreamDescriptor</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../../messaging/IValueObjectEncodable.html">IValueObjectEncodable</a></td>
+</tr>
+</table>
+<p></p>
+  StreamDescriptor defines the set of a streams audio and video properties. 
+  It is responsible for managing and communicating the set of <code>streamDescriptors</code> 
+  to users in the room. Collaboration components such as WebcamSubscriber or AudioSubscriber
+  use <code>streamDescriptors</code> to directly access the raw streams and may be thought
+  of as control metadata for indicating the presence and current state of streams in a room.
+  <p>
+  
+  StreamDescriptors can be accessed through the StreamManager's methods, and StreamManager's 
+  events will notify of any changes to  the set of <code>streamDescriptors</code>.
+  
+  <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../../sharedManagers/StreamManager.html" target="">com.adobe.rtc.sharedManagers.StreamManager</a>
+<br>
+<a href="../../collaboration/WebcamSubscriber.html" target="">com.adobe.rtc.collaboration.WebcamSubscriber</a>
+<br>
+<a href="../../collaboration/AudioSubscriber.html" target="">com.adobe.rtc.collaboration.AudioSubscriber</a>
+</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#finishPublishing">finishPublishing</a> : Boolean = false<div class="summaryTableDescription">
+    Whether the stream has begun actually publishing (true) or whether the descriptor 
+   is being sent for initial validation (false).</div>
+</td><td class="summaryTableOwnerCol">StreamDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#groupName">groupName</a> : String<div class="summaryTableDescription">
+    The group name which the stream descriptor belongs to
+   </div>
+</td><td class="summaryTableOwnerCol">StreamDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#id">id</a> : String<div class="summaryTableDescription">
+   The unique stream ID.</div>
+</td><td class="summaryTableOwnerCol">StreamDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#initiatorID">initiatorID</a> : String<div class="summaryTableDescription">
+   The <code>userID</code> of whomever requested this stream be initiated.</div>
+</td><td class="summaryTableOwnerCol">StreamDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kBps">kBps</a> : Number = 0<div class="summaryTableDescription">
+   Gets the stream's bandwidth setting.</div>
+</td><td class="summaryTableOwnerCol">StreamDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#mute">mute</a> : Boolean = false<div class="summaryTableDescription">
+   The mute state for audio streams: true for muted, false for not
+   </div>
+</td><td class="summaryTableOwnerCol">StreamDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#nativeHeight">nativeHeight</a> : Number = 0<div class="summaryTableDescription">
+   Describes the video stream's original height.</div>
+</td><td class="summaryTableOwnerCol">StreamDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#nativeWidth">nativeWidth</a> : Number = 0<div class="summaryTableDescription">
+   Describes the video stream's original width.</div>
+</td><td class="summaryTableOwnerCol">StreamDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#originalScreenPublisher">originalScreenPublisher</a> : String<div class="summaryTableDescription">
+   The userID of the user publishing their screen.</div>
+</td><td class="summaryTableOwnerCol">StreamDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#pause">pause</a> : Boolean = false<div class="summaryTableDescription">
+   The video stream pause state: true for paused, false for not
+   </div>
+</td><td class="summaryTableOwnerCol">StreamDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#recipientIDs">recipientIDs</a> : Array<div class="summaryTableDescription">
+   Array of recipientIDs for this stream.</div>
+</td><td class="summaryTableOwnerCol">StreamDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#requestControl">requestControl</a> : Boolean<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">StreamDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#streamPublisherID">streamPublisherID</a> : String<div class="summaryTableDescription">
+    The stream publisher's <code>userID</code>.</div>
+</td><td class="summaryTableOwnerCol">StreamDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#type">type</a> : String<div class="summaryTableDescription">
+   The type of the stream: either StreamManager.AUDIO_STREAM or StreamManager.CAMERA_STREAM.</div>
+</td><td class="summaryTableOwnerCol">StreamDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#volume">volume</a> : Number = 0<div class="summaryTableDescription">
+   The audio stream volume.</div>
+</td><td class="summaryTableOwnerCol">StreamDescriptor</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#createValueObject()">createValueObject</a>():Object</div>
+<div class="summaryTableDescription">
+   Creates a ValueObject representation of this descriptor.</div>
+</td><td class="summaryTableOwnerCol">StreamDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#readValueObject()">readValueObject</a>(p_valueObject:Object):void</div>
+<div class="summaryTableDescription">
+   Takes in a <code>valueObject</code> and structure the MessageItem according to the 
+   values therein.</div>
+</td><td class="summaryTableOwnerCol">StreamDescriptor</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="finishPublishing"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">finishPublishing</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var finishPublishing:Boolean = false</code><p>
+    Whether the stream has begun actually publishing (true) or whether the descriptor 
+   is being sent for initial validation (false).
+   </p></div>
+<a name="groupName"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">groupName</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var groupName:String</code><p>
+    The group name which the stream descriptor belongs to
+   </p></div>
+<a name="id"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">id</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var id:String</code><p>
+   The unique stream ID. 
+   </p></div>
+<a name="initiatorID"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">initiatorID</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var initiatorID:String</code><p>
+   The <code>userID</code> of whomever requested this stream be initiated.
+   It is usually identical to the <code>streamPublisherID</code>, but in 
+   "push sharing" cases, it will be the requester.
+   
+   </p></div>
+<a name="kBps"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kBps</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var kBps:Number = 0</code><p>
+   Gets the stream's bandwidth setting.
+   </p></div>
+<a name="mute"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">mute</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var mute:Boolean = false</code><p>
+   The mute state for audio streams: true for muted, false for not
+   </p></div>
+<a name="nativeHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">nativeHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var nativeHeight:Number = 0</code><p>
+   Describes the video stream's original height.
+   </p></div>
+<a name="nativeWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">nativeWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var nativeWidth:Number = 0</code><p>
+   Describes the video stream's original width.
+   </p></div>
+<a name="originalScreenPublisher"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">originalScreenPublisher</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var originalScreenPublisher:String</code><p>
+   The userID of the user publishing their screen. Note that for screensharing, the streamPublisherID will have to a "shadow" user ID which isn't available in the userManager - this
+   represents the screen share addIn connection being used. To find the "real" userID of the publisher of a screen share, use this property.
+   </p></div>
+<a name="pause"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">pause</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var pause:Boolean = false</code><p>
+   The video stream pause state: true for paused, false for not
+   </p></div>
+<a name="recipientIDs"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">recipientIDs</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var recipientIDs:Array</code><p>
+   Array of recipientIDs for this stream. Default is null i.e. broadcast stream to everyone.
+   </p></div>
+<a name="requestControl"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">requestControl</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var requestControl:Boolean</code>
+</div>
+<a name="streamPublisherID"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">streamPublisherID</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var streamPublisherID:String</code><p>
+    The stream publisher's <code>userID</code>.
+   </p></div>
+<a name="type"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">type</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var type:String</code><p>
+   The type of the stream: either StreamManager.AUDIO_STREAM or StreamManager.CAMERA_STREAM.
+   </p></div>
+<a name="volume"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">volume</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var volume:Number = 0</code><p>
+   The audio stream volume.   
+   </p></div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="createValueObject()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">createValueObject</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function createValueObject():Object</code><p>
+   Creates a ValueObject representation of this descriptor.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Object</code></td>
+</tr>
+</table>
+</div>
+<a name="readValueObject()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">readValueObject</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function readValueObject(p_valueObject:Object):void</code><p>
+   Takes in a <code>valueObject</code> and structure the MessageItem according to the 
+   values therein.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_valueObject</span>:Object</code> &mdash; An Object which represents the non-default values for this MessageItem.
+   </td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+	layout="absolute" width="1172" height="600" backgroundImage="@Embed(source='images/blackjack-table.gif')"
+	 applicationComplete="init()">	 
+	<mx:Script>
+	<![CDATA[
+		import mx.collections.ArrayCollection;
+		import mx.utils.ObjectUtil;
+		import com.adobe.rtc.messaging.MessageItem;
+		import com.adobe.rtc.messaging.UserRoles;
+		import com.adobe.rtc.events.CollectionNodeEvent;
+		import com.adobe.rtc.sharedModel.CollectionNode;
+		import com.adobe.rtc.events.SessionEvent;
+		import com.adobe.rtc.authentication.AdobeHSAuthenticator;
+		import com.adobe.rtc.session.ConnectSession;
+		import mx.controls.Image;
+		
+		//
+		// Update with your account name
+		//
+		private const ROOM_URL:String = "http://connectnow.acrobat.com/<SDKACCOUNT>/bj";
+
+		private const USER_NAME:String = "Jack Black"
+				
+		private var images:Object = new Object();
+		private var deck:Array = new Array();
+		private var dChips:DisplayObject = null;
+
+		private var room:ConnectSession = new ConnectSession();
+		private var auth:AdobeHSAuthenticator = new AdobeHSAuthenticator();
+		private var game:CollectionNode = null;
+		
+		private const NODE_STATE:String = "state";
+		private const NODE_PLAY:String = "play";
+		private const NODE_PLAYERS:String = "players";
+		private const NODE_DEALER:String = "dealer";
+		
+		private const STATE_BET:String = "bet";
+		private const STATE_PLAYER:String = "play";
+		private const STATE_DEALER:String = "deal";
+		
+		private const CW:int = 50;
+				
+		private var dx:int=440;
+		private var dy:int=138;
+		
+		private var px:int=440;
+		private var py:int=350;
+		
+		private var cx:int=418;
+		private var cy:int=16;
+		
+		private var state:String;
+		
+		[Bindable]
+		private var dealerCards:ArrayCollection;
+		[Bindable]
+		private var playerCards:ArrayCollection;
+		
+		private var pChips:int = 0;
+		
+		private function init():void {
+			//
+			// connect to room
+			//
+			if (Application.application.parameters["roomURL"])
+				room.roomURL = Application.application.parameters["roomURL"];
+			else
+				room.roomURL = ROOM_URL;
+
+			auth.userName = USER_NAME	;
+			room.authenticator = auth;
+			room.addEventListener(SessionEvent.SYNCHRONIZATION_CHANGE, synchronizationChange);
+			room.login();
+			
+			
+			//
+			// initialize cards
+			//
+			var suites:String = "SDCH";
+			var cards:String = "23456789TKQJA";
+			var image:Image;
+			
+			for (var i:int=0; i < 13; i++) {
+			  for (var j:int=0; j < 4; j++) {
+				var card:String = cards.charAt(i) + suites.charAt(j);
+				image = new Image();
+			    image.autoLoad = true;
+				image.source = "images/" + card + ".gif";
+				images[card] = image;
+
+				var cd:DisplayObject = this.addChild(image);
+				cd.x = -100;
+				cd.y = -100;								
+			  }
+		    }
+		    
+		    image = new Image();
+		    image.autoLoad = true;
+		    image.source = "images/back.gif";
+		    images['##'] = image;
+
+			var d:DisplayObject = this.addChild(image);
+			d.x = -100;
+			d.y = -100;								
+		    
+		    image = new Image();
+		    image.autoLoad = true;
+		    image.source = "images/chips.gif";
+		    images['chips'] = image;		    
+		    
+		    dealerCards = new ArrayCollection();
+		    playerCards = new ArrayCollection();
+		}
+		
+		private function synchronizationChange(p_evt:Event):void {
+			if (room.isSynchronized) {
+				if (game == null) {
+					game = new CollectionNode();
+					game.connectSession = room;
+					game.sharedID = "Blackjack";
+					game.subscribe();
+					game.addEventListener(CollectionNodeEvent.USER_ROLE_CHANGE, userRoleChange);
+					game.addEventListener(CollectionNodeEvent.ITEM_RECEIVE, receiveItem);
+					game.addEventListener(CollectionNodeEvent.ITEM_RETRACT, retractItem);
+				}
+				
+				var image:Image = images['chips'];
+				dChips = this.addChild(image);
+				dChips.x = cx;
+				dChips.y = cy;
+			} else {
+				if (dChips != null) {
+					this.removeChild(dChips);
+					dChips = null;
+				}
+			}
+		}
+		
+		private function userRoleChange(p_evt:CollectionNodeEvent):void {
+			trace("userRoleChange: " + p_evt.nodeName + " " + p_evt.userID);
+			showControls();
+		}
+
+		private function receiveItem(p_evt:CollectionNodeEvent):void {
+			var item:MessageItem = p_evt.item;
+			var body:Object = item.body;
+
+			trace("receiveItem " + item.collectionName + ", " + item.nodeName + ", " + mx.utils.ObjectUtil.toString(body));			
+
+			if (p_evt.nodeName == NODE_STATE) {
+				state = body["state"]
+				message.text = body["message"]
+				messageContainer.visible = message.text.length > 0;
+				cards.text = "" + body["cards"] + " cards";
+				
+				if (state == STATE_BET && pChips > 0)
+					ptotal.text += " - " + pChips + " available chips";
+						
+				showControls();
+			}	
+			
+			else if (p_evt.nodeName == NODE_DEALER) {
+				dealCards(body, true);
+			}		
+			
+			else if (p_evt.nodeName == NODE_PLAYERS) {
+				pChips = body['chips']
+				dealCards(body, false);
+			} else if (p_evt.nodeName == NODE_PLAY) {
+				if (item['publisherID'] != room.userManager.myUserID) {
+					ptotal.text = String(body);
+				}
+			}	
+		}
+		
+		private function retractItem(p_evt:CollectionNodeEvent):void {
+			trace(p_evt);
+		}
+		
+		private function showControls():void {
+			
+			var userID:String = room.userManager.myUserID;
+			
+			if (game.canUserPublish(userID, NODE_PLAY)) {
+				if (state == STATE_BET) {
+					b_bet.visible = true;
+					b_hit.visible = false;
+					b_stand.visible = false;
+				} else if (state == STATE_PLAYER) {
+					b_bet.visible = false;
+					b_hit.visible = true;
+					b_stand.visible = true;
+				} else {
+					b_bet.visible = false;
+					b_hit.visible = false;
+					b_stand.visible = false;
+				}
+			} else {
+				trace("cannot play, user:" + userID
+					+ ", role:" + game.getUserRole(userID, NODE_PLAY));
+			}
+		}
+		
+		private function play(cmd:String):void {
+			game.publishItem(new MessageItem(NODE_PLAY, cmd));	
+		}
+		
+		private function dealCards(player:Object, dealer:Boolean):void {
+			if (player['hand'] == null) {
+				trace("dealCards: null hand for " + (dealer ? "dealer" : "player"));
+				return;
+			}
+			
+			var cards:ArrayCollection;
+			var ltotal:Label;
+			
+			if (dealer) {
+				cards = dealerCards;
+				ltotal = dtotal;
+			} else {
+				cards = playerCards;
+				ltotal = ptotal;
+			}
+			
+			ltotal.text = "";
+			cards.removeAll();			
+						
+			var hand:Array = player['hand'];
+			
+			for (var i:int=0; i < hand.length; i++) {
+				var card:String = hand[i];
+				var image:Image = images[card];
+				var data:BitmapData = Bitmap(image.content).bitmapData;
+                var bitmap:Bitmap = new Bitmap(data);
+
+                cards.addItem({ label: card, image: bitmap });
+			}
+
+			if (player['bj'])
+				ltotal.text = "Blackjack!";
+			else if (player['total'] > 0)
+				ltotal.text = String(player['total']);
+		}
+	]]>
+	</mx:Script>
+	<mx:ApplicationControlBar id="messageContainer" horizontalCenter="0" verticalCenter="-40" width="440" fillAlphas="[1.0, 1.0]" fillColors="[#4097B3, #4097B3]" visible="false">
+		<mx:Label id="message" horizontalCenter="0" verticalCenter="0" width="100%" fontSize="48" fontFamily="Verdana" textAlign="center" color="#000000" fontWeight="bold"/>
+	</mx:ApplicationControlBar>
+	<mx:Button y="460" label="Bet" height="40" id="b_bet" visible="false" click="play('bet')" width="122" horizontalCenter="0"/>
+	<mx:Button y="460" label="Hit" height="40" width="60" id="b_hit" visible="false" click="play('hit')" horizontalCenter="-32"/>
+	<mx:Button y="460" label="Stand" height="40" width="60" id="b_stand" visible="false" click="play('stand')" horizontalCenter="32"/>
+	<mx:Label y="422" color="#FFFF00" fontSize="14" fontWeight="bold" id="ptotal" horizontalCenter="0" textAlign="center"/>
+	<mx:Label y="208" color="#FFFF00" fontSize="14" fontWeight="bold" id="dtotal" horizontalCenter="0" textAlign="center"/>
+	<mx:Label x="1026" y="102" color="#FFFF00" fontSize="14" id="cards"/>
+	<mx:TileList y="344" dataProvider="{playerCards}" rowHeight="68" rowCount="1" columnWidth="50" direction="horizontal" horizontalCenter="0"
+		backgroundAlpha="0" borderThickness="0" width="300">
+		<mx:itemRenderer>
+			<mx:Component>		
+				<mx:Image source="{data.image}"/>
+			</mx:Component>
+		</mx:itemRenderer>
+	</mx:TileList>
+	<mx:TileList y="132" dataProvider="{dealerCards}" rowHeight="68" rowCount="1" columnWidth="50" direction="horizontal" horizontalCenter="0"
+		backgroundAlpha="0" borderThickness="0" width="300">
+		<mx:itemRenderer>
+			<mx:Component>		
+				<mx:Image source="{data.image}"/>
+			</mx:Component>
+		</mx:itemRenderer>
+	</mx:TileList>
+ </mx:Application>

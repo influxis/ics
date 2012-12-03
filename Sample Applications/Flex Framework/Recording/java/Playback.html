@@ -1,0 +1,40 @@
+<html lang="en">
+
+  <!--
+  Smart developers always View Source.
+
+  This application was built using Adobe Flex, an open source framework
+  for building rich Internet applications that get delivered via the
+  Flash Player or to desktops via Adobe AIR.
+
+  Learn more about Flex at http://flex.org
+  // -->
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>LCCS Archive Playback Sample</title>
+    <script src="AC_OETags.js" language="javascript"></script>
+  </head>
+
+  <body>
+    <script language="javascript">
+      parts = location.href.split('?');
+      flashvars = parts.length > 1 ? parts[1] : "";
+
+      AC_FL_RunContent(
+        "src", "Playback",
+        "width", "100%",
+        "height", "100%",
+        "align", "middle",
+        "id", "Playback",
+        "quality", "high",
+        "bgcolor", "#869ca7",
+        "name", "Playback",
+        "allowScriptAccess","sameDomain",
+        "type", "application/x-shockwave-flash",
+        "pluginspage", "http://www.adobe.com/go/getflashplayer",
+        "flashvars", flashvars
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<meta content="MessageItem,com.adobe.rtc.messaging.MessageItem,SINGLE_ITEM_ID,associatedUserID,body,collectionName,itemID,nodeName,publisherID,recipientID,recipientIDs,timeStamp,createValueObject,readValueObject,registerBodyClass" name="keywords">
+<title>com.adobe.rtc.messaging.MessageItem</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'MessageItem - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS Flash-Only API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?com/adobe/rtc/messaging/MessageItem.html&amp;com/adobe/rtc/messaging/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;MessageItem</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class MessageItem"); titleBar_setSubNav(true,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.messaging</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class MessageItem</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="IValueObjectEncodable.html">IValueObjectEncodable</a></td>
+</tr>
+</table>
+<p></p>
+  MessageItem is a "descriptor" for the properties of messages sent, received, and stored by a CollectionNode.
+  
+  See Example 86 of XEP-60's pubsub functionality. <a href="http://www.xmpp.org/extensions/xep-0060.html#publisher-publish">http://www.xmpp.org/extensions/xep-0060.html</a><br>
+  
+  <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">"LCCS Messaging and Permissions" in the docs<br>
+<a href="../messaging/NodeConfiguration.html" target="">com.adobe.rtc.messaging.NodeConfiguration</a>
+<br>
+<a href="../sharedModel/CollectionNode.html" target="">com.adobe.rtc.sharedModel.CollectionNode</a>
+</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#associatedUserID">associatedUserID</a> : String<div class="summaryTableDescription">
+   For <code>nodeConfigurations</code> with <code>userDependentItems=true</code> or 
+   <code class="property">modifyAnyItem=false</code>, this property is used to determine the user associated 
+   with this item.</div>
+</td><td class="summaryTableOwnerCol">MessageItem</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#body">body</a> : *<div class="summaryTableDescription">
+   Value actually being sent within this message.</div>
+</td><td class="summaryTableOwnerCol">MessageItem</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#collectionName">collectionName</a> : String<div class="summaryTableDescription">
+   [Read-only] The name of the CollectionNode this item belongs to.</div>
+</td><td class="summaryTableOwnerCol">MessageItem</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#itemID">itemID</a> : String<div class="summaryTableDescription">
+   The ID for this stored item.</div>
+</td><td class="summaryTableOwnerCol">MessageItem</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#nodeName">nodeName</a> : String<div class="summaryTableDescription">
+   The name of the Node within a CollectionNode that this item belongs to.</div>
+</td><td class="summaryTableOwnerCol">MessageItem</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#publisherID">publisherID</a> : String<div class="summaryTableDescription">
+   [Read-only] <code>userID</code> of the user who published this item.</div>
+</td><td class="summaryTableOwnerCol">MessageItem</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#recipientID">recipientID</a> : String<div class="summaryTableDescription">
+  For nodes where <code>allowPrivateMessages</code> has been set to true, this field allows 
+  messages to be received by only nerecipient.</div>
+</td><td class="summaryTableOwnerCol">MessageItem</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#recipientIDs">recipientIDs</a> : Array<div class="summaryTableDescription">
+  For nodes where <code>allowPrivateMessages</code> has been set to true, this field allows 
+  messages to be received by multiple recipients.</div>
+</td><td class="summaryTableOwnerCol">MessageItem</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#timeStamp">timeStamp</a> : Number = -1<div class="summaryTableDescription">
+   [Read-only] The time this message was broadcast and written on the server.</div>
+</td><td class="summaryTableOwnerCol">MessageItem</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#MessageItem()">MessageItem</a>(p_nodeName:String = null, p_body:String = null, p_itemID:* = null)</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">MessageItem</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#createValueObject()">createValueObject</a>():Object</div>
+<div class="summaryTableDescription">
+   Creates a ValueObject representation of this MessageItem.</div>
+</td><td class="summaryTableOwnerCol">MessageItem</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#readValueObject()">readValueObject</a>(p_valueObject:Object):void</div>
+<div class="summaryTableDescription">
+   Takes in a <code>valueObject</code> and structure the MessageItem according to the values therein.</div>
+</td><td class="summaryTableOwnerCol">MessageItem</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#registerBodyClass()">registerBodyClass</a>(p_class:Class):void</div>
+<div class="summaryTableDescription">[static]
+   registerBodyClass allows the LCCS services to send fully-typed objects in the body of MessageItems.</div>
+</td><td class="summaryTableOwnerCol">MessageItem</td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SINGLE_ITEM_ID">SINGLE_ITEM_ID</a> : String = "item"<div class="summaryTableDescription">[static]
+   If STORAGE_SCHEME_SINGLE_ITEM is used for a <code>nodeConfiguration</code>, this is the default <code>itemID</code> used.</div>
+</td><td class="summaryTableOwnerCol">MessageItem</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="associatedUserID"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">associatedUserID</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var associatedUserID:String</code><p>
+   For <code>nodeConfigurations</code> with <code>userDependentItems=true</code> or 
+   <code class="property">modifyAnyItem=false</code>, this property is used to determine the user associated 
+   with this item. This is typically the <code class="property">publisherID</code> of the first <code>userID</code> 
+   to publish the item. Note that owners may also publish items associated with other users.
+   <code class="property">associatedUserID</code> almost never needs to be explicitly set.
+   </p></div>
+<a name="body"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">body</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var body:*</code><p>
+   Value actually being sent within this message.
+   </p></div>
+<a name="collectionName"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">collectionName</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var collectionName:String</code><p>
+   [Read-only] The name of the CollectionNode this item belongs to. 
+   </p></div>
+<a name="itemID"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">itemID</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var itemID:String</code><p>
+   The ID for this stored item. Note this must be unique within the node. 
+   Publishing an item with an existing <code>itemID</code> will overwrite the existing item.
+   </p></div>
+<a name="nodeName"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">nodeName</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var nodeName:String</code><p>
+   The name of the Node within a CollectionNode that this item belongs to.
+   </p></div>
+<a name="publisherID"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">publisherID</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var publisherID:String</code><p>
+   [Read-only] <code>userID</code> of the user who published this item. Depending on <code>nodeConfigurations</code> 
+   for this message, publishers may not be able to modify stored items they didn't publish 
+   themselves. Note that this variable is overwritten by the server to prevent spoofing.
+   </p></div>
+<a name="recipientID"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">recipientID</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var recipientID:String</code><p>
+  For nodes where <code>allowPrivateMessages</code> has been set to true, this field allows 
+  messages to be received by only nerecipient. Note that for cases where groups of people 
+  are recipients, you should use <code>recipientIDs</code> We do want to avoid the one-to-one private message case devolving 
+  to "one node per user," so recipientID allows this in a much simpler manner.
+  </p></div>
+<a name="recipientIDs"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">recipientIDs</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var recipientIDs:Array</code><p>
+  For nodes where <code>allowPrivateMessages</code> has been set to true, this field allows 
+  messages to be received by multiple recipients. Note that recipients will not receive the entire recipientIDs array,
+  only their own <code>recipientID</code>.
+  </p></div>
+<a name="timeStamp"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">timeStamp</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var timeStamp:Number = -1</code><p>
+   [Read-only] The time this message was broadcast and written on the server. 
+   </p></div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="MessageItem()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">MessageItem</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function MessageItem(p_nodeName:String = null, p_body:String = null, p_itemID:* = null)</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_nodeName</span>:String</code> (default = <code>null</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_body</span>:String</code> (default = <code>null</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_itemID</span>:*</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="createValueObject()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">createValueObject</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function createValueObject():Object</code><p>
+   Creates a ValueObject representation of this MessageItem.
+   
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Object</code> &mdash; An Object which represents the non-default values for this MessageItem, 
+   suitable for consumption by <code>readValueObject</code>.
+   </td>
+</tr>
+</table>
+</div>
+<a name="readValueObject()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">readValueObject</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function readValueObject(p_valueObject:Object):void</code><p>
+   Takes in a <code>valueObject</code> and structure the MessageItem according to the values therein.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_valueObject</span>:Object</code> &mdash; An Object which represents the non-default values for this MessageItem.
+   </td>
+</tr>
+</table>
+</div>
+<a name="registerBodyClass()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">registerBodyClass</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function registerBodyClass(p_class:Class):void</code><p>
+   registerBodyClass allows the LCCS services to send fully-typed objects in the body of MessageItems. 
+   Similar to flash.net.registerClassAlias, this causes any message body of this type to be encoded as a ByteArray. Upon receipt,
+   the body will be deserialized as a fully-typed object. Note that if your class contains other typed object as properties, those classes
+   will need to be registered as well.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_class</span>:Class</code> &mdash; The class to register as a body.
+   
+   </td>
+</tr>
+</table>
+</div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="SINGLE_ITEM_ID"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SINGLE_ITEM_ID</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const SINGLE_ITEM_ID:String = "item"</code><p>
+   If STORAGE_SCHEME_SINGLE_ITEM is used for a <code>nodeConfiguration</code>, this is the default <code>itemID</code> used. 
+   The value may be overriden in your items.
+   </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

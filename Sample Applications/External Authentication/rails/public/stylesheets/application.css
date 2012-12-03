@@ -1,0 +1,15 @@
+.notice {
+  padding: 4 4 4 4;
+  margin: 4 0 4 0;
+  font-size: 1.2em;
+  background-color: green;
+  color: white;
+}
+
+.error {
+  padding: 4 4 4 4;
+  margin: 4 0 4 0;
+  font-size: 1.2em;
+  background-color: red;
+  color: white;
+}

@@ -1,0 +1,47 @@
+<h1>LCCS Account#login</h1>
+<% if flash[:notice] %>
+
+  <div style="font-family:'Trebuchet MS'; color:#FF0000; font-size:14px;">
+
+  <%= flash[:notice] %>
+
+  </div>
+
+<% end %>
+
+
+<!--creates form, exectues the authenticate method when the submit button is clicked-->
+<%= form_tag :action=>'authenticate' %>
+<table>
+<tr>
+  <td>Account Name:</td>
+
+  <td><%= text_field("userform", "accountname",:size=>"20", :value=>"undef-root" ) %> </td>
+</tr>
+<tr>
+  
+  <td>User Name:</td>
+
+  <td><%= password_field("userform", "username",:size=>"20", :value=>"root" )%><td>
+
+</tr>
+<tr>
+
+  <td>Password:</td>
+
+  <td><%= password_field("userform", "password",:size=>"20", :value=>"root" )%><td>
+
+</tr>
+<tr>
+  <td>Account URL:</td>
+  <td><%= text_field("userform", "roomURL",:size=>"100", :value=>"http://localhost:8080/UNDEF-ROOT" )%></td>
+</tr>
+
+<tr>
+  <td>Options:</td>
+  <td><%= select_tag "redirecturl", options_for_select([ "accountManager" ], "accountManager") %></td>
+</tr>
+</table>
+
+<input type="submit" value=" LOGIN " />
+

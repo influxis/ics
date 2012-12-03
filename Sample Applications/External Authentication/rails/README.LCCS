@@ -1,0 +1,9 @@
+In order to run this application:
+
+- run "rake db:migrate" to create the database schema
+- edit lib/lccs_helper.rb and update the account and developer information
+
+This application uses the "authlogic" gem. 
+Please install it using by running "gem install authlogic" or "rake gems:install"
+
+Now you are ready to run the server (  run "script/server" ) and access it at http://localhost:3000/

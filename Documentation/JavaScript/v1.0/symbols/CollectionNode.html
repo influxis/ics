@@ -1,0 +1,1404 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>LCCS JavaScript Reference - CollectionNode</title>
+
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+	width: 800px;
+}
+
+.header
+{
+	clear: both;
+	background-color: #ccc;
+	padding: 8px;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+	margin: 1em 0 0 .3em;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #7F8FB1;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	background-color: #F3F3F3;
+	padding: 8px;
+}
+
+#content
+{
+	margin-left: 190px;
+	width: 600px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #7F8FB1;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #7F8FB1 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #7F8FB1 solid;
+	border-right: 1px #7F8FB1 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #7F8FB1 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #002EBE;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px; 
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	text-align: right;
+	font-size: 10px;
+}
+		</style>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2>Classes</h2>
+<ul class="classList">
+	
+	<li><i><a href="../symbols/_global_.html">_global_</a></i></li>
+	
+	<li><a href="../symbols/Baton.html">Baton</a></li>
+	
+	<li><a href="../symbols/BatonObject.html">BatonObject</a></li>
+	
+	<li><a href="../symbols/BatonProperty.html">BatonProperty</a></li>
+	
+	<li><a href="../symbols/CollectionNode.html">CollectionNode</a></li>
+	
+	<li><a href="../symbols/ConnectSession.html">ConnectSession</a></li>
+	
+	<li><a href="../symbols/EventDispatcher.html">EventDispatcher</a></li>
+	
+	<li><a href="../symbols/SharedCollection.html">SharedCollection</a></li>
+	
+	<li><a href="../symbols/SharedCursorPane.html">SharedCursorPane</a></li>
+	
+	<li><a href="../symbols/SharedObject.html">SharedObject</a></li>
+	
+	<li><a href="../symbols/SharedProperty.html">SharedProperty</a></li>
+	
+	<li><a href="../symbols/SimpleChatModel.html">SimpleChatModel</a></li>
+	
+	<li><a href="../symbols/Tween.html">Tween</a></li>
+	
+	<li><a href="../symbols/UserManager.html">UserManager</a></li>
+	
+</ul>
+<hr />
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Class CollectionNode
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				
+			
+				CollectionNode is the foundation class for building shared models requiring publishand subscribe messaging. All shared classes including the sharedModel, sharedManager, and many pods use CollectionNodes in order to manage  messages, permissions, and roles.<p>At its core, a room can be logically seen as a group of CollectionNodes. For example, one CollectionNode is used in a chat pod, one within UserManager, and so on. CollectionNodes, in turn, are made up of nodes which can be thought of as permission-managed channels through which MessageItems are sent and received. Each node has its own NodeConfiguration which determines the permissions and storage policies sent through it.</p><p>CollectionNode is the main component class developers will create and interact with in orderaccomplish the following: <ul> <li>Create message nodes.</li> <li>Publish MessageItems to those nodes.</li> <li>Subscribe to nodes.</li> <li>Configure nodes.</li> <li>Manage collection and node user roles.</li></ul>Only users with a role of <code>UserRoles.OWNER</code> may create and configure collectionNodes. Users of <code>UserRoles.PUBLISHER</code> can typically publish MessageItems, and <code>UserRoles.VIEWER</code> may subscribe and receive messages. As such, it's typically the case that an owner set up the required CollectionNodes in a room before publishers may publish or viewers may receive MessageItems.<p>CollectionNodes do not store the items which pass through them even if they are stored on the services. Developers are advised to listen to the <code>ITEM_RECEIVE</code> event and store details as needed in their own models.<table><tr><th><b>Event</b></th><th><b>Summary</b></th></tr><tr><td valign="top"><code>configurationChange </code></td> <td> Dispatched when a node within the collection has a change in its configuration (typically, its access-model).</td></tr><tr><td valign="top"><code>itemReceive</code></td> <td> Dispatched when a node within the collection receives an item.</td></tr><tr><td valign="top"><code>itemRetract</code></td> <td> Dispatched when a node within the collection retracts an item.</td></tr><tr><td valign="top"><code>myRoleChange</code></td> <td> Dispatched when the current user's role changes for the  collectionNode as a whole and not nodes within it.</td></tr><tr><td valign="top"><code>nodeCreate</code></td> <td> Dispatched when a node is created within the collection.</td></tr><tr><td valign="top"><code>nodeDelete</code></td> <td> Dispatched when a node is deleted within the collection.</td></tr><tr><td valign="top"><code>reconnect</code></td> <td> Dispatched when the collection has been disconnected from the server and is in the process of reconnecting and re-subscribing.</td></tr><tr><td valign="top"><code>synchronizationChange</code></td> <td> Dispatched when the collection has fully received all nodes and items stored up until the present time thereby becoming synchronized as well as when the collection becomes disconnected from (and thus "out of sync" with) the room's messaging bus.</td></tr><tr><td valign="top"><code>userRoleChange</code></td> <td> Dispatched when the collection or a node within the collection, has a change in roles for any user.</td></tr></table>
+				
+				
+					<br /><i>Defined in: </i> <a href="../symbols/src/E__flashfarm_main_connect_build_JavaScript_tools_jsdoc-toolkit_LCCS_JS_Bridge.js.html">LCCS_JS_Bridge.js</a>.
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class CollectionNode.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/CollectionNode.html#constructor">CollectionNode</a></b>()
+							</div>
+							<div class="description"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class CollectionNode.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/CollectionNode.html#connectSession">connectSession</a></b>
+								</div>
+								<div class="description">The ConnectSession with which this component is associated.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/CollectionNode.html#isSynchronized">isSynchronized</a></b>
+								</div>
+								<div class="description">Determines whether or not the collection is "up to state" with all previously stored items in its nodes.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/CollectionNode.html#sharedID">sharedID</a></b>
+								</div>
+								<div class="description">The <code>sharedID</code> is the logical address of this collection within the room and must therefore be unique from all other CollectionNode names.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/CollectionNode.html#userRoles">userRoles</a></b>
+								</div>
+								<div class="description">The complete set of roles for this collection described as {userID:role} pairs.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class CollectionNode.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#canUserConfigure">canUserConfigure</a></b>(p_userID, p_nodeName)
+								</div>
+								<div class="description">Determines whether a given user is allowed to configue this collection.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#canUserPublish">canUserPublish</a></b>(p_userID, p_nodeName)
+								</div>
+								<div class="description">Determines whether a given user is allowed to publish to a given node in this collection.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#canUserSubscribe">canUserSubscribe</a></b>(p_userID, p_nodeName)
+								</div>
+								<div class="description">Determines whether a given user is allowed to subscribe to this entire collection or a node within it.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#createNode">createNode</a></b>(p_nodeName, p_nodeConfiguration)
+								</div>
+								<div class="description">Creates a new node in this collection; they are either optionally configured when created or accept the default configuration.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#fetchItems">fetchItems</a></b>(p_nodeName, p_itemIDs)
+								</div>
+								<div class="description">Fetches the set of items specified by itemIDs from a given node.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#getExplicitUserRole">getExplicitUserRole</a></b>(p_userID, p_nodeName)
+								</div>
+								<div class="description">Gets the role of a given user for a node within this collection or the collection itself.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#getExplicitUserRoles">getExplicitUserRoles</a></b>(p_userID, p_nodeName)
+								</div>
+								<div class="description">Gets the roles explicitly set for a node within this collection.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#getNodeConfiguration">getNodeConfiguration</a></b>(p_nodeName)
+								</div>
+								<div class="description">Returns the NodeConfiguration options for a given node in this CollectionNode.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#getUserRole">getUserRole</a></b>(p_userID, p_nodeName)
+								</div>
+								<div class="description">Gets the role of a given user for this collection or a node within it.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#isEmpty">isEmpty</a></b>()
+								</div>
+								<div class="description">Determines whether or not the collection is empty, that is, having no nodes</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#isNodeDefined">isNodeDefined</a></b>(p_nodeName)
+								</div>
+								<div class="description">Whether the given node exists in this CollectionNode.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#publishItem">publishItem</a></b>(p_messageItem, p_overWrite)
+								</div>
+								<div class="description">Publishes a MessageItem.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#removeNode">removeNode</a></b>(p_nodeName)
+								</div>
+								<div class="description">Removes the given node from this collection.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#retractItem">retractItem</a></b>(p_nodeName, p_itemID)
+								</div>
+								<div class="description">Retracts the indicated item.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#setNodeConfiguration">setNodeConfiguration</a></b>(p_nodeName, p_nodeConfiguration)
+								</div>
+								<div class="description">Configures a node in this collection and replaces the existing NodeConfiguration.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#setUserRole">setUserRole</a></b>(p_userID, p_role, p_nodeName)
+								</div>
+								<div class="description">Gives a specific user a specific role level for this entire collection or optionally a specified node within it.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#subscribe">subscribe</a></b>()
+								</div>
+								<div class="description"><code>subscribe()</code> causes the CollectionNode to subscribe to the logical destination provided by <code>collectionName</code>.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/CollectionNode.html#unsubscribe">unsubscribe</a></b>()
+								</div>
+								<div class="description">Disconnects this CollectionNode from the server.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>CollectionNode</b>()
+				</div>
+				
+				<div class="description">
+					
+					
+				</div>
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+					
+
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name="connectSession"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>connectSession</b>
+					
+					</div>
+					<div class="description">
+						The ConnectSession with which this component is associated. Note that this may only be set once before <code>subscribe</code>is called; re-sessioning of components is not supported.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="isSynchronized"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>isSynchronized</b>
+					
+					</div>
+					<div class="description">
+						Determines whether or not the collection is "up to state" with all previously stored items in its nodes. Once a CollectionNode has successfully connected to the service and retrieved all its nodes and messageItems, it is considered synchronized. If the connection is lost, it becomes unsynchronized until it fully reconnects and re-retrieves its state.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="sharedID"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>sharedID</b>
+					
+					</div>
+					<div class="description">
+						The <code>sharedID</code> is the logical address of this collection within the room and must therefore be unique from all other CollectionNode names.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="userRoles"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>userRoles</b>
+					
+					</div>
+					<div class="description">
+						The complete set of roles for this collection described as {userID:role} pairs.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="canUserConfigure"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>canUserConfigure</b>(p_userID, p_nodeName)
+					
+					</div>
+					<div class="description">
+						Determines whether a given user is allowed to configue this collection.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The ID of the user whose role (and therefore permissions) is being queried.</dd>
+							
+								<dt>
+									<b>p_nodeName</b>
+									
+								</dt>
+								<dd>Optionally, the name of the requested node. Defaults to the collection.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="canUserPublish"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>canUserPublish</b>(p_userID, p_nodeName)
+					
+					</div>
+					<div class="description">
+						Determines whether a given user is allowed to publish to a given node in this collection.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The ID of the user whose role (and therefore permissions) is being queried.</dd>
+							
+								<dt>
+									<b>p_nodeName</b>
+									
+								</dt>
+								<dd>The name of the desired node.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="canUserSubscribe"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>canUserSubscribe</b>(p_userID, p_nodeName)
+					
+					</div>
+					<div class="description">
+						Determines whether a given user is allowed to subscribe to this entire collection or a node within it.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The ID of the user whose role is being queried.</dd>
+							
+								<dt>
+									<b>p_nodeName</b>
+									
+								</dt>
+								<dd>[Optional, null if empty]. The node to check. If null, it checks the entire CollectionNode.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="createNode"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>createNode</b>(p_nodeName, p_nodeConfiguration)
+					
+					</div>
+					<div class="description">
+						Creates a new node in this collection; they are either optionally configured when created or accept the default configuration. Note that only users with and owner role may create or configure nodes on a CollectionNode.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_nodeName</b>
+									
+								</dt>
+								<dd>The name for the new node which must be unique within the CollectionNode.</dd>
+							
+								<dt>
+									<b>p_nodeConfiguration</b>
+									
+								</dt>
+								<dd>Optionally, the configuration for this node. If none is supplied, <code>NodeConfiguration.defaultConfiguration</code> is used.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="fetchItems"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>fetchItems</b>(p_nodeName, p_itemIDs)
+					
+					</div>
+					<div class="description">
+						Fetches the set of items specified by itemIDs from a given node. This will result in one <code>ITEM_RECEIVE</code> eventper item retrieved, for the current user. Attempts to fetch items which don't exist fails silently.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_nodeName</b>
+									
+								</dt>
+								<dd>The name of the node from which to fetch the items.</dd>
+							
+								<dt>
+									<b>p_itemIDs</b>
+									
+								</dt>
+								<dd>An array of <code>itemID<code>s (Strings) to fetch from the service.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getExplicitUserRole"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getExplicitUserRole</b>(p_userID, p_nodeName)
+					
+					</div>
+					<div class="description">
+						Gets the role of a given user for a node within this collection or the collection itself. This only returns the explicit roles set on the particular node and doesn't look up the cascading roles from the root as <code>getUserRole()</code> does.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The user whose role is being queried.</dd>
+							
+								<dt>
+									<b>p_nodeName</b>
+									
+								</dt>
+								<dd>The name of the node to whose roles are desired. Null for the collection itself.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>The requested role. If the role for the user isn't explicitly set, it returns <code>NO_EXPLICIT_ROLE</code>.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getExplicitUserRoles"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getExplicitUserRoles</b>(p_userID, p_nodeName)
+					
+					</div>
+					<div class="description">
+						Gets the roles explicitly set for a node within this collection. This only returns the explicit roles set on the particular node and doesn't look up the cascading roles fromthe root as <code>getUserRole()</code> does.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The user whose role is being queried.</dd>
+							
+								<dt>
+									<b>p_nodeName</b>
+									
+								</dt>
+								<dd>The name of the node to whose roles are desired. If null, returns the set of user roles at the collection node level.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>An object table of <code>{userID:role}</code> tuples.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getNodeConfiguration"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getNodeConfiguration</b>(p_nodeName)
+					
+					</div>
+					<div class="description">
+						Returns the NodeConfiguration options for a given node in this CollectionNode.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_nodeName</b>
+									
+								</dt>
+								<dd>The name of the desired node.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getUserRole"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getUserRole</b>(p_userID, p_nodeName)
+					
+					</div>
+					<div class="description">
+						Gets the role of a given user for this collection or a node within it. Note that this function discovers the implicit or cascading role of the user at this location; that is, if no explicit role is specified for a node, the user's role on the parent collection's is queried. If the user's role isn't explicitly defined on the collection, the root role is queried.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The user whose role is being queried.</dd>
+							
+								<dt>
+									<b>p_nodeName</b>
+									
+								</dt>
+								<dd>[Optional, defaults to null]. The name of the node to check for roles. If null, check the entire CollectionNode.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>the level of role of the specified user</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="isEmpty"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>isEmpty</b>()
+					
+					</div>
+					<div class="description">
+						Determines whether or not the collection is empty, that is, having no nodes
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>Boolean</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="isNodeDefined"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>isNodeDefined</b>(p_nodeName)
+					
+					</div>
+					<div class="description">
+						Whether the given node exists in this CollectionNode.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_nodeName</b>
+									
+								</dt>
+								<dd>the name of desired node</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="publishItem"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>publishItem</b>(p_messageItem, p_overWrite)
+					
+					</div>
+					<div class="description">
+						Publishes a MessageItem. The MessageItem itself will have a <code>nodeName</code> declared.<p><code>p_overWrite</code> provides users with control over whether edits take precedence over delete actions. It is essentially a lock that assures an item canonly be published if it exists. The general rule of thumb is that if you want to add a new item, use the <code>p_overWrite</code> default flag of false. If you're editing an item that may be retracted, then set the flag according to your preference. <p>
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_messageItem</b>
+									
+								</dt>
+								<dd>The MessageItem to publish.</dd>
+							
+								<dt>
+									<b>p_overWrite</b>
+									
+								</dt>
+								<dd>True if this call is overwriting an existing item. False (the default) if it is not.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeNode"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>removeNode</b>(p_nodeName)
+					
+					</div>
+					<div class="description">
+						Removes the given node from this collection. Only users with an owner role maychange a node's configuration.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_nodeName</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="retractItem"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>retractItem</b>(p_nodeName, p_itemID)
+					
+					</div>
+					<div class="description">
+						Retracts the indicated item. This removes the item from storage on the server and sends an <code>itemRetract</code> event to all users.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_nodeName</b>
+									
+								</dt>
+								<dd>The <code>nodeName</code> of the <code>messageItem</code> to retract.</dd>
+							
+								<dt>
+									<b>p_itemID</b>
+									
+								</dt>
+								<dd>The <code>itemID</code> of the <code>messageItem</code> (stored on the server) to retract.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setNodeConfiguration"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setNodeConfiguration</b>(p_nodeName, p_nodeConfiguration)
+					
+					</div>
+					<div class="description">
+						Configures a node in this collection and replaces the existing NodeConfiguration. Only users with an owner role may change a node's configuration.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_nodeName</b>
+									
+								</dt>
+								<dd>The name of the node to configure.</dd>
+							
+								<dt>
+									<b>p_nodeConfiguration</b>
+									
+								</dt>
+								<dd>The new NodeConfiguration for the node.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setUserRole"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setUserRole</b>(p_userID, p_role, p_nodeName)
+					
+					</div>
+					<div class="description">
+						Gives a specific user a specific role level for this entire collection or optionally a specified node within it. Roles cascade down from the root level of the room to the CollectionNode level and then to the node level. The following override rules apply: <ul><li>Setting a role on a collection node overrides the role at the root for that collection node.<li>Setting a role on a node overrides both the role at the root and the collection node for that node.</ul>
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The desired user's <code>userID</code>.</dd>
+							
+								<dt>
+									<b>p_role</b>
+									
+								</dt>
+								<dd>The users new role.</dd>
+							
+								<dt>
+									<b>p_nodeName</b>
+									
+								</dt>
+								<dd>[Optional, defaults to null] The UserRole for the entire CollectionNode</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="subscribe"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>subscribe</b>()
+					
+					</div>
+					<div class="description">
+						<code>subscribe()</code> causes the CollectionNode to subscribe to the logical destination provided by <code>collectionName</code>. If there is no such destination on the service and the current user has an owner role, a new CollectionNode is created and stored on the service with the given <code>collectionName</code>.When subscription is successful or a new CollectionNode is created, the collection:<ul><li>Discovers all the accessible nodes for this collection along with their configurations and roles.</li><li>Subscribes to all nodes allowed within the collection.</li>																</li><li>Retrievs all stored items for all nodes within it and broadcasts <code>ITEM_RECEIVE</code> events for each.</li><li>Fires a <code>COLLECTION_SYNCHRONIZE</code> event once the collection has retrieved the data above.</li></ul>
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="unsubscribe"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>unsubscribe</b>()
+					
+					</div>
+					<div class="description">
+						Disconnects this CollectionNode from the server. Typically used for garbage collection. If a node is subscribed but a network or services glitch causes it to disconnect, the CollectionNode will attempt to reconnect automatically.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a><br/>
+			2008-2011 Adobe Systems Incorporated. All rights reserved.
+		</div>
+	</body>
+</html>

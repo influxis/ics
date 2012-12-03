@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service id="data-service" class="flex.data.DataService" messageTypes="flex.data.messages.DataMessage">
+
+    <adapters>
+        <adapter-definition id="dotnet-dao" class="FluorineFx.DotNetAdapter"/>
+    </adapters>
+
+    <default-channels>
+        <channel ref="my-rtmp"/>
+    </default-channels>
+
+	<!--
+    <destination id="crm.employee">
+
+        <adapter ref="dotnet-dao" />
+
+        <properties>
+            <source>samples.crm.EmployeeAssembler</source>
+            <scope>application</scope>
+
+            <metadata>
+                <identity property="employeeId"/>
+            </metadata>
+
+            <network>
+                <session-timeout>20</session-timeout>
+                <paging enabled="false" pageSize="10" />
+            </network>
+        </properties>
+    </destination>
+
+    <destination id="crm.company">
+
+        <adapter ref="dotnet-dao" />
+
+        <properties>
+            <source>samples.crm.CompanyAssembler</source>
+            <scope>application</scope>
+
+            <metadata>
+                <identity property="companyId"/>
+            </metadata>
+
+            <network>
+                <session-timeout>20</session-timeout>
+                <paging enabled="true" pageSize="10" />
+            </network>
+        </properties>
+    </destination>
+    -->
+</service>

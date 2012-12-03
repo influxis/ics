@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application layout="absolute"
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	applicationComplete="init()" 
+	xmlns:rtc="http://ns.adobe.com/rtc">
+	
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.rtc.events.AuthenticationEvent;
+			import com.adobe.rtc.events.ConnectSessionEvent;
+			import com.adobe.rtc.events.SessionEvent;
+			import mx.core.IFlexDisplayObject;
+			import mx.managers.PopUpManager;
+			
+			private const applicationTitle:String = "LCCS Sample Application";
+			
+			 /**********************************************************
+			  * ADOBE SYSTEMS INCORPORATED
+			  * Copyright [2007-2010] Adobe Systems Incorporated
+			  * All Rights Reserved.
+			  * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			  * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			  * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			  * written permission of Adobe.
+		     	  * *********************************/
+			
+			private function init():void
+			{
+				sess.addEventListener(SessionEvent.ERROR, onEventNotification);
+				sess.addEventListener(SessionEvent.SYNCHRONIZATION_CHANGE, onEventNotification);
+				auth.addEventListener(AuthenticationEvent.AUTHENTICATION_FAILURE, onEventNotification);
+				auth.addEventListener(AuthenticationEvent.AUTHENTICATION_SUCCESS, onEventNotification);
+				
+				popup(loginWindow);
+			}
+			
+			private function popup(window:IFlexDisplayObject):void
+			{
+				PopUpManager.addPopUp(window, this, true);
+				PopUpManager.centerPopUp(window);
+				window.visible = true;
+			}
+
+			/**
+			 * Process LCCS Events
+			 */
+			private function onEventNotification(p_event:Event):void
+			{
+				if (p_event.type == SessionEvent.SYNCHRONIZATION_CHANGE) {
+					if (sess.isSynchronized) {
+						//
+						// isSyncronized==true : we are connected to the room
+						//
+						panel.title = "Connected to room " + sess.roomURL;
+						PopUpManager.removePopUp(loginWindow);
+					} else {
+						//
+						// isSyncronized==false : we are disconnected from the room
+						//
+						panel.title = applicationTitle;
+						sess.roomURL = null;
+						notificationMessage.text = "";
+						popup(loginWindow);
+					}
+				}
+				
+				else if (p_event.type == AuthenticationEvent.AUTHENTICATION_SUCCESS) {
+					//
+					// Authentication succeeded
+					//
+					notificationMessage.text = "Authentication Succeeded";
+				}
+				
+				else if (p_event.type == AuthenticationEvent.AUTHENTICATION_FAILURE) {
+					//
+					// Authentication failed : bad password or invalid username
+					//
+					notificationMessage.text = "Authentication Failed";
+				}
+				
+				else if (p_event.type == SessionEvent.ERROR) {
+					//
+					// Generic session error, but this can happen if you misspell the account/room names
+					// (sError.error.name == "INVALID_INSTANCE" and sError.error.message == "Invalid Instance")
+					//
+					var sError:SessionEvent = p_event as SessionEvent;
+					notificationMessage.text = sError.error.message;
+				}
+				
+				else
+					notificationMessage.text = "Got event " + p_event;
+			}
+			
+			private function login():void
+			{
+				notificationMessage.text = "";
+				auth.userName = username.text;
+				auth.password = passwordBox.visible ? password.text : null; // password==null : the user is a guest
+				sess.roomURL = roomURL.text;		
+				sess.login();
+			}
+		]]>
+	</mx:Script>
+
+		<!--
+		 | Standard Authenticator
+		 -->
+	<rtc:AdobeHSAuthenticator id="auth"/>
+	
+		<!--
+		 | Automatically promote guests so they can use the application
+		 |
+		 | Note: In order for this to work, the host needs to enter the room once to enable all the pods
+		 | (enter the room and go through the various screens)
+		 -->
+	<rtc:RoomSettings id="settings" autoPromote="true"/>
+
+	<mx:Panel id="panel" title="{applicationTitle}" width="100%" height="100%" paddingLeft="5" paddingTop="5" paddingRight="5" paddingBottom="5">
+	
+		<!--
+		 | Login Dialog Box
+		 -->
+		<mx:TitleWindow id="loginWindow" title="Connect to Room" visible="false">
+			<mx:VBox>
+				<mx:HBox>
+					<mx:Label text="Room URL:" width="70"/>
+					<mx:TextInput id="roomURL" width="295" tabIndex="1">
+						<mx:text>http://connect.acrobat.com/exampleURL/exampleroom</mx:text>
+					</mx:TextInput>
+				</mx:HBox>
+				<mx:HBox>
+					<mx:Label text="Username:" width="70"/>
+					<mx:TextInput id="username" tabIndex="2">
+						<mx:text>Your Username</mx:text>
+					</mx:TextInput>			
+					<mx:Button label="Login" click="login()" width="126" tabIndex="4"/>
+				</mx:HBox>
+				<mx:HBox>
+					<mx:HBox id="passwordBox">
+					<mx:Label text="Password:" width="70"/>
+					<mx:TextInput id="password" displayAsPassword="true" tabIndex="3">
+						<mx:text>Your password</mx:text>
+					</mx:TextInput>	
+					</mx:HBox>
+					<mx:RadioButton label="User" selected="true" click="passwordBox.visible = true"/>
+					<mx:RadioButton label="Guest" click="passwordBox.visible = false"/>
+				</mx:HBox>
+				<mx:Text id="notificationMessage" text=""/>
+			</mx:VBox>
+		</mx:TitleWindow>
+
+		<!--
+		 | LCCS application UI wrapped in ConnectSession
+		 -->		
+		<rtc:ConnectSessionContainer 
+			id="sess" 
+			authenticator="{auth}" 
+			initialRoomSettings="{settings}" 
+			autoLogin="false" width="100%" height="100%" >		
+			<mx:HBox width="100%" height="100%" horizontalGap="0">
+				<mx:VBox>
+					<mx:TabBar dataProvider="viewStack" direction="vertical" width="100" verticalGap="0"/>
+					<!--mx:Button label="Disconnect" click="sess.close()"/-->
+				</mx:VBox>
+
+				<mx:ViewStack id="viewStack" width="100%" height="100%" borderSides="left top right bottom" borderStyle="solid" borderThickness="2">
+					<!--
+					 | Chat pod and roster
+					 -->
+					<mx:HBox label="Chat" width="100%" height="100%">
+						<rtc:SimpleChat width="60%" height="100%"/>
+						<mx:List alternatingItemColors="[#DFDFDF,#EEEEEE]" dataProvider="{sess.userManager.userCollection}" width="40%" height="100%" labelField="displayName"/>
+					</mx:HBox>
+					
+					<!--
+					 | Camera/Audio pod
+					 -->
+					<mx:Canvas label="Audio/Video" width="100%" height="100%">
+						<rtc:WebCamera left="0" right="0" top="0" bottom="0"/>
+					</mx:Canvas>
+					
+					<!--
+					 | Whiteboard pod
+					 -->
+					<mx:Canvas label="Whiteboard" width="100%" height="100%">
+						<!-- for some strange reason the shapesToolBar starts outside the WhiteBoard canvas
+							so when the whiteBoard is created I move shapesToolBar back to where it should be -->
+						<rtc:SharedWhiteBoard id="wb" left="0" right="0" top="0" bottom="0"
+							creationComplete="wb.shapesToolBar.move(0,0)"/>
+					</mx:Canvas>
+	
+					<!--
+					 | Fileshare pod
+					 -->
+					<mx:Canvas label="FileShare" width="100%" height="100%">
+						<rtc:FileShare left="0" right="0" top="0" bottom="0"/>
+					</mx:Canvas>
+				</mx:ViewStack>
+			</mx:HBox>
+		</rtc:ConnectSessionContainer>
+	</mx:Panel>
+</mx:Application>

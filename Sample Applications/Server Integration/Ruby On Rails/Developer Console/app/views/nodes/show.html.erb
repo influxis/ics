@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%=h @node.name %>
+</p>
+
+<p>
+  <b>Nodeconfiguration:</b>
+  <%=h @node.nodeconfiguration %>
+</p>
+
+<p>
+  <b>Items:</b>
+  <%=h @node.items %>
+</p>
+
+
+<%= link_to 'Edit', edit_node_path(@node) %> |
+<%= link_to 'Back', nodes_path %>

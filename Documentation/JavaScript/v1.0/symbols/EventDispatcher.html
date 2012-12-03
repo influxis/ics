@@ -1,0 +1,563 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>LCCS JavaScript Reference - EventDispatcher</title>
+
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+	width: 800px;
+}
+
+.header
+{
+	clear: both;
+	background-color: #ccc;
+	padding: 8px;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+	margin: 1em 0 0 .3em;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #7F8FB1;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	background-color: #F3F3F3;
+	padding: 8px;
+}
+
+#content
+{
+	margin-left: 190px;
+	width: 600px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #7F8FB1;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #7F8FB1 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #7F8FB1 solid;
+	border-right: 1px #7F8FB1 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #7F8FB1 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #002EBE;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px; 
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	text-align: right;
+	font-size: 10px;
+}
+		</style>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2>Classes</h2>
+<ul class="classList">
+	
+	<li><i><a href="../symbols/_global_.html">_global_</a></i></li>
+	
+	<li><a href="../symbols/Baton.html">Baton</a></li>
+	
+	<li><a href="../symbols/BatonObject.html">BatonObject</a></li>
+	
+	<li><a href="../symbols/BatonProperty.html">BatonProperty</a></li>
+	
+	<li><a href="../symbols/CollectionNode.html">CollectionNode</a></li>
+	
+	<li><a href="../symbols/ConnectSession.html">ConnectSession</a></li>
+	
+	<li><a href="../symbols/EventDispatcher.html">EventDispatcher</a></li>
+	
+	<li><a href="../symbols/SharedCollection.html">SharedCollection</a></li>
+	
+	<li><a href="../symbols/SharedCursorPane.html">SharedCursorPane</a></li>
+	
+	<li><a href="../symbols/SharedObject.html">SharedObject</a></li>
+	
+	<li><a href="../symbols/SharedProperty.html">SharedProperty</a></li>
+	
+	<li><a href="../symbols/SimpleChatModel.html">SimpleChatModel</a></li>
+	
+	<li><a href="../symbols/Tween.html">Tween</a></li>
+	
+	<li><a href="../symbols/UserManager.html">UserManager</a></li>
+	
+</ul>
+<hr />
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Class EventDispatcher
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				
+			
+				The EventDispatcher class is the helper class for all classes that dispatch events.<p>The event model is similar to,but not the same as ActionScript's event model.Components generate and dispatch events and consume (listen to) other events. An object that requires informationabout another object's events registers a listener with that object. When an event occurs, the object dispatchesthe event to all registered listeners by calling a function that was requested during registration. To receive multipleevents from the same object, you must register your listener for each event.</p><p>Components have built-in events that you can handle in your JavaScript applications. You can also take advantage of themodel to define your own event listeners outside of your applications, and define which methods of your custom listenerswill listen to certain events. You can register listeners with the target object so that when the target object dispatchesan event, the listeners get called.</p>
+				
+				
+					<br /><i>Defined in: </i> <a href="../symbols/src/E__flashfarm_main_connect_build_JavaScript_tools_jsdoc-toolkit_LCCS_JS_Bridge.js.html">LCCS_JS_Bridge.js</a>.
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class EventDispatcher.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/EventDispatcher.html#constructor">EventDispatcher</a></b>()
+							</div>
+							<div class="description"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class EventDispatcher.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/EventDispatcher.html#addEventListener">addEventListener</a></b>(event, the)
+								</div>
+								<div class="description">Registers an event listener object with an EventDispatcher model so that the listener receives notification of an event.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/EventDispatcher.html#dispatchEvent">dispatchEvent</a></b>(eventObj)
+								</div>
+								<div class="description">Dispatches an event into the event flow.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">EventDispatcher.<b><a href="../symbols/EventDispatcher.html#.initialize">initialize</a></b>(object)
+								</div>
+								<div class="description">Register your class that would need to dispatch events to notify other components</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/EventDispatcher.html#removeEventListener">removeEventListener</a></b>(event, the)
+								</div>
+								<div class="description">Remove a listener for a particular event</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>EventDispatcher</b>()
+				</div>
+				
+				<div class="description">
+					
+					
+				</div>
+				
+				
+				
+				<pre class="code">     // Simple EventListener snippet that you would use for components that     //would dispatch events     //In the example below SimpleChatModel class would dispatch "historyChange"     //event whenever the chat history changes     //1) Add an event Listener     chatModel.addEventListener("historyChange", this);     ....     //2)Define your listener. Its function name should match the event type     //that it is listening to. So the reaction or actions to the event     // "historyChange" would be defined inside the function     function historyChange(evt) {     	document.form1.histArea.value = evt.target.history;      }</pre>
+				
+				<pre class="code">     //Defining your own CustomEvents.     //1) Register your class with the event listener.     EventDispatcher.initialize(YourClass);     //2) Create your custom event with all the necessay information that you     //would dispatch and that others would expect.     var evt = new Object();     evt.type = "EventType";     evt.target=evt.currentTarget = this;     //3) Dispatch Events as you need them using the dispatchEvent method.     //The scope of the dispatchEvent method is local.So you would have     //to add the "this."	this.dispatchEvent(evt);</pre>
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+					
+
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="addEventListener"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>addEventListener</b>(event, the)
+					
+					</div>
+					<div class="description">
+						Registers an event listener object with an EventDispatcher model so that the listener receives notification of an event.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">chatModel.addEventListener("historyChange", this);</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>event</b>
+									
+								</dt>
+								<dd>the name of the event ("click", "change", etc)</dd>
+							
+								<dt>
+									<b>the</b>
+									
+								</dt>
+								<dd>function or object that should be called</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="dispatchEvent"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>dispatchEvent</b>(eventObj)
+					
+					</div>
+					<div class="description">
+						Dispatches an event into the event flow.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">     var evt = new Object();     evt.type = "EventType";     evt.target=evt.currentTarget = this;     this.dispatchEvent(evt);</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>eventObj</b>
+									
+								</dt>
+								<dd>an Event or one of its subclasses describing the event</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".initialize"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">EventDispatcher.</span><b>initialize</b>(object)
+					
+					</div>
+					<div class="description">
+						Register your class that would need to dispatch events to notify other components
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">EventDispatcher.initialize(YourClass);</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>object</b>
+									
+								</dt>
+								<dd>the object to receive the methods</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeEventListener"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>removeEventListener</b>(event, the)
+					
+					</div>
+					<div class="description">
+						Remove a listener for a particular event
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">chatModel.removeEventListener("historyChange", this);</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>event</b>
+									
+								</dt>
+								<dd>the name of the event ("click", "change", etc)</dd>
+							
+								<dt>
+									<b>the</b>
+									
+								</dt>
+								<dd>function or object that should be called</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a><br/>
+			2008-2011 Adobe Systems Incorporated. All rights reserved.
+		</div>
+	</body>
+</html>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:rtc="http://ns.adobe.com/rtc" >
+	<mx:Script>
+	<![CDATA[
+		import com.adobe.rtc.messaging.UserRoles;
+		import com.adobe.rtc.events.UserEvent;
+	
+		/**********************************************************
+		 *  This example shows how you can use custom fields with the
+		 *  a DataGrid(List). It also shows the API's and events that has been added
+		 *  like deleteCustomUserField and events for register and delete.
+		 * 
+		 *******************************************/
+		 
+		 /**********************************************************
+		  * ADOBE SYSTEMS INCORPORATED
+		  * Copyright [2007-2010] Adobe Systems Incorporated
+		  * All Rights Reserved.
+		  * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+		  * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+		  * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+		  * written permission of Adobe.
+		  * *********************************/
+		
+		import com.adobe.rtc.sharedManagers.UserManager;
+		private var _userManager:UserManager ;
+		
+		private function onCreationComplete():void
+		{
+			// adding the event handler for the custom field register
+			// we can resgiter or add custom field also from the dev console
+			//when the field gets registered , we should then set the value on it 
+			_userManager = cSession.userManager ;
+			_userManager.addEventListener(UserEvent.CUSTOM_FIELD_REGISTER, onCustomFieldRegister);
+			
+			// registering the field if it doesnt exist. Best way to do is also through dev console
+			// only the hosts can register the field
+			if (!_userManager.isCustomFieldDefined('score') && _userManager.myUserRole == UserRoles.OWNER) {
+				_userManager.registerCustomUserField('score');
+			}else if ( _userManager.isCustomFieldDefined('score')) {
+				_userManager.setCustomUserField(_userManager.myUserID,'score','7');
+			}
+		}
+		
+		private function onCustomFieldRegister(p_event:UserEvent):void
+		{	
+			//setting the custom field if its registered already
+			// you can set the value depending on your role on the custom field node initially set by user , by default its 50 or above
+			// You can change these from the dev console
+			if ( _userManager.isCustomFieldDefined(p_event.customFieldName)) {
+				_userManager.setCustomUserField(_userManager.myUserID,p_event.customFieldName,'7');
+			}
+		}
+		
+		
+		private function scoreLabelFunction(item:Object,column:DataGridColumn):String
+		{
+			// if you want to show it as a label in datagrid or list, you need to use label function
+			//directly using "customField.fieldname" in dataField will not work
+			return item.customFields['score'] ;
+		}
+		
+		private function onDeleteClick(p_evt:MouseEvent):void
+		{
+			/// You can delete the custom field only if you are an owner
+			if ( _userManager.isCustomFieldDefined('score') && _userManager.myUserRole == UserRoles.OWNER) { 
+				_userManager.deleteCustomUserField('score');
+			}
+		}
+
+	]]>
+	</mx:Script>
+	
+	<rtc:ConnectSessionContainer id="cSession" roomURL="Your RoomUrl">
+		<rtc:authenticator>
+			<rtc:AdobeHSAuthenticator userName="Your Username" password="Your password" />
+		</rtc:authenticator>
+		<mx:VBox width="400" height="400" >
+			<mx:DataGrid id="datag" dataProvider="{cSession.userManager.userCollection}" creationComplete="onCreationComplete()" >
+				<mx:columns>
+					<mx:DataGridColumn id="c1" headerText="Name" dataField="displayName" />
+					<mx:DataGridColumn id="c2" headerText="Score" dataField="customFields['score']" labelFunction="scoreLabelFunction" />
+				</mx:columns>
+			</mx:DataGrid>
+			<mx:Button id="deleteCustomField" click="onDeleteClick(event)" label="Delete Custom Field" height="30" />
+		</mx:VBox>
+	</rtc:ConnectSessionContainer>
+</mx:Application>

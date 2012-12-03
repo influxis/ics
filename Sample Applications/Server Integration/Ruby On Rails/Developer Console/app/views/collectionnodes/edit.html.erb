@@ -1,0 +1,24 @@
+<h1>Editing collectionnode</h1>
+
+<% form_for(@collectionnode) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :sharedID %><br />
+    <%= f.text_field :sharedID %>
+  </p>
+  <p>
+    <%= f.label :nodes %><br />
+    <%= f.text_field :nodes %>
+  </p>
+  <p>
+    <%= f.label :userroles %><br />
+    <%= f.text_field :userroles %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @collectionnode %> |
+<%= link_to 'Back', collectionnodes_path %>

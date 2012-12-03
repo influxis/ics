@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://www.adobe.com/2006/mxml" horizontalGap="0" xmlns:qs="qs.controls.*" horizontalAlign="left" paddingLeft="0" paddingTop="0" paddingBottom="0" paddingRight="0" layout="horizontal" backgroundColor="#ffffff" 
+ xmlns:rtc="http://ns.adobe.com/rtc" >	
+	<Script>
+		<![CDATA[
+		
+			 /**********************************************************
+			  * ADOBE SYSTEMS INCORPORATED
+			  * Copyright [2007-2010] Adobe Systems Incorporated
+			  * All Rights Reserved.
+			  * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			  * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			  * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			  * written permission of Adobe.
+	  		  * *********************************/
+		]]>
+	</Script>
+	<rtc:AdobeHSAuthenticator 
+		id="auth" 
+		userName="Your Username" 
+		password="Your password"  />
+		
+	<rtc:ConnectSessionContainer roomURL="Your RoomUrl" id="cSession" authenticator="{auth}" width="100%" height="100%"> 
+		<VBox width="400" height="450" backgroundColor="#343434" >
+			<rtc:WebcamPublisher id="webcam" height="10" />
+			<qs:MyWebcamSubscriber width="100%" height="400" webcamPublisher="{webcam}" /> 
+			<HBox paddingLeft="20" horizontalGap="25">
+				<Button click="{webcam.publish()}" label="Start WebCam" height="20" />
+				<Button click="{webcam.stop()}" label="Stop WebCam" height="20" />
+			</HBox> 
+		</VBox>
+	</rtc:ConnectSessionContainer> 
+</Application>
+

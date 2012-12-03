@@ -1,0 +1,464 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../../print.css" type="text/css" media="print">
+<meta content="FileDescriptor,com.adobe.rtc.sharedManagers.descriptors.FileDescriptor,ANNOUNCING_INTENTION_TO_PUBLISH,FILE_UPLOAD_PROGRESS,PUBLISHING_DESCRIPTOR,downloadUrl,filename,groupName,id,lastModified,name,previousFilename,previousName,size,state,submitterID,token,type,uploadProgress,url,clone,createValueObject,readValueObject" name="keywords">
+<title>com.adobe.rtc.sharedManagers.descriptors.FileDescriptor</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'FileDescriptor - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../../all-classes.html')" href="../../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../../all-classes.html')" href="../../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../../index-list.html')" href="../../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../../index.html?com/adobe/rtc/sharedManagers/descriptors/FileDescriptor.html&amp;com/adobe/rtc/sharedManagers/descriptors/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;FileDescriptor</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class FileDescriptor"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.sharedManagers.descriptors</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class FileDescriptor</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../../messaging/IValueObjectEncodable.html">IValueObjectEncodable</a></td>
+</tr>
+</table>
+<p></p>
+  Describes the set of properties for a file present in the room for upload and download. 
+  The FileManager is responsible for managing and communicating the set of FileDescriptors 
+  to users in the room. Collaboration components such as FileSubscriber or FilePublisher 
+  use FileDescriptors to access the raw files themselves. 
+  <p>
+  FileDescriptors can be thought of as control metadata for indicating the presence and 
+  current state of files in the room. FileDescriptors can be accessed through FileManager's 
+  methods, and FileManager's events will notify of any changes to the set of fileDescriptors.
+  
+  <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../../sharedManagers/FileManager.html" target="">com.adobe.rtc.sharedManagers.FileManager</a>
+<br>
+<a href="../../collaboration/FileSubscriber.html" target="">com.adobe.rtc.collaboration.FileSubscriber</a>
+</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ANNOUNCING_INTENTION_TO_PUBLISH">ANNOUNCING_INTENTION_TO_PUBLISH</a> : String = "announcingIntentionToPublish"<div class="summaryTableDescription">[static]
+   Constant value descriptor state which is published in the descriptor for validation 
+   to the service when the publisher is about to upload a file.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#downloadUrl">downloadUrl</a> : String<div class="summaryTableDescription">
+   It gives the complete url required for downloading the file 
+   </div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#filename">filename</a> : String<div class="summaryTableDescription">
+   The name of the file on the server (including possible encoding).</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#FILE_UPLOAD_PROGRESS">FILE_UPLOAD_PROGRESS</a> : String = "fileUploadProgress"<div class="summaryTableDescription">[static]
+   Constant value for the descriptor stae: When the file upload is in progress, 
+   the descriptor is periodically updated with the percent completion of the 
+   upload and this state.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#groupName">groupName</a> : String<div class="summaryTableDescription">
+    The group name which the stream descriptor belongs to
+   </div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#id">id</a> : String<div class="summaryTableDescription">
+   A unique descriptor ID.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#lastModified">lastModified</a> : int<div class="summaryTableDescription">
+   The timestamp of the last modified date.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#name">name</a> : String<div class="summaryTableDescription">
+   The name of the file on the client.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#previousFilename">previousFilename</a> : String<div class="summaryTableDescription">
+   If the file has been renamed, the last server fileName used before it was renamed.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#previousName">previousName</a> : String<div class="summaryTableDescription">
+   If the file has been renamed, the last client name used before it was renamed.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PUBLISHING_DESCRIPTOR">PUBLISHING_DESCRIPTOR</a> : String = "publishingDescriptor"<div class="summaryTableDescription">[static]
+   Constant value for the descriptor state: When the file upload is finished and the final
+   URL has been determined, the descriptor is updated with the URL and this state.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#size">size</a> : int = 0<div class="summaryTableDescription">
+   The size of the file in bytes.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#state">state</a> : String<div class="summaryTableDescription">
+   The state of the publish operation which must be one of the constant values 
+   described in this class.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#submitterID">submitterID</a> : String<div class="summaryTableDescription">
+   The file publisher's <code>userID</code>.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#token">token</a> : String<div class="summaryTableDescription">
+   A server token to allow for validated download of the file.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#type">type</a> : String<div class="summaryTableDescription">
+   The file type.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#uploadProgress">uploadProgress</a> : Number = 0<div class="summaryTableDescription">
+   The progress of the file upload expressed numerically from 0 to 100.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#url">url</a> : String<div class="summaryTableDescription">
+   The final URL of the file on a server for download.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#clone()">clone</a>():<a href="../descriptors/FileDescriptor.html">FileDescriptor</a>
+</div>
+<div class="summaryTableDescription">
+   Returns a copy of itself.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#createValueObject()">createValueObject</a>():Object</div>
+<div class="summaryTableDescription">
+   Creates a ValueObject representation of this descriptor.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#readValueObject()">readValueObject</a>(p_valueObject:Object):void</div>
+<div class="summaryTableDescription">
+   Takes in a <code>valueObject</code> and structure the MessageItem according to the values therein.</div>
+</td><td class="summaryTableOwnerCol">FileDescriptor</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="ANNOUNCING_INTENTION_TO_PUBLISH"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ANNOUNCING_INTENTION_TO_PUBLISH</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static var ANNOUNCING_INTENTION_TO_PUBLISH:String = "announcingIntentionToPublish"</code><p>
+   Constant value descriptor state which is published in the descriptor for validation 
+   to the service when the publisher is about to upload a file.
+   </p></div>
+<a name="downloadUrl"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">downloadUrl</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var downloadUrl:String</code><p>
+   It gives the complete url required for downloading the file 
+   </p></div>
+<a name="filename"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">filename</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var filename:String</code><p>
+   The name of the file on the server (including possible encoding).
+   </p></div>
+<a name="FILE_UPLOAD_PROGRESS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">FILE_UPLOAD_PROGRESS</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static var FILE_UPLOAD_PROGRESS:String = "fileUploadProgress"</code><p>
+   Constant value for the descriptor stae: When the file upload is in progress, 
+   the descriptor is periodically updated with the percent completion of the 
+   upload and this state.
+   </p></div>
+<a name="groupName"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">groupName</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var groupName:String</code><p>
+    The group name which the stream descriptor belongs to
+   </p></div>
+<a name="id"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">id</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var id:String</code><p>
+   A unique descriptor ID.
+   </p></div>
+<a name="lastModified"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">lastModified</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var lastModified:int</code><p>
+   The timestamp of the last modified date.
+   </p></div>
+<a name="name"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">name</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var name:String</code><p>
+   The name of the file on the client.
+   </p></div>
+<a name="previousFilename"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">previousFilename</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var previousFilename:String</code><p>
+   If the file has been renamed, the last server fileName used before it was renamed.
+   </p></div>
+<a name="previousName"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">previousName</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var previousName:String</code><p>
+   If the file has been renamed, the last client name used before it was renamed.
+   </p></div>
+<a name="PUBLISHING_DESCRIPTOR"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PUBLISHING_DESCRIPTOR</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static var PUBLISHING_DESCRIPTOR:String = "publishingDescriptor"</code><p>
+   Constant value for the descriptor state: When the file upload is finished and the final
+   URL has been determined, the descriptor is updated with the URL and this state.
+   </p></div>
+<a name="size"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">size</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var size:int = 0</code><p>
+   The size of the file in bytes.
+   </p></div>
+<a name="state"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">state</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var state:String</code><p>
+   The state of the publish operation which must be one of the constant values 
+   described in this class. 
+   </p></div>
+<a name="submitterID"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">submitterID</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var submitterID:String</code><p>
+   The file publisher's <code>userID</code>.
+   </p></div>
+<a name="token"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">token</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var token:String</code><p>
+   A server token to allow for validated download of the file. 
+   </p></div>
+<a name="type"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">type</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var type:String</code><p>
+   The file type.
+   </p></div>
+<a name="uploadProgress"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">uploadProgress</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var uploadProgress:Number = 0</code><p>
+   The progress of the file upload expressed numerically from 0 to 100.
+   </p></div>
+<a name="url"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">url</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var url:String</code><p>
+   The final URL of the file on a server for download.
+   </p></div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="clone()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">clone</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function clone():<a href="../descriptors/FileDescriptor.html">FileDescriptor</a></code><p>
+   Returns a copy of itself.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../descriptors/FileDescriptor.html">FileDescriptor</a></code></td>
+</tr>
+</table>
+</div>
+<a name="createValueObject()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">createValueObject</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function createValueObject():Object</code><p>
+   Creates a ValueObject representation of this descriptor.
+   
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Object</code> &mdash; An Object which represents the non-default values for this descriptor, 
+   suitable for consumption by <code>readValueObject</code>.
+   </td>
+</tr>
+</table>
+</div>
+<a name="readValueObject()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">readValueObject</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function readValueObject(p_valueObject:Object):void</code><p>
+   Takes in a <code>valueObject</code> and structure the MessageItem according to the values therein.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_valueObject</span>:Object</code> &mdash; An Object which represents the non-default values for this MessageItem.
+   </td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

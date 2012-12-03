@@ -1,0 +1,34 @@
+<h1>Listing nodeconfigurations</h1>
+
+<table>
+  <tr>
+    <th>Accessmodel</th>
+    <th>Allowprivatemessage</th>
+    <th>Itemstorageschem</th>
+    <th>Modifyanyitem</th>
+    <th>Persistitems</th>
+    <th>Publishmodel</th>
+    <th>Sessiondependentitems</th>
+    <th>Userdependentitems</th>
+  </tr>
+
+<% @nodeconfigurations.each do |nodeconfiguration| %>
+  <tr>
+    <td><%=h nodeconfiguration.accessModel %></td>
+    <td><%=h nodeconfiguration.allowPrivateMessage %></td>
+    <td><%=h nodeconfiguration.itemStorageSchem %></td>
+    <td><%=h nodeconfiguration.modifyAnyItem %></td>
+    <td><%=h nodeconfiguration.persistItems %></td>
+    <td><%=h nodeconfiguration.publishModel %></td>
+    <td><%=h nodeconfiguration.sessionDependentItems %></td>
+    <td><%=h nodeconfiguration.userDependentItems %></td>
+    <td><%= link_to 'Show', nodeconfiguration %></td>
+    <td><%= link_to 'Edit', edit_nodeconfiguration_path(nodeconfiguration) %></td>
+    <td><%= link_to 'Destroy', nodeconfiguration, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New nodeconfiguration', new_nodeconfiguration_path %>

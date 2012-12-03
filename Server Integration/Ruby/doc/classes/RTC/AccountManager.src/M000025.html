@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>startRecording (RTC::AccountManager)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lccs.rb, line 620</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">startRecording</span>(<span class="ruby-identifier">room</span>, <span class="ruby-identifier">archiveId</span>, <span class="ruby-identifier">guestsAllowed</span>)
+        <span class="ruby-identifier">itemBody</span> = <span class="ruby-node">&quot;{fullSession:true, archiveID:#{archiveId}, guestsAllowed:#{guestsAllowed}}&quot;</span>
+        <span class="ruby-identifier">itemVO</span> = { <span class="ruby-value str">&quot;itemID&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;recordingState&quot;</span>, <span class="ruby-value str">&quot;body&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">itemBody</span> }
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">publishItem</span>(<span class="ruby-identifier">room</span>, <span class="ruby-value str">'RoomManager'</span>, <span class="ruby-value str">'roomState'</span>, <span class="ruby-identifier">itemVO</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

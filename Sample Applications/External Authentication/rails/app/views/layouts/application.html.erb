@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>LCCS Test Application</title>
+    <%= stylesheet_link_tag 'application' %>
+  </head>
+
+  <body>
+    <% if flash[:notice] %>
+      <div class="notice"><%= h flash[:notice] %></div>
+    <% elsif flash[:error] %>
+      <div class="error"><%= h flash[:error] %></div>
+    <% end %>
+
+    <div>
+      <%= yield %>
+    </div>
+  </body>
+</html>

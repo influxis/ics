@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>LCCS Administration Console</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="title">LCCS Administration Console</div>
+    <form action="/main" method="post">
+      <table>
+      <tr>
+        <th>Account:</th>
+        <td><input type="text" name="account" value="{{account}}" size="60"></td>
+      </tr>
+      <tr>
+        <th>Username:</th>
+        <td><input type="text" name="user" value="{{username}}"></td>
+      </tr>
+      <tr>
+        <th>Password:</th>
+        <td><input type="password" name="password" value="{{password}}"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="submit" value="Login"></td>
+      <table>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+
+body {
+  font-family: Verdana, sans;
+}
+
+th {
+  text-align: left;
+}
+
+table.border th { 
+  border: thin solid black;
+  background-color: lightgray;
+}
+
+table.border td {
+  border: thin solid gray; 
+  padding-left: 4pt;
+  padding-right: 4pt;
+}
+
+.title {
+  font-size: large;
+  font-weight: bold;
+  padding-top: 8pt;
+  padding-bottom: 8pt;
+}

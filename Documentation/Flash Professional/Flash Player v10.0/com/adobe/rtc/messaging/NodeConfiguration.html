@@ -1,0 +1,539 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<meta content="NodeConfiguration,com.adobe.rtc.messaging.NodeConfiguration,DEFAULT_CONFIGURATION,STORAGE_SCHEME_MANUAL,STORAGE_SCHEME_QUEUE,STORAGE_SCHEME_SINGLE_ITEM,accessModel,allowPrivateMessages,itemStorageScheme,lazySubscription,maxQueuedItems,modifyAnyItem,p2pDataMessaging,persistItems,publishModel,sessionDependentItems,userDependentItems,clone,createValueObject,readValueObject" name="keywords">
+<title>com.adobe.rtc.messaging.NodeConfiguration</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'NodeConfiguration - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS Flash-Only Player 10 API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?com/adobe/rtc/messaging/NodeConfiguration.html&amp;com/adobe/rtc/messaging/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;NodeConfiguration</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class NodeConfiguration"); titleBar_setSubNav(true,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.messaging</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class NodeConfiguration</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="IValueObjectEncodable.html">IValueObjectEncodable</a></td>
+</tr>
+</table>
+<p></p>
+  NodeConfiguration is a "descriptor" for describing the properties of a node's configuration. 
+  
+  See Example 129 of XEP-60's pubsub functionality. <a href="http://www.xmpp.org/extensions/xep-0060.html#owner-configure">http://www.xmpp.org/extensions/xep-0060.html</a><br>
+  This class describes the subset of and additions to the set of configuration options supported in LCCS. 
+  <p>
+  Within each CollectionNode is a series of one or more nodes. A node is a channel through which 
+  to send and receive MessageItems. Nodes are also configured according to rules concerning what 
+  UserRoles may publish and subscribe MessageItems through them, as well as other policies 
+  concering message storage and privacy. NodeConfigurations are used to set these policies.
+  <p>
+  For more information, refer to the Developer Guide's "Messaging and Permissions" chapter.
+  
+   <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../sharedModel/CollectionNode.html" target="">com.adobe.rtc.sharedModel.CollectionNode</a>
+<br>
+<a href="../messaging/MessageItem.html" target="">com.adobe.rtc.messaging.MessageItem</a>
+<br>
+<a href="../messaging/UserRoles.html" target="">com.adobe.rtc.messaging.UserRoles</a>
+</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#accessModel">accessModel</a> : int<div class="summaryTableDescription">
+   The minimum role value required to subscribe to the node and receive MessageItems.</div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#allowPrivateMessages">allowPrivateMessages</a> : Boolean<div class="summaryTableDescription">
+   Whether or not private messages are allowed.</div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#itemStorageScheme">itemStorageScheme</a> : int<div class="summaryTableDescription">
+   Storage scheme for the MessageItems sent over this node.</div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#lazySubscription">lazySubscription</a> : Boolean<div class="summaryTableDescription">
+   Whether or not the subscription to this node is "lazy" - that is, it doesn't receive items automatically.</div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#maxQueuedItems">maxQueuedItems</a> : int = -1<div class="summaryTableDescription">
+   For use when the item storage scheme is Queue, specifies how many items to remember on the service.</div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#modifyAnyItem">modifyAnyItem</a> : Boolean<div class="summaryTableDescription">
+   Whether or not publishers may modify other users' stored items on the node (true) or only 
+   MessageItems they have published (false).</div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#p2pDataMessaging">p2pDataMessaging</a> : Boolean = false<div class="summaryTableDescription">
+   Whether or not peer-to-peer data messaging should be used for this node.</div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#persistItems">persistItems</a> : Boolean<div class="summaryTableDescription">
+   Whether or not MessageItems should be stored and forwarded to users arriving later (true) 
+   or not stored at all (false).</div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#publishModel">publishModel</a> : int<div class="summaryTableDescription">
+   The minimum role value required to publish MessageItems to the node.</div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#sessionDependentItems">sessionDependentItems</a> : Boolean<div class="summaryTableDescription">
+   Whether or not stored MessageItems should be retracted from the server when meeting session 
+   ends (true) or left until manually retracted (false).</div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#userDependentItems">userDependentItems</a> : Boolean<div class="summaryTableDescription">
+   Whether or not stored MessageItems should be retracted from the server when their sender 
+   leaves the room (true) or left until manually retracted (false).</div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#NodeConfiguration()">NodeConfiguration</a>(p_accessModel:int = 10, p_publishModel:int = 50, p_persistItems:Boolean = true, p_modifyAnyItem:Boolean = true, p_userDependentItems:Boolean = false, p_sessionDependentItems:Boolean = false, p_storageScheme:int, p_allowPrivateMessages:Boolean = false, p_lazySubscription:Boolean = false, p_p2pDataMessaging:Boolean = false, p_maxQueuedItems:int = -1)</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#clone()">clone</a>():<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>
+</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#createValueObject()">createValueObject</a>():Object</div>
+<div class="summaryTableDescription">
+   Creates a ValueObject representation of this NodeConfiguration.</div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#readValueObject()">readValueObject</a>(p_valueObject:Object):void</div>
+<div class="summaryTableDescription">
+   Takes in a <code>valueObject</code> and structure the NodeConfiguration according to the values therein.</div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DEFAULT_CONFIGURATION">DEFAULT_CONFIGURATION</a> : <a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>
+<div class="summaryTableDescription">[static]
+   A constant for storing the default configuration of a node.</div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#STORAGE_SCHEME_MANUAL">STORAGE_SCHEME_MANUAL</a> : uint = 2<div class="summaryTableDescription">[static]
+   The storage scheme to enable manual management of <code>itemIDs</code> for each MessageItem.</div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#STORAGE_SCHEME_QUEUE">STORAGE_SCHEME_QUEUE</a> : uint = 1<div class="summaryTableDescription">[static]
+   The storage scheme to enable storage of a queue of MessageItems.</div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#STORAGE_SCHEME_SINGLE_ITEM">STORAGE_SCHEME_SINGLE_ITEM</a> : uint = 0<div class="summaryTableDescription">[static]
+   The storage scheme if a node is to only store and update one MessageItem.</div>
+</td><td class="summaryTableOwnerCol">NodeConfiguration</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="accessModel"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">accessModel</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var accessModel:int</code><p>
+   The minimum role value required to subscribe to the node and receive MessageItems. 
+    
+   </p><p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../messaging/UserRoles.html" target="">com.adobe.rtc.messaging.UserRoles</a>
+</div>
+</div>
+<a name="allowPrivateMessages"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">allowPrivateMessages</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var allowPrivateMessages:Boolean</code><p>
+   Whether or not private messages are allowed.
+        
+        </p><p>The default value is <code>false</code>.</p>
+</div>
+<a name="itemStorageScheme"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">itemStorageScheme</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var itemStorageScheme:int</code><p>
+   Storage scheme for the MessageItems sent over this node. It is one of the STORAGE_SCHEME constants listed.
+   </p></div>
+<a name="lazySubscription"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">lazySubscription</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var lazySubscription:Boolean</code><p>
+   Whether or not the subscription to this node is "lazy" - that is, it doesn't receive items automatically.
+   For fetching items from a node with <code>lazySubscription</code>, use <code>collectionNode.fetchItems()</code>
+   </p></div>
+<a name="maxQueuedItems"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">maxQueuedItems</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var maxQueuedItems:int = -1</code><p>
+   For use when the item storage scheme is Queue, specifies how many items to remember on the service. Once the number of items sent passes this number,
+   the oldest item is forgotten for every subsequent item published.
+   </p></div>
+<a name="modifyAnyItem"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">modifyAnyItem</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var modifyAnyItem:Boolean</code><p>
+   Whether or not publishers may modify other users' stored items on the node (true) or only 
+   MessageItems they have published (false).
+        
+        </p><p>The default value is <code>true</code>.</p>
+</div>
+<a name="p2pDataMessaging"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">p2pDataMessaging</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var p2pDataMessaging:Boolean = false</code><p>
+   Whether or not peer-to-peer data messaging should be used for this node. Note that this means no storage is allowed - all messages are transient
+   and order of delivery is not guaranteed. Flash Player 10.1 is required to allow this feature.
+   </p></div>
+<a name="persistItems"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">persistItems</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var persistItems:Boolean</code><p>
+   Whether or not MessageItems should be stored and forwarded to users arriving later (true) 
+   or not stored at all (false). 
+        
+        </p><p>The default value is <code>true</code>.</p>
+</div>
+<a name="publishModel"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">publishModel</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var publishModel:int</code><p>
+   The minimum role value required to publish MessageItems to the node.
+   </p><p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../messaging/UserRoles.html" target="">com.adobe.rtc.messaging.UserRoles</a>
+</div>
+</div>
+<a name="sessionDependentItems"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">sessionDependentItems</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var sessionDependentItems:Boolean</code><p>
+   Whether or not stored MessageItems should be retracted from the server when meeting session 
+   ends (true) or left until manually retracted (false).
+        
+        </p><p>The default value is <code>false</code>.</p>
+</div>
+<a name="userDependentItems"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">userDependentItems</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var userDependentItems:Boolean</code><p>
+   Whether or not stored MessageItems should be retracted from the server when their sender 
+   leaves the room (true) or left until manually retracted (false).
+   </p></div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="NodeConfiguration()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">NodeConfiguration</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function NodeConfiguration(p_accessModel:int = 10, p_publishModel:int = 50, p_persistItems:Boolean = true, p_modifyAnyItem:Boolean = true, p_userDependentItems:Boolean = false, p_sessionDependentItems:Boolean = false, p_storageScheme:int, p_allowPrivateMessages:Boolean = false, p_lazySubscription:Boolean = false, p_p2pDataMessaging:Boolean = false, p_maxQueuedItems:int = -1)</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_accessModel</span>:int</code> (default = <code>10</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_publishModel</span>:int</code> (default = <code>50</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_persistItems</span>:Boolean</code> (default = <code>true</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_modifyAnyItem</span>:Boolean</code> (default = <code>true</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userDependentItems</span>:Boolean</code> (default = <code>false</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_sessionDependentItems</span>:Boolean</code> (default = <code>false</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_storageScheme</span>:int</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_allowPrivateMessages</span>:Boolean</code> (default = <code>false</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_lazySubscription</span>:Boolean</code> (default = <code>false</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_p2pDataMessaging</span>:Boolean</code> (default = <code>false</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_maxQueuedItems</span>:int</code> (default = <code>-1</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="clone()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">clone</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function clone():<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code></td>
+</tr>
+</table>
+</div>
+<a name="createValueObject()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">createValueObject</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function createValueObject():Object</code><p>
+   Creates a ValueObject representation of this NodeConfiguration.
+      </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Object</code> &mdash; An Object which represents the non-default values for this NodeConfiguration 
+   suitable for consumption by <code>readValueObject</code>.
+   </td>
+</tr>
+</table>
+</div>
+<a name="readValueObject()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">readValueObject</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function readValueObject(p_valueObject:Object):void</code><p>
+   Takes in a <code>valueObject</code> and structure the NodeConfiguration according to the values therein.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_valueObject</span>:Object</code> &mdash; An Object which represents the non-default values for this NodeConfiguration.
+   </td>
+</tr>
+</table>
+</div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="DEFAULT_CONFIGURATION"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">DEFAULT_CONFIGURATION</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const DEFAULT_CONFIGURATION:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code><p>
+   A constant for storing the default configuration of a node.
+   </p></div>
+<a name="STORAGE_SCHEME_MANUAL"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">STORAGE_SCHEME_MANUAL</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const STORAGE_SCHEME_MANUAL:uint = 2</code><p>
+   The storage scheme to enable manual management of <code>itemIDs</code> for each MessageItem. 
+   It allows the node to behave as if it were a hash table. 
+   </p></div>
+<a name="STORAGE_SCHEME_QUEUE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">STORAGE_SCHEME_QUEUE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const STORAGE_SCHEME_QUEUE:uint = 1</code><p>
+   The storage scheme to enable storage of a queue of MessageItems. 
+   Items will have their <code>itemIDs</code> start at 0 and continue to auto-increment. 
+   </p></div>
+<a name="STORAGE_SCHEME_SINGLE_ITEM"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">STORAGE_SCHEME_SINGLE_ITEM</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const STORAGE_SCHEME_SINGLE_ITEM:uint = 0</code><p>
+   The storage scheme if a node is to only store and update one MessageItem. 
+   The item will be given the <code>itemID</code> "item" by default. 
+   </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

@@ -1,0 +1,368 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<meta content="RoomSettings,com.adobe.rtc.session.RoomSettings,AUTO,DSL,LAN,MODEM,ROOM_STATE_ACTIVE,ROOM_STATE_ENDED,ROOM_STATE_HOST_NOT_ARRIVED,ROOM_STATE_ON_HOLD,autoPromote,guestsMustKnock,roomBandwidth,roomState" name="keywords">
+<title>com.adobe.rtc.session.RoomSettings</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'RoomSettings - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS Flash-Only Player 10.1 API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?com/adobe/rtc/session/RoomSettings.html&amp;com/adobe/rtc/session/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;RoomSettings</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class RoomSettings"); titleBar_setSubNav(true,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.session</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class RoomSettings</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">RoomSettings <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> flash.events.EventDispatcher</td>
+</tr>
+</table>
+<p></p>
+  RoomSettings declares the initial room settings passed to RoomManager through 
+  an IConnectSession's <code class="property">initialRoomSettings</code> property. 
+  Note that this will <b>only take effect the FIRST time</b> the room receives a connection 
+  from a <code>UserRoles.OWNER</code>. RoomSettings is also a 
+  class for holding the constant values for various properties within the RoomManager.
+   
+     <h6>Using RoomSettings to auto-promote a viewer to a publisher</h6>
+   <div class='listing'><pre>
+  &lt;rtc:AdobeHSAuthenticator 
+  // Deployed applications DO NOT hard code username and password here.
+       userName="AdobeIDusername&#64;example.com" 
+       password="AdobeIDpassword" 
+       id="auth"/&gt
+  &lt;session:RoomSettings autoPromote="true" roomBandwidth="auto" id="roomSettings"/&gt;
+   &lt;session:ConnectSessionContainer 
+     roomURL="http://connect.acrobat.com/fakeRoom/" 
+    authenticator="{auth}" 
+    initialRoomSettings="{roomSettings}"&gt;
+    &lt;pods:WebCamera width="100%" height="100%"/&gt;
+  &lt;/session:ConnectSessionContainer&gt;</pre></div>
+  <blockquote>
+  <b>Note</b>: You can configure room settings programmatically or via the Room Console.
+  Some settings are owned by the RoomSettings class, and others by the RoomManager class.
+  Room settings are saved with any templates created from the room.
+  </blockqoute><p></p>
+  <img src="../../../../devimages/dc_roomsettings.png" alt="LCCS room settings">
+    <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../session/IConnectSession.html" target="">com.adobe.rtc.session.IConnectSession</a>
+<br>
+<a href="../sharedManagers/RoomManager.html" target="">com.adobe.rtc.sharedManagers.RoomManager</a>
+<br>com.adobe.rtc.util.RoomTemplater</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#autoPromote">autoPromote</a> : Boolean<div class="summaryTableDescription">
+       Automatically promotes someone with a viewer role to a publisher role when they enter the room.</div>
+</td><td class="summaryTableOwnerCol">RoomSettings</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#guestsMustKnock">guestsMustKnock</a> : Boolean<div class="summaryTableDescription">
+       Requires guests to ask for permission before entering the room.</div>
+</td><td class="summaryTableOwnerCol">RoomSettings</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#roomBandwidth">roomBandwidth</a> : String<div class="summaryTableDescription">
+       Sets the room bandwidth.</div>
+</td><td class="summaryTableOwnerCol">RoomSettings</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#roomState">roomState</a> : String<div class="summaryTableDescription">
+       Sets the state of the room.</div>
+</td><td class="summaryTableOwnerCol">RoomSettings</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#RoomSettings()">RoomSettings</a>()</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">RoomSettings</td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AUTO">AUTO</a> : String = "auto"<div class="summaryTableDescription">[static]
+   Room connection speed constant for automatically calculating speed.</div>
+</td><td class="summaryTableOwnerCol">RoomSettings</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DSL">DSL</a> : String = "dsl"<div class="summaryTableDescription">[static]
+   Room connection speed constant for DSL.</div>
+</td><td class="summaryTableOwnerCol">RoomSettings</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#LAN">LAN</a> : String = "LAN"<div class="summaryTableDescription">[static]
+   Room connection speed constant for LAN.</div>
+</td><td class="summaryTableOwnerCol">RoomSettings</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#MODEM">MODEM</a> : String = "modem"<div class="summaryTableDescription">[static]
+   Room connection speed constant for MODEM.</div>
+</td><td class="summaryTableOwnerCol">RoomSettings</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ROOM_STATE_ACTIVE">ROOM_STATE_ACTIVE</a> : String = "active"<div class="summaryTableDescription">[static]
+   RoomManager state constant for an open, active room.</div>
+</td><td class="summaryTableOwnerCol">RoomSettings</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ROOM_STATE_ENDED">ROOM_STATE_ENDED</a> : String = "ended"<div class="summaryTableDescription">[static]
+   RoomManager state constant for a room which has been closed.</div>
+</td><td class="summaryTableOwnerCol">RoomSettings</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ROOM_STATE_HOST_NOT_ARRIVED">ROOM_STATE_HOST_NOT_ARRIVED</a> : String = "hostNotArrived"<div class="summaryTableDescription">[static]
+   RoomManager state constant for a room with no host.</div>
+</td><td class="summaryTableOwnerCol">RoomSettings</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ROOM_STATE_ON_HOLD">ROOM_STATE_ON_HOLD</a> : String = "onhold"<div class="summaryTableDescription">[static]
+   RoomManager state constant for a room which has been placed on hold.</div>
+</td><td class="summaryTableOwnerCol">RoomSettings</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="autoPromote"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">autoPromote</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>autoPromote:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+       Automatically promotes someone with a viewer role to a publisher role when they enter the room.
+         
+       </p><p>The default value is <code>false</code>.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get autoPromote():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set autoPromote(value:Boolean):void</code>
+<br>
+</div>
+<a name="guestsMustKnock"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">guestsMustKnock</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>guestsMustKnock:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+       Requires guests to ask for permission before entering the room.
+       
+       </p><p>The default value is <code>false</code>.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get guestsMustKnock():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set guestsMustKnock(value:Boolean):void</code>
+<br>
+</div>
+<a name="roomBandwidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomBandwidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>roomBandwidth:String</code>&nbsp;&nbsp;[read-write]<p>
+       Sets the room bandwidth. Valid values include the following: 
+   <ul>
+   <li><code>LAN</code></li>
+   <li><code>dsl</code></li>
+      <li><code>modem</code></li>
+   <li><code>auto</code></li>
+   </ul>
+       </p><p>The default value is <code>AUTO</code>.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get roomBandwidth():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set roomBandwidth(value:String):void</code>
+<br>
+</div>
+<a name="roomState"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomState</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>roomState:String</code>&nbsp;&nbsp;[read-write]<p>
+       Sets the state of the room. Valid values include the following: 
+   <ul>
+   <li>active</li>
+   <li>hostNotArrived</li>
+   <li>ended</li>
+   <li>onhold</li>
+   </ul> 
+             </p><p>The default value is <code>active</code>.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get roomState():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set roomState(value:String):void</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="RoomSettings()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">RoomSettings</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function RoomSettings()</code>
+</div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="AUTO"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AUTO</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const AUTO:String = "auto"</code><p>
+   Room connection speed constant for automatically calculating speed.
+   </p></div>
+<a name="DSL"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">DSL</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const DSL:String = "dsl"</code><p>
+   Room connection speed constant for DSL.
+   </p></div>
+<a name="LAN"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">LAN</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const LAN:String = "LAN"</code><p>
+   Room connection speed constant for LAN.
+   </p></div>
+<a name="MODEM"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">MODEM</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const MODEM:String = "modem"</code><p>
+   Room connection speed constant for MODEM.
+   </p></div>
+<a name="ROOM_STATE_ACTIVE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ROOM_STATE_ACTIVE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ROOM_STATE_ACTIVE:String = "active"</code><p>
+   RoomManager state constant for an open, active room.
+   </p></div>
+<a name="ROOM_STATE_ENDED"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ROOM_STATE_ENDED</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ROOM_STATE_ENDED:String = "ended"</code><p>
+   RoomManager state constant for a room which has been closed.
+   </p></div>
+<a name="ROOM_STATE_HOST_NOT_ARRIVED"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ROOM_STATE_HOST_NOT_ARRIVED</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ROOM_STATE_HOST_NOT_ARRIVED:String = "hostNotArrived"</code><p>
+   RoomManager state constant for a room with no host.
+   </p></div>
+<a name="ROOM_STATE_ON_HOLD"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ROOM_STATE_ON_HOLD</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ROOM_STATE_ON_HOLD:String = "onhold"</code><p>
+   RoomManager state constant for a room which has been placed on hold.
+   </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

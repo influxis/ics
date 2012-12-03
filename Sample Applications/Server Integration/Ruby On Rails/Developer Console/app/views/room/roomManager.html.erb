@@ -1,0 +1,33 @@
+<h1>Room#roomManager</h1>
+
+LCCS Room Manager <strong><%=session[:user_id]%></strong>.<br> <br>
+
+<% if flash[:result] %>
+
+  <div style="font-family:'Trebuchet MS'; color:green; font-size:14px;">
+
+  <%= flash[:result] %>
+
+  </div>
+
+<% end %>
+
+<% if flash[:notice] %>
+
+  <div style="font-family:'Trebuchet MS'; color:red; font-size:14px;">
+
+  <%= flash[:notice] %>
+
+  </div>
+
+<% end %>
+
+ <% form_tag("selectRoom") do%>
+    <%=  select_tag("roomName", "<option>Select a room from list</option>" + options_for_select(@roominfos), {:onchange => "document.roomManager.submit();"}) %>
+    <%= submit_tag "Invoke" %>
+ <% end %>
+
+
+<p>
+<%= link_to "logout",:controller => "account", :action => "logout" %>
+</p>

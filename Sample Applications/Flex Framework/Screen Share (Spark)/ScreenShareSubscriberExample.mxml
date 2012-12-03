@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%" xmlns:rtc="http://ns.adobe.com/rtc">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<rtc:AdobeHSAuthenticator id="auth"  userName="Your Username" password="Your password" />
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			//import com.adobe.rtc.collaboration.ScreenShareSubscriberSprite;
+			import com.adobe.rtc.collaboration.ScreenShareSubscriberComplex;
+			
+			/**********************************************************
+			 * ADOBE SYSTEMS INCORPORATED
+			 * Copyright [2007-2010] Adobe Systems Incorporated
+			 * All Rights Reserved.
+			 * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			 * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			 * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			 * written permission of Adobe.
+			 * *********************************/
+			// This is the upload part...
+			
+			//[Embed (source = 'cursor.png')]
+			//protected var CursorShareClass:Class;
+			
+			private function init():void{
+				var sss:ScreenShareSubscriberComplex= new ScreenShareSubscriberComplex();
+				sss.connectSession = cSession;
+				sss.width = displayArea.width;
+				sss.height = displayArea.height;
+				sss.x = 0;
+				sss.y = 0;
+				displayArea.addChild(sss);
+				
+				//var _cursor:DisplayObject = DisplayObject(new CursorShareClass);
+				//displayArea.addChild(_cursor);
+				
+				//				var sss:ScreenShareSubscriberSprite = new ScreenShareSubscriberSprite();
+				//				sss.connectSession = cSession;
+				//				sss.graphics.drawRect(0, 0, displayArea.width, displayArea.height);
+				//				displayArea.rawChildren.addChild( sss );
+			}
+				
+		]]>
+	</fx:Script>
+	<rtc:ConnectSessionContainer id="cSession" authenticator="{auth}" width="100%" height="100%" 
+								 roomURL="Your RoomUrl"  backgroundAlpha="0" >	
+		<mx:HBox width="100%" height="100%" id="displayArea" creationComplete="init()"/>
+	</rtc:ConnectSessionContainer> 
+</s:Application>

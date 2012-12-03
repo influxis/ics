@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: afcs.rb</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>afcs.rb</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>afcs.rb
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Wed Apr 07 16:24:42 -0700 2010</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>Synopsis</h1>
+<p>
+This library allows you to connect to the Adobe Flash Collaboration Service
+and manage an account, including listing rooms and templates, creating new
+rooms, and deleting rooms and templates.
+</p>
+<h2>Examples</h2>
+<pre>
+  require 'afcs'
+
+  #
+  # Create a new account manager object using your account URL. This URL is displayed
+  # in the Developer Portal when you log in.
+  #
+  am = AFCS::AccountManager.new(&quot;http://connectnow.acrobat.com/&lt;YOUR DEVELOPER ACCOUNT NAME&gt;&quot;)
+
+  #
+  # Use the login method to log in with your developer account's username and password.
+  #
+  am.login(accountowner, accountpassword)
+
+  #
+  # Use the keepalice method to keep the authentication token alive
+  #
+  am.keepalive(accountowner, accountpassword)
+
+  #
+  # Use the provided methods to list, create, and delete rooms and templates on-the-fly.
+  #
+  rooms = am.listRooms()
+  templates = am.listTemplates()
+  am.createRoom(&quot;newRoom&quot;)
+  am.deleteRoom(&quot;newRoom&quot;)
+  am.createRoom(&quot;newRoom&quot;, &quot;fromTemplate&quot;)
+  am.deleteTemplate(&quot;fromTemplate&quot;)
+
+  #
+  # External authentication
+  #
+  session = am.getSession(&quot;room1&quot;)
+  secret = &quot;account-shared-secret&quot;
+  puts session.getAuthenticationToken(secret, &quot;raff&quot;, &quot;x-raff&quot;, 100)
+  puts session.getAuthenticationToken(secret, &quot;bob&quot;, &quot;x-bob&quot;, 50)
+  puts session.getAuthenticationToken(secret, &quot;bill&quot;, &quot;x-bill&quot;, 5)
+
+  am.invalidateSession(session)
+
+  #
+  # Account and room info
+  #
+  puts am.getAccountInfo()
+  puts am.getRoomInfo(&quot;room&quot;).inspect
+  puts am.getRoomInfo(&quot;accountident/room&quot;).inspect
+
+  #
+  # Collection and node info
+  #
+  puts am.getNodeConfiguration(&quot;room&quot;, &quot;CollectionName&quot;, &quot;NodeName&quot;).inspect
+  puts am.fetchItems(&quot;room&quot;, &quot;CollectionName&quot;, &quot;NodeName&quot;).inspect
+  puts am.publishItem(&quot;room&quot;, &quot;CollectionName&quot;, &quot;NodeName&quot;, item)
+
+  #
+  # Events handling
+  #
+  puts am.registerHook(&quot;http://hook.endpoint.url&quot;, &quot;securityToken&quot;)
+  puts am.subscribeCollection(&quot;room&quot;, &quot;CollectionName&quot;)
+</pre>
+<h1>Revision</h1>
+<pre>
+  $Revision: #33 $ - $Date: 2010/04/07 $
+</pre>
+<h1>Author</h1>
+<pre>
+  Raffaele Sena
+</pre>
+<h1>Copyright</h1>
+<pre>
+  Copyright 2007 - 2009 Adobe Systems Incorporated and its licensors.
+  All rights reserved.
+</pre>
+
+    </div>
+
+    <div id="requires-list">
+      <h3 class="section-bar">Required files</h3>
+
+      <div class="name-list">
+      base64&nbsp;&nbsp;
+      digest/md5&nbsp;&nbsp;
+      date&nbsp;&nbsp;
+      net/https&nbsp;&nbsp;
+      rexml/document&nbsp;&nbsp;
+      openssl&nbsp;&nbsp;
+      </div>
+    </div>
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000002">getRole</a>&nbsp;&nbsp;
+      <a href="#M000001">usage</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DEBUG</td>
+          <td>=</td>
+          <td class="context-item-value">true</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
+
+        <div class="method-heading">
+          <a href="afcs_rb.src/M000002.html" target="Code" class="method-signature"
+            onclick="popupCode('afcs_rb.src/M000002.html');return false;">
+          <span class="method-name">getRole</span><span class="method-args">(r)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="afcs_rb.src/M000001.html" target="Code" class="method-signature"
+            onclick="popupCode('afcs_rb.src/M000001.html');return false;">
+          <span class="method-name">usage</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

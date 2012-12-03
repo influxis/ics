@@ -1,0 +1,34 @@
+<p>
+  <b>Displayname:</b>
+  <%=h @user.displayName %>
+</p>
+
+<p>
+  <b>Connection:</b>
+  <%=h @user.connection %>
+</p>
+
+<p>
+  <b>Role:</b>
+  <%=h @user.role %>
+</p>
+
+<p>
+  <b>Userid:</b>
+  <%=h @user.userID %>
+</p>
+
+<p>
+  <b>Affiliation:</b>
+  <%=h @user.affiliation %>
+</p>
+
+<p>
+  <b>Starttime:</b>
+  <%=h @user.starttime %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

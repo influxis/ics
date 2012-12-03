@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="title">
+      <a href="/main">Main</a> / {{ title }}
+    </div>
+
+    <table class="border">
+      <tr>
+        {% for header in headers %}<th>{{ header }}</th>{% endfor %}
+      </tr>
+
+      {% for row in rows %}
+      <tr>
+        <td>{{ row.name }}</td>
+        <td>{{ row.desc }}</td>
+        <td>{{ row.created }}</td>
+        <td>
+          <form method="POST">
+            <input type="submit" value="Delete"/>
+            <input type="hidden" name="delete" value="{{ row.name }}"/>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    {% if create %}
+      <div class="title">{{ create.title }}</div>
+      <form method="POST">
+       {{create.desc}}: <input name="{{create.name}}" value="{{create.value}}"/>
+       {% if create.select %}
+       {{create.select.desc}}: 
+       <select name="{{create.select.name}}">
+         {% for opt in create.select.options %}
+           <option value="{{opt.name}}">{{opt.desc}}</option>
+         {% endfor %}
+       </select>
+       {% endif %}
+       <input type="submit" value="Create"/>
+       <input type="reset" value="Cancel"/>
+      </form>
+    {% endif %}
+  </body>
+</html>

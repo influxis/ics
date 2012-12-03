@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:rtc="http://ns.adobe.com/rtc"
+		 layout="absolute" width="100%" height="100%" >
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.rtc.messaging.manager.MessageManager;
+			import mx.collections.ArrayCollection;
+			import mx.events.CollectionEventKind;
+			import com.adobe.rtc.events.CollectionNodeEvent;
+			import com.adobe.rtc.session.ConnectSession;
+			import com.adobe.rtc.util.RootCollectionNode;
+			import com.adobe.rtc.messaging.UserRoles;
+			import model.MessageExplorerNode;
+			import model.MessageExplorerCollection;
+			import model.MessageExplorerModel;
+			import com.adobe.rtc.messaging.NodeConfiguration;
+			import com.adobe.rtc.core.messaging_internal;
+			
+
+			/**********************************************************
+			 * You can use this example file along with P2PDataMessaging example.
+			 * This file is a minimature version of what you see in the devconsole's explore tabs. 
+			 * It shows you the various collection nodes and nodes in a room and lets you set the p2pDataMessaging Property to true/false
+			 * on a node. Also when you select a node, it will show whether the property is true or false on that node.
+			 * See the P2PDataMessagingTest.mxml file for more details.You can run this file as a seperate app and change the property.
+			 * *************************************************************/
+			 
+			 /**********************************************************
+			  * ADOBE SYSTEMS INCORPORATED
+			  * Copyright [2007-2010] Adobe Systems Incorporated
+			  * All Rights Reserved.
+			  * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			  * terms of the Adobe license agreement accompanying it. ?If you have received this file from a 
+			  * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			  * written permission of Adobe.
+		     	  * *********************************/
+			
+			[Bindable]
+			protected var messageModel:MessageExplorerModel ;
+		
+			use namespace messaging_internal ;
+			
+			private function onCreationComplete():void
+			{	
+				messageModel = new MessageExplorerModel();
+				messageModel.connectSession = cSession ;
+				messageModel.subscribe();
+			}
+			
+			private function onClick(p_evt:MouseEvent):void
+			{
+				var nodeConfig:NodeConfiguration = ((nodeList.selectedItem).node as MessageExplorerNode).configurationObj ;
+				if ( p2pDataBtn.label == "Allow P2P Messaging" ) {
+					if ( !nodeConfig.p2pDataMessaging ) {
+						nodeConfig.p2pDataMessaging = true ;
+						messageModel.configureNode(collectionNodeList.selectedItem.collectionName,nodeList.selectedItem.nodeName,nodeConfig);
+						p2pDataBtn.label = "Stop P2P Messaging" ;
+					}
+					
+				}else if ( p2pDataBtn.label == "Stop P2P Messaging" ) {
+					if ( nodeConfig.p2pDataMessaging ) {
+						nodeConfig.p2pDataMessaging = false ;
+						messageModel.configureNode(collectionNodeList.selectedItem.collectionName,nodeList.selectedItem.nodeName,nodeConfig);
+						p2pDataBtn.label = "Allow P2P Messaging" ;
+					}
+					
+				}
+			}
+			
+			private function getLabel():String
+			{
+				if ( nodeList.selectedItem == null ) {
+					return "Allow P2P Messaging" ;
+				}
+				
+				if (((nodeList.selectedItem).node as MessageExplorerNode).configurationObj.p2pDataMessaging == true ) {
+					p2pDataBtn.label = "Stop P2P Messaging" ;
+					return "Stop P2P Messaging" ;	
+				}else if (((nodeList.selectedItem).node as MessageExplorerNode).configurationObj.p2pDataMessaging == false ) {
+					p2pDataBtn.label = "Allow P2P Messaging" ;
+					return "Allow P2P Messaging" ;
+				}
+				
+				return "Allow P2P Messaging" ;
+			}	
+			
+		
+		]]>
+	</mx:Script>
+	<rtc:AdobeHSAuthenticator id="auth" protocol="rtmfp"  userName="Your Username" password="Your password" />
+	<rtc:ConnectSessionContainer id="cSession" authenticator="{auth}" width="100%" height="100%" 
+		roomURL="Your RoomUrl" creationComplete="onCreationComplete()" >
+		<mx:HBox top="10" right="10" left="10" bottom="10" verticalGap="6" horizontalAlign="center">
+			 <mx:HBox width="100%" height="100%" visible="{cSession.userManager.myUserRole >= UserRoles.OWNER}" >
+			 	<mx:VBox width="50%" height="100%" verticalGap="5" >
+			 		<mx:Label text="Collection Node List" height="25" />
+			 		<mx:List  width="100%" id="collectionNodeList" allowMultipleSelection="false" height="100%" dataProvider="{messageModel.collections}" labelField="collectionName"  />
+			 	</mx:VBox>
+			 	 <mx:VBox width="50%" height="100%" verticalGap="5" >
+			 	 	<mx:Label text="Node List" height="25" />
+			 		<mx:List width="100%" id="nodeList" enabled="{collectionNodeList.selectedItem!=null}" labelField="nodeName" change="getLabel()" 
+			 			allowMultipleSelection="false" height="100%" dataProvider="{(messageModel.collections.getItemAt(collectionNodeList.selectedIndex).collection as MessageExplorerCollection).nodes}" />
+			 		<mx:HBox height="40" width="100%" horizontalAlign="center">
+						<mx:Button label="{getLabel()}" enabled="{nodeList.selectedItem!=null}" click="onClick(event)" id="p2pDataBtn" />
+					</mx:HBox>
+				</mx:VBox>
+			 </mx:HBox>
+		</mx:HBox>
+	</rtc:ConnectSessionContainer>
+</mx:Application>

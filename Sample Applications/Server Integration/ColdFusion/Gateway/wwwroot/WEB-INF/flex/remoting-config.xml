@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service id="remoting-service" 
+    class="flex.messaging.services.RemotingService" 
+    messageTypes="flex.messaging.messages.RemotingMessage">
+
+    <adapters>
+        <adapter-definition id="cf-object" class="coldfusion.flash.messaging.ColdFusionAdapter" default="true"/>
+        <adapter-definition id="java-object" class="flex.messaging.services.remoting.adapters.JavaAdapter"/>
+    </adapters>
+
+    <default-channels>
+        <channel ref="my-cfamf"/>
+    </default-channels>
+
+	<destination id="ColdFusion">
+		<channels>
+			<channel ref="my-cfamf"/>
+		</channels>
+		<properties>
+			<source>*</source>
+		</properties>
+	</destination>
+
+	<destination id="RTCHOOKS">
+		<channels>
+			<channel ref="my-cfamf"/>
+		</channels>
+		<properties>
+		<source>LCCS.RTCHOOKS</source>
+		<!-- define the resolution rules and access level of the cfc being invoked -->
+		<access>
+		<!-- Use the ColdFusion mappings to find CFCs, by default only CFC files under your webroot can be found. -->
+			<use-mappings>false</use-mappings>
+			<!-- allow "public and remote" or just "remote" methods to be invoked -->
+			<method-access-level>remote</method-access-level>
+		</access>
+		<property-case>
+			<!-- cfc property names -->
+			<force-cfc-lowercase>false</force-cfc-lowercase>
+			<!-- Query column names -->
+			<force-query-lowercase>false</force-query-lowercase>
+			<!-- struct keys -->
+			<force-struct-lowercase>false</force-struct-lowercase>
+		</property-case>
+		</properties>
+
+	</destination>
+
+</service>

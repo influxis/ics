@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>usage (afcs.rb)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File afcs.rb, line 1082</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;usage: #{$0} [--debug] [--host=url] account user password command parameters...&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;where &lt;command&gt; is:&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --list&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --create room [template]&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --delete room&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --delete-template template&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --ext-auth secret room username userid role&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --invalidate room&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --get-node-configuration room collection node&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --fetch-items room collection node&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --register-hook endpoint [token]&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --unregister-hook&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --hook-info&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --subscribe-collection room collection&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --unsubscribe-collection room collection&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --create-node room collection [node]&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --remove-node room collection [node]&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --set-user-role room userID role [collection [node]]&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --publish-item room collection node itemID body&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;    --retract-item room collection node itemID&quot;</span>
+    <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

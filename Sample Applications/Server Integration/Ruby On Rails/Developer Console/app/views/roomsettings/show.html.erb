@@ -1,0 +1,28 @@
+<p>
+  <b>Autopromote:</b>
+  <%=h @roomsetting.autoPromote %>
+</p>
+
+<p>
+  <b>Guestmustknock:</b>
+  <%=h @roomsetting.guestMustKnock %>
+</p>
+
+<p>
+  <b>Roombandwidth:</b>
+  <%=h @roomsetting.roomBandwidth %>
+</p>
+
+<p>
+  <b>Roomstate:</b>
+  <%=h @roomsetting.roomState %>
+</p>
+
+<p>
+  <b>Room:</b>
+  <%=h @roomsetting.room_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_roomsetting_path(@roomsetting) %> |
+<%= link_to 'Back', roomsettings_path %>

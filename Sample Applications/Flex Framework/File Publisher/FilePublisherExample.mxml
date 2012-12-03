@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	applicationComplete="init()"
+	layout="absolute" 
+	xmlns:rtc="http://ns.adobe.com/rtc">
+	
+	<mx:Script>
+		<![CDATA[
+		    /**
+		    * This example application shows how to upload, download, delete, and display files 
+		    * via LCCS's FileManager API, FilePublisher, and FileSubscriber components.
+		    */
+		    
+		    /**********************************************************
+		     * ADOBE SYSTEMS INCORPORATED
+		     * Copyright [2007-2010] Adobe Systems Incorporated
+		     * All Rights Reserved.
+		     * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+		     * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+		     * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+		     * written permission of Adobe.
+		     * *********************************/
+			
+			
+			import com.adobe.rtc.events.SessionEvent;
+			import com.adobe.rtc.sharedManagers.descriptors.FileDescriptor;
+			import mx.utils.UIDUtil;
+			import mx.collections.ArrayCollection;
+			import com.adobe.rtc.collaboration.FileSubscriber;
+			import com.adobe.rtc.sharedManagers.UserManager;
+			import com.adobe.rtc.messaging.NodeConfiguration;
+			import com.adobe.rtc.messaging.UserRoles;
+			import com.adobe.rtc.events.CollectionNodeEvent;
+			import com.adobe.rtc.collaboration.FilePublisher;
+			import com.adobe.rtc.sharedManagers.FileManager;
+			
+			[Bindable]
+			private var applicationTitle:String = "File Publisher Example";
+			
+			// list of managers
+			private var _fileManager:FileManager;
+			private var _filePublisher:FilePublisher;
+			private var _fileSubscriber:FileSubscriber;
+			private var _userManager:UserManager;
+			
+			// our datagrid dataprovider will use this collection
+			[Bindable]
+			private var _fileDescriptors:ArrayCollection = new ArrayCollection();
+			
+			// file sharing group id, it is similiar to that of folder concept			
+			private var _groupid:String = "_filePublisherExample";
+			
+			/**
+			 * Completes initialization and adds session listeners to catch session connected events.
+			 */
+			private function init():void
+			{
+				// we are interested in both SYNCHRONIZATION_CHANGE (connection success) and Error events
+				myConnectSession.addEventListener(SessionEvent.SYNCHRONIZATION_CHANGE, onSessionEventNotification);		
+				myConnectSession.addEventListener(SessionEvent.ERROR, onSessionEventNotification);
+				
+				// small status indicator
+				notificationMessage.text = "Login to LCCS...";
+			}
+			
+			/**
+			 * Handles sessionEvents such as synchronization, errors, and so on.
+			 * @see SessionEvent
+			 */
+			private function onSessionEventNotification(p_evt:SessionEvent):void 
+			{
+				//The type of event emitted when the session gains or loses synchronization with its source.
+				if (p_evt.type == SessionEvent.SYNCHRONIZATION_CHANGE) {
+					
+					//if we are successfully connected
+					if (myConnectSession.isSynchronized) {
+						
+						notificationMessage.text = "Connected";
+						
+						// Get the file manager from our connectSession.
+						if (!_fileManager) {
+							_fileManager = myConnectSession.fileManager;					
+						} 
+					
+						// Get the user manager from connectSession for later use.
+						if (!_userManager) {
+							_userManager = myConnectSession.userManager;
+						}
+						
+						// create new file publisher to upload/delete files
+						if(!_filePublisher){
+							_filePublisher = new FilePublisher();
+							_filePublisher.initialize();	
+							
+							//Only a room owner can create the new file group (a group is like folder).
+							if(!_fileManager.isGroupDefined(_groupid) && _fileManager.getUserRole(_userManager.myUserID,_groupid) == UserRoles.OWNER) {
+								//Create a new node with a new groupid.
+								var nodeConfig:NodeConfiguration = new NodeConfiguration;
+								nodeConfig.sessionDependentItems = false; //Specifies whether files in the pod should be deleted as the session ends.
+								_filePublisher.createAndUseGroup(_groupid, nodeConfig);
+							}else {
+								//otherwise, use assigned groupid
+								_filePublisher.groupName = _groupid;
+							}			
+						}
+						
+						// Create a file subscriber to download file.
+						if(!_fileSubscriber){
+							_fileSubscriber = new FileSubscriber();				
+							_fileSubscriber.initialize();	
+						}
+						
+						// Bind to the file manager's file descriptors array collection to display the datagrid user interface.
+						_fileDescriptors = _fileManager.getFileDescriptors(_groupid);
+					}
+				}
+				else if (p_evt.type == SessionEvent.ERROR) {
+					// we get an error from connect session
+					notificationMessage.text = "Error: " + p_evt.error;
+				}
+			}
+			
+			/**
+			 * Handle the upload button click.
+			 */			
+			private function onUploadClick():void
+			{
+				var filterArray:Array = [new FileFilter("*.*", "*.*")];
+				_filePublisher.browse(UIDUtil.createUID(), filterArray);
+			}
+			
+			/**
+			 * Handle the download button click.
+			 */	
+			private function onDownloadClick():void
+			{
+				if(_fileGrid.selectedItem) {
+					try{
+						_fileSubscriber.download(_fileGrid.selectedItem as FileDescriptor);
+					}catch(e:Error) {
+						trace("Error download: " + e.message);				
+					}
+				}
+					
+			}
+			
+			/**
+			 * Handle the delete button click.
+			 */	
+			private function onDeleteClick():void
+			{
+				if(_fileGrid.selectedItem) {
+					_filePublisher.remove(_fileGrid.selectedItem as FileDescriptor);
+				}
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<!-- 
+		You would likely use external authentication here for a deployed application; 
+		you would certainly not hard code Adobe IDs here.
+	-->
+	
+	<mx:Panel id="panel" title="{applicationTitle}" width="100%" height="100%" paddingLeft="5" paddingTop="5" paddingRight="5" paddingBottom="5">
+	
+	<mx:Text id="notificationMessage" text=""/>
+		<!--
+		 | LCCS application UI wrapped in ConnectSession
+		 -->	
+		<rtc:ConnectSessionContainer id="myConnectSession"  roomURL="Your RoomUrl"
+							width="100%" height="100%">	
+				
+				<rtc:authenticator>
+					<rtc:AdobeHSAuthenticator 
+						id="auth" 
+						userName="Your Username" 
+						password="Your password"  />
+				</rtc:authenticator>
+				
+				
+				<mx:VBox width="100%" height="100%">
+					<mx:DataGrid id="_fileGrid" dataProvider="{_fileDescriptors}" width="100%" height="90%">			
+					    <mx:columns>
+					        <mx:DataGridColumn dataField="name"/>
+					        <mx:DataGridColumn dataField="size"/>					      
+					    </mx:columns>
+					 </mx:DataGrid>
+					 <mx:HBox>
+					 	<mx:Button id="upload_btn" label="Upload File" click="onUploadClick()"/>
+					 	<mx:Button id="download_btn" label="Download File" click="onDownloadClick()"/>		
+					 	<mx:Button id="delete_btn" label="Delete File" click="onDeleteClick()"/>		 	
+					 </mx:HBox>
+				</mx:VBox>
+		</rtc:ConnectSessionContainer>
+	
+	</mx:Panel>
+
+</mx:Application>

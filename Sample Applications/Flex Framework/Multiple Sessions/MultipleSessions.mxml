@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute" 
+	horizontalAlign="center" 
+	backgroundGradientAlphas="[1.0, 1.0]" 
+	backgroundGradientColors="[#000000, #000000]"
+	xmlns:rtc="http://ns.adobe.com/rtc" creationComplete="init()">
+	
+	<!-- 
+		You would likely use external authentication here for a deployed application; 
+		you would certainly not hard code Adobe IDs here.
+	-->
+	
+	<mx:Script>
+		
+		<![CDATA[
+			/**
+			 * This examples show how you can use multiple connect sessions in the same application.
+			 * The multiple connect sessions you can declare either by using ConnectSessionContainer tag as in example below
+			 * or using ConnectSession tag(in docs below). 
+			 * For every container , you need to have an authenticator.
+			 * 
+			 * ConnectSessionContainer extends Canvas class and all the children within a ConnectSessionContainer
+			 * are laid out accordingly. All children of a ConnectSessionContainer have their ConnectSession instance
+			 * taken from the Container and you do not have to manually assign them. If you are declaring any LCCS
+			 * component outside the  ConnectSessionContainer, then you need to mention which connect session it takes.
+			 * 
+			 * The MultipleConnectSessions can be in the same room or they can be point to different room(using roomURL property)
+			 *  in one application.
+			 * In the example below, two session containers point to two different rooms and we have a set of Components
+			 * outside that use one of the sessions. Try also pointing them to same room for experimenting.
+			 * 
+			 * When you will run this example, you will notice that the two webcamera instances of the same session of same room have 
+			 * the same shared Camera UI since they use one shared StreamManager. Though for chat, there is only one chat
+			 * per session since it uses the same model. You can see the MultipleGroups examples of ways to create multiple
+			 * chats in different groups in the same room.
+			 * 
+			 * You can also declare a connectsession using ConnectSession Tage without using the Container like this
+			 * <rtc:AdobeHSAuthenticator id="auth2" userName="UserName" password="Password" />
+			 * <rtc:RoomSettings id="myRoomSettings" roomBandwidth="auto" autoPromote="true"  roomState="active" guestsMustKnock="false"/>
+			 * <rtc:ConnectSession id="cSession3" authenticator="{auth2}" roomURL="Room Url" initialRoomSettings="{myRoomSettings}" />
+			 * Whenever you declare a connect session like this, you need to assign the instance of this session to every LCCS
+			 * component. Every LCCS pod or collaboration Component implements ISessionSubscriber interface which has the property
+			 * for ConnectSession. 
+			 * 
+			 * In the example below, the SimpleChat and the WebCamera component outside the containers need to point to some
+			 * connect session and they point to the connect session instantiated by the first container.
+			 * 
+			 * There are a lot of things that you can do with this types of different permutations depending on your needs
+			 * and you need to experiment with different scenarios of this example by having different containers pointing 
+			 * to different urls's , components pointing to different sessions outside container and so on.
+			 * This example just gives a basic way of how you can use multiple sessions in the same application.
+			 * 
+			 */
+			 
+			 /**********************************************************
+			  * ADOBE SYSTEMS INCORPORATED
+			  * Copyright [2007-2010] Adobe Systems Incorporated
+			  * All Rights Reserved.
+			  * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			  * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			  * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			  * written permission of Adobe.
+		     	  * *********************************/
+		]]>
+	</mx:Script>
+	
+<rtc:ConnectSessionContainer 
+	roomURL="Your RoomUrl"
+	id="cSession" >
+	
+	<rtc:authenticator>
+		<rtc:AdobeHSAuthenticator 
+		id="auth1" 
+		userName="Your Username" password="Your password" />
+	</rtc:authenticator>
+
+    <mx:VBox borderStyle="solid" 
+        paddingTop="10"
+        paddingBottom="10" 
+        paddingLeft="5" 
+        paddingRight="5" 
+        width="382" 
+        horizontalCenter="0" 
+        top="5" 
+        backgroundColor="#767676" 
+        cornerRadius="15" 
+        borderThickness="3" height="640" horizontalAlign="left">
+	     <mx:Label text="Simple Pods Sample Session 1" color="#FAFCFC" fontWeight="bold" width="340" textAlign="center" fontSize="12"/>
+	     <mx:Panel width="365" height="97" layout="absolute" title="Current room users" color="#000000">
+	     <mx:List 
+			width="100%" height="100%" 
+			dataProvider="{cSession.userManager.userCollection}" 
+			labelField="displayName" color="#000000" fontWeight="bold"/>
+	     </mx:Panel>
+	     <mx:Panel width="365" height="200" layout="absolute" title="Default WebCamera" color="#000000" backgroundColor="#000000">
+			<rtc:WebCamera width="100%" height="150" />
+	     </mx:Panel>
+	    	<rtc:AudioPublisher id="audioPub"/><rtc:AudioSubscriber/>
+		<mx:Button label="Audio" 
+			toggle="true" id="audioButt" color="#000000"
+			click="(audioButt.selected) ? audioPub.publish() : audioPub.stop()"/>
+	     <mx:Panel width="365" height="235" layout="absolute" title="Default Simple Chat" color="#000000">
+			<rtc:SimpleChat width="100%" height="100%"  />
+	     </mx:Panel>
+
+    </mx:VBox>
+  
+	
+</rtc:ConnectSessionContainer>
+
+
+<rtc:ConnectSessionContainer 
+	roomURL="Your RoomUrl"
+	id="cSession2" 
+	 x="400" y="0">
+	<rtc:authenticator>
+		<rtc:AdobeHSAuthenticator 
+		id="auth2" 
+		userName="Your Username" password="Your password" />
+	</rtc:authenticator>
+	
+    <mx:VBox borderStyle="solid" 
+    	x="400"
+        paddingTop="10"
+        paddingBottom="10" 
+        paddingLeft="5" 
+        paddingRight="5" 
+        width="382" 
+        horizontalCenter="0" 
+        top="5" 
+        backgroundColor="#767676" 
+        cornerRadius="15" 
+        borderThickness="3" height="640" horizontalAlign="left">
+	     <mx:Label text="Simple Pods Sample Session 2" color="#FAFCFC" fontWeight="bold" width="340" textAlign="center" fontSize="12"/>
+	     <mx:Panel width="365" height="97" layout="absolute" title="Current room users" color="#000000">
+	     <mx:List 
+			width="100%" height="100%" 
+			dataProvider="{cSession.userManager.userCollection}" 
+			labelField="displayName" color="#000000" fontWeight="bold"/>
+	     </mx:Panel>
+	     <mx:Panel width="365" height="200" layout="absolute" title="Default WebCamera" color="#000000" backgroundColor="#000000">
+			<rtc:WebCamera width="100%" height="150" />
+	     </mx:Panel>
+	     <mx:Panel width="365" height="235" layout="absolute" title="Default Simple Chat" color="#000000">
+			<rtc:SimpleChat width="100%" height="100%"   />
+	     </mx:Panel>
+
+    </mx:VBox>
+</rtc:ConnectSessionContainer>
+
+<mx:VBox width="300" height="600" x="850" y="0">
+	 <mx:Panel width="100%" height="100%" title="Default WebCamera" color="#000000" backgroundColor="#000000">
+			<rtc:WebCamera width="100%" height="100%"  connectSession="{cSession}"/>
+	</mx:Panel>
+	<mx:Panel width="100%" height="100%" title="Default Simple Chat" color="#000000">
+		<rtc:SimpleChat width="100%" height="100%" />
+     </mx:Panel>
+</mx:VBox>
+
+</mx:Application>

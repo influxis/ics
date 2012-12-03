@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	minWidth="1" minHeight="1" width="1" height="1" x="-1" y="1"
+	applicationComplete="init()"
+	xmlns:rtc="http://ns.adobe.com/rtc" xmlns:authentication="com.adobe.rtc.authentication.*" xmlns:session="com.adobe.rtc.session.*">
+	
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.rtc.events.AuthenticationEvent;
+			import com.adobe.rtc.events.ConnectSessionEvent;
+			import com.adobe.rtc.events.RoomManagerEvent;
+			import com.adobe.rtc.events.SessionEvent;
+			import com.adobe.rtc.util.JSBridge;
+			
+			import mx.core.IFlexDisplayObject;
+			import mx.managers.PopUpManager;
+			
+			private const applicationTitle:String = "LCCS JS Demo Application";
+			protected var _jsBridge:com.adobe.rtc.util.JSBridge;
+			
+			
+			/**********************************************************
+			 * ADOBE SYSTEMS INCORPORATED
+			 * Copyright [2007-2010] Adobe Systems Incorporated
+			 * All Rights Reserved.
+			 * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			 * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			 * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			 * written permission of Adobe.
+			 * *********************************/
+			
+			/**
+			 * Generate a invisible swf using this file
+			 * All this file does is instantiate JSBridge that establishes communication between the JavaScript and the swf this file would generate
+			 */
+			private function init():void
+			{
+				if(!_jsBridge) {
+					_jsBridge = new com.adobe.rtc.util.JSBridge();
+				}
+			}
+			
+		]]>
+	</mx:Script>
+</mx:Application>

@@ -1,0 +1,515 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<meta content="RootCollectionNode,com.adobe.rtc.util.RootCollectionNode,collectionNames,subscribe" name="keywords">
+<title>com.adobe.rtc.util.RootCollectionNode</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'RootCollectionNode - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS API Reference Player 10</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?com/adobe/rtc/util/RootCollectionNode.html&amp;com/adobe/rtc/util/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;RootCollectionNode</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class RootCollectionNode"); titleBar_setSubNav(true,true,false,false,true,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.util</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class RootCollectionNode</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">RootCollectionNode <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> <a href="../sharedModel/CollectionNode.html">CollectionNode</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> flash.events.EventDispatcher</td>
+</tr>
+</table>
+<p></p>
+  RootCollectionNode is a simple class which allows developers to inspect 
+  the state of a room's root. At its root, a room consists of and
+  is organized into a set of CollectionNodes. RootCollectionNode allows the 
+  developer to determine this set, using collectionNames, as well as the 
+  <code>NODE_CREATE</code> and <code>NODE_DELETE</code> events. 
+  <p>
+  Note that only one RootCollectionNode may be present in an application, 
+  and that <code>subscribe()</code> must be called on the RootCollectionNode 
+  before use.
+  <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<div class="showHideLinks">
+<div class="hideInheritedProperty" id="hideInheritedProperty">
+<a onclick="javascript:setInheritedVisible(false,'Property');" href="#propertySummary" class="showHideLink"><img src="../../../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Properties</a>
+</div>
+<div class="showInheritedProperty" id="showInheritedProperty">
+<a onclick="javascript:setInheritedVisible(true,'Property');" href="#propertySummary" class="showHideLink"><img src="../../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Properties</a>
+</div>
+</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#collectionNames">collectionNames</a> : ArrayCollection<div class="summaryTableDescription">[read-only]
+   Returns a set of names for all the CollectionNodes in the room.</div>
+</td><td class="summaryTableOwnerCol">RootCollectionNode</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../sharedModel/CollectionNode.html#connectSession">connectSession</a> : <a href="../session/IConnectSession.html">IConnectSession</a>
+<div class="summaryTableDescription">
+   The IConnectSession with which this component is associated.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../sharedModel/CollectionNode.html#isEmpty">isEmpty</a> : Boolean<div class="summaryTableDescription">
+   Determines whether or not the collection is empty, that is, having no nodes
+   </div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../sharedModel/CollectionNode.html#isSynchronized">isSynchronized</a> : Boolean<div class="summaryTableDescription">
+   Determines whether or not the collection is "up to state" with all previously 
+   stored items in its nodes.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../sharedModel/CollectionNode.html#nodeNames">nodeNames</a> : Array<div class="summaryTableDescription">
+   Returns the names of all the nodes within this collection.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../sharedModel/CollectionNode.html#sharedID">sharedID</a> : String<div class="summaryTableDescription">
+   The <code>sharedID</code> is the logical address of this collection 
+   within the room and must therefore be unique from all other CollectionNode names.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../sharedModel/CollectionNode.html#userRoles">userRoles</a> : Object<div class="summaryTableDescription">
+   The complete set of roles for this collection described as {userID:role} pairs.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<div class="showHideLinks">
+<div class="hideInheritedMethod" id="hideInheritedMethod">
+<a onclick="javascript:setInheritedVisible(false,'Method');" href="#methodSummary" class="showHideLink"><img src="../../../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Methods</a>
+</div>
+<div class="showInheritedMethod" id="showInheritedMethod">
+<a onclick="javascript:setInheritedVisible(true,'Method');" href="#methodSummary" class="showHideLink"><img src="../../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Methods</a>
+</div>
+</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#RootCollectionNode()">RootCollectionNode</a>()</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">RootCollectionNode</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#canUserConfigure()">canUserConfigure</a>(p_userID:String, p_nodeName:String = null):Boolean</div>
+<div class="summaryTableDescription">
+   Determines whether a given user is allowed to configue this collection.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#canUserPublish()">canUserPublish</a>(p_userID:String, p_nodeName:String):Boolean</div>
+<div class="summaryTableDescription">
+   Determines whether a given user is allowed to publish to a given node in 
+   this collection.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#canUserSubscribe()">canUserSubscribe</a>(p_userID:String, p_nodeName:String = null):Boolean</div>
+<div class="summaryTableDescription">
+   Determines whether a given user is allowed to subscribe to this entire collection 
+   or a node within it.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#createNode()">createNode</a>(p_nodeName:String, p_nodeConfiguration:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a> = null):void</div>
+<div class="summaryTableDescription">
+   Creates a new node in this collection; they are either optionally configured when 
+   created or accept the default configuration.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#fetchItems()">fetchItems</a>(p_nodeName:String, p_itemIDs:Array):void</div>
+<div class="summaryTableDescription">
+   Fetches the set of items specified by itemIDs from a given node.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#getExplicitUserRole()">getExplicitUserRole</a>(p_userID:String, p_nodeName:String = null):int</div>
+<div class="summaryTableDescription">
+   Gets the role of a given user for a node within this collection or the 
+   collection itself.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#getExplicitUserRoles()">getExplicitUserRoles</a>(p_nodeName:String = null):Object</div>
+<div class="summaryTableDescription">
+   Gets the roles explicitly set for a node within this collection.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#getNodeConfiguration()">getNodeConfiguration</a>(p_nodeName:String):<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>
+</div>
+<div class="summaryTableDescription">
+   Returns the NodeConfiguration options for a given node in this CollectionNode.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#getUserRole()">getUserRole</a>(p_userID:String, p_nodeName:String = null):int</div>
+<div class="summaryTableDescription">
+   Gets the role of a given user for this collection or a node within it.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#isNodeDefined()">isNodeDefined</a>(p_nodeName:String):Boolean</div>
+<div class="summaryTableDescription">
+   Whether the given node exists in this CollectionNode.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#publishItem()">publishItem</a>(p_messageItem:<a href="../messaging/MessageItem.html">MessageItem</a>, p_overWrite:Boolean = false):void</div>
+<div class="summaryTableDescription">
+   Publishes a MessageItem.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#removeNode()">removeNode</a>(p_nodeName:String):void</div>
+<div class="summaryTableDescription">
+   Removes the given node from this collection.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#retractItem()">retractItem</a>(p_nodeName:String, p_itemID:String = null):void</div>
+<div class="summaryTableDescription">
+   Retracts the indicated item.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#setNodeConfiguration()">setNodeConfiguration</a>(p_nodeName:String, p_nodeConfiguration:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>):void</div>
+<div class="summaryTableDescription">
+   Configures a node in this collection and replaces the existing NodeConfiguration.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#setUserRole()">setUserRole</a>(p_userID:String, p_role:int, p_nodeName:String = null):void</div>
+<div class="summaryTableDescription">
+   Gives a specific user a specific role level for this entire collection or optionally 
+   a specified node within it.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#subscribe()">subscribe</a>():void</div>
+<div class="summaryTableDescription">
+   Connects the RootCollectionNode to the service; it is required before using 
+   the component.</div>
+</td><td class="summaryTableOwnerCol">RootCollectionNode</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#unsubscribe()">unsubscribe</a>():void</div>
+<div class="summaryTableDescription">
+   Disconnects this CollectionNode from the server.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+</table>
+</div>
+<a name="eventSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Events</div>
+<div class="showHideLinks">
+<div class="hideInheritedEvent" id="hideInheritedEvent">
+<a onclick="javascript:setInheritedVisible(false,'Event');" href="#eventSummary" class="showHideLink"><img src="../../../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Events</a>
+</div>
+<div class="showInheritedEvent" id="showInheritedEvent">
+<a onclick="javascript:setInheritedVisible(true,'Event');" href="#eventSummary" class="showHideLink"><img src="../../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Events</a>
+</div>
+</div>
+<table id="summaryTableEvent" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Event</th><th>Summary</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#event:configurationChange">configurationChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when a node within the collection has a change in its configuration
+   (typically, its access-model).</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#event:itemReceive">itemReceive</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when a node within the collection receives an item.</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#event:itemRetract">itemRetract</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when a node within the collection retracts an item.</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#event:myRoleChange">myRoleChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when <b>the current user's</b> role changes for the <code>
+   collectionNode</code> as a whole and <b>not</b> nodes within it.</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:nodeCreate">nodeCreate</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a new CollectionNode is added to the room.</td><td class="summaryTableOwnerCol">RootCollectionNode</td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#event:nodeCreate">nodeCreate</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when a node is created within the collection.</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:nodeDelete">nodeDelete</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a CollectionNode is removed from the room.</td><td class="summaryTableOwnerCol">RootCollectionNode</td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#event:nodeDelete">nodeDelete</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when a node is deleted within the collection.</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#event:reconnect">reconnect</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when the collection has been disconnected from the server and is in 
+   the process of reconnecting and re-subscribing.</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#event:synchronizationChange">synchronizationChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when the collection has fully received all nodes and items stored 
+   up until the present time thereby becoming synchronized as well as when the 
+   collection becomes disconnected from (and thus "out of sync" with) the room's 
+   messaging bus.</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:userRoleChange">userRoleChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a user's role on the room root changes.</td><td class="summaryTableOwnerCol">RootCollectionNode</td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../sharedModel/CollectionNode.html#event:userRoleChange">userRoleChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when the collection <b>or a node within the collection</b>, has 
+   a change in roles <b>for any user</b>.</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<div class="showHideLinks">
+<div class="hideInheritedConstant" id="hideInheritedConstant">
+<a onclick="javascript:setInheritedVisible(false,'Constant');" href="#constantSummary" class="showHideLink"><img src="../../../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Constants</a>
+</div>
+<div class="showInheritedConstant" id="showInheritedConstant">
+<a onclick="javascript:setInheritedVisible(true,'Constant');" href="#constantSummary" class="showHideLink"><img src="../../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Constants</a>
+</div>
+</div>
+<table id="summaryTableConstant" class="summaryTable hideInheritedConstant" cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="hideInheritedConstant">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../sharedModel/CollectionNode.html#NO_EXPLICIT_ROLE">NO_EXPLICIT_ROLE</a> : int = -999<div class="summaryTableDescription">[static]
+   When clearing a role at the CollectionNode or the node level, <code>NO_EXPLICIT_ROLE</code> 
+   is sent to the service to clear that role.</div>
+</td><td class="summaryTableOwnerCol"><a href="../sharedModel/CollectionNode.html">CollectionNode</a></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="collectionNames"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">collectionNames</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>collectionNames:ArrayCollection</code>&nbsp;&nbsp;[read-only]<p>
+   Returns a set of names for all the CollectionNodes in the room.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get collectionNames():ArrayCollection</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="RootCollectionNode()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">RootCollectionNode</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function RootCollectionNode()</code>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="subscribe()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">subscribe</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function subscribe():void</code><p>
+   Connects the RootCollectionNode to the service; it is required before using 
+   the component.
+   </p></div>
+<div class="detailSectionHeader">Event detail</div>
+<a name="event:nodeCreate"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">nodeCreate</td><td class="detailHeaderType">event&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a new CollectionNode is added to the room.
+  </p></div>
+<a name="event:nodeDelete"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">nodeDelete</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a CollectionNode is removed from the room.
+  </p></div>
+<a name="event:userRoleChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">userRoleChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a user's role on the room root changes.
+  </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

@@ -1,0 +1,31 @@
+<h1>New roomsetting</h1>
+
+<% form_for(@roomsetting) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :autoPromote %><br />
+    <%= f.check_box :autoPromote %>
+  </p>
+  <p>
+    <%= f.label :guestMustKnock %><br />
+    <%= f.check_box :guestMustKnock %>
+  </p>
+  <p>
+    <%= f.label :roomBandwidth %><br />
+    <%= f.text_field :roomBandwidth %>
+  </p>
+  <p>
+    <%= f.label :roomState %><br />
+    <%= f.text_field :roomState %>
+  </p>
+  <p>
+    <%= f.label :room_id %><br />
+    <%= f.text_field :room_id %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', roomsettings_path %>

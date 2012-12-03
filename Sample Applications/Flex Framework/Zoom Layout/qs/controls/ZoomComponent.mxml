@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<qs:Renderer width="100%" height="100%"  xmlns:qs="qs.controls.*" 
+				stateProperty="currentState" rolloverValue="hilighted" defaultValue="" selectedValue="selected" xmlns="http://www.adobe.com/2006/mxml"
+				verticalAlign="center" direction="horizontal"
+				horizontalAlign="center" >			
+</qs:Renderer>

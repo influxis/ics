@@ -1,0 +1,20 @@
+<h1>Editing userrole</h1>
+
+<% form_for(@userrole) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :userID %><br />
+    <%= f.text_field :userID %>
+  </p>
+  <p>
+    <%= f.label :role %><br />
+    <%= f.text_field :role %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @userrole %> |
+<%= link_to 'Back', userroles_path %>

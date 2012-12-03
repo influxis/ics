@@ -1,0 +1,619 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<meta content="AccountManager,com.adobe.rtc.util.AccountManager,accountURL,authenticator,isAuthenticated,isSDKAccount,cloneDefaultTemplate,createRoom,deleteRoom,deleteTemplate,login,onError,requestArchiveList,requestRoomList,requestTemplateList" name="keywords">
+<title>com.adobe.rtc.util.AccountManager</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'AccountManager - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?com/adobe/rtc/util/AccountManager.html&amp;com/adobe/rtc/util/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;AccountManager</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class AccountManager"); titleBar_setSubNav(false,true,false,false,true,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.util</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class AccountManager</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">AccountManager <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> flash.events.EventDispatcher</td>
+</tr>
+</table>
+<p></p>
+  The AccountManager class enables the developer to build Flex applications which dynamically create rooms, 
+  list templates and rooms, and delete templates and rooms. It makes use of an upcoming REST-based API for the service 
+  which allows server-to-server calls to provide this functionality. The REST API is still being refined; 
+  for the time being this component allows developers to prototype dynamic room creation and management with an 
+  interface that will remain constant. 
+  
+  Note: As the REST API changes underneath it, this class will be updated.
+  
+  <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../util/RoomTemplater.html" target="">com.adobe.rtc.util.RoomTemplater</a>
+</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#accountURL">accountURL</a> : String<div class="summaryTableDescription">
+   The developer's account URL.</div>
+</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#authenticator">authenticator</a> : <a href="../authentication/AbstractAuthenticator.html">AbstractAuthenticator</a>
+<div class="summaryTableDescription">
+   An authenticator (AdobeHSAuthenticator) as used with an IConnectSession.</div>
+</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#isAuthenticated">isAuthenticated</a> : Boolean = false<div class="summaryTableDescription">
+   (Read-Only) Specifies whether or not the AccountManager has completed authentication and logging in.</div>
+</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#isSDKAccount">isSDKAccount</a> : Boolean = false<div class="summaryTableDescription">
+         (Read-Only) Specifies whether or not the account is an SDK account
+         </div>
+</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#AccountManager()">AccountManager</a>()</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#cloneDefaultTemplate()">cloneDefaultTemplate</a>(p_templateName:String):void</div>
+<div class="summaryTableDescription">
+   Creates a new template on the service under the current account.</div>
+</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#createRoom()">createRoom</a>(p_roomName:String, p_templateName:String = null):void</div>
+<div class="summaryTableDescription">
+   Creates a new room on the service under the current account.</div>
+</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#deleteRoom()">deleteRoom</a>(p_roomName:String, p_templateName:String = null):void</div>
+<div class="summaryTableDescription">
+   Deletes a specified room from the service.</div>
+</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#deleteTemplate()">deleteTemplate</a>(p_templateName:String):void</div>
+<div class="summaryTableDescription">
+   Deletes the specified template.</div>
+</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#login()">login</a>():void</div>
+<div class="summaryTableDescription">
+   Logs into the service.</div>
+</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#requestArchiveList()">requestArchiveList</a>():void</div>
+<div class="summaryTableDescription">
+   Requests a list of all archives under the current account.</div>
+</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#requestRoomList()">requestRoomList</a>():void</div>
+<div class="summaryTableDescription">
+   Requests a list of all rooms under the current account.</div>
+</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#requestTemplateList()">requestTemplateList</a>():void</div>
+<div class="summaryTableDescription">
+   Requests a list of all templates under the current account.</div>
+</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+</table>
+</div>
+<a name="protectedMethodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Methods</div>
+<table id="summaryTableProtectedMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#onError()">onError</a>(p_evt:Event):void</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+</table>
+</div>
+<a name="eventSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Events</div>
+<table id="summaryTableEvent" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Event</th><th>Summary</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:accessError">accessError</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a request fails
+  </td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:archiveListReceive">archiveListReceive</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a call to <code>requestArchiveList</code> has returned.</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:loginFailure">loginFailure</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a call to <code>login</code> to the service has failed.</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:loginSuccess">loginSuccess</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a call to <code>login</code> to the service has succeeded.</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:roomCreate">roomCreate</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a call to <code>createRoom</code> has returned.</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:roomDelete">roomDelete</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a call to <code>deleteRoom</code> has returned.</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:roomListReceive">roomListReceive</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a call to <code>requestRoomList</code> has returned.</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:templateClone">templateClone</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a call to <code>createTemplate</code> has returned.</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:templateDelete">templateDelete</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a call to <code>deleteTemplate</code> has returned.</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:templateListReceive">templateListReceive</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a call to <code>requestTemplateList</code> has returned.</td><td class="summaryTableOwnerCol">AccountManager</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="accountURL"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">accountURL</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var accountURL:String</code><p>
+   The developer's account URL. This is typically the URL of a room with the last branch of the path removed. 
+   For example, if roomURL="https://connectnow.acrobat.com/fakeaccount/fakeroom", then 
+   accountURL="https://connectnow.acrobat.com/fakeaccount".
+   </p></div>
+<a name="authenticator"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">authenticator</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var authenticator:<a href="../authentication/AbstractAuthenticator.html">AbstractAuthenticator</a></code><p>
+   An authenticator (AdobeHSAuthenticator) as used with an IConnectSession.
+   </p></div>
+<a name="isAuthenticated"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isAuthenticated</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var isAuthenticated:Boolean = false</code><p>
+   (Read-Only) Specifies whether or not the AccountManager has completed authentication and logging in. 
+   Login is necessary before any other calls can be executed. 
+   </p><p>This property can be used as the source for data binding.</p>
+</div>
+<a name="isSDKAccount"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isSDKAccount</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var isSDKAccount:Boolean = false</code><p>
+         (Read-Only) Specifies whether or not the account is an SDK account
+         </p></div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="AccountManager()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AccountManager</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function AccountManager()</code>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="cloneDefaultTemplate()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">cloneDefaultTemplate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function cloneDefaultTemplate(p_templateName:String):void</code><p>
+   Creates a new template on the service under the current account. 
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_templateName</span>:String</code> &mdash; The name of the new template
+   </td>
+</tr>
+</table>
+</div>
+<a name="createRoom()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">createRoom</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function createRoom(p_roomName:String, p_templateName:String = null):void</code><p>
+   Creates a new room on the service under the current account. 
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_roomName</span>:String</code> &mdash; The name of the new room.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_templateName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The name of the template to use in creating the room. If null, the default template is used.
+   </td>
+</tr>
+</table>
+</div>
+<a name="deleteRoom()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">deleteRoom</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function deleteRoom(p_roomName:String, p_templateName:String = null):void</code><p>
+   Deletes a specified room from the service.
+    
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_roomName</span>:String</code> &mdash; The name of the room to delete (room name only--not the entire path).
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_templateName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; Optional. The name of the template from which the room came. 
+   Including the template name causes the ROOM_DELETE
+   event to include the <code>templateName</code>; ommitting <code>roomName</code> has no effect.
+    </td>
+</tr>
+</table>
+</div>
+<a name="deleteTemplate()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">deleteTemplate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function deleteTemplate(p_templateName:String):void</code><p>
+   Deletes the specified template. Deleting a template results in all the rooms based on that
+   template begin moved to the default template. However the room's configuration does not change.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_templateName</span>:String</code></td>
+</tr>
+</table>
+</div>
+<a name="login()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">login</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function login():void</code><p>
+   Logs into the service. Note that an <code>accountURL</code> and <code>authenticator</code> are required before 
+   this method may be called. Also note that the account manager must be logged in for any subsequent calls to work.
+   </p></div>
+<a name="onError()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">onError</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function onError(p_evt:Event):void</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_evt</span>:Event</code></td>
+</tr>
+</table>
+</div>
+<a name="requestArchiveList()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">requestArchiveList</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function requestArchiveList():void</code><p>
+   Requests a list of all archives under the current account. An <code>AccountManagerEvent.ARCHIVE_LIST_RECEIVE</code>
+   event is dispatched with the result.
+   </p></div>
+<a name="requestRoomList()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">requestRoomList</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function requestRoomList():void</code><p>
+   Requests a list of all rooms under the current account. An <code>AccountManagerEvent.ROOM_LIST_RECEIVE</code>
+   event is dispatched with the result.
+   </p></div>
+<a name="requestTemplateList()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">requestTemplateList</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function requestTemplateList():void</code><p>
+   Requests a list of all templates under the current account. An <code>AccountManagerEvent.TEMPLATE_LIST_RECEIVE</code>
+   event is dispatched with the result.
+   </p></div>
+<div class="detailSectionHeader">Event detail</div>
+<a name="event:accessError"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">accessError</td><td class="detailHeaderType">event&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/AccountManagerEvent.html"><code>com.adobe.rtc.events.AccountManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a request fails
+  </p></div>
+<a name="event:archiveListReceive"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">archiveListReceive</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/AccountManagerEvent.html"><code>com.adobe.rtc.events.AccountManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a call to <code>requestArchiveList</code> has returned.
+  </p></div>
+<a name="event:loginFailure"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">loginFailure</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/AccountManagerEvent.html"><code>com.adobe.rtc.events.AccountManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a call to <code>login</code> to the service has failed.
+  </p></div>
+<a name="event:loginSuccess"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">loginSuccess</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/AccountManagerEvent.html"><code>com.adobe.rtc.events.AccountManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a call to <code>login</code> to the service has succeeded.
+  </p></div>
+<a name="event:roomCreate"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomCreate</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/AccountManagerEvent.html"><code>com.adobe.rtc.events.AccountManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a call to <code>createRoom</code> has returned.
+  </p></div>
+<a name="event:roomDelete"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomDelete</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/AccountManagerEvent.html"><code>com.adobe.rtc.events.AccountManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a call to <code>deleteRoom</code> has returned.
+  </p></div>
+<a name="event:roomListReceive"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomListReceive</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/AccountManagerEvent.html"><code>com.adobe.rtc.events.AccountManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a call to <code>requestRoomList</code> has returned.
+  </p></div>
+<a name="event:templateClone"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">templateClone</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/AccountManagerEvent.html"><code>com.adobe.rtc.events.AccountManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a call to <code>createTemplate</code> has returned.
+  </p></div>
+<a name="event:templateDelete"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">templateDelete</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/AccountManagerEvent.html"><code>com.adobe.rtc.events.AccountManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a call to <code>deleteTemplate</code> has returned.
+  </p></div>
+<a name="event:templateListReceive"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">templateListReceive</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/AccountManagerEvent.html"><code>com.adobe.rtc.events.AccountManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a call to <code>requestTemplateList</code> has returned.
+  </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

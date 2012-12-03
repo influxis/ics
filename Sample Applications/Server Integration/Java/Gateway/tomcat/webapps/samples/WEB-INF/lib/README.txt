@@ -1,0 +1,1 @@
+copy AFCS.jar from serverIntergration/java

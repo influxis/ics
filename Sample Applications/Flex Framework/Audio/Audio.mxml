@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute" 
+	width="500" 
+	height="480" 
+	xmlns:rtc="http://ns.adobe.com/rtc">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.events.ItemClickEvent;
+			import com.adobe.rtc.events.StreamEvent;
+			private var activityTimer:Timer = new Timer(30,1);
+			/**********************************************************
+			 * This example uses an audio publisher and subscriber. 
+			 * All users other than the person running the demo can hear the published audio.
+			 * The example also shows to change various audio settings such as gain, silenceLevel,
+			 * echoSuppression, and so on using AudioPublisher properties.
+			 * These settings pertain to the audio publisher and do not affect the settings of other
+			 * audio subscribers.
+			 * *********************************/
+
+			/**********************************************************
+			 * ADOBE SYSTEMS INCORPORATED
+			 * Copyright [2007-2010] Adobe Systems Incorporated
+			 * All Rights Reserved.
+			 * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			 * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			 * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			 * written permission of Adobe.
+			 * *********************************/
+
+			private function onCreationComplete():void
+			{
+				audioPub.addEventListener(StreamEvent.STREAM_RECEIVE,onStreamReceive);
+				audioPub.addEventListener(StreamEvent.STREAM_DELETE,onStreamDelete);	
+			}
+			
+			
+			/****
+			 * When published stream is received, start polling the activity level of my microphone.
+			 */
+			private function onStreamReceive(p_evt:StreamEvent):void
+			{
+				if ( p_evt.streamDescriptor.finishPublishing && p_evt.streamDescriptor.streamPublisherID == cSession.userManager.myUserID) {
+					if ( audioPub.microphone != null ) {
+						activityTimer.addEventListener(TimerEvent.TIMER_COMPLETE,onTimerComplete);
+						activityTimer.start();
+					}
+				}
+			}
+			
+			/****
+			 * When the stream is deleted, stop polling the
+			 * activity level of microphone and mark the activity progress bar to 0.
+			 */
+			private function onStreamDelete(p_evt:StreamEvent):void
+			{
+				if ( p_evt.streamDescriptor.streamPublisherID == cSession.userManager.myUserID) {
+					if ( audioPub.microphone != null ) {
+						activityTimer.removeEventListener(TimerEvent.TIMER_COMPLETE,onTimerComplete);
+						activityTimer.stop();
+					}
+					activityProgress.setProgress(0,100);
+				}
+			}
+			
+			
+			/**
+			 * When a click starts the audio, it publishes the audio through AudioPublisher.
+			 * Another click stops the audio.
+			 */
+			private function onAudioClick(p_evt:MouseEvent):void
+			{
+				if ( p_evt.currentTarget.label == "Start My Audio" ) {
+					audioPub.publish();
+					p_evt.currentTarget.label = "Stop My Audio" ;
+				}else if (p_evt.currentTarget.label == "Stop My Audio" ){
+					audioPub.stop();
+					p_evt.currentTarget.label = "Start My Audio" ;
+				}
+			}
+			
+			private function onTimerComplete(p_evt:TimerEvent):void
+			{
+				activityTimer.start();
+				if ( audioPub.isPublishing && !audioPub.isPaused ) {
+					activityProgress.setProgress(audioPub.microphone.activityLevel,100);
+				}
+				
+			}
+			
+			/**
+			 * Changes the gain by changing the gain slider value.
+			 */
+			private function onGainChange(event:Event):void
+			{
+				audioPub.gain = gainSlider.value ;
+			}
+			
+			
+			/**
+			 * Entering the silence timeout value and choosing keyboard's ENTER key changes the silence timeout.
+			 * The silence timeout textBox only supports characters 0-9 and the scale is in msec.
+			 */
+			private function onKeyPress(event:KeyboardEvent):void
+			{
+				if ( event.keyCode == Keyboard.ENTER ) {
+					audioPub.silenceTimeout = parseInt(timeoutInput.text);
+				}
+			}
+			
+			/**
+			 * Same as onKeyPress except the input is entered via a mouse click on the ENTER button.
+			 */
+			private function onTimeoutEnter(p_evt:MouseEvent):void
+			{
+				audioPub.silenceTimeout = parseInt(timeoutInput.text);
+			}
+			
+			/**
+			 * Controls echo suppression through the use of radio buttons.
+			 */
+			private function onItemClick(p_evt:ItemClickEvent):void
+			{
+				if ( p_evt.currentTarget.selectedValue == "Yes" ) {
+					audioPub.useEchoSuppression = true ;
+				}else if ( p_evt.currentTarget.selectedValue == "No" ) {
+					audioPub.useEchoSuppression = false ;
+				}
+			}
+			
+			
+		]]>
+	</mx:Script>
+	
+	
+		<!-- 
+		You would likely use external authentication here for a deployed application; 
+		you would certainly not hard code Adobe IDs here.
+	-->
+	<rtc:AdobeHSAuthenticator 
+		id="auth" 
+		userName="Your Username" 
+		password="Your password"  />
+		
+	<rtc:ConnectSessionContainer id="cSession" authenticator="{auth}" width="100%"
+		 height="100%" creationComplete="onCreationComplete()" roomURL="Your RoomUrl" backgroundColor="0x333333" >
+	<mx:VBox width="100%" height="100%" verticalGap="2" paddingBottom="5" paddingTop="5">
+		<mx:Panel title="Audio Settings" verticalGap="25" width="100%" height="100%">
+			<mx:VBox paddingLeft="15" width="70%">
+				<mx:Label text="Gain" fontWeight="bold" />
+				<mx:HSlider id="gainSlider" minimum="0" maximum="100" width="90%" value="{audioPub.gain}" labels="[0,50,100]" change="onGainChange(event)" />
+			</mx:VBox>
+			<mx:VBox paddingLeft="15" width="70%">
+				<mx:Label text="Silence Timeout(msec)" fontWeight="bold"/>
+				<mx:HBox width="100%" height="100%" >
+					<mx:TextInput id="timeoutInput" text="2000" keyDown="onKeyPress(event)" restrict="1234567890" />
+					<mx:Button label="Enter" click="onTimeoutEnter(event)"/>
+				</mx:HBox>
+			</mx:VBox>
+			<mx:VBox paddingLeft="15" fontWeight="bold" width="70%">
+				<mx:Label text="UseEchoSuppression"/>
+				<mx:RadioButtonGroup id="echoGroup" itemClick="onItemClick(event)" />
+				<mx:RadioButton label="Yes" selected="{audioPub.useEchoSuppression}" groupName="echoGroup"  />
+				<mx:RadioButton label="No" selected="{!audioPub.useEchoSuppression}" groupName="echoGroup"/>
+			</mx:VBox>
+			<mx:VBox paddingLeft="15" fontWeight="bold" width="70%">
+				<mx:Label text="Microphone Volume"/>
+				<mx:ProgressBar id="activityProgress" minimum="0" maximum="100" mode="manual" label="" />
+			</mx:VBox>
+		</mx:Panel>
+		<rtc:AudioPublisher id="audioPub" height="0" />
+		<rtc:AudioSubscriber id="audioSub" height="0" />
+		<mx:HBox width="100%" horizontalAlign="center">	
+			<mx:Button id="btn" label="Start My Audio" click="onAudioClick(event)" toggle="true"  />
+		</mx:HBox>
+	</mx:VBox>
+	</rtc:ConnectSessionContainer>
+</mx:Application>
+
+

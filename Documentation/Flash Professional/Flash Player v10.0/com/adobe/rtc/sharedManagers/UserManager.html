@@ -1,0 +1,1313 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<meta content="UserManager,com.adobe.rtc.sharedManagers.UserManager,COLLECTION_NAME,SIMPLE_BUDDY_PRESENCE_CHANGE,audienceCollection,hostCollection,participantCollection,userCollection,anonymousPresence,connectSession,customFieldNames,isSynchronized,myBuddyList,myUserAffiliation,myUserID,myUserRole,anonymousUserRemoved,canUserConfigure,createBuddyNode,createUserManagerNodes,deleteCustomUserField,fetchUserDescriptor,getUserDescriptor,getUserRole,isPeerEnable,registerCustomUserField,removeUser,setCustomUserField,setPeer,setPingData,setUserConnection,setUserDisplayName,setUserRole,setUserUsericonURL" name="keywords">
+<title>com.adobe.rtc.sharedManagers.UserManager</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'UserManager - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS Flash-Only Player 10 API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?com/adobe/rtc/sharedManagers/UserManager.html&amp;com/adobe/rtc/sharedManagers/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;UserManager</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class UserManager"); titleBar_setSubNav(true,true,false,false,true,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.sharedManagers</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class UserManager</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">UserManager <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> flash.events.EventDispatcher</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../session/ISessionSubscriber.html">ISessionSubscriber</a></td>
+</tr>
+</table>
+<p></p>
+  UserManager is one of the "four pillars" of a room and is tasked with maintaining a list 
+  of the set of users in the room, along with their descriptors. It is also the primary 
+  class through which one publishes changes to a user role or other user information.
+  
+  <p>
+  Each IConnectSession handles the creation and setup of its own UserManager instance.  
+  Use an IConnectSession <code class="property">userManager</code> property to access it.
+  </p>
+    <p>
+  <h6>Building a basic roster list </h6>
+  <div class='listing'><pre>
+  &lt;rtc:AdobeHSAuthenticator userName="AdobeIDusername password="AdobeIDpassword" id="auth"/&gt;
+  &lt;session:ConnectSessionContainer 
+    id="cSession" 
+    roomURL="http://connect.acrobat.com/fakeRoom/" 
+    authenticator="{auth}"&gt;
+    
+      &lt;mx:List width="300" height="600" dataProvider="{cSession.userManager.userCollection}" 
+      labelField="displayName"/&gt;
+  &lt;/session:ConnectSessionContainer&gt; </pre></div>
+  &lt;session:ConnectSessionContainer id="cSession" roomURL="http://connect.acrobat.com/fakeRoom/" authenticator="{auth}"&gt;
+  &lt;/session:ConnectSessionContainer&gt;
+  
+  <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">
+<a href="descriptors/UserDescriptor.html" target="">com.adobe.rtc.sharedManagers.descriptors.UserDescriptor</a>
+<br>
+<a href="../events/UserEvent.html" target="">com.adobe.rtc.events.UserEvent</a>
+<br>
+<a href="../session/IConnectSession.html" target="">com.adobe.rtc.session.IConnectSession</a>
+</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#anonymousPresence">anonymousPresence</a> : Boolean<div class="summaryTableDescription">
+   Determines whether all the others users in the room be revealed.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#audienceCollection">audienceCollection</a> : <a href="../util/UtilArrayCollection.html">UtilArrayCollection</a>
+<div class="summaryTableDescription">
+   [Read-only] Returns a sorted collection of user descriptors with root user roles of UserRoles.VIEWER.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#connectSession">connectSession</a> : <a href="../session/IConnectSession.html">IConnectSession</a>
+<div class="summaryTableDescription">
+   (Read Only) Specifies the IConnectSession to which this manager is assigned.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#customFieldNames">customFieldNames</a> : Array<div class="summaryTableDescription">[read-only]
+   Returns the list of all the custom fields created.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#hostCollection">hostCollection</a> : <a href="../util/UtilArrayCollection.html">UtilArrayCollection</a>
+<div class="summaryTableDescription">
+   [Read-only] Returns a sorted collection of user descriptors with root user roles of UserRoles.OWNER.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#isSynchronized">isSynchronized</a> : Boolean<div class="summaryTableDescription">[read-only]
+   Specifies whether or not the UserManager has connected and has synchronized all 
+   of the user information from the service.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#myBuddyList">myBuddyList</a> : Array<div class="summaryTableDescription">
+   An array of userIDs, which represents the set of users which might be listening for the current user's updates
+   
+   Note, this isn't the set of users the current user is listening for, but rather the inverse.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#myUserAffiliation">myUserAffiliation</a> : int<div class="summaryTableDescription">[read-only]
+   Specifies the current user's affiliation.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#myUserID">myUserID</a> : String<div class="summaryTableDescription">[read-only]
+   The current user's <code>userID</code>.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#myUserRole">myUserRole</a> : int<div class="summaryTableDescription">[read-only]
+   Specifies the current user's role.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#participantCollection">participantCollection</a> : <a href="../util/UtilArrayCollection.html">UtilArrayCollection</a>
+<div class="summaryTableDescription">
+   [Read-only] Returns a sorted collection of user descriptors with root user roles of UserRoles.PUBLISHER.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#userCollection">userCollection</a> : <a href="../util/UtilArrayCollection.html">UtilArrayCollection</a>
+<div class="summaryTableDescription">
+   [Read-only] Returns a sorted collection of user descriptors.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#UserManager()">UserManager</a>()</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#canUserConfigure()">canUserConfigure</a>(p_userID:String):Boolean</div>
+<div class="summaryTableDescription">
+   Determines whether or not the given user has power to make modifications to other users.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#deleteCustomUserField()">deleteCustomUserField</a>(p_fieldName:String):void</div>
+<div class="summaryTableDescription">
+   Deletes a custom field for used in the customField Object).</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getUserDescriptor()">getUserDescriptor</a>(p_userID:String):<a href="descriptors/UserDescriptor.html">UserDescriptor</a>
+</div>
+<div class="summaryTableDescription">
+   Fetches all available details about the specified user.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getUserRole()">getUserRole</a>(p_userID:String, p_nodeName:String = null):int</div>
+<div class="summaryTableDescription">
+   Gets the role of the specified user for a particular node.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isPeerEnable()">isPeerEnable</a>():Boolean</div>
+<div class="summaryTableDescription">
+   This function checks if anyone has peer to peer disabled.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#registerCustomUserField()">registerCustomUserField</a>(p_fieldName:String):void</div>
+<div class="summaryTableDescription">
+   Registers a custom field for use in the userDescriptor (will appear in the CustomField Object).</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#removeUser()">removeUser</a>(p_userID:String):void</div>
+<div class="summaryTableDescription">
+   Removes a specified user from the room, thereby ejecting that user.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setCustomUserField()">setCustomUserField</a>(p_userID:String, p_fieldName:String, p_value:*):void</div>
+<div class="summaryTableDescription">
+   Custom User Fields are used to store extended info about a particular user (for example, phone status, "I have a question", etc).</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setPeer()">setPeer</a>(p_userID:String, p_isPeer:Boolean):void</div>
+<div class="summaryTableDescription">
+   
+   Modifies the isPeer property of a given user.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setPingData()">setPingData</a>(p_userID:String, p_latency:int, p_drops:int):void</div>
+<div class="summaryTableDescription">
+   Publishes a ping data update.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setUserConnection()">setUserConnection</a>(p_userID:String, p_conn:String, p_forceUpdate:Boolean = false):void</div>
+<div class="summaryTableDescription">
+   Sets the user's connection to one of the following: 
+   <ul>
+   <li>RoomSettings.MODEM</li>
+   <li>RoomSettings.DSL</li>
+   <li>RoomSettings.LAN</li>
+   </ul> 
+   
+    Note: If the <code>UserManager.anonymousPresence</code> is set to true, then this method might fail if the
+   user's userDescriptor has not been fetched.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setUserDisplayName()">setUserDisplayName</a>(p_userID:String, p_name:String):void</div>
+<div class="summaryTableDescription">
+   Modifies the displayName of a given user.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setUserRole()">setUserRole</a>(p_userID:String, p_role:int):void</div>
+<div class="summaryTableDescription">
+   Promotes or demotes the specified user at the "root level".</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setUserUsericonURL()">setUserUsericonURL</a>(p_userID:String, p_usericonURL:String):void</div>
+<div class="summaryTableDescription">
+   Sets the URL for the user's avatar icon.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+</table>
+</div>
+<a name="protectedMethodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Methods</div>
+<table id="summaryTableProtectedMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#anonymousUserRemoved()">anonymousUserRemoved</a>(p_evt:<a href="../events/CollectionNodeEvent.html">CollectionNodeEvent</a>):void</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#createBuddyNode()">createBuddyNode</a>():void</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#createUserManagerNodes()">createUserManagerNodes</a>():void</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#fetchUserDescriptor()">fetchUserDescriptor</a>(p_userID:String):void</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+</table>
+</div>
+<a name="eventSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Events</div>
+<table id="summaryTableEvent" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Event</th><th>Summary</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:anonymousPresenceChange">anonymousPresenceChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when anonymousPresence is set in the UserManager
+    </td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:customFieldChange">customFieldChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  
+  Dispatched when a custom field value for a user has changed.</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:customFieldDelete">customFieldDelete</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  
+  Dispatched when a custom field for a user is deleted.</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:customFieldRegister">customFieldRegister</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  
+  Dispatched when a custom field for a user is registered.</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:synchronizationChange">synchronizationChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the UserManager has received everything up to the current 
+  state of the room or has lost the connection.</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:userBooted">userBooted</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a user is forcibly ejected from the room.</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:userConnectionChange">userConnectionChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a user's connection speed has changed.</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:userCreate">userCreate</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a new user joins the room.</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:userNameChange">userNameChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the user's displayName has changed.</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:userPingDataChange">userPingDataChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a user's ping data has changed.</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:userRemove">userRemove</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a user leaves the room.</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:userRoleChange">userRoleChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the user's role has changed.</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:userUsericonURLChange">userUsericonURLChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a user's icon URL has changed.</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#COLLECTION_NAME">COLLECTION_NAME</a> : String = "UserManager"<div class="summaryTableDescription">[static]
+  The name of the <code>collectionNode</code> UserManager uses to build its shared model.</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+</table>
+</div>
+<a name="protectedConstantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Constants</div>
+<table id="summaryTableProtectedConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SIMPLE_BUDDY_PRESENCE_CHANGE">SIMPLE_BUDDY_PRESENCE_CHANGE</a> : String = "here"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">UserManager</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="anonymousPresence"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">anonymousPresence</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>anonymousPresence:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+   Determines whether all the others users in the room be revealed.
+   
+   Upon setting this property to true,  users aren't revealed until explicitly called for. 
+   UserManager.userCollection and getUserDescriptor won't have any entry for any user (other than one's self)
+   unless there's a specific request for that user. Any call to the getUserDescriptor will cause the UserManager to
+   fetch that particular UserDescriptor and cache it, dispatching the usual userCreate event.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get anonymousPresence():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set anonymousPresence(value:Boolean):void</code>
+<br>
+</div>
+<a name="audienceCollection"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">audienceCollection</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var audienceCollection:<a href="../util/UtilArrayCollection.html">UtilArrayCollection</a></code><p>
+   [Read-only] Returns a sorted collection of user descriptors with root user roles of UserRoles.VIEWER.
+   </p></div>
+<a name="connectSession"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">connectSession</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>connectSession:<a href="../session/IConnectSession.html">IConnectSession</a></code>&nbsp;&nbsp;[read-write]<p>
+   (Read Only) Specifies the IConnectSession to which this manager is assigned. 
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get connectSession():<a href="../session/IConnectSession.html">IConnectSession</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set connectSession(value:<a href="../session/IConnectSession.html">IConnectSession</a>):void</code>
+<br>
+</div>
+<a name="customFieldNames"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">customFieldNames</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>customFieldNames:Array</code>&nbsp;&nbsp;[read-only]<p>
+   Returns the list of all the custom fields created.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get customFieldNames():Array</code>
+<br>
+</div>
+<a name="hostCollection"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">hostCollection</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var hostCollection:<a href="../util/UtilArrayCollection.html">UtilArrayCollection</a></code><p>
+   [Read-only] Returns a sorted collection of user descriptors with root user roles of UserRoles.OWNER.
+   </p></div>
+<a name="isSynchronized"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isSynchronized</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>isSynchronized:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+   Specifies whether or not the UserManager has connected and has synchronized all 
+   of the user information from the service.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get isSynchronized():Boolean</code>
+<br>
+</div>
+<a name="myBuddyList"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">myBuddyList</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>myBuddyList:Array</code>&nbsp;&nbsp;[read-write]<p>
+   An array of userIDs, which represents the set of users which might be listening for the current user's updates
+   
+   Note, this isn't the set of users the current user is listening for, but rather the inverse. The current user would 
+   notify users in the Array about all his activities. In other words the users in the Array users are listening to the current user
+   even if he is not listening to them.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get myBuddyList():Array</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set myBuddyList(value:Array):void</code>
+<br>
+</div>
+<a name="myUserAffiliation"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">myUserAffiliation</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>myUserAffiliation:int</code>&nbsp;&nbsp;[read-only]<p>
+   Specifies the current user's affiliation.
+   
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get myUserAffiliation():int</code>
+<br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="descriptors/UserDescriptor.html" target="">com.adobe.rtc.sharedManagers.descriptors.UserDescriptor</a>
+</div>
+</div>
+<a name="myUserID"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">myUserID</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>myUserID:String</code>&nbsp;&nbsp;[read-only]<p>
+   The current user's <code>userID</code>.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get myUserID():String</code>
+<br>
+</div>
+<a name="myUserRole"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">myUserRole</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>myUserRole:int</code>&nbsp;&nbsp;[read-only]<p>
+   Specifies the current user's role. 
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get myUserRole():int</code>
+<br>
+</div>
+<a name="participantCollection"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">participantCollection</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var participantCollection:<a href="../util/UtilArrayCollection.html">UtilArrayCollection</a></code><p>
+   [Read-only] Returns a sorted collection of user descriptors with root user roles of UserRoles.PUBLISHER.
+   </p></div>
+<a name="userCollection"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">userCollection</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var userCollection:<a href="../util/UtilArrayCollection.html">UtilArrayCollection</a></code><p>
+   [Read-only] Returns a sorted collection of user descriptors.
+   </p></div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="UserManager()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">UserManager</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function UserManager()</code>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="anonymousUserRemoved()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">anonymousUserRemoved</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function anonymousUserRemoved(p_evt:<a href="../events/CollectionNodeEvent.html">CollectionNodeEvent</a>):void</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_evt</span>:<a href="../events/CollectionNodeEvent.html">CollectionNodeEvent</a></code></td>
+</tr>
+</table>
+</div>
+<a name="canUserConfigure()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">canUserConfigure</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function canUserConfigure(p_userID:String):Boolean</code><p>
+   Determines whether or not the given user has power to make modifications to other users. 
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The ID of the user in question.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; True if the user can make modifications; false if not.
+   </td>
+</tr>
+</table>
+</div>
+<a name="createBuddyNode()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">createBuddyNode</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function createBuddyNode():void</code>
+</div>
+<a name="createUserManagerNodes()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">createUserManagerNodes</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function createUserManagerNodes():void</code>
+</div>
+<a name="deleteCustomUserField()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">deleteCustomUserField</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function deleteCustomUserField(p_fieldName:String):void</code><p>
+   Deletes a custom field for used in the customField Object).
+   Only hosts are allowed to create deleteFields.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_fieldName</span>:String</code> &mdash; The name of the custom field to be deleted
+   
+   </td>
+</tr>
+</table>
+</div>
+<a name="fetchUserDescriptor()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">fetchUserDescriptor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function fetchUserDescriptor(p_userID:String):void</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code></td>
+</tr>
+</table>
+</div>
+<a name="getUserDescriptor()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getUserDescriptor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getUserDescriptor(p_userID:String):<a href="descriptors/UserDescriptor.html">UserDescriptor</a></code><p>
+   Fetches all available details about the specified user. If <code>anonymousPresence</code> is set to true,
+   the method migth return a null if <code>UserDescriptor</code> was never fetched. In such a situation we must
+   listen to <code>UserEvent.USER_CREATE</code> event and update the User's  <code>UserDescriptor</code> we wanted.
+   
+   Note: If the <code>UserManager.anonymousPresence</code> is set to true, then this method might fail if the
+   user's userDescriptor has not been fetched. So it is adviced to call this method after the required userDescriptor's
+   are fetched.In other words listen to <code>UserEvent.USER_CREATE</code> event and call this method after the required
+   userDescriptor's are fetched.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The unique ID of the user being queried.
+   
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="descriptors/UserDescriptor.html">UserDescriptor</a></code> &mdash; 
+                        The UserDescriptor of the specified user.
+   
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="getUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getUserRole(p_userID:String, p_nodeName:String = null):int</code><p>
+   Gets the role of the specified user for a particular node. 
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The specified user's <code>userID</code>.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_nodeName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The group name on which we are getting the user roles, default is null
+   
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>int</code> &mdash; int which is the user role value
+   </td>
+</tr>
+</table>
+</div>
+<a name="isPeerEnable()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isPeerEnable</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function isPeerEnable():Boolean</code><p>
+   This function checks if anyone has peer to peer disabled. i.e. behind firewall or something...
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="registerCustomUserField()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">registerCustomUserField</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function registerCustomUserField(p_fieldName:String):void</code><p>
+   Registers a custom field for use in the userDescriptor (will appear in the CustomField Object).
+   Only hosts are allowed to create regisfields, but users can publish them once
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_fieldName</span>:String</code> &mdash; The name of the new custom field
+   
+   </td>
+</tr>
+</table>
+</div>
+<a name="removeUser()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">removeUser</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function removeUser(p_userID:String):void</code><p>
+   Removes a specified user from the room, thereby ejecting that user.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; the userID of the desired ejectee
+   </td>
+</tr>
+</table>
+</div>
+<a name="setCustomUserField()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setCustomUserField</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setCustomUserField(p_userID:String, p_fieldName:String, p_value:*):void</code><p>
+   Custom User Fields are used to store extended info about a particular user (for example, phone status, "I have a question", etc).
+   A custom field must be registered before it can be modified. Custom fields are modifiable by the given user or a host.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The user to be modified
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_fieldName</span>:String</code> &mdash; The name of the custom field to modify
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_value</span>:*</code> &mdash; The new value for the custom field (null to delete)
+   
+   </td>
+</tr>
+</table>
+</div>
+<a name="setPeer()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setPeer</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setPeer(p_userID:String, p_isPeer:Boolean):void</code><p>
+   
+   Modifies the isPeer property of a given user. Note that only OWNERs and the user in question are able to 
+   change the user's displayName. This shows whether an user can do p2p streaming.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The userID of the specified user
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_isPeer</span>:Boolean</code> &mdash; The new displayName to assign to that user
+   </td>
+</tr>
+</table>
+</div>
+<a name="setPingData()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setPingData</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setPingData(p_userID:String, p_latency:int, p_drops:int):void</code><p>
+   Publishes a ping data update.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The userID of the user to update.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_latency</span>:int</code> &mdash; The new latency statistic.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_drops</span>:int</code> &mdash; The new drops statistic.
+   
+   </td>
+</tr>
+</table>
+</div>
+<a name="setUserConnection()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setUserConnection</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setUserConnection(p_userID:String, p_conn:String, p_forceUpdate:Boolean = false):void</code><p>
+   Sets the user's connection to one of the following: 
+   <ul>
+   <li>RoomSettings.MODEM</li>
+   <li>RoomSettings.DSL</li>
+   <li>RoomSettings.LAN</li>
+   </ul> 
+   
+    Note: If the <code>UserManager.anonymousPresence</code> is set to true, then this method might fail if the
+   user's userDescriptor has not been fetched. So it is adviced to call this method after the required userDescriptor's
+   are fetched.In other words listen to <code>UserEvent.USER_CREATE</code> event and call this method after the required
+   userDescriptor's are fetched.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The userID of the user the change.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_conn</span>:String</code> &mdash; The new connection speed value which is one of the RoomSetting constants.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_forceUpdate</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Whether or not the update should be forced; the default is false. 
+   </td>
+</tr>
+</table>
+</div>
+<a name="setUserDisplayName()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setUserDisplayName</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setUserDisplayName(p_userID:String, p_name:String):void</code><p>
+   Modifies the displayName of a given user. Note that only OWNERs and the user in question are able to 
+   change the user's displayName.
+   
+   Note: If the <code>UserManager.anonymousPresence</code> is set to true, then this method might fail if the
+   user's userDescriptor has not been fetched. So it is adviced to call this method after the required userDescriptor's
+   are fetched.In other words listen to <code>UserEvent.USER_CREATE</code> event and call this method after the required
+   userDescriptor's are fetched.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The userID of the specified user
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_name</span>:String</code> &mdash; The new displayName to assign to that user
+   </td>
+</tr>
+</table>
+</div>
+<a name="setUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setUserRole(p_userID:String, p_role:int):void</code><p>
+   Promotes or demotes the specified user at the "root level". This is the primary 
+   way to change a user's role (although it's also possible to change a user's role relative 
+   to a specific CollectionNode within the application). Note that only users with an owner 
+   role  at the root level may call this method.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The unique ID of the user to affect
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_role</span>:int</code> &mdash; The new role for the user
+   </td>
+</tr>
+</table>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../sharedModel/CollectionNode.html" target="">com.adobe.rtc.sharedModel.CollectionNode</a>
+</div>
+</div>
+<a name="setUserUsericonURL()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setUserUsericonURL</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setUserUsericonURL(p_userID:String, p_usericonURL:String):void</code><p>
+   Sets the URL for the user's avatar icon.
+   
+    Note: If the <code>UserManager.anonymousPresence</code> is set to true, then this method might fail if the
+   user's userDescriptor has not been fetched. So it is adviced to call this method after the required userDescriptor's
+   are fetched.In other words listen to <code>UserEvent.USER_CREATE</code> event and call this method after the required
+   userDescriptor's are fetched.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The userID of the user specified.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_usericonURL</span>:String</code> &mdash; the URL of the icon desired.
+   </td>
+</tr>
+</table>
+</div>
+<div class="detailSectionHeader">Event detail</div>
+<a name="event:anonymousPresenceChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">anonymousPresenceChange</td><td class="detailHeaderType">event&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/UserEvent.html"><code>com.adobe.rtc.events.UserEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when anonymousPresence is set in the UserManager
+    </p></div>
+<a name="event:customFieldChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">customFieldChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/UserEvent.html"><code>com.adobe.rtc.events.UserEvent</code></a>
+<br>
+<p></p><p>
+  
+  Dispatched when a custom field value for a user has changed.
+    </p></div>
+<a name="event:customFieldDelete"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">customFieldDelete</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/UserEvent.html"><code>com.adobe.rtc.events.UserEvent</code></a>
+<br>
+<p></p><p>
+  
+  Dispatched when a custom field for a user is deleted.
+    </p></div>
+<a name="event:customFieldRegister"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">customFieldRegister</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/UserEvent.html"><code>com.adobe.rtc.events.UserEvent</code></a>
+<br>
+<p></p><p>
+  
+  Dispatched when a custom field for a user is registered.
+    </p></div>
+<a name="event:synchronizationChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">synchronizationChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/UserEvent.html"><code>com.adobe.rtc.events.UserEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the UserManager has received everything up to the current 
+  state of the room or has lost the connection.
+    </p></div>
+<a name="event:userBooted"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">userBooted</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/UserEvent.html"><code>com.adobe.rtc.events.UserEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a user is forcibly ejected from the room.
+    </p></div>
+<a name="event:userConnectionChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">userConnectionChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/UserEvent.html"><code>com.adobe.rtc.events.UserEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a user's connection speed has changed.
+    </p></div>
+<a name="event:userCreate"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">userCreate</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/UserEvent.html"><code>com.adobe.rtc.events.UserEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a new user joins the room.
+    </p></div>
+<a name="event:userNameChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">userNameChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/UserEvent.html"><code>com.adobe.rtc.events.UserEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the user's displayName has changed.
+    </p></div>
+<a name="event:userPingDataChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">userPingDataChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/UserEvent.html"><code>com.adobe.rtc.events.UserEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a user's ping data has changed.
+    </p></div>
+<a name="event:userRemove"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">userRemove</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/UserEvent.html"><code>com.adobe.rtc.events.UserEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a user leaves the room.
+    </p></div>
+<a name="event:userRoleChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">userRoleChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/UserEvent.html"><code>com.adobe.rtc.events.UserEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the user's role has changed.
+    </p></div>
+<a name="event:userUsericonURLChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">userUsericonURLChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/UserEvent.html"><code>com.adobe.rtc.events.UserEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a user's icon URL has changed.
+    </p></div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="COLLECTION_NAME"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">COLLECTION_NAME</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const COLLECTION_NAME:String = "UserManager"</code><p>
+  The name of the <code>collectionNode</code> UserManager uses to build its shared model.
+  </p></div>
+<a name="SIMPLE_BUDDY_PRESENCE_CHANGE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SIMPLE_BUDDY_PRESENCE_CHANGE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected static const SIMPLE_BUDDY_PRESENCE_CHANGE:String = "here"</code>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

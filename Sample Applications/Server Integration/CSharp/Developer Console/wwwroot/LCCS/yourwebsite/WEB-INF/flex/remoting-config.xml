@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service id="remoting-service" class="flex.messaging.services.RemotingService" messageTypes="flex.messaging.messages.RemotingMessage">
+
+	<!-- DO NOT CHANGE <adapters> SECTION-->
+    <adapters>
+        <adapter-definition id="dotnet" class="FluorineFx.Remoting.RemotingAdapter" default="true"/>
+    </adapters>
+
+    <default-channels>
+        <channel ref="my-amf"/>
+    </default-channels>
+
+    <destination id="fluorine">
+        <properties>
+            <source>*</source>
+        </properties>
+        
+        <!-- The following example shows a security constraint that is referenced -->
+        <!--
+        <security>
+			<security-constraint ref="privileged-users"/>
+		</security>
+        -->
+        
+        <!-- The following example shows shows a security constraint that is declared in a destination definition (inline) -->
+        <!--
+		<security>
+			<security-constraint>
+				<auth-method>Custom</auth-method>
+				<roles>
+					<role>admin</role>
+					<role>privilegeduser</role>
+				</roles>
+			</security-constraint>
+		</security>                
+        -->
+        
+    </destination>
+
+	<!-- Configure a destination 
+		source: Fully qualified class name of the .NET object (remote object)
+		scope: Indicates whether the object is available in the request scope, the application scope, or the session scope -->
+	<!-- 
+    <destination id="destination name">
+        <properties>
+            <source>Fully qualified class name of the .NET object</source>
+            <scope>request</scope>
+        </properties>
+    </destination>
+    -->
+</service>

@@ -1,0 +1,594 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../../print.css" type="text/css" media="print">
+<meta content="SessionContainerProxy,com.adobe.rtc.session.sessionClasses.SessionContainerProxy,archiveManager,authenticator,fileManager,initialRoomSettings,isSynchronized,roomManager,roomURL,streamManager,userManager,addEventListener,close,login,logout,removeEventListener" name="keywords">
+<title>com.adobe.rtc.session.sessionClasses.SessionContainerProxy</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'SessionContainerProxy - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../../all-classes.html')" href="../../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../../all-classes.html')" href="../../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../../index-list.html')" href="../../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../../index.html?com/adobe/rtc/session/sessionClasses/SessionContainerProxy.html&amp;com/adobe/rtc/session/sessionClasses/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;SessionContainerProxy</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class SessionContainerProxy"); titleBar_setSubNav(false,true,false,false,true,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.session.sessionClasses</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class SessionContainerProxy</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">SessionContainerProxy <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../../images/inherit-arrow.gif"> flash.events.EventDispatcher</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../IConnectSession.html">IConnectSession</a></td>
+</tr>
+</table>
+<p></p>
+  SessionContainerProxy is a specialized IConnectSession implementor used by UIComponent-based ISessionSubscribers
+  to find the IConnectSession to which they should be associated. Upon finding the right IConnectSession, SessionContainerProxy
+  proxies its implementation to that IConnectSession instance.
+  <p>
+  UIComponent-based ISessionSubscribers have 3 places to choose from in order to find an appropriate IConnectSession : 
+  <ol>
+  <li>An IConnectSession directly assigned to that component by a developer</li>
+  <li>A ConnectSessionContainer which is in the parent chain of that component, if one exists</li>
+  <li>The default ConnectSession.primarySession, which proxies the first IConnectSession created in the application.</li>
+  </ol>
+  SessionContainerProxy does the work of the 2 latter options is most appropriate. Developers of UIComponent-based
+  ISessionSubscriber components should use SessionContainerProxy as their default <code>connectSession</code> value.
+  <p>
+   <b>Example:</b> a UIComponent-based ISessionSubscriber declares its <code>_connectSession</code> protected variable 
+   (for use in its public <code>connectSession</code> getter) to default to a SessionContainerProxy
+  <div class='listing'><pre>
+  protected var _connectSession:IConnectSession = new SessionContainerProxy(this as UIComponent);
+  </pre></div>
+  
+  <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../../session/IConnectSession.html" target="">com.adobe.rtc.session.IConnectSession</a>
+<br>
+<a href="../../session/ISessionSubscriber.html" target="">com.adobe.rtc.session.ISessionSubscriber</a>
+</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#archiveManager">archiveManager</a> : <a href="../../archive/ArchiveManager.html">ArchiveManager</a>
+<div class="summaryTableDescription">[read-only]
+   The <code>ArchiveManager</code> class for the current session.</div>
+</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#authenticator">authenticator</a> : <a href="../../authentication/AbstractAuthenticator.html">AbstractAuthenticator</a>
+<div class="summaryTableDescription">
+   (Required) The authenticator through which login information is passed.</div>
+</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#fileManager">fileManager</a> : <a href="../../sharedManagers/FileManager.html">FileManager</a>
+<div class="summaryTableDescription">[read-only]
+   The <code>FileManager</code> class for the current session.</div>
+</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#initialRoomSettings">initialRoomSettings</a> : <a href="../../session/RoomSettings.html">RoomSettings</a>
+<div class="summaryTableDescription">
+   The initial room settings for the current room.</div>
+</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#isSynchronized">isSynchronized</a> : Boolean<div class="summaryTableDescription">[read-only]
+   [Read-only] A variable that indicates whether or not the ConnectSession is fully synchronized with the service.</div>
+</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#roomManager">roomManager</a> : <a href="../../sharedManagers/RoomManager.html">RoomManager</a>
+<div class="summaryTableDescription">[read-only]
+   The <code>RoomManager</code> class for the current session.</div>
+</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#roomURL">roomURL</a> : String<div class="summaryTableDescription">
+    [Required] The URL of the room to which to connect.</div>
+</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#streamManager">streamManager</a> : <a href="../../sharedManagers/StreamManager.html">StreamManager</a>
+<div class="summaryTableDescription">[read-only]
+   The <code>StreamManager</code> class for the current session.</div>
+</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#userManager">userManager</a> : <a href="../../sharedManagers/UserManager.html">UserManager</a>
+<div class="summaryTableDescription">[read-only]
+   The <code>UserManager</code> class for the current session.</div>
+</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#SessionContainerProxy()">SessionContainerProxy</a>(p_target:UIComponent = null)</div>
+<div class="summaryTableDescription">
+   
+   </div>
+</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addEventListener()">addEventListener</a>(p_type:String, p_listener:Function, p_useCapture:Boolean = false, p_priority:int = 0, p_useWR:Boolean = false):void</div>
+<div class="summaryTableDescription">
+   </div>
+</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#close()">close</a>(p_reason:String = ""):void</div>
+<div class="summaryTableDescription">
+   Disposes all listeners to the network and framework classes.</div>
+</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#login()">login</a>():void</div>
+<div class="summaryTableDescription">
+   Logs into the RTC service.</div>
+</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#logout()">logout</a>():void</div>
+<div class="summaryTableDescription">
+   Logs out and disconnects from the session.</div>
+</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#removeEventListener()">removeEventListener</a>(p_type:String, p_listener:Function, p_useCapture:Boolean = false):void</div>
+<div class="summaryTableDescription">
+   </div>
+</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+</table>
+</div>
+<a name="eventSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Events</div>
+<table id="summaryTableEvent" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Event</th><th>Summary</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:close">close</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the session is closed before any children (in the case of ConnectSessionContainer) are removed.</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:connectionStatusChange">connectionStatusChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the connection status changes from good to poor or disconnected.</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:error">error</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when there's an error on the server.</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:ping">ping</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched on a regular interval to return connection statistics.</td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:synchronizationChange">synchronizationChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  The <code>synchronizationChange</code> is dispatched when: 
+  <ul>
+    <li>When ConnectSession establishes a connection to the service and has fully synchronized 
+   the major room elements such as UserManager, RoomManager, StreamManager, and FileManager.</li>
+    <li>When the component loses its connection to the service.</li>
+  </ul>
+  </td><td class="summaryTableOwnerCol">SessionContainerProxy</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="archiveManager"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">archiveManager</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>archiveManager:<a href="../../archive/ArchiveManager.html">ArchiveManager</a></code>&nbsp;&nbsp;[read-only]<p>
+   The <code>ArchiveManager</code> class for the current session.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get archiveManager():<a href="../../archive/ArchiveManager.html">ArchiveManager</a></code>
+<br>
+</div>
+<a name="authenticator"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">authenticator</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>authenticator:<a href="../../authentication/AbstractAuthenticator.html">AbstractAuthenticator</a></code>&nbsp;&nbsp;[read-write]<p>
+   (Required) The authenticator through which login information is passed.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get authenticator():<a href="../../authentication/AbstractAuthenticator.html">AbstractAuthenticator</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set authenticator(value:<a href="../../authentication/AbstractAuthenticator.html">AbstractAuthenticator</a>):void</code>
+<br>
+</div>
+<a name="fileManager"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">fileManager</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>fileManager:<a href="../../sharedManagers/FileManager.html">FileManager</a></code>&nbsp;&nbsp;[read-only]<p>
+   The <code>FileManager</code> class for the current session.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get fileManager():<a href="../../sharedManagers/FileManager.html">FileManager</a></code>
+<br>
+</div>
+<a name="initialRoomSettings"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">initialRoomSettings</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>initialRoomSettings:<a href="../../session/RoomSettings.html">RoomSettings</a></code>&nbsp;&nbsp;[read-write]<p>
+   The initial room settings for the current room. Note that this property 
+   <b>only works the FIRST TIME</b> the room receives a connection from an user 
+   with an owner role. 
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get initialRoomSettings():<a href="../../session/RoomSettings.html">RoomSettings</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set initialRoomSettings(value:<a href="../../session/RoomSettings.html">RoomSettings</a>):void</code>
+<br>
+</div>
+<a name="isSynchronized"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isSynchronized</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>isSynchronized:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+   [Read-only] A variable that indicates whether or not the ConnectSession is fully synchronized with the service.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get isSynchronized():Boolean</code>
+<br>
+</div>
+<a name="roomManager"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomManager</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>roomManager:<a href="../../sharedManagers/RoomManager.html">RoomManager</a></code>&nbsp;&nbsp;[read-only]<p>
+   The <code>RoomManager</code> class for the current session.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get roomManager():<a href="../../sharedManagers/RoomManager.html">RoomManager</a></code>
+<br>
+</div>
+<a name="roomURL"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomURL</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>roomURL:String</code>&nbsp;&nbsp;[read-write]<p>
+    [Required] The URL of the room to which to connect.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get roomURL():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set roomURL(value:String):void</code>
+<br>
+</div>
+<a name="streamManager"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">streamManager</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>streamManager:<a href="../../sharedManagers/StreamManager.html">StreamManager</a></code>&nbsp;&nbsp;[read-only]<p>
+   The <code>StreamManager</code> class for the current session.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get streamManager():<a href="../../sharedManagers/StreamManager.html">StreamManager</a></code>
+<br>
+</div>
+<a name="userManager"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">userManager</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>userManager:<a href="../../sharedManagers/UserManager.html">UserManager</a></code>&nbsp;&nbsp;[read-only]<p>
+   The <code>UserManager</code> class for the current session.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get userManager():<a href="../../sharedManagers/UserManager.html">UserManager</a></code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="SessionContainerProxy()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SessionContainerProxy</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function SessionContainerProxy(p_target:UIComponent = null)</code><p>
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_target</span>:UIComponent</code> (default = <code>null</code>)<code></code> &mdash; The UIComponent which wants to locate its ConnectSessionContainer
+   
+   </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="addEventListener()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addEventListener</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function addEventListener(p_type:String, p_listener:Function, p_useCapture:Boolean = false, p_priority:int = 0, p_useWR:Boolean = false):void</code><p>
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_type</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_listener</span>:Function</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_useCapture</span>:Boolean</code> (default = <code>false</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_priority</span>:int</code> (default = <code>0</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_useWR</span>:Boolean</code> (default = <code>false</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="close()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">close</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function close(p_reason:String = ""):void</code><p>
+   Disposes all listeners to the network and framework classes.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_reason</span>:String</code> (default = "<code></code>")<code></code></td>
+</tr>
+</table>
+</div>
+<a name="login()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">login</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function login():void</code><p>
+   Logs into the RTC service. Calling login is required for using ConnectSession, as compared with ConnectSessionContainer,
+   Which does so automatically.
+   </p></div>
+<a name="logout()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">logout</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function logout():void</code><p>
+   Logs out and disconnects from the session.
+   </p></div>
+<a name="removeEventListener()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">removeEventListener</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function removeEventListener(p_type:String, p_listener:Function, p_useCapture:Boolean = false):void</code><p>
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_type</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_listener</span>:Function</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_useCapture</span>:Boolean</code> (default = <code>false</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<div class="detailSectionHeader">Event detail</div>
+<a name="event:close"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">close</td><td class="detailHeaderType">event&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../../events/ConnectSessionEvent.html"><code>com.adobe.rtc.events.ConnectSessionEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the session is closed before any children (in the case of ConnectSessionContainer) are removed.
+  </p></div>
+<a name="event:connectionStatusChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">connectionStatusChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../../events/SessionEvent.html"><code>com.adobe.rtc.events.SessionEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the connection status changes from good to poor or disconnected.
+  </p></div>
+<a name="event:error"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">error</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../../events/SessionEvent.html"><code>com.adobe.rtc.events.SessionEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when there's an error on the server.
+    </p></div>
+<a name="event:ping"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ping</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../../events/SessionEvent.html"><code>com.adobe.rtc.events.SessionEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched on a regular interval to return connection statistics. 
+  </p></div>
+<a name="event:synchronizationChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">synchronizationChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../../events/SessionEvent.html"><code>com.adobe.rtc.events.SessionEvent</code></a>
+<br>
+<p></p><p>
+  The <code>synchronizationChange</code> is dispatched when: 
+  <ul>
+    <li>When ConnectSession establishes a connection to the service and has fully synchronized 
+   the major room elements such as UserManager, RoomManager, StreamManager, and FileManager.</li>
+    <li>When the component loses its connection to the service.</li>
+  </ul>
+  </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

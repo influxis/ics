@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute"
+	backgroundColor="0xcccccc" 
+	width="800" height="500"  
+	xmlns:rtc="http://ns.adobe.com/rtc">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.events.DataGridEvent;
+			import mx.events.CollectionEventKind;
+			import mx.events.CollectionEvent;
+			import mx.managers.PopUpManager;
+			import mx.events.CloseEvent;
+			import mx.controls.Alert;
+			import com.adobe.rtc.events.CollectionNodeEvent;
+			import com.adobe.rtc.sharedModel.SharedCollection;
+			
+			/****************************************************************
+			 * This examples shows how to use a SharedCollection model for having 
+			 * synchronized lists and datagrids. In this case, we are using a synchronized
+			 * datagrid to add, remove, edit items, and any newly arrived user can see the 
+			 * updated list.
+			 * 
+			 * The SharedCollection's API's send and receive items and message bookkeeping for 
+			 * the SharedCollection Object is based on state name and is not editable. 
+			 * Any field for using message item IDs.
+			 * For details, refer to com.adobe.rtc.sharedModel.SharedCollection.
+			 * *****************************************************************/
+			 
+			 /**********************************************************
+			  * ADOBE SYSTEMS INCORPORATED
+			  * Copyright [2007-2010] Adobe Systems Incorporated
+			  * All Rights Reserved.
+			  * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			  * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			  * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			  * written permission of Adobe.
+		     	  * *********************************/
+			
+			/**
+			* A variable for bookkeeping on the client side for easier operations.
+			*/
+			private var _stateToCapital:Object = new Object();
+			
+			/**
+			 *  The bindable model shared collection.
+			 */
+			[Bindable]
+			private var _model:SharedCollection ;
+			
+			
+			/**
+			 * A dialog for removing and adding items.
+			 * 
+			 */
+			 private var _dialog:AddRemoveDialog ;
+			
+			/**
+			 * Initializes the model.
+			 */
+			private function onCreationComplete():void
+			{
+				_model = new SharedCollection();
+				_model.sharedID = "_dataSharedModel" ;
+				_model.idField = "State" ;
+				_model.connectSession = cSession ;
+				_model.subscribe();
+				_model.addEventListener(CollectionEvent.COLLECTION_CHANGE,onCollectionChange);
+				
+				if ( cSession.userManager.myUserRole < _model.getNodeConfiguration().publishModel ) {
+					vBox.removeChild(btns);
+					dataGrid.editable = false ;
+				}
+				
+			}
+			
+			
+			/**
+			 *  Handler for adding an item. Pops up a dialog and listens to it.
+			 */
+			private function onAdd(p_evt:MouseEvent):void
+			{
+				if ( !_dialog ) {
+					_dialog = new AddRemoveDialog();
+					_dialog.title = "Add State" ;
+					_dialog.addEventListener(CloseEvent.CLOSE,onAddRemoveClose);
+					PopUpManager.addPopUp(_dialog,this,true);
+					PopUpManager.centerPopUp(_dialog);
+					_dialog.option = "Add" ;
+				}
+
+				
+			}
+			
+			/**
+			 *  Handler of removing an item. Pops up a dialog and listens to it.
+			 */
+			private function onRemove(p_evt:MouseEvent):void
+			{
+				if ( !_dialog ) {
+					_dialog = new AddRemoveDialog();
+					_dialog.title = "Remove State" ;
+					_dialog.addEventListener(CloseEvent.CLOSE,onAddRemoveClose);
+					PopUpManager.addPopUp(_dialog,this,true);
+					PopUpManager.centerPopUp(_dialog);
+					_dialog.option = "Remove" ;
+				}
+			}
+			
+			
+			/**
+			 *  Handler for the dialog for adding and removing items to and from the model.
+			 */
+			protected function onAddRemoveClose(p_evt:CloseEvent):void
+			{
+				if ( !_dialog ) {
+					return ;
+				}
+				
+				if ( _dialog.title == "Add State" ) {
+					if (p_evt.detail == Alert.OK) {
+						if ( _stateToCapital[_dialog.stateText.text] == null )
+							_model.addItem({State:_dialog.stateText.text,Capital:_dialog.capitalText.text});
+						else 
+							mx.controls.Alert.show("This state already exists.");
+					}
+				}else if ( _dialog.title == "Remove State" ) {
+					if (p_evt.detail == Alert.OK) {
+						if ( _stateToCapital[_dialog.stateText.text] != null ) {
+							for ( var i:int = 0 ; i < _model.length ; i++ ) {
+								if ( _model.getItemAt(i).State == _dialog.stateText.text ) {
+									_model.removeItemAt(i);
+									break;
+								}
+							}
+						}
+						else 
+							mx.controls.Alert.show("This state does not exist.");
+					}
+				}
+				
+				PopUpManager.removePopUp(_dialog);
+				_dialog = null ;
+			}
+			
+			/**
+			 *  Handler for the collectionChange to update our bookkeeping of items.
+			 */
+			private function onCollectionChange(p_evt:CollectionEvent ) :void
+			{
+				var item:Object = p_evt.items[0] ;
+				if ( p_evt.kind == CollectionEventKind.ADD ) {
+					_stateToCapital[item.State] = item.Capital ;
+				}else if (  p_evt.kind == CollectionEventKind.REMOVE ) {
+					delete _stateToCapital[item.State] ;
+				}else if ( p_evt.kind == CollectionEventKind.UPDATE ) {
+					_stateToCapital[item.source.State] = item.source.Capital ;
+				}
+			}
+			
+			
+			/**
+			 *  Handler for removing all items.
+			 */
+			private function onRemoveAll(p_evt:MouseEvent):void
+			{
+				_model.removeAll();
+			}
+			
+			/**
+			 *  When the item edit ends, this gets called.
+			 */
+			private function onItemFocusOut(p_evt:DataGridEvent):void
+			{
+				var data:Object = p_evt.itemRenderer.data ;
+				_model.setItemAt({State:data.State,Capital:data.Capital},p_evt.rowIndex);
+			}
+			
+			/**
+			 * When an item edit begins, this gets called.
+			 */
+			private function onItemEditBegin(p_evt:DataGridEvent):void
+			{
+				delete _stateToCapital[p_evt.itemRenderer.data.State] ;
+			}
+			
+			
+		]]>
+	</mx:Script>
+	
+	<!-- 
+		You would likely use external authentication here for a deployed application; 
+		you would certainly not hard code Adobe IDs here.
+	-->
+	<rtc:AdobeHSAuthenticator 
+		id="auth" 
+		userName="Your Username" 
+		password="Your password"  />
+	
+	<rtc:ConnectSessionContainer roomURL="Your RoomUrl" id="cSession" authenticator="{auth}" 
+		creationComplete="onCreationComplete()" width="100%" height="100%">
+		<mx:VBox width="100%" height="100%" id="vBox">
+			<mx:DataGrid id="dataGrid" dataProvider="{_model}" width="100%" height="100%" editable="true" itemEditBegin="onItemEditBegin(event)" itemFocusOut="onItemFocusOut(event)">
+				<mx:columns>
+   	 				<mx:DataGridColumn dataField="State" editable="false" />
+    				<mx:DataGridColumn dataField="Capital" editable="true" />
+				</mx:columns>
+			</mx:DataGrid>
+			<mx:HBox width="100%" height="40" id="btns">
+				<mx:Button label="Add" click="onAdd(event)" />
+				<mx:Button label="Remove" click="onRemove(event)" />
+				<mx:Button label="Remove All" click="onRemoveAll(event)" />
+			</mx:HBox>
+			
+		</mx:VBox>
+    	
+	
+	</rtc:ConnectSessionContainer>
+</mx:Application>

@@ -1,0 +1,1429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>LCCS JavaScript Reference - BatonObject</title>
+
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+	width: 800px;
+}
+
+.header
+{
+	clear: both;
+	background-color: #ccc;
+	padding: 8px;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+	margin: 1em 0 0 .3em;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #7F8FB1;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	background-color: #F3F3F3;
+	padding: 8px;
+}
+
+#content
+{
+	margin-left: 190px;
+	width: 600px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #7F8FB1;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #7F8FB1 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #7F8FB1 solid;
+	border-right: 1px #7F8FB1 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #7F8FB1 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #002EBE;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px; 
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	text-align: right;
+	font-size: 10px;
+}
+		</style>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2>Classes</h2>
+<ul class="classList">
+	
+	<li><i><a href="../symbols/_global_.html">_global_</a></i></li>
+	
+	<li><a href="../symbols/Baton.html">Baton</a></li>
+	
+	<li><a href="../symbols/BatonObject.html">BatonObject</a></li>
+	
+	<li><a href="../symbols/BatonProperty.html">BatonProperty</a></li>
+	
+	<li><a href="../symbols/CollectionNode.html">CollectionNode</a></li>
+	
+	<li><a href="../symbols/ConnectSession.html">ConnectSession</a></li>
+	
+	<li><a href="../symbols/EventDispatcher.html">EventDispatcher</a></li>
+	
+	<li><a href="../symbols/SharedCollection.html">SharedCollection</a></li>
+	
+	<li><a href="../symbols/SharedCursorPane.html">SharedCursorPane</a></li>
+	
+	<li><a href="../symbols/SharedObject.html">SharedObject</a></li>
+	
+	<li><a href="../symbols/SharedProperty.html">SharedProperty</a></li>
+	
+	<li><a href="../symbols/SimpleChatModel.html">SimpleChatModel</a></li>
+	
+	<li><a href="../symbols/Tween.html">Tween</a></li>
+	
+	<li><a href="../symbols/UserManager.html">UserManager</a></li>
+	
+</ul>
+<hr />
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Class BatonObject
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				
+			
+				BatonObject is a model class which provides a workflow between users for muliple resources. Essentially, it tracks the "holder" of a given resource and provides APIs for grabbing, putting down, and giving control to others. Users with an owner role always have the power to grab the BatonObject, put it down, or give it to others regardless of who has the BatonObject. Users with a publisher role must wait according to the <code>grabbable</code> property:<p><ul><li>If the BatonObject is set to <code>grabbable</code>, they may grab the resources in the BatonObject as soon as it is available (since it will then have no controller).</li><li>If the BatonObject is not <code>grabbable</code>, the owner must explicitly pass the resources in the BatonObjectto someone else. </ul>By default, a BatonObject will timeout in five seconds and be released. This timeout can be adjusted in the constructor and extended during use of the resource in question using <code>extendTimer</code>.<p>Note that users with an owner role may adjust the roles of other users relative to the BatonObject using <code>allowUserToGrab</code> (which makes that user a publisher) and <code>allowUserToAdminister</code> (which makes that user an owner).</p><p>This component also supports "piggybacking" on existing CollectionNodes through its constructor. Developers can avoid CollectionNode proliferation in their applications by pre-supplying a CollectionNode and a <code>nodeName</code> for the BatonObject to use. If none is supplied, the BatonObject will create its own collection node for sending and receiving messages.<table><tr><th><b>Event</b></th><th><b>Summary</b></th></tr><tr><td valign="top"><code>batonHolderChange </code></td> <td> Dispatched when the one of the batonObjects property is assigned,grabbed or when its available.</td></tr><tr><td valign="top"><code>synchronizationChange</code></td> <td> Dispatched when the SharedProperty goes in and out of sync.</td></tr></table>
+				
+				
+					<br /><i>Defined in: </i> <a href="../symbols/src/E__flashfarm_main_connect_build_JavaScript_tools_jsdoc-toolkit_LCCS_JS_Bridge.js.html">LCCS_JS_Bridge.js</a>.
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class BatonObject.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/BatonObject.html#constructor">BatonObject</a></b>()
+							</div>
+							<div class="description"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class BatonObject.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/BatonObject.html#batonNodeName">batonNodeName</a></b>
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/BatonObject.html#grabbable">grabbable</a></b>
+								</div>
+								<div class="description">Whether or not to allow users with a publisher role to grab an available resource in BatonObject.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class BatonObject.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#amIHolding">amIHolding</a></b>(p_propertyName)
+								</div>
+								<div class="description">Determines whether the current user is holding a resource in the BatonObject.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#canIAdminister">canIAdminister</a></b>()
+								</div>
+								<div class="description">Determines whether the current user has permission to administer the BatonObject by taking it from someone or forcing them to put it down.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#canIGrab">canIGrab</a></b>()
+								</div>
+								<div class="description">Determines whether the current user has permission to grab the BatonObject when available.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#canUserAdminister">canUserAdminister</a></b>(p_userID)
+								</div>
+								<div class="description">Determines whether a specified user can administer the BatonObject from others.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#canUserGrab">canUserGrab</a></b>(p_userID)
+								</div>
+								<div class="description">Determines whether a specified user can grab the BatonObject if it's available.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#close">close</a></b>()
+								</div>
+								<div class="description">Cleans up all networking and event handling; recommended for garbage collection.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#extendTimer">extendTimer</a></b>(p_propertyName)
+								</div>
+								<div class="description">Extends the timeout if the BatonObject has one.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#getAccessModel">getAccessModel</a></b>()
+								</div>
+								<div class="description">Get the role value which is required for seeing the BatonObject</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#getHolderID">getHolderID</a></b>(p_propertyName)
+								</div>
+								<div class="description">Specifies the <code>userID</code> of the person controlling the the resource in the BatonObject.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#getPublishModel">getPublishModel</a></b>()
+								</div>
+								<div class="description">Get the role Value required to grab the BatonObject</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#getTimeOut">getTimeOut</a></b>(p_propertyName)
+								</div>
+								<div class="description">Number of seconds after which the BatonObject times out</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#getUserRole">getUserRole</a></b>(p_userID)
+								</div>
+								<div class="description">Get the role of a given user for the BatonObject.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#giveTo">giveTo</a></b>(p_userID, p_propertyName)
+								</div>
+								<div class="description">If the BatonObject is grabbable, the holding user can hand the BatonObject's resource to a specified user.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#grab">grab</a></b>(p_propertyName)
+								</div>
+								<div class="description">If grabbable, users with a publisher role can grab the control if it's available by using this method.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#isAvailable">isAvailable</a></b>(p_propertyName)
+								</div>
+								<div class="description">Determines whether the resource in the BatonObject is up for grabs because it has no current holder.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#putDown">putDown</a></b>(p_propertyName)
+								</div>
+								<div class="description">Users with an publisher role in control can use this method to release their control.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#removeAll">removeAll</a></b>()
+								</div>
+								<div class="description">Calls the <code>removeProperty</code> for all the properties in the BatonObject.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#removeProperty">removeProperty</a></b>(p_propertyName)
+								</div>
+								<div class="description">The value of the BatonObjects property which a user can only delete it if the user is in control of it.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#setAccessModel">setAccessModel</a></b>(p_accessModel)
+								</div>
+								<div class="description">Set the role value which is required for seeing the BatonObject</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#setProperty">setProperty</a></b>(p_propertyName, p_value)
+								</div>
+								<div class="description">The value of the BatonObjects property which a user can only set it if the user is in control of it.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#setPublishModel">setPublishModel</a></b>(p_publishModel)
+								</div>
+								<div class="description">Set the role Value required to grab the BatonObject</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#setTimeOut">setTimeOut</a></b>(p_timeOut, p_propertyName)
+								</div>
+								<div class="description">Number of seconds after which the BatonObject times outIf 0, no timeout is used.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/BatonObject.html#setUserRole">setUserRole</a></b>(p_userID, p_role)
+								</div>
+								<div class="description">When called by an owner, <code>setUserRole()</code> sets the role of the specified user with respect to this BatonObject.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>BatonObject</b>()
+				</div>
+				
+				<div class="description">
+					
+					
+				</div>
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+					
+
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name="batonNodeName"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>batonNodeName</b>
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="grabbable"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>grabbable</b>
+					
+					</div>
+					<div class="description">
+						Whether or not to allow users with a publisher role to grab an available resource in BatonObject.When false, the resources in BatonObject can only be handed off by users with an owner role.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="amIHolding"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>amIHolding</b>(p_propertyName)
+					
+					</div>
+					<div class="description">
+						Determines whether the current user is holding a resource in the BatonObject.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_propertyName</b>
+									
+								</dt>
+								<dd>The id of the property</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="canIAdminister"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>canIAdminister</b>()
+					
+					</div>
+					<div class="description">
+						Determines whether the current user has permission to administer the BatonObject by taking it from someone or forcing them to put it down.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="canIGrab"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>canIGrab</b>()
+					
+					</div>
+					<div class="description">
+						Determines whether the current user has permission to grab the BatonObject when available. It just determines if you are allowed to grab any property inside the BatonObject.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="canUserAdminister"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>canUserAdminister</b>(p_userID)
+					
+					</div>
+					<div class="description">
+						Determines whether a specified user can administer the BatonObject from others.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The <code>userID</code> of the user to check if they have</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="canUserGrab"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>canUserGrab</b>(p_userID)
+					
+					</div>
+					<div class="description">
+						Determines whether a specified user can grab the BatonObject if it's available.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The <code>userID</code> of the user to check if they can grab the BatonObject.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="close"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>close</b>()
+					
+					</div>
+					<div class="description">
+						Cleans up all networking and event handling; recommended for garbage collection.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="extendTimer"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>extendTimer</b>(p_propertyName)
+					
+					</div>
+					<div class="description">
+						Extends the timeout if the BatonObject has one.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_propertyName</b>
+									
+								</dt>
+								<dd>The id of the property</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getAccessModel"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getAccessModel</b>()
+					
+					</div>
+					<div class="description">
+						Get the role value which is required for seeing the BatonObject
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getHolderID"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getHolderID</b>(p_propertyName)
+					
+					</div>
+					<div class="description">
+						Specifies the <code>userID</code> of the person controlling the the resource in the BatonObject. Returns null if no one has the BatonObject. For example, this function might be used to create a "controlled by XXX" tooltip for your component.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_propertyName</b>
+									
+								</dt>
+								<dd>The id of the property</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getPublishModel"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getPublishModel</b>()
+					
+					</div>
+					<div class="description">
+						Get the role Value required to grab the BatonObject
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getTimeOut"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getTimeOut</b>(p_propertyName)
+					
+					</div>
+					<div class="description">
+						Number of seconds after which the BatonObject times out
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_propertyName</b>
+									
+								</dt>
+								<dd>The id of the property. If null would return the defualt timeout value</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getUserRole"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getUserRole</b>(p_userID)
+					
+					</div>
+					<div class="description">
+						Get the role of a given user for the BatonObject.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="giveTo"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>giveTo</b>(p_userID, p_propertyName)
+					
+					</div>
+					<div class="description">
+						If the BatonObject is grabbable, the holding user can hand the BatonObject's resource to a specified user. A user with an owner role can give a BatonObject resource to anyone with the required permissions at any time.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The <code>userID</code> of the user to allow to grab the BatonObject.</dd>
+							
+								<dt>
+									<b>p_propertyName</b>
+									
+								</dt>
+								<dd>The id of the property</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="grab"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>grab</b>(p_propertyName)
+					
+					</div>
+					<div class="description">
+						If grabbable, users with a publisher role can grab the control if it's available by using this method. Users with an owner role may grab a resource in the BatonObject at any time.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_propertyName</b>
+									
+								</dt>
+								<dd>The id of the property</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="isAvailable"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>isAvailable</b>(p_propertyName)
+					
+					</div>
+					<div class="description">
+						Determines whether the resource in the BatonObject is up for grabs because it has no current holder.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_propertyName</b>
+									
+								</dt>
+								<dd>The id of the property</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="putDown"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>putDown</b>(p_propertyName)
+					
+					</div>
+					<div class="description">
+						Users with an publisher role in control can use this method to release their control. Users with an owner role  can use this method to remove the BatonObject resource from a user who has it.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_propertyName</b>
+									
+								</dt>
+								<dd>The id of the property</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeAll"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>removeAll</b>()
+					
+					</div>
+					<div class="description">
+						Calls the <code>removeProperty</code> for all the properties in the BatonObject. It would delete all the properties that areavialable or properties that you are holding.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeProperty"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>removeProperty</b>(p_propertyName)
+					
+					</div>
+					<div class="description">
+						The value of the BatonObjects property which a user can only delete it if the user is in control of it.<p>If the BatonObject is not yet synchrnonized, the value will be cached and deleted when the BatonProperty is back in sync.<p>If the BatonObjects property is available, deleting the value will also try to grab control of the property before deleting the value and then release the control as well.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_propertyName</b>
+									
+								</dt>
+								<dd>The key of the Property that needs to be retracted from the BatonObject.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setAccessModel"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setAccessModel</b>(p_accessModel)
+					
+					</div>
+					<div class="description">
+						Set the role value which is required for seeing the BatonObject
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_accessModel</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setProperty"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setProperty</b>(p_propertyName, p_value)
+					
+					</div>
+					<div class="description">
+						The value of the BatonObjects property which a user can only set it if the user is in control of it.<p>If the BatonObject is not yet synchrnonized, the value will be cached and sent when the BatonProperty is back in sync.<p>If the BatonObjects property is available, setting the value will also try to grab control of the property before setting the value.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_propertyName</b>
+									
+								</dt>
+								<dd>The key of the Property being added</dd>
+							
+								<dt>
+									<b>p_value</b>
+									
+								</dt>
+								<dd>The value of the property, defaults to null</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setPublishModel"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setPublishModel</b>(p_publishModel)
+					
+					</div>
+					<div class="description">
+						Set the role Value required to grab the BatonObject
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_publishModel</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setTimeOut"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setTimeOut</b>(p_timeOut, p_propertyName)
+					
+					</div>
+					<div class="description">
+						Number of seconds after which the BatonObject times outIf 0, no timeout is used.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_timeOut</b>
+									
+								</dt>
+								<dd>Number of seconds until the resources in the BatonObject is released</dd>
+							
+								<dt>
+									<b>p_propertyName</b>
+									
+								</dt>
+								<dd>The id of the property, If null would set the p_timeOut value to all the properties</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setUserRole"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setUserRole</b>(p_userID, p_role)
+					
+					</div>
+					<div class="description">
+						When called by an owner, <code>setUserRole()</code> sets the role of the specified user with respect to this BatonObject. The following rules apply: <ul><li>Setting the role to <code>UserRoles.PUBLISHER</code> allows the user to grab the resources in the BatonObject. </li><li>Setting the role to <code>UserRoles.OWNER</code> allows the user to administer the resources in the BatonObject.</li> <li>Setting to <code>UserRoles.VIEWER</code> will allow neither.</li></ul>
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The <code>userID</code> of the user to set the role for.</dd>
+							
+								<dt>
+									<b>p_role</b>
+									
+								</dt>
+								<dd>The new role for that user.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a><br/>
+			2008-2011 Adobe Systems Incorporated. All rights reserved.
+		</div>
+	</body>
+</html>

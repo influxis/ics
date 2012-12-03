@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute" 
+	width="1000" 
+	height="500"
+	xmlns:rtc="http://ns.adobe.com/rtc" >
+	
+	<mx:Script>
+		<![CDATA[
+			/*****
+			 * This example shows how to use the LocalConnectionServer when developing LCCS 
+			 * applications offline. Most LCCS components work with LocalConnectionServer except 
+			 * for streaming components (i.e. Audio and Webcam components). The application does
+			 * not require a password. All users enter the room as host, though the LocalConnectionServer 
+			 * does support roles and role change functions.
+			 * This example adds a chat, note, whiteboard and roster component. 
+			 * 
+			 * Replace AdobeHSAuthenticator with LocalAuthenticator to run applications with the LocalConnectionServer.
+			 * 
+			 * Run the LocalConnectionServer.air before running the client application.
+			 * Failure to run the server AIR application first results in connection errors. (if you have these errors 
+			 * verify you are doing the 4 steps below:
+			 *	1. Launch the "LCCS SDK Navigator"
+			 *	2. Click "Developer Tools" 
+			 *	3. Click the "Local Server" button.
+		  	 *	4. Now launch the SampleApp! :)
+			 ******/
+			 
+			  /**********************************************************
+			   * ADOBE SYSTEMS INCORPORATED
+			   * Copyright [2007-2011] Adobe Systems Incorporated
+			   * All Rights Reserved.
+			   * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			   * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			   * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			   * written permission of Adobe.
+		       ***********************************/
+		]]>
+	</mx:Script>
+	<rtc:LocalAuthenticator id="auth" userName="AnyArbitraryUsername" />
+	<rtc:ConnectSessionContainer id="cSession" authenticator="{auth}" roomURL="http://localhost/account/AnyArbitraryRoom" width="100%" height="100%" >
+		<mx:HBox width="100%" height="100%">
+			<mx:VBox width="100%" height="100%" >
+				<rtc:Note width="100%" height="100%" />
+				<rtc:SimpleChat width="100%" height="100%" />
+			</mx:VBox>
+			<rtc:SharedWhiteBoard width="100%" height="100%" />
+			<rtc:Roster id="userList" width="100%" height="100%" showMenuButtons="false" displaySelection="true" />
+		</mx:HBox>
+	</rtc:ConnectSessionContainer>
+	
+</mx:Application>

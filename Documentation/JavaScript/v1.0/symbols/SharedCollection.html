@@ -1,0 +1,772 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>LCCS JavaScript Reference - SharedCollection</title>
+
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+	width: 800px;
+}
+
+.header
+{
+	clear: both;
+	background-color: #ccc;
+	padding: 8px;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+	margin: 1em 0 0 .3em;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #7F8FB1;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	background-color: #F3F3F3;
+	padding: 8px;
+}
+
+#content
+{
+	margin-left: 190px;
+	width: 600px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #7F8FB1;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #7F8FB1 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #7F8FB1 solid;
+	border-right: 1px #7F8FB1 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #7F8FB1 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #002EBE;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px; 
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	text-align: right;
+	font-size: 10px;
+}
+		</style>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2>Classes</h2>
+<ul class="classList">
+	
+	<li><i><a href="../symbols/_global_.html">_global_</a></i></li>
+	
+	<li><a href="../symbols/Baton.html">Baton</a></li>
+	
+	<li><a href="../symbols/BatonObject.html">BatonObject</a></li>
+	
+	<li><a href="../symbols/BatonProperty.html">BatonProperty</a></li>
+	
+	<li><a href="../symbols/CollectionNode.html">CollectionNode</a></li>
+	
+	<li><a href="../symbols/ConnectSession.html">ConnectSession</a></li>
+	
+	<li><a href="../symbols/EventDispatcher.html">EventDispatcher</a></li>
+	
+	<li><a href="../symbols/SharedCollection.html">SharedCollection</a></li>
+	
+	<li><a href="../symbols/SharedCursorPane.html">SharedCursorPane</a></li>
+	
+	<li><a href="../symbols/SharedObject.html">SharedObject</a></li>
+	
+	<li><a href="../symbols/SharedProperty.html">SharedProperty</a></li>
+	
+	<li><a href="../symbols/SimpleChatModel.html">SimpleChatModel</a></li>
+	
+	<li><a href="../symbols/Tween.html">Tween</a></li>
+	
+	<li><a href="../symbols/UserManager.html">UserManager</a></li>
+	
+</ul>
+<hr />
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Class SharedCollection
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				
+			
+				SharedCollection is a simple ArrayCollection which is shared across the LCCS services. Useful for sharing the contentsof a List or Datagrid (or any other component with a dataProvider), it supports the general addItem, setItemAt, removeItemAt,and removeAll methods for updating the collection. Any changes through these APIs are shared with other users subscribed to the collection. Note, however, that changing a collection's object properties without calling setItemAt to update them resultsin those properties not being shared.<p>The collection does not share sort order: Any sorting desired should be performed on each respective client. As such,addItemAt isn't supported, although addItem is. The collection makes update decisions on items based on a unique ID.Items added to the collection should either implement the IUID interface or provide a field which is guaranteed to be unique for this collection. The SharedCollection exposes an <code>idField</code> property to specify which field to use as unique ID; in the case the items do not implement IUID.<p>The SharedCollection exposes the ability to set NodeConfiguration options for the node upon which the items are sent. In this waythe collection can have its access and publish rights assigned as well as the other settings allowed by NodeConfiguration.Note that this component supports "piggybacking" on existing CollectionNodes through its <code>collectionNode</code> propertyand its subscribe method. Developers can avoid CollectionNode proliferation in their applications by pre-supplying a CollectionNode to the <code>collectionNode</code> property and a <code>nodeName</code> (in the subscribe method) for the SharedCollection to use. If none is supplied, the SharedCollection will create its own collectionNode named for the <code>uniqueID</code> supplied in subscribe()for sending and receiving messages.<table><tr><th><b>Event</b></th><th><b>Summary</b></th></tr><tr><td valign="top"><code>collectionChange </code></td> <td> Dispatched when the Collection has been updated in some way.</td></tr><tr><td valign="top"><code>reconnect</code></td> <td> The type of event emitted when the CollectionNode is about to reconnect to the server.</td></tr><tr><td valign="top"><code>synchronizationChange</code></td> <td> Dispatched when the SharedCollection goes in and out of sync with the service.</td></tr></table>
+				
+				
+					<br /><i>Defined in: </i> <a href="../symbols/src/E__flashfarm_main_connect_build_JavaScript_tools_jsdoc-toolkit_LCCS_JS_Bridge.js.html">LCCS_JS_Bridge.js</a>.
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class SharedCollection.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/SharedCollection.html#constructor">SharedCollection</a></b>()
+							</div>
+							<div class="description"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class SharedCollection.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/SharedCollection.html#connectSession">connectSession</a></b>
+								</div>
+								<div class="description">The ConnectSession with which this component is associated.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/SharedCollection.html#sharedArray">sharedArray</a></b>
+								</div>
+								<div class="description">If each item doesn't implement IUID, specifies a field within the item to use as a unique ID.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class SharedCollection.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedCollection.html#addItem">addItem</a></b>(p_item)
+								</div>
+								<div class="description">Adds the specified item to the end of the list.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedCollection.html#close">close</a></b>()
+								</div>
+								<div class="description">Disposes all listeners to the network and framework classes.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedCollection.html#isSynchronized">isSynchronized</a></b>()
+								</div>
+								<div class="description">Returns whether or not the sharedCollection has retrieved any information previously stored on the service, and is currently connected to the service.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedCollection.html#removeAll">removeAll</a></b>()
+								</div>
+								<div class="description">Removes all items in the collection.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedCollection.html#removeItemAt">removeItemAt</a></b>(p_index)
+								</div>
+								<div class="description">Removes the item at the specified index.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedCollection.html#setItemAt">setItemAt</a></b>(The, The)
+								</div>
+								<div class="description">Replaces the item at the specified index.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedCollection.html#setNodeConfiguration">setNodeConfiguration</a></b>(p_nodeConfig)
+								</div>
+								<div class="description">Sets the node configuration.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedCollection.html#subscribe">subscribe</a></b>()
+								</div>
+								<div class="description">Tells the component to begin synchronizing with the service.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>SharedCollection</b>()
+				</div>
+				
+				<div class="description">
+					
+					
+				</div>
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+					
+
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name="connectSession"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>connectSession</b>
+					
+					</div>
+					<div class="description">
+						The ConnectSession with which this component is associated. Note that this may only be set once before <code>subscribe</code>is called; re-sessioning of components is not supported.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="sharedArray"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>sharedArray</b>
+					
+					</div>
+					<div class="description">
+						If each item doesn't implement IUID, specifies a field within the item to use as a unique ID.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="addItem"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>addItem</b>(p_item)
+					
+					</div>
+					<div class="description">
+						Adds the specified item to the end of the list.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_item</b>
+									
+								</dt>
+								<dd>The item to add.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="close"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>close</b>()
+					
+					</div>
+					<div class="description">
+						Disposes all listeners to the network and framework classes. Recommended for proper garbage collection of the component.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="isSynchronized"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>isSynchronized</b>()
+					
+					</div>
+					<div class="description">
+						Returns whether or not the sharedCollection has retrieved any information previously stored on the service, and is currently connected to the service.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeAll"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>removeAll</b>()
+					
+					</div>
+					<div class="description">
+						Removes all items in the collection.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeItemAt"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>removeItemAt</b>(p_index)
+					
+					</div>
+					<div class="description">
+						Removes the item at the specified index.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_index</b>
+									
+								</dt>
+								<dd>The index of the item to remove. Note that this index is local-only; on remote collections, it's the unique ID of the item which is used to locate and remove the item.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>The item preivously at this location.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="setItemAt"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setItemAt</b>(The, The)
+					
+					</div>
+					<div class="description">
+						Replaces the item at the specified index.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>The</b>
+									
+								</dt>
+								<dd>new item to set.</dd>
+							
+								<dt>
+									<b>The</b>
+									
+								</dt>
+								<dd>index of the item to replace. Note that this index is local-only; on remote collections, it's the unique IDof the item which is used to locate and replace the item.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>The item previously at this location.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="setNodeConfiguration"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setNodeConfiguration</b>(p_nodeConfig)
+					
+					</div>
+					<div class="description">
+						Sets the node configuration.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_nodeConfig</b>
+									
+								</dt>
+								<dd>The node configuration..</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="subscribe"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>subscribe</b>()
+					
+					</div>
+					<div class="description">
+						Tells the component to begin synchronizing with the service.  For "headless" components such as this one, this method must be called explicitly.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a><br/>
+			2008-2011 Adobe Systems Incorporated. All rights reserved.
+		</div>
+	</body>
+</html>

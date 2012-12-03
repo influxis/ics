@@ -1,0 +1,25 @@
+<h1>Listing accounts</h1>
+
+<table border="1">
+  <tr>
+    <th>Username</th>
+    <th>Account Name</th>
+    <th>Roomurl</th>
+  </tr>
+
+<% @accounts.each do |account| %>
+  <tr>
+    <td><%=h account.username %></td>
+    <td><%=h account.accountname %></td>
+    <td><%=h account.roomURL %></td>
+    <td><%= link_to 'Show', account %></td>
+    <td><%= link_to 'Edit', edit_account_path(account) %></td>
+    <td><%= link_to 'Destroy', account, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New account', new_account_path %> |
+<%= link_to "logout",:controller => "account", :action => "logout" %>

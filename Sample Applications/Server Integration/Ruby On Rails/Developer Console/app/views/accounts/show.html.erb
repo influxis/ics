@@ -1,0 +1,20 @@
+<p>
+  <b>Username:</b>
+  <%=h @account.username %>
+</p>
+
+<p>
+  <b>Account Name:</b>
+  <%=h @account.accountname %>
+</p>
+
+<p>
+  <b>Roomurl:</b>
+  <%=h @account.roomURL %>
+</p>
+
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %> |
+<%= link_to 'accountManager', :controller=>'account', :action => 'accountManager' %>
+<%= link_to "logout",:controller => "account", :action => "logout" %>

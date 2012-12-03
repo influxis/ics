@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute" 
+	xmlns:rtc="http://ns.adobe.com/rtc"
+	creationComplete="init()"  
+	xmlns:ns2="*" 
+	backgroundGradientColors="[#31317C, #0A0A1A]" 
+	backgroundGradientAlphas="[1,1]">
+	
+	<mx:states>
+		<mx:State name="LoggedIn">
+			<mx:AddChild position="lastChild">
+				<mx:Panel width="197" layout="vertical" top="20" x="10" height="250" title="Users" backgroundColor="#000000">
+					<mx:List width="100%" id="_roster" labelField="displayName" dataProvider="{cSession.userManager.userCollection}" height="100%" alternatingItemColors="[#cacaca, #eaeaea]" fontWeight="bold" borderColor="#000000"/>
+				</mx:Panel>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Panel x="10" y="577" width="1004" height="182" layout="absolute" title="WebCams" backgroundColor="#dadada">
+					<rtc:WebCamera x="0" y="0" width="100%" height="100%" showMenu="false"/>
+				</mx:Panel>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Panel x="10" y="277" width="197" height="292" layout="absolute" title="Chat" backgroundColor="#CDC7C7">
+					<rtc:SimpleChat id="chat" x="0" y="0" width="100%" height="100%"/>
+				</mx:Panel>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Panel title="Shared Map" id="mapPanel" x="215" y="20" width="799" height="550" layout="absolute" backgroundColor="#000000"/>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	<!--
+		We want all guest users to have publish rights, so we auto-promote them.
+		Also not that the Authenticator has no details, they're supplied by the login dialog
+		Lastly, we'll wait for the synchronizationChange event on ConnectSession, which will fire when login is done and the user is fully in the room
+	-->
+	<rtc:RoomSettings autoPromote="true" id="settings"/>
+	<rtc:AdobeHSAuthenticator id="auth"/>
+	<rtc:ConnectSessionContainer id="cSession" initialRoomSettings="{settings}" autoLogin="false" authenticator="{auth}" roomURL="{ROOM_URL}" synchronizationChange="initAfcs()"/>
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Button;
+			import com.adobe.rtc.events.CollectionNodeEvent;
+			import mx.events.CollectionEventKind;
+			import mx.events.CollectionEvent;
+			import com.yahoo.maps.api.markers.SimpleMarker;
+			import com.yahoo.maps.webservices.geocoder.events.GeocoderEvent;
+			import com.yahoo.maps.api.core.location.Address;
+			import com.yahoo.maps.api.YahooMapEvent;
+			import com.yahoo.maps.api.core.location.LatLon;
+			import com.yahoo.maps.api.MapTypes;
+			import com.yahoo.maps.api.YahooMap;
+			import com.adobe.rtc.collaboration.SharedCursorPane;
+			import com.adobe.rtc.pods.SharedWhiteBoard;
+			import mx.managers.PopUpManager;
+			import mx.events.SliderEvent;
+			import mx.core.UIComponent;
+			
+			protected var _compy:UIComponent;
+			protected var _loginDialog:LoginDialog;
+			protected var _mapDialog:MapDialog;
+			protected var _wB:SharedWhiteBoard;
+			protected var _sharedMapModel:SharedYahooMapsModel;
+			protected var _sharedCursors:SharedCursorPane;
+			protected var _yahooMap:YahooMap;
+			protected var _mapReady:Boolean = false;
+			protected var _dragTimer:Timer;
+			protected var _markers:Object = new Object();
+
+			// Add your own details here.			
+			protected static const ROOM_URL:String = "Your RoomUrl";
+			protected static const YAHOO_DEV_KEY:String = "Developer key from Yahoo";
+			
+			/*******
+			 * Fires on Application.creationComplete. Basic setup of the login dialog.
+			 ******/
+			protected function init():void
+			{
+				// I like it to be draggable, so you gotta use PopUpManager for that
+				_loginDialog = new LoginDialog();
+				PopUpManager.addPopUp(_loginDialog, this, true);
+				PopUpManager.centerPopUp(_loginDialog);
+				_loginDialog.addEventListener("loginEnter", onLoginEnter);
+				// set up a timer for drag events... I'm working around some issues with the map API
+				// note we're not starting the timer yet
+				_dragTimer = new Timer(200, 0);
+				_dragTimer.addEventListener(TimerEvent.TIMER,onDrag);
+			}
+			
+			
+			/*******
+			 * Fires once the user enters a userName in the login dialog. Starts the session login.
+			 ******/
+			protected function onLoginEnter(p_evt:Event):void
+			{
+				// this is bound into the connectSession
+				auth.userName = _loginDialog.userName;
+				auth.password = _loginDialog.password;
+
+				_loginDialog.enabled = false;
+				cSession.login();
+			}
+			
+			/*******
+			 * Fires on ConnectSession.synchronizationChange. Change the state to logged in, set up the map, and its Shared Model.
+			 ******/
+			protected function initAfcs():void
+			{
+				// make sure we're becoming synched, not losing synch. 
+				if (cSession.isSynchronized) {
+
+					PopUpManager.removePopUp(_loginDialog);
+					currentState = "LoggedIn";
+	
+					// the yahooMap component is a bit funky and requires a constructor. 
+					//It also doesn't implement IUIComponent, so
+					// we need to stuff it in a UIComponent in order to have it go in our panel.	
+					_compy = new UIComponent();
+					_yahooMap = new YahooMap();
+					_yahooMap.init(YAHOO_DEV_KEY, mapPanel.width-mapPanel.viewMetrics.left-mapPanel.viewMetrics.right,
+									mapPanel.height-mapPanel.viewMetrics.top-mapPanel.viewMetrics.bottom);
+					_compy.addChild(_yahooMap);
+					mapPanel.addChild(_compy);
+					// also, some methods of YahooMap RTE if you call them before the map is ready... (!?)
+					_yahooMap.addEventListener(YahooMapEvent.MAP_INITIALIZE, onMapReady);
+
+					// build the little dialog for zooming, changing mode, and address search	
+					_mapDialog = new MapDialog();
+					PopUpManager.addPopUp(_mapDialog, this, false);
+					_mapDialog.move(455, 450);
+					_mapDialog.addEventListener("zoomChange", onUserZoom);
+					_mapDialog.addEventListener("modeChange", onUserModeChange);
+					_mapDialog.addEventListener("addressSubmit", onAddressSubmit);
+					_mapDialog.zoom = 20-2;
+					
+					// create a shared model for the Yahoo maps. See the class for its docs, but it's pretty straightforward
+					_sharedMapModel = new SharedYahooMapsModel();
+					_sharedMapModel.subscribe("sharedMap");
+					_sharedMapModel.addEventListener("latLonChange", onPositionChange);
+					_sharedMapModel.addEventListener("zoomChange", onZoomModelChange);
+					_sharedMapModel.addEventListener("modeChange", onModeModelChange);
+					_sharedMapModel.addEventListener("batonChange", onBatonChange);
+					// wait until the set of marker data is fully ready before we add the markers to the map
+					_sharedMapModel.markerCollection.addEventListener(CollectionNodeEvent.SYNCHRONIZATION_CHANGE, onMarkersSynched);
+
+					// super secret feature - if you're a host, we let you clear all the markers
+					if (cSession.userManager.canUserConfigure(cSession.userManager.myUserID)) {
+						var clearButton:Button = new Button();
+						mapPanel.addChild(clearButton);
+						clearButton.move(mapPanel.width-150, mapPanel.height-100);
+						clearButton.label = "Clear Markers";
+						clearButton.addEventListener(MouseEvent.CLICK, onClearMarkers);
+					}
+				}
+			}
+
+			/*******
+			 * Fires when the map is good and ready. Sets the map type and listens to some map events.
+			 ******/
+			protected function onMapReady(p_evt:Event):void
+			{
+				_mapReady = true;
+				_yahooMap.mapType = MapTypes.HYBRID;
+				_yahooMap.addEventListener(YahooMapEvent.MAP_MOVE, onMove);
+				if (_sharedMapModel.markerCollection.isSynchronized) {
+					// the marker data beat the map in loading up. 
+					onMarkersSynched();
+					onModeModelChange();
+					onPositionChange();
+					onZoomModelChange();
+				}
+				
+			}
+
+
+			/*******
+			 * BEGIN LOCAL EVENTS FROM THE USER
+			 *******/
+
+			
+			/*******
+			 * Fires when the user submits an address search from the dialog. Geocodes the address and waits for results.
+			 ******/
+			protected function onAddressSubmit(p_evt:Event):void
+			{
+				var a:Address = new Address(_mapDialog.address);
+				a.addEventListener(GeocoderEvent.GEOCODER_SUCCESS, onGeocode);
+				a.geocode();
+			}
+			
+			/*******
+			 * Fires when geocoding succeeds. Gets the latitude/longitude, adds details to the shared markerCollection,
+			 * and takes everyone to the proper location.
+			 ******/
+			protected function onGeocode(p_evt:GeocoderEvent):void
+			{
+				var a:Address = p_evt.target as Address;
+				var addressLatLon:LatLon = a.geocoderResultSet.firstResult.latlon;
+				var myUID:String = cSession.userManager.myUserID;
+				// note that here I just made a simple object format for marker details
+				var newMarkerItem:Object = {userName:cSession.userManager.getUserDescriptor(myUID).displayName, userID:myUID,
+															address:a.address, lat:addressLatLon.lat, lon:addressLatLon.lon};
+				// first, let's see if I've already submitted a marker. If so, let's replace the old one.
+				var updatedOldItem:Boolean = false;
+				var l:int = _sharedMapModel.markerCollection.length;
+				for (var i:int=0; i<l; i++) {
+					if (_sharedMapModel.markerCollection.getItemAt(i).userID==myUID) {
+						_sharedMapModel.markerCollection.setItemAt(newMarkerItem, i);
+						updatedOldItem = true;
+						break;
+					}
+				}
+				if (!updatedOldItem) {
+					// I hadn't submitted one already. Add a new one.
+					_sharedMapModel.markerCollection.addItem(newMarkerItem);
+				}
+				// tell everyone where to go
+				_sharedMapModel.latLon = addressLatLon;
+				// take me there immediately
+				_yahooMap.centerLatLon = addressLatLon;
+
+			}
+			
+			/*******
+			 * Fires when a marker is added, modded, or removed from the _shareMapModel.markerCollection
+			 ******/
+			protected function onMarkerChange(p_evt:CollectionEvent):void
+			{
+				var marker:SharedMarker;
+				var markerItem:Object;
+				if (p_evt.kind == CollectionEventKind.ADD) {
+					// it's a new marker, fill it with details and add it to the map
+					var newMarkerItem:Object = p_evt.items[0];
+					marker = new SharedMarker();
+					marker.latlon = new LatLon(newMarkerItem.lat, newMarkerItem.lon);
+					marker.userName = newMarkerItem.userName;
+					marker.addressString = newMarkerItem.address;
+					_yahooMap.markerManager.addMarker(marker);
+					// book-keep all markers, one per userID (which is a detail we store in each item of the collection)
+					_markers[newMarkerItem.userID] = marker;
+
+				} else if (p_evt.kind == CollectionEventKind.REMOVE) {
+					// we've removed a marker from the collection. Kill it!
+					markerItem = p_evt.items[0];
+					if (markerItem!=null) {
+						// this is why we book-keep the markers, so I can get a reference to the marker instance to remove it
+						marker = _markers[markerItem.userID] as SharedMarker;
+						_yahooMap.markerManager.removeMarker(marker);
+						delete _markers[markerItem.userID];
+					}					
+				} else {
+					// we've edited a marker in the collection. Kill the old, add the new!
+					markerItem = p_evt.items[0].source;
+					if (markerItem!=null) {
+						// kill the old
+						marker = _markers[markerItem.userID] as SharedMarker;
+						_yahooMap.markerManager.removeMarker(marker);
+						delete _markers[markerItem.userID];
+						// add the new
+						marker = new SharedMarker();
+						marker.latlon = new LatLon(markerItem.lat, markerItem.lon);
+						marker.userName = markerItem.userName;
+						marker.addressString = markerItem.address;
+						_yahooMap.markerManager.addMarker(marker);
+						_markers[markerItem.userID] = marker;
+					}					
+				}
+			}
+			
+			/*******
+			 * Fires when the complete set of markers has first been synched up. Since there may be a backlog of marker items in the collection,
+			 * stored in the service's persistence repository before we entered the room, we need to add all these to the map.
+			 ******/
+			protected function onMarkersSynched(p_evt:CollectionNodeEvent=null):void
+			{
+				if (!_mapReady) {
+					// sometimes (too often) the marker data loads faster than the map. Map is grouchy before it's ready. 
+					return;
+				}
+				// make sure the collection just became synchronized, not un-synchronized
+				if (_sharedMapModel.markerCollection.isSynchronized) {
+					// start listening to any updates to the collection
+					_sharedMapModel.markerCollection.addEventListener(CollectionEvent.COLLECTION_CHANGE, onMarkerChange);
+					// loop through the collection, add all the markers to the map.
+					var l:int = _sharedMapModel.markerCollection.length;
+					for (var i:int=0; i<l; i++) {
+						var markerItem:Object = _sharedMapModel.markerCollection.getItemAt(i);
+						var marker:SharedMarker = new SharedMarker();
+						marker.latlon = new LatLon(markerItem.lat, markerItem.lon);
+						marker.userName = markerItem.userName;
+						marker.addressString = markerItem.address;
+						_yahooMap.markerManager.addMarker(marker);
+						_markers[markerItem.userID] = marker;
+					}
+				}
+			}
+			
+			/*******
+			 * Fires when the OWNER uses the super-secret button to clear all markers. Easy enough, remove all items from the collection.
+			 *******/
+			protected function onClearMarkers(p_evt:Event):void
+			{
+				_sharedMapModel.markerCollection.removeAll();
+			}
+			
+			/*******
+			 * Fires when the map moves (either from the shared model or the user), we move any marker bubbles floating around
+			 *******/
+			protected function onMove(p_evt:Event):void
+			{
+				SharedMarker.moveBubbles();
+			}
+			
+
+			/*******
+			 * Fires when the user toggles the dialog from navigation to annotation or vice-versa. Update the sharedModel.
+			 *******/
+			protected function onUserModeChange(p_evt:Event):void
+			{
+				_sharedMapModel.mode = _mapDialog.mode;
+			}
+
+			/*******
+			 * Fires when the user uses the zoom slider on the dialog. Update the sharedModel with the new zoom.
+			 *******/
+			protected function onUserZoom(p_evt:Event):void
+			{
+				// YahooMaps is zoomed in at 1, zoomed out at 20. Confusing.
+				_sharedMapModel.zoom = 20-_mapDialog.zoom;
+			}
+			
+			/*******
+			 * Fires when the user drags the map. Update the shared model with the new coordinates.
+			 *******/
+			protected function onDrag(p_evt:Event):void
+			{
+				_dragTimer.reset();
+				_dragTimer.start();
+				_sharedMapModel.latLon = _yahooMap.centerLatLon;
+			}
+			
+			/*******
+			 * Fires when the user stops dragging the map. Update the shared model with the new coordinates, stop polling for drag.
+			 *******/
+			protected function onDragStop(p_evt:Event):void
+			{
+				_dragTimer.stop();
+				_sharedMapModel.latLon = _yahooMap.centerLatLon;
+			}
+
+			/*******
+			 * BEGIN REMOTE EVENTS FROM THE SHARED MODEL
+			 *******/
+
+			
+			/*******
+			 * Fired when the shared model's lat/lon changes. Update the map (easy huh?)!
+			 *******/
+			protected function onPositionChange(p_evt:Event=null):void
+			{
+				if ( _sharedMapModel.latLon ) {
+					_yahooMap.centerLatLon = _sharedMapModel.latLon;
+				}
+			}
+			
+			/*******
+			 * Fired when the shared model's zoom changes. Update the map (easy huh?)!
+			 *******/
+			protected function onZoomModelChange(p_evt:Event=null):void
+			{
+				if (!_mapReady) {
+					return;
+				}
+				_yahooMap.zoomLevel = _sharedMapModel.zoom;
+				// update the dialog slider
+				_mapDialog.zoom = 20-_sharedMapModel.zoom;
+				// reposition any existing marker bubbles
+				SharedMarker.moveBubbles();
+			}
+			
+			/*******
+			 * Fired when the shared model's mode changes (navigation/annotation). Add or remove the whiteboard.
+			 *******/
+			protected function onModeModelChange(p_evt:Event=null):void
+			{
+				// toggle the dialog UI
+				_mapDialog.mode = _sharedMapModel.mode;
+				if (_sharedMapModel.mode==MapDialog.MODE_ANNOTATION) {
+					// we're in annotation mode -- don't listen to any dragging
+					_yahooMap.removeEventListener(MouseEvent.MOUSE_DOWN, onDrag);
+					_yahooMap.removeEventListener(YahooMapEvent.MAP_DRAG_STOP, onDragStop);
+					_yahooMap.removeEventListener(YahooMapEvent.MAP_DOUBLE_CLICK, onDragStop);
+					// the whiteboard has its own shared cursors, so turn ours off
+					if (_sharedCursors) {
+						_sharedCursors.close();
+						removeChild(_sharedCursors);
+					}
+					
+					// add our whiteboard, stretch it over the map surface. Easy!
+					_wB = new SharedWhiteBoard();
+					_wB.id = "wb";
+					addChild(_wB);
+					_wB.setStyle("backgroundAlpha", 0);
+					_wB.width = mapPanel.width;
+					_wB.height = mapPanel.height;
+					_wB.move(mapPanel.x, mapPanel.y);
+					
+				} else {
+					
+					// we're in navigation mode. Add our own shared cursors pane and stretch it over the map surface
+					_sharedCursors = new SharedCursorPane();
+					_sharedCursors.id = "mapCursors";
+					addChild(_sharedCursors);
+					_sharedCursors.width = mapPanel.width;
+					_sharedCursors.height = mapPanel.height;
+					_sharedCursors.x = mapPanel.x;
+					_sharedCursors.y = mapPanel.y;
+					
+					// start listening to map events
+					_yahooMap.addPanControl();
+					_yahooMap.addEventListener(YahooMapEvent.MAP_DRAG_STOP, onDragStop);
+					_yahooMap.addEventListener(MouseEvent.MOUSE_DOWN, onDrag);
+					_yahooMap.addEventListener(YahooMapEvent.MAP_DOUBLE_CLICK, onDragStop);
+					if (_wB) {
+						// if there's a whiteBoard, clear it and remove it.
+						_wB.model.removeAllShapes();
+						_wB.close();
+						removeChild(_wB);
+					}
+				}
+			}
+			
+			/*******
+			 * Fired when the shared model's baton holder changes. Enable or disable the map depending on whether I've got control.
+			 *******/
+			protected function onBatonChange(p_evt:Event):void
+			{
+				if (_sharedMapModel.controllingUser==cSession.userManager.myUserID || _sharedMapModel.controllingUser==null) {
+					// if either I got control or no one has control, enable me to use the map and dialog.
+					_mapDialog.enabled = true;
+					_mapDialog.title = "Map Controls";
+					_yahooMap.addPanControl();
+					if (!_yahooMap.hasEventListener(MouseEvent.MOUSE_DOWN)) {
+						// make sure not to double-add events
+						_yahooMap.addEventListener(MouseEvent.MOUSE_DOWN, onDrag);
+						_yahooMap.addEventListener(YahooMapEvent.MAP_DRAG_STOP, onDragStop);
+						_yahooMap.addEventListener(YahooMapEvent.MAP_DOUBLE_CLICK, onDragStop);
+					}
+				} else {
+					// if someone else got control, disable the map and dialog.
+					_mapDialog.enabled = false;
+					_mapDialog.title = "Map Controls - " + cSession.userManager.getUserDescriptor(_sharedMapModel.controllingUser).displayName + " controlling"
+					_yahooMap.removePanControl();
+					_yahooMap.removeEventListener(MouseEvent.MOUSE_DOWN, onDrag);
+					_yahooMap.removeEventListener(YahooMapEvent.MAP_DRAG_STOP, onDragStop);
+					_yahooMap.removeEventListener(YahooMapEvent.MAP_DOUBLE_CLICK, onDragStop);
+				}
+			}
+
+		]]>
+	</mx:Script>
+</mx:Application>

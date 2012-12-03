@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>getRepositoryInfo (RTC::AccountManager)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lccs.rb, line 603</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getRepositoryInfo</span>()
+        <span class="ruby-identifier">acctid</span> = <span class="ruby-ivar">@roomInstance</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;/&quot;</span>)[<span class="ruby-value">0</span>]
+        <span class="ruby-identifier">data</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_get</span>(<span class="ruby-node">&quot;#{@baseURL}app/rtc?action=repositoryinfo&amp;account=#{acctid}&amp;#{@authToken}&quot;</span>, <span class="ruby-ivar">@authHeaders</span>)
+        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">data</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span>
+
+        <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">data</span>).<span class="ruby-identifier">root</span>
+        <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">check_status</span> <span class="ruby-identifier">response</span>
+
+        <span class="ruby-keyword kw">return</span> {
+          <span class="ruby-value str">'endpoint'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;param[@name='repositoryEndpoint']&quot;</span>].<span class="ruby-identifier">text</span>,
+          <span class="ruby-value str">'token'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;param[@name='repositoryToken']&quot;</span>].<span class="ruby-identifier">text</span>
+        }
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,1526 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<meta content="StreamManager,com.adobe.rtc.sharedManagers.StreamManager,AR_LANDSCAPE,AR_PORTRAIT,AR_STANDARD,AUDIO_STREAM,CAMERA_STREAM,COLLECTION_NAME,NODE_NAME_REMOTE_CONTROL_NOTIFICATION,REMOTE_CONTROL_CANCEL_NOTIFICATION,SCREENSHARE_STREAM,allowPrivateStreams,connectSession,isSynchronized,canUserConfigure,canUserPublish,changeSizeStream,changeVolume,createGroup,createStream,deleteStream,getGroupNames,getNodeConfiguration,getStreamDescriptor,getStreamDescriptors,getStreamsForPublisher,getStreamsOfType,getUserRole,isGroupDefined,muteStream,notifyCancelControl,pauseStream,publishStream,removeGroup,setNodeConfiguration,setUserRole" name="keywords">
+<title>com.adobe.rtc.sharedManagers.StreamManager</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'StreamManager - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?com/adobe/rtc/sharedManagers/StreamManager.html&amp;com/adobe/rtc/sharedManagers/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;StreamManager</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class StreamManager"); titleBar_setSubNav(true,true,false,false,true,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.sharedManagers</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class StreamManager</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">StreamManager <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> flash.events.EventDispatcher</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../session/ISessionSubscriber.html">ISessionSubscriber</a></td>
+</tr>
+</table>
+<p></p>
+  One of the "4 pillars" of a room, the StreamManager represents the shared model 
+  for files available for client download. It expresses a variety of methods 
+  for other components to access, modify, or publish specific audio and video streams. 
+  StreamManager uses StreamDescriptors as control metadata to represent the available 
+  streams. Streams themselves may be published, modified, and subscribed to through 
+  Audio/WebcamSubscriber and Audio/WebcamPublisher (in general those classes are an 
+  easier interface for this achieving this functionality).
+  
+  <p>The StreamManager keep Streams in "groups" representing the type of Stream (for 
+  example, Webcam, VOIP) with permissions settable on a per-group basis. By default, 
+  only users with a publisher role and higher may publish a stream and users with a 
+  viewer role and higher are able to subscribe.</p>
+  
+  <p> Most of the API's have a <code class="property">p_groupName</code> parameter that identifies the group to which
+  a set of streams belong. Each stream group has a set of four nodes associated with themselves
+  (each node identifying a type of stream like Webcam , VOIP, etc)
+  There is a default group of streams if the <code class="property">groupName</code> is null, and any new group that is 
+  created creates these set of four streams for that group. Grouping streams by a group name
+  helps identify multiple camera, voip, screenshare streams with different configurations as well 
+  as support multiple rooms where each room has a unique set of streams.
+  One user can publish only one specific stream type within a group.</p> 
+  
+  <p>Each IConnectSession handles creation/setup of its own StreamManager instance.  Use an <code>IConnectSession</code>'s
+   <code class="property">streamManager</code> property to access it.</p>
+   
+  <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">
+<a href="descriptors/StreamDescriptor.html" target="">com.adobe.rtc.sharedManagers.descriptors.StreamDescriptor</a>
+<br>
+<a href="../collaboration/AudioPublisher.html" target="">com.adobe.rtc.collaboration.AudioPublisher</a>
+<br>
+<a href="../collaboration/AudioSubscriber.html" target="">com.adobe.rtc.collaboration.AudioSubscriber</a>
+<br>
+<a href="../collaboration/WebcamPublisher.html" target="">com.adobe.rtc.collaboration.WebcamPublisher</a>
+<br>
+<a href="../collaboration/WebcamSubscriber.html" target="">com.adobe.rtc.collaboration.WebcamSubscriber</a>
+<br>
+<a href="../events/StreamEvent.html" target="">com.adobe.rtc.events.StreamEvent</a>
+<br>
+<a href="../session/IConnectSession.html" target="">com.adobe.rtc.session.IConnectSession</a>
+</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#allowPrivateStreams">allowPrivateStreams</a> : Boolean<div class="summaryTableDescription">
+    Returns whether private streaming is allowed.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#connectSession">connectSession</a> : <a href="../session/IConnectSession.html">IConnectSession</a>
+<div class="summaryTableDescription">
+   (Read Only) Specifies the IConnectSession to which this manager is assigned.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#isSynchronized">isSynchronized</a> : Boolean<div class="summaryTableDescription">[read-only]
+   Returns true if the model is synchronized.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#StreamManager()">StreamManager</a>()</div>
+<div class="summaryTableDescription">
+   Constructor.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#canUserConfigure()">canUserConfigure</a>(p_userID:String, p_streamType:String, p_groupName:String = null):Boolean</div>
+<div class="summaryTableDescription">
+   Whether or not a specified user may adjust roles or permissions for a given stream type.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#canUserPublish()">canUserPublish</a>(p_userID:String, p_streamType:String, p_groupName:String = null):Boolean</div>
+<div class="summaryTableDescription">
+   Whether or not a specified user may publish streams of a given stream type.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#changeSizeStream()">changeSizeStream</a>(p_streamType:String, p_nativeWidth:Number = 0, p_nativeHeight:Number = 0, p_streamPublisherID:String = null, p_groupName:String = null, p_recipientIDs:Array = null):void</div>
+<div class="summaryTableDescription">
+   Changes a video stream's width and height.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#changeVolume()">changeVolume</a>(p_streamType:String, p_volume:Number = 0, p_streamPublisherID:String = null, p_groupName:String = null, p_recipientIDs:Array = null):void</div>
+<div class="summaryTableDescription">
+   Changes the audio stream volume based on type, volume, and publisher ID.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#createGroup()">createGroup</a>(p_groupName:String):void</div>
+<div class="summaryTableDescription">
+   Creates a new group, and all the nodes associated with it
+   
+   </div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#createStream()">createStream</a>(p_streamDescriptor:<a href="descriptors/StreamDescriptor.html">StreamDescriptor</a>):void</div>
+<div class="summaryTableDescription">
+   Initiates a new stream of a given type from the current client or else requests 
+   another user to begin publishing.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#deleteStream()">deleteStream</a>(p_streamType:String, p_streamPublisherID:String, p_groupName:String = null):void</div>
+<div class="summaryTableDescription">
+   Deletes the <code>streamDescriptor</code> with the specified type and publisher ID and thereby indicates
+   that the associated stream will stop publishing.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getGroupNames()">getGroupNames</a>():Array</div>
+<div class="summaryTableDescription">
+   Returns all the group names.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getNodeConfiguration()">getNodeConfiguration</a>(p_streamType:String, p_groupName:String = null):<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>
+</div>
+<div class="summaryTableDescription">
+   Gets the NodeConfiguration on a specific stream node (for example Audio or Camera) within a group.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getStreamDescriptor()">getStreamDescriptor</a>(p_streamType:String, p_streamPublisherID:String, p_groupName:String = null):<a href="descriptors/StreamDescriptor.html">StreamDescriptor</a>
+</div>
+<div class="summaryTableDescription">
+   Queries a <code>streamDescriptor</code> based on its type and unique ID.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getStreamDescriptors()">getStreamDescriptors</a>(p_groupName:String = null):Array</div>
+<div class="summaryTableDescription">
+   Queries all descriptors within a any group
+   
+   </div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getStreamsForPublisher()">getStreamsForPublisher</a>(p_streamPublisherID:String, p_streamType:String = null, p_groupName:String = null):Array</div>
+<div class="summaryTableDescription">
+   Returns all streams published by the user specified.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getStreamsOfType()">getStreamsOfType</a>(p_streamType:String, p_groupName:String = null):Object</div>
+<div class="summaryTableDescription">
+   Gets all <code>streamDescriptors</code> of a particular type.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getUserRole()">getUserRole</a>(p_userID:String, p_streamType:String, p_groupName:String = null):int</div>
+<div class="summaryTableDescription">
+   Gets the role of the specified user for a particular type of stream.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isGroupDefined()">isGroupDefined</a>(p_groupName:String):Boolean</div>
+<div class="summaryTableDescription">
+   Returns true if the group is defined; otherwise, it returns false.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#muteStream()">muteStream</a>(p_streamType:String, p_state:Boolean = false, p_streamPublisherID:String = null, p_groupName:String = null, p_recipientIDs:Array = null):void</div>
+<div class="summaryTableDescription">
+   Mutes an audio stream based on type, state (muted or non muted), and publisher ID.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#notifyCancelControl()">notifyCancelControl</a>(p_streamPublisherID:String = null, p_groupName:String = null):Boolean</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#pauseStream()">pauseStream</a>(p_streamType:String, p_state:Boolean = false, p_streamPublisherID:String = null, p_groupName:String = null, p_recipientIDs:Array = null):void</div>
+<div class="summaryTableDescription">
+   Pauses a video stream based on type, state (paused or non paused), and publisher ID.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#publishStream()">publishStream</a>(p_streamType:String, p_streamPublisherID:String, p_groupName:String = null, p_recipientIDs:Array = null):void</div>
+<div class="summaryTableDescription">
+   Publishes the already created <code>streamDescriptor</code> with the given type, streampublisher ID
+   and group name, if any.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#removeGroup()">removeGroup</a>(p_groupName:String):void</div>
+<div class="summaryTableDescription">
+   Removes a group if it doesn't exist, and the nodes associated with it
+   
+   </div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setNodeConfiguration()">setNodeConfiguration</a>(p_nodeConfiguration:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>, p_streamType:String = null, p_groupName:String = null):void</div>
+<div class="summaryTableDescription">
+   Sets the node configuration on a specific stream node such as an audio or camera node 
+   within a group, or else it sets it on all nodes.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setUserRole()">setUserRole</a>(p_userID:String, p_role:int, p_streamType:String, p_groupName:String = null):void</div>
+<div class="summaryTableDescription">
+   Sets the role of the specified user for a particular type 
+   of stream.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+</table>
+</div>
+<a name="eventSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Events</div>
+<table id="summaryTableEvent" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Event</th><th>Summary</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:aspectRatioChange">aspectRatioChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the aspect ratio of a video stream changes.</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:bandwidthChange">bandwidthChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the bandwidth settings for a stream change.</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:dimensionsChange">dimensionsChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the dimensions of a video stream change.</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:myRoleChange">myRoleChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the my role with respect to a stream changes.</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:streamDelete">streamDelete</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a stream is removed from the room.</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:streamPause">streamPause</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a stream is paused or muted.</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:streamReceive">streamReceive</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the room recieves a new stream.</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:synchronizationChange">synchronizationChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the synchronization changes for the camera.</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:userRoleChange">userRoleChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the user's role with respect to a stream changes.</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:volumeChange">volumeChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the volume of an audio stream changes.</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AR_LANDSCAPE">AR_LANDSCAPE</a> : String = "landscape"<div class="summaryTableDescription">[static]
+   Constant for specifying a landscape aspect ratio on a video stream.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AR_PORTRAIT">AR_PORTRAIT</a> : String = "portrait"<div class="summaryTableDescription">[static]
+   Constant for specifying a portrait aspect ratio on a video stream.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AR_STANDARD">AR_STANDARD</a> : String = "standard"<div class="summaryTableDescription">[static]
+   Constant for specifying a standard aspect ratio on a video stream.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AUDIO_STREAM">AUDIO_STREAM</a> : String = "audio"<div class="summaryTableDescription">[static]
+   Constant for identifying Audio Streams; for example, VOIP streams from a 
+   computer microphone.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#CAMERA_STREAM">CAMERA_STREAM</a> : String = "camera"<div class="summaryTableDescription">[static]
+   Constant for identifying Camera Streams; for example, webcam streams 
+   from a computer camera.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#COLLECTION_NAME">COLLECTION_NAME</a> : String = "AVManager"<div class="summaryTableDescription">[static]
+   The name of the <code>collectionNode</code> used to represent the shared 
+   model of the StreamManager.</div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#REMOTE_CONTROL_CANCEL_NOTIFICATION">REMOTE_CONTROL_CANCEL_NOTIFICATION</a> : String = "remoteControlCancel"<div class="summaryTableDescription">[static]
+   </div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SCREENSHARE_STREAM">SCREENSHARE_STREAM</a> : String = "screenShare"<div class="summaryTableDescription">[static]
+   Constant for identifying Screen Share Streams
+   </div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+</table>
+</div>
+<a name="protectedConstantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Constants</div>
+<table id="summaryTableProtectedConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#NODE_NAME_REMOTE_CONTROL_NOTIFICATION">NODE_NAME_REMOTE_CONTROL_NOTIFICATION</a> : String = "remoteControlNotification"<div class="summaryTableDescription">
+   Node for remote control notification
+   </div>
+</td><td class="summaryTableOwnerCol">StreamManager</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="allowPrivateStreams"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">allowPrivateStreams</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>allowPrivateStreams:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+    Returns whether private streaming is allowed.
+    Currently when we set , we set for all streams( both camera and audio). Setting Permission on Stream Type Basis is not there now.
+    </p><p>The default value is <code>false</code>.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get allowPrivateStreams():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set allowPrivateStreams(value:Boolean):void</code>
+<br>
+</div>
+<a name="connectSession"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">connectSession</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>connectSession:<a href="../session/IConnectSession.html">IConnectSession</a></code>&nbsp;&nbsp;[read-write]<p>
+   (Read Only) Specifies the IConnectSession to which this manager is assigned. 
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get connectSession():<a href="../session/IConnectSession.html">IConnectSession</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set connectSession(value:<a href="../session/IConnectSession.html">IConnectSession</a>):void</code>
+<br>
+</div>
+<a name="isSynchronized"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isSynchronized</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>isSynchronized:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+   Returns true if the model is synchronized.
+   </p><p>This property can be used as the source for data binding.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get isSynchronized():Boolean</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="StreamManager()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">StreamManager</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function StreamManager()</code><p>
+   Constructor.
+   </p></div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="canUserConfigure()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">canUserConfigure</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function canUserConfigure(p_userID:String, p_streamType:String, p_groupName:String = null):Boolean</code><p>
+   Whether or not a specified user may adjust roles or permissions for a given stream type. 
+      </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The specified user's <code>userID</code>.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamType</span>:String</code> &mdash; The type of stream specified by one of StreamManager's stream type constants.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The group name for which the user has the right to configure the nodes. The default is null.
+      </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; True if the user can configure; false if not.
+   </td>
+</tr>
+</table>
+</div>
+<a name="canUserPublish()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">canUserPublish</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function canUserPublish(p_userID:String, p_streamType:String, p_groupName:String = null):Boolean</code><p>
+   Whether or not a specified user may publish streams of a given stream type.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The specified user's <code>userID</code>.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamType</span>:String</code> &mdash; The type of stream specified by one of StreamManager's stream type constants.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The group name to check to see if the user has a right to publish. The default is null.
+   
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; true if the user can publish, false if not
+   </td>
+</tr>
+</table>
+</div>
+<a name="changeSizeStream()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">changeSizeStream</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function changeSizeStream(p_streamType:String, p_nativeWidth:Number = 0, p_nativeHeight:Number = 0, p_streamPublisherID:String = null, p_groupName:String = null, p_recipientIDs:Array = null):void</code><p>
+   Changes a video stream's width and height.
+    
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamType</span>:String</code> &mdash; The stream type as specified by one of StreamManager's constants.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_nativeWidth</span>:Number</code> (default = <code>0</code>)<code></code> &mdash; The stream's native width.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_nativeHeight</span>:Number</code> (default = <code>0</code>)<code></code> &mdash; The stream's native height.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamPublisherID</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The <code>userID</code> of the stream's publisher.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The <code>groupName</code> of the stream's group.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_recipientIDs</span>:Array</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="changeVolume()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">changeVolume</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function changeVolume(p_streamType:String, p_volume:Number = 0, p_streamPublisherID:String = null, p_groupName:String = null, p_recipientIDs:Array = null):void</code><p>
+   Changes the audio stream volume based on type, volume, and publisher ID.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamType</span>:String</code> &mdash; The stream type as specified by one of StreamManager's constants.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_volume</span>:Number</code> (default = <code>0</code>)<code></code> &mdash; The streams volume on a scale of 0-100.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamPublisherID</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The <code>userID</code> of the stream's publisher.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The <code>groupName</code> of the stream's group.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_recipientIDs</span>:Array</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="createGroup()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">createGroup</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function createGroup(p_groupName:String):void</code><p>
+   Creates a new group, and all the nodes associated with it
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> &mdash; The group Name.
+    </td>
+</tr>
+</table>
+</div>
+<a name="createStream()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">createStream</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function createStream(p_streamDescriptor:<a href="descriptors/StreamDescriptor.html">StreamDescriptor</a>):void</code><p>
+   Initiates a new stream of a given type from the current client or else requests 
+   another user to begin publishing.
+    
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamDescriptor</span>:<a href="descriptors/StreamDescriptor.html">StreamDescriptor</a></code> &mdash; The stream descriptor being published. If it is null, it returns an error.
+   
+   </td>
+</tr>
+</table>
+</div>
+<a name="deleteStream()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">deleteStream</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function deleteStream(p_streamType:String, p_streamPublisherID:String, p_groupName:String = null):void</code><p>
+   Deletes the <code>streamDescriptor</code> with the specified type and publisher ID and thereby indicates
+   that the associated stream will stop publishing. A user with an owner role
+   may use this method to cancel another user's attempt to publish a stream.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamType</span>:String</code> &mdash; The <code>streamDescriptor</code>'s type.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamPublisherID</span>:String</code> &mdash; The <code>streamDescriptor</code>'s ID.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The <code>streamDescriptor</code>'s group name.
+   </td>
+</tr>
+</table>
+</div>
+<a name="getGroupNames()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getGroupNames</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getGroupNames():Array</code><p>
+   Returns all the group names.
+      </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Array</code> &mdash; An array of group names.
+    </td>
+</tr>
+</table>
+</div>
+<a name="getNodeConfiguration()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getNodeConfiguration</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getNodeConfiguration(p_streamType:String, p_groupName:String = null):<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code><p>
+   Gets the NodeConfiguration on a specific stream node (for example Audio or Camera) within a group.
+      </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamType</span>:String</code> &mdash; The type of stream for the node on which we are returning the NodeConfiguration.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The group name for the node on which we are returning the NodeConfiguration. The default is null.
+   
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code></td>
+</tr>
+</table>
+</div>
+<a name="getStreamDescriptor()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getStreamDescriptor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getStreamDescriptor(p_streamType:String, p_streamPublisherID:String, p_groupName:String = null):<a href="descriptors/StreamDescriptor.html">StreamDescriptor</a></code><p>
+   Queries a <code>streamDescriptor</code> based on its type and unique ID.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamType</span>:String</code> &mdash; The stream type as specified by one of StreamManager's constants.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamPublisherID</span>:String</code> &mdash; The PublisherID of the stream to fetch.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The <code>groupName</code> of the stream's group.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="descriptors/StreamDescriptor.html">StreamDescriptor</a></code></td>
+</tr>
+</table>
+</div>
+<a name="getStreamDescriptors()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getStreamDescriptors</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getStreamDescriptors(p_groupName:String = null):Array</code><p>
+   Queries all descriptors within a any group
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The <code>groupName</code> of the stream's group.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Array</code></td>
+</tr>
+</table>
+</div>
+<a name="getStreamsForPublisher()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getStreamsForPublisher</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getStreamsForPublisher(p_streamPublisherID:String, p_streamType:String = null, p_groupName:String = null):Array</code><p>
+   Returns all streams published by the user specified.  If a type is specified, only returns streams of that type.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamPublisherID</span>:String</code> &mdash; The userID of the desired user.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamType</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The stream type which is one of the streamManager constants.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The <code>groupName</code> of the stream's group.
+    </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Array</code></td>
+</tr>
+</table>
+</div>
+<a name="getStreamsOfType()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getStreamsOfType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getStreamsOfType(p_streamType:String, p_groupName:String = null):Object</code><p>
+   Gets all <code>streamDescriptors</code> of a particular type. These are returned as an 
+   Object table with the stream IDs as keys.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamType</span>:String</code> &mdash; The stream type which is one of the streamManager constants.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The <code>groupName</code> of the stream's group.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Object</code></td>
+</tr>
+</table>
+</div>
+<a name="getUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getUserRole(p_userID:String, p_streamType:String, p_groupName:String = null):int</code><p>
+   Gets the role of the specified user for a particular type of stream. 
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The specified user's <code>userID</code>.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamType</span>:String</code> &mdash; The type of stream specified by one of StreamManager's stream type constants.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The group name for which we are getting the user roles. The default is null
+   
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>int</code> &mdash; int which is the user role value
+   </td>
+</tr>
+</table>
+</div>
+<a name="isGroupDefined()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isGroupDefined</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function isGroupDefined(p_groupName:String):Boolean</code><p>
+   Returns true if the group is defined; otherwise, it returns false.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> &mdash; The group Name.
+      </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; true if the group exists
+    </td>
+</tr>
+</table>
+</div>
+<a name="muteStream()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">muteStream</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function muteStream(p_streamType:String, p_state:Boolean = false, p_streamPublisherID:String = null, p_groupName:String = null, p_recipientIDs:Array = null):void</code><p>
+   Mutes an audio stream based on type, state (muted or non muted), and publisher ID. 
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamType</span>:String</code> &mdash; The stream type which is one of the streamManager constants.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_state</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; The stream's state; true for muted or false for unmuted.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamPublisherID</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The <code>userID</code> of the stream's publisher.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The <code>groupName</code> of the stream's group.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_recipientIDs</span>:Array</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="notifyCancelControl()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">notifyCancelControl</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function notifyCancelControl(p_streamPublisherID:String = null, p_groupName:String = null):Boolean</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamPublisherID</span>:String</code> (default = <code>null</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="pauseStream()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">pauseStream</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function pauseStream(p_streamType:String, p_state:Boolean = false, p_streamPublisherID:String = null, p_groupName:String = null, p_recipientIDs:Array = null):void</code><p>
+   Pauses a video stream based on type, state (paused or non paused), and publisher ID. 
+      </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamType</span>:String</code> &mdash; The stream type as specified by one of StreamManager's constants.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_state</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; The stream's state; true for muted or false for unmuted.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamPublisherID</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The <code>userID</code> of the stream's publisher.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The <code>groupName</code> of the stream's group.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_recipientIDs</span>:Array</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="publishStream()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">publishStream</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function publishStream(p_streamType:String, p_streamPublisherID:String, p_groupName:String = null, p_recipientIDs:Array = null):void</code><p>
+   Publishes the already created <code>streamDescriptor</code> with the given type, streampublisher ID
+   and group name, if any.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamType</span>:String</code> &mdash; The <code>streamDescriptor</code>'s type.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamPublisherID</span>:String</code> &mdash; The <code>streamDescriptor</code>'s ID.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The <code>streamDescriptor</code>'s group name.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_recipientIDs</span>:Array</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="removeGroup()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">removeGroup</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function removeGroup(p_groupName:String):void</code><p>
+   Removes a group if it doesn't exist, and the nodes associated with it
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> &mdash; The group Name.
+    </td>
+</tr>
+</table>
+</div>
+<a name="setNodeConfiguration()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setNodeConfiguration</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setNodeConfiguration(p_nodeConfiguration:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>, p_streamType:String = null, p_groupName:String = null):void</code><p>
+   Sets the node configuration on a specific stream node such as an audio or camera node 
+   within a group, or else it sets it on all nodes.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_nodeConfiguration</span>:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code> &mdash; The NodeConfiguration you want to set on the nodes.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamType</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The type of stream specified by one of StreamManager's stream type constants. 
+   If it is null, then Nodeconfiguration is set on all stream nodes.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The group name for the node(s) to configure. The default is null.
+   
+   </td>
+</tr>
+</table>
+</div>
+<a name="setUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setUserRole(p_userID:String, p_role:int, p_streamType:String, p_groupName:String = null):void</code><p>
+   Sets the role of the specified user for a particular type 
+   of stream. Only users with an owner role may call this method.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The specified user's <code>userID</code>.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_role</span>:int</code> &mdash; The role desired.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_streamType</span>:String</code> &mdash; The type of stream specified by one of StreamManager's stream type constants.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The group name on which the user role is being set. The default is null.
+   </td>
+</tr>
+</table>
+</div>
+<div class="detailSectionHeader">Event detail</div>
+<a name="event:aspectRatioChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">aspectRatioChange</td><td class="detailHeaderType">event&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/StreamEvent.html"><code>com.adobe.rtc.events.StreamEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the aspect ratio of a video stream changes.
+  </p></div>
+<a name="event:bandwidthChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">bandwidthChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/StreamEvent.html"><code>com.adobe.rtc.events.StreamEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the bandwidth settings for a stream change.
+  </p></div>
+<a name="event:dimensionsChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">dimensionsChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/StreamEvent.html"><code>com.adobe.rtc.events.StreamEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the dimensions of a video stream change.
+  </p></div>
+<a name="event:myRoleChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">myRoleChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the my role with respect to a stream changes.
+  </p></div>
+<a name="event:streamDelete"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">streamDelete</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/StreamEvent.html"><code>com.adobe.rtc.events.StreamEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a stream is removed from the room.
+  </p></div>
+<a name="event:streamPause"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">streamPause</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/StreamEvent.html"><code>com.adobe.rtc.events.StreamEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a stream is paused or muted.
+  </p></div>
+<a name="event:streamReceive"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">streamReceive</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/StreamEvent.html"><code>com.adobe.rtc.events.StreamEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the room recieves a new stream.
+  </p></div>
+<a name="event:synchronizationChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">synchronizationChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the synchronization changes for the camera.
+  </p></div>
+<a name="event:userRoleChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">userRoleChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the user's role with respect to a stream changes.
+  </p></div>
+<a name="event:volumeChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">volumeChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/StreamEvent.html"><code>com.adobe.rtc.events.StreamEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the volume of an audio stream changes.
+  </p></div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="AR_LANDSCAPE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AR_LANDSCAPE</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const AR_LANDSCAPE:String = "landscape"</code><p>
+   Constant for specifying a landscape aspect ratio on a video stream.
+   </p></div>
+<a name="AR_PORTRAIT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AR_PORTRAIT</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const AR_PORTRAIT:String = "portrait"</code><p>
+   Constant for specifying a portrait aspect ratio on a video stream.
+   </p></div>
+<a name="AR_STANDARD"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AR_STANDARD</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const AR_STANDARD:String = "standard"</code><p>
+   Constant for specifying a standard aspect ratio on a video stream.
+   </p></div>
+<a name="AUDIO_STREAM"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AUDIO_STREAM</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const AUDIO_STREAM:String = "audio"</code><p>
+   Constant for identifying Audio Streams; for example, VOIP streams from a 
+   computer microphone.
+   </p></div>
+<a name="CAMERA_STREAM"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">CAMERA_STREAM</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const CAMERA_STREAM:String = "camera"</code><p>
+   Constant for identifying Camera Streams; for example, webcam streams 
+   from a computer camera.
+   </p></div>
+<a name="COLLECTION_NAME"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">COLLECTION_NAME</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const COLLECTION_NAME:String = "AVManager"</code><p>
+   The name of the <code>collectionNode</code> used to represent the shared 
+   model of the StreamManager.
+   </p></div>
+<a name="NODE_NAME_REMOTE_CONTROL_NOTIFICATION"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">NODE_NAME_REMOTE_CONTROL_NOTIFICATION</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected const NODE_NAME_REMOTE_CONTROL_NOTIFICATION:String = "remoteControlNotification"</code><p>
+   Node for remote control notification
+   </p></div>
+<a name="REMOTE_CONTROL_CANCEL_NOTIFICATION"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">REMOTE_CONTROL_CANCEL_NOTIFICATION</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const REMOTE_CONTROL_CANCEL_NOTIFICATION:String = "remoteControlCancel"</code><p>
+   </p></div>
+<a name="SCREENSHARE_STREAM"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SCREENSHARE_STREAM</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const SCREENSHARE_STREAM:String = "screenShare"</code><p>
+   Constant for identifying Screen Share Streams
+   </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

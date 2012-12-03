@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>getRole (lccs.rb)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lccs.rb, line 1183</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getRole</span>(<span class="ruby-identifier">r</span>)
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">downcase</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;none&quot;</span>      ; <span class="ruby-keyword kw">return</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">UserRole</span><span class="ruby-operator">::</span><span class="ruby-constant">NONE</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;lobby&quot;</span>     ; <span class="ruby-keyword kw">return</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">UserRole</span><span class="ruby-operator">::</span><span class="ruby-constant">LOBBY</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;viewer&quot;</span>    ; <span class="ruby-keyword kw">return</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">UserRole</span><span class="ruby-operator">::</span><span class="ruby-constant">VIEWER</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;publisher&quot;</span> ; <span class="ruby-keyword kw">return</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">UserRole</span><span class="ruby-operator">::</span><span class="ruby-constant">PUBLISHER</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;owner&quot;</span>     ; <span class="ruby-keyword kw">return</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">UserRole</span><span class="ruby-operator">::</span><span class="ruby-constant">OWNER</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">to_i</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service id="remoting-service"
+    class="flex.messaging.services.RemotingService">
+
+    <adapters>
+        <adapter-definition id="java-object" class="flex.messaging.services.remoting.adapters.JavaAdapter" default="true"/>
+    </adapters>
+
+    <default-channels>
+        <channel ref="my-amf"/>
+    </default-channels>
+
+    <destination id="RTCHOOKS">
+        <properties>
+            <source>flex.samples.LCCS.RTCHOOKS</source>
+        </properties>
+    </destination>
+
+    <destination id="LCCS" channels="my-amf">
+        <properties>
+            <source>com.adobe.rtc.account.AccountManager</source>
+        </properties>
+    </destination>
+    
+    <destination id="MySessionHandler" channels="my-amf">
+        <properties>
+            <source>flex.samples.LCCS.MySessionHandler</source>
+        </properties>
+        <adapter ref="java-object"/>
+    </destination>
+    
+    <destination id="product">
+        <properties>
+            <source>flex.samples.product.ProductService</source>
+        </properties>
+    </destination>
+
+    <destination id="chat-room-service">
+        <properties>
+            <source>flex.samples.runtimeconfig.ChatRoomService</source>
+            <scope>application</scope>
+        </properties>
+    </destination>
+
+    <destination id="census">
+        <properties>
+            <source>flex.samples.census.CensusService</source>
+        </properties>
+    </destination>
+
+    <destination id="flex-client-qos-config" channels="per-client-qos-polling-amf">
+        <properties>
+            <source>flex.samples.qos.FlexClientConfigService</source>
+        </properties>
+    </destination>
+    
+  </service>

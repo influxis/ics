@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml" width="250" height="300"
+	backgroundColor="#171717" showStatusBar="false" title="Web Camera" xmlns:rtc="http://ns.adobe.com/rtc" close="if (webCam.publisher.isPublishing) { webCam.publisher.stop();}">
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.rtc.session.IConnectSession;
+			[Bindable]
+			public var connectSession:IConnectSession;
+			
+			/**********************************************************
+			 * ADOBE SYSTEMS INCORPORATED
+			 * Copyright [2007-2010] Adobe Systems Incorporated
+			 * All Rights Reserved.
+			 * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			 * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			 * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			 * written permission of Adobe.
+		     	 * *********************************/
+		]]>
+	</mx:Script>
+	<rtc:WebCamera width="100%" height="99%" connectSession="{connectSession}" id="webCam"/>
+	
+</mx:Window>

@@ -1,0 +1,996 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<meta content="AudioPublisher,com.adobe.rtc.collaboration.AudioPublisher,accessModel,connectSession,groupName,isPaused,isPublishing,isSynchronized,microphone,netStreamInfo,publishModel,recipientIDs,codec,gain,gainControl,sharedID,silenceLevel,silenceTimeout,useEchoSuppression,close,getNodeConfiguration,getUserRole,pause,publish,setNodeConfiguration,setUserRole,stop,subscribe" name="keywords">
+<title>com.adobe.rtc.collaboration.AudioPublisher</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'AudioPublisher - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS API Reference Player 10</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?com/adobe/rtc/collaboration/AudioPublisher.html&amp;com/adobe/rtc/collaboration/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;AudioPublisher</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class AudioPublisher"); titleBar_setSubNav(false,true,false,false,true,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.collaboration</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class AudioPublisher</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">AudioPublisher <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> mx.core.UIComponent</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../session/ISessionSubscriber.html">ISessionSubscriber</a></td>
+</tr>
+</table>
+<p></p>
+  AudioPublisher is the collaboration component responsible for publishing VOIP audio to others 
+  in the room. It acts as an intermediary between the Microphone/NetStream and StreamManager and 
+  is responsible for publishing audio StreamDescriptors to the StreamManager so that AudioSubscribers 
+  in the room are aware a new stream has been initiated. 
+  <p>
+  In order to improve workflow, it provides an API through which to request other users to begin publishing their audio 
+  (<code class="property">publish</code> with an optional parameter). It also listens for remote requests 
+  for the user to begin publishing and prompts the user to begin when needed. The AudioPublisher 
+  has no user interface of its own, but it does provide a basic API through which any commands 
+  concerning publishing VOIP audio should be routed.
+  
+  <p> Like all stream components, AudioPublisher has an API for setting and getting a <code class="property">groupName</code>. 
+  This property can be used to create multiple VOIP groups, each being separate and having different access/publish models, 
+  allowing for multiple private conversations. For a subscriber to listen to a particular VOIP stream from a publisher, 
+  both should have the same assigned <code class="property">groupName</code>.
+  If no <code class="property">groupName</code> is assigned, the publisher defaults to publishing into the public group.
+  </p>
+  
+  <p>
+  By default, only users with the role <code>UserRoles.PUBLISHER</code> or greater may publish audio, 
+  and all users with role of greater than <code>UserRoles.VIEWER</code> are able to subscribe to these streams.
+   <p>
+   <h6>Starting and stopping VOIP audio in a room</h6>
+   <div class='listing'><pre>
+   &lt;session:ConnectSessionContainer 
+     roomURL="http://connect.acrobat.com/exampleAccount/exampleRoom" 
+     authenticator="{auth}"&gt;
+     &lt;mx:VBox&gt;
+  &nbsp;&nbsp;&nbsp;   &lt;collaboration:AudioPublisher id="audioPub"/&gt;
+  &nbsp;&nbsp;&nbsp;   &lt;collaboration:AudioSubscriber/&gt;
+   &nbsp;&nbsp;&nbsp;   &lt;mx:Button label="Audio" toggle="true" id="audioButt" 
+    click="(audioButt.selected) ? audioPub.publish() : audioPub.stop()"/&gt;
+     &lt;/mx:VBox&gt;
+   &lt;/session:ConnectSessionContainer&gt;
+  </pre></div>
+  </p>
+  
+  <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../collaboration/AudioSubscriber.html" target="">com.adobe.rtc.collaboration.AudioSubscriber</a>
+<br>
+<a href="../sharedManagers/StreamManager.html" target="">com.adobe.rtc.sharedManagers.StreamManager</a>
+<br>
+<a href="../sharedManagers/descriptors/StreamDescriptor.html" target="">com.adobe.rtc.sharedManagers.descriptors.StreamDescriptor</a>
+</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#accessModel">accessModel</a> : int<div class="summaryTableDescription">
+   The role value required for access to audio streams for this component's group.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#codec">codec</a> : String<div class="summaryTableDescription">[write-only]</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#connectSession">connectSession</a> : <a href="../session/IConnectSession.html">IConnectSession</a>
+<div class="summaryTableDescription">
+   The IConnectSession with which this component is associated; it defaults to the first 
+   IConnectSession created in the application.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#gain">gain</a> : Number<div class="summaryTableDescription">
+   The microphone gain that is the amount by which the microphone should multiply the signal before transmitting it.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#gainControl">gainControl</a> : Boolean<div class="summaryTableDescription">
+   The microphone gain control defaults to false
+      </div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#groupName">groupName</a> : String<div class="summaryTableDescription">
+   Components (pods) are assigned to a group via <code class="property">groupName</code>; if not specified, 
+   the component is assigned to the default, public group (the room at large).</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#isPaused">isPaused</a> : Boolean<div class="summaryTableDescription">[read-only]
+   Returns true if my audio is paused; false if not or audio is not there.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#isPublishing">isPublishing</a> : Boolean<div class="summaryTableDescription">[read-only]
+   Returns true if my audio is publishing; false if not.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#isSynchronized">isSynchronized</a> : Boolean<div class="summaryTableDescription">[read-only]
+   Returns whether or not the component is synchronized.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#microphone">microphone</a> : Microphone<div class="summaryTableDescription">[read-only]
+   Returns the Microphone object associated with this publisher.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#netStreamInfo">netStreamInfo</a> : NetStreamInfo<div class="summaryTableDescription">[read-only]
+   Returns the NetStreamInfo for the audio stream published by the publisher
+         </div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#publishModel">publishModel</a> : int<div class="summaryTableDescription">
+   The role required for this component to publish to the group specified by <code class="property">groupName</code>.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#recipientIDs">recipientIDs</a> : Array<div class="summaryTableDescription">
+   Array of Recipient UserIDs for audio streams published by this user.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#sharedID">sharedID</a> : String<div class="summaryTableDescription">
+   Defines the logical location of the component on the service; typically this assigns the <code class="property">sharedID</code> of the collectionNode
+   used by the component.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#silenceLevel">silenceLevel</a> : Number<div class="summaryTableDescription">
+   Sets the silence level of the microphone associated with this publisher.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#silenceTimeout">silenceTimeout</a> : int<div class="summaryTableDescription">
+   Sets the silence timeout of the publisher's microphone.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#useEchoSuppression">useEchoSuppression</a> : Boolean<div class="summaryTableDescription">
+   true if echo suppression is enabled; false otherwise.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#AudioPublisher()">AudioPublisher</a>()</div>
+<div class="summaryTableDescription">
+   Constructor
+   </div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#close()">close</a>():void</div>
+<div class="summaryTableDescription">
+   Disposes all listeners to the network and framework classes and assures proper garbage collection of the component.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getNodeConfiguration()">getNodeConfiguration</a>():<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>
+</div>
+<div class="summaryTableDescription">
+   Gets the NodeConfiguration that defines message permissions and storage policies for the current stream group.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getUserRole()">getUserRole</a>(p_userID:String):int</div>
+<div class="summaryTableDescription">
+    Returns the given stream publisher or subscriber's user role within the stream's group.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#pause()">pause</a>(p_mute:Boolean = false, p_publisherID:String = null):void</div>
+<div class="summaryTableDescription">
+   Pauses or unpauses the stream specified by p_publisherID; defaults to the current user's stream.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#publish()">publish</a>(p_publisherID:String = null):void</div>
+<div class="summaryTableDescription">
+   Begins publishing the stream for the user identified by <code class="property">p_publisherID</code> after prompting the user.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setNodeConfiguration()">setNodeConfiguration</a>(p_nodeConfiguration:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>):void</div>
+<div class="summaryTableDescription">
+   Sets the NodeConfiguration that defines message permissions and storage policies for the current stream group.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setUserRole()">setUserRole</a>(p_userID:String, p_userRole:int):void</div>
+<div class="summaryTableDescription">
+   Sets the user role that enables publishing to the component's group specified by the <code class="property">groupName</code>.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#stop()">stop</a>(p_publisherID:String = null):void</div>
+<div class="summaryTableDescription">
+   Stops publishing the stream published by the user identified by p_publisherID; if the ID is null, it defaults to the current user's stream.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#subscribe()">subscribe</a>():void</div>
+<div class="summaryTableDescription">
+   Tells the component to begin synchronizing with the service.</div>
+</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+</table>
+</div>
+<a name="eventSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Events</div>
+<table id="summaryTableEvent" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Event</th><th>Summary</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:echoSuppressionChanged">echoSuppressionChanged</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the current user's echo suppression is changed.</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:gainChanged">gainChanged</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the current user's gain is changed.</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:isAudioPublishing">isAudioPublishing</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+ Dispatched when a user changes whether they are publishing audio or not.</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:silenceLevelChanged">silenceLevelChanged</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the current user's silence level is changed.</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:streamDelete">streamDelete</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the current user's audio stream stops publishing.</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:streamPause">streamPause</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the current user's audio stream is paused.</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:streamPublishing">streamPublishing</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the current user is publishing or stops publishing.</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:streamReceive">streamReceive</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the current user's audio stream is about to be published by the component.</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:synchronizationChange">synchronizationChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the component either loses its connection to the session or regains it
+  and has finished re-synchronizing itself to the rest of the room.</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:userRoleChange">userRoleChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the user's role with respect to the component changes.</td><td class="summaryTableOwnerCol">AudioPublisher</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="accessModel"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">accessModel</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>accessModel:int</code>&nbsp;&nbsp;[read-write]<p>
+   The role value required for access to audio streams for this component's group.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get accessModel():int</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set accessModel(value:int):void</code>
+<br>
+</div>
+<a name="codec"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">codec</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>codec:String</code>&nbsp;&nbsp;[write-only]<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set codec(value:String):void</code>
+<br>
+</div>
+<a name="connectSession"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">connectSession</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>connectSession:<a href="../session/IConnectSession.html">IConnectSession</a></code>&nbsp;&nbsp;[read-write]<p>
+   The IConnectSession with which this component is associated; it defaults to the first 
+   IConnectSession created in the application.  Note that this may only be set once before 
+   <code>subscribe()</code> is called, and re-sessioning of components is not supported.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get connectSession():<a href="../session/IConnectSession.html">IConnectSession</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set connectSession(value:<a href="../session/IConnectSession.html">IConnectSession</a>):void</code>
+<br>
+</div>
+<a name="gain"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">gain</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>gain:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The microphone gain that is the amount by which the microphone should multiply the signal before transmitting it.
+      </p><p>This property can be used as the source for data binding.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get gain():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set gain(value:Number):void</code>
+<br>
+</div>
+<a name="gainControl"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">gainControl</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>gainControl:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+   The microphone gain control defaults to false
+      </p><p>This property can be used as the source for data binding.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get gainControl():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set gainControl(value:Boolean):void</code>
+<br>
+</div>
+<a name="groupName"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">groupName</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>groupName:String</code>&nbsp;&nbsp;[read-write]<p>
+   Components (pods) are assigned to a group via <code class="property">groupName</code>; if not specified, 
+   the component is assigned to the default, public group (the room at large). Groups are like separate 
+   conversations within the room, but each conversation could employ one or more pods; for example, one 
+   "conversation" may use a web camera, chat, and whiteboard pod, with each pod using different access 
+   and publish models. Users are members of and can only see components within the group they are assigned. 
+   Room hosts can see all the groups and all the members in those groups.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get groupName():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set groupName(value:String):void</code>
+<br>
+</div>
+<a name="isPaused"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isPaused</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>isPaused:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+   Returns true if my audio is paused; false if not or audio is not there.
+   </p><p>This property can be used as the source for data binding.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get isPaused():Boolean</code>
+<br>
+</div>
+<a name="isPublishing"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isPublishing</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>isPublishing:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+   Returns true if my audio is publishing; false if not.
+   </p><p>This property can be used as the source for data binding.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get isPublishing():Boolean</code>
+<br>
+</div>
+<a name="isSynchronized"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isSynchronized</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>isSynchronized:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+   Returns whether or not the component is synchronized.
+   </p><p>This property can be used as the source for data binding.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get isSynchronized():Boolean</code>
+<br>
+</div>
+<a name="microphone"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">microphone</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>microphone:Microphone</code>&nbsp;&nbsp;[read-only]<p>
+   Returns the Microphone object associated with this publisher.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get microphone():Microphone</code>
+<br>
+</div>
+<a name="netStreamInfo"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">netStreamInfo</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>netStreamInfo:NetStreamInfo</code>&nbsp;&nbsp;[read-only]<p>
+   Returns the NetStreamInfo for the audio stream published by the publisher
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get netStreamInfo():NetStreamInfo</code>
+<br>
+</div>
+<a name="publishModel"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">publishModel</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>publishModel:int</code>&nbsp;&nbsp;[read-write]<p>
+   The role required for this component to publish to the group specified by <code class="property">groupName</code>.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get publishModel():int</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set publishModel(value:int):void</code>
+<br>
+</div>
+<a name="recipientIDs"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">recipientIDs</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>recipientIDs:Array</code>&nbsp;&nbsp;[read-write]<p>
+   Array of Recipient UserIDs for audio streams published by this user.
+   Throws an error while setting this property if Private Streaming is not allowed i.e. allowPrivateStreams property is false in StreamManager.
+   Throws an error while setting this property if the Audio Stream for this user is currently published. Stop the stream and then set this property.
+   Set this property to null if you want to broadcast your audio stream to everyone. This is also the default case.
+   
+   </p><p>The default value is <code>null</code>.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get recipientIDs():Array</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set recipientIDs(value:Array):void</code>
+<br>
+</div>
+<a name="sharedID"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">sharedID</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>sharedID:String</code>&nbsp;&nbsp;[read-write]<p>
+   Defines the logical location of the component on the service; typically this assigns the <code class="property">sharedID</code> of the collectionNode
+   used by the component. <code class="property">sharedIDs</code> should be unique within a room if they're expressing two 
+   unique locations. Note that this can only be assigned once before <code>subscribe()</code> is called. For components 
+   with an <code class="property">id</code> property, <code class="property">sharedID</code> defaults to that value.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get sharedID():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set sharedID(value:String):void</code>
+<br>
+</div>
+<a name="silenceLevel"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">silenceLevel</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>silenceLevel:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Sets the silence level of the microphone associated with this publisher.
+      </p><p>This property can be used as the source for data binding.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get silenceLevel():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set silenceLevel(value:Number):void</code>
+<br>
+</div>
+<a name="silenceTimeout"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">silenceTimeout</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>silenceTimeout:int</code>&nbsp;&nbsp;[read-write]<p>
+   Sets the silence timeout of the publisher's microphone.
+      </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get silenceTimeout():int</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set silenceTimeout(value:int):void</code>
+<br>
+</div>
+<a name="useEchoSuppression"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">useEchoSuppression</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>useEchoSuppression:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+   true if echo suppression is enabled; false otherwise.
+      </p><p>This property can be used as the source for data binding.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get useEchoSuppression():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set useEchoSuppression(value:Boolean):void</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="AudioPublisher()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AudioPublisher</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function AudioPublisher()</code><p>
+   Constructor
+   </p></div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="close()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">close</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function close():void</code><p>
+   Disposes all listeners to the network and framework classes and assures proper garbage collection of the component.
+   </p></div>
+<a name="getNodeConfiguration()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getNodeConfiguration</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getNodeConfiguration():<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code><p>
+   Gets the NodeConfiguration that defines message permissions and storage policies for the current stream group.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code></td>
+</tr>
+</table>
+</div>
+<a name="getUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getUserRole(p_userID:String):int</code><p>
+    Returns the given stream publisher or subscriber's user role within the stream's group.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The user ID of the user whose role we should get.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>int</code></td>
+</tr>
+</table>
+</div>
+<a name="pause()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">pause</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function pause(p_mute:Boolean = false, p_publisherID:String = null):void</code><p>
+   Pauses or unpauses the stream specified by p_publisherID; defaults to the current user's stream.
+   Dispatches a notification event that can be used to notify room members that the streams state has changed.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_mute</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; True to pause; false to play.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_publisherID</span>:String</code> (default = <code>null</code>)<code></code> &mdash; An optional user ID of the user whose stream pause state should change; otherwise, if null,
+   the current user's stream.
+   
+   </td>
+</tr>
+</table>
+</div>
+<a name="publish()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">publish</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function publish(p_publisherID:String = null):void</code><p>
+   Begins publishing the stream for the user identified by <code class="property">p_publisherID</code> after prompting the user. 
+   If the user declines to publish on the first prompt, subsequent attempts to publish invoke a dialog 
+   that allows the user to change their publish settings. If the user accepts, it notifies other users through the StreamManager
+   of the new audio stream and begins streaming to the room for consumption by participating subscribers. 
+   It may also be optionally used for requesting a remote user of a particular <code class="property">p_publisherID</code>.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_publisherID</span>:String</code> (default = <code>null</code>)<code></code> &mdash; Defaults to null and therefore the current user. If non-null, the parameter requests 
+   the specified user to begin. Note that only a user with role of owner may request others to publish.
+   
+   </td>
+</tr>
+</table>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../sharedManagers/StreamManager.html" target="">com.adobe.rtc.sharedManagers.StreamManager</a>
+</div>
+</div>
+<a name="setNodeConfiguration()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setNodeConfiguration</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setNodeConfiguration(p_nodeConfiguration:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>):void</code><p>
+   Sets the NodeConfiguration that defines message permissions and storage policies for the current stream group.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_nodeConfiguration</span>:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code> &mdash; The current stream groups node configuration.
+   
+   </td>
+</tr>
+</table>
+</div>
+<a name="setUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setUserRole(p_userID:String, p_userRole:int):void</code><p>
+   Sets the user role that enables publishing to the component's group specified by the <code class="property">groupName</code>. 
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The user ID of the user whose role should be set.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userRole</span>:int</code> &mdash; The role value to assign to the user with this user ID.
+   </td>
+</tr>
+</table>
+</div>
+<a name="stop()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">stop</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function stop(p_publisherID:String = null):void</code><p>
+   Stops publishing the stream published by the user identified by p_publisherID; if the ID is null, it defaults to the current user's stream.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_publisherID</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The user ID of the user whose stream should be stopped. Defaults to the 
+   current user. Only a room owner can stop a remote user's stream.
+   </td>
+</tr>
+</table>
+</div>
+<a name="subscribe()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">subscribe</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function subscribe():void</code><p>
+   Tells the component to begin synchronizing with the service. For UIComponent-based components such as this one,
+   this is called automatically upon being added to the <code class="property">displayList</code>. 
+   For "headless" components, this method must be called explicitly.
+   </p></div>
+<div class="detailSectionHeader">Event detail</div>
+<a name="event:echoSuppressionChanged"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">echoSuppressionChanged</td><td class="detailHeaderType">event&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/AudioConfigurationEvent.html"><code>com.adobe.rtc.events.AudioConfigurationEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the current user's echo suppression is changed.
+  </p></div>
+<a name="event:gainChanged"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">gainChanged</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/AudioConfigurationEvent.html"><code>com.adobe.rtc.events.AudioConfigurationEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the current user's gain is changed.
+  </p></div>
+<a name="event:isAudioPublishing"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isAudioPublishing</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href=""><code>flash.events.Event</code></a>
+<br>
+<p></p><p>
+ Dispatched when a user changes whether they are publishing audio or not.
+ </p></div>
+<a name="event:silenceLevelChanged"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">silenceLevelChanged</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/AudioConfigurationEvent.html"><code>com.adobe.rtc.events.AudioConfigurationEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the current user's silence level is changed.
+  </p></div>
+<a name="event:streamDelete"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">streamDelete</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/StreamEvent.html"><code>com.adobe.rtc.events.StreamEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the current user's audio stream stops publishing.
+  </p></div>
+<a name="event:streamPause"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">streamPause</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/StreamEvent.html"><code>com.adobe.rtc.events.StreamEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the current user's audio stream is paused.
+  </p></div>
+<a name="event:streamPublishing"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">streamPublishing</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/StreamEvent.html"><code>com.adobe.rtc.events.StreamEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the current user is publishing or stops publishing.
+  </p></div>
+<a name="event:streamReceive"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">streamReceive</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/StreamEvent.html"><code>com.adobe.rtc.events.StreamEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the current user's audio stream is about to be published by the component.
+  </p></div>
+<a name="event:synchronizationChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">synchronizationChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the component either loses its connection to the session or regains it
+  and has finished re-synchronizing itself to the rest of the room.
+  </p></div>
+<a name="event:userRoleChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">userRoleChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the user's role with respect to the component changes.
+  </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

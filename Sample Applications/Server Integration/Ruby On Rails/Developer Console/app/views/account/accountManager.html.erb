@@ -1,0 +1,450 @@
+<h1>Account#accountManager</h1>
+<!--#displays hello (username)-->
+
+LCCS Account Manager <strong><%=session[:user_id]%></strong>.<br>
+
+<br>
+<%= link_to "Show Current Rooms Under This Account",:controller => "rooms", :action => "index" %>
+<br>
+<br>
+<%= link_to "Show My Account Detail",:controller => "accounts", :action => "index" %>
+<br>
+<br>
+<% if flash[:result] %>
+
+  <div style="font-family:'Trebuchet MS'; color:green; font-size:14px;">
+
+  <%= flash[:result] %>
+
+  </div>
+
+<% end %>
+
+<% if flash[:notice] %>
+
+  <div style="font-family:'Trebuchet MS'; color:red; font-size:14px;">
+
+  <%= flash[:notice] %>
+
+  </div>
+
+<% end %>
+
+<table>
+  <tr>
+    <td>
+      <b>Register Hook:</b> </td>
+  </tr>
+  <tr>
+    <td>
+      <% form_tag("registerHook") do%>
+        <table>
+
+          <tr>
+          <td>url:</td> <td><%= text_field("registerhook", "url", :size=>"100", :value=>"http://10.58.122.50:8787/rubyamf/gateway")%></td>
+          </tr>
+          <tr><td>token:</td><td> <%= text_field("registerhook", "token", :size=>"20",  :value=>"secret12345")%></td></tr>
+
+        </table>
+
+         <%= submit_tag "Invoke" %>
+       <% end %>
+    </td>
+  </tr>
+</table>
+<hr>
+<table>
+  <tr>
+    <td>
+      <b>Get Hook URL:</b> </td>
+  </tr>
+  <tr>
+    <td>
+      <% form_tag("getHookURL") do%>
+         <%= submit_tag "Invoke" %>
+       <% end %>
+    </td>
+  </tr>
+</table>
+<hr>
+<table>
+  <tr>
+    <td>
+      <b>UN-Register Hook:</b> </td>
+  </tr>
+  <tr>
+    <td>
+      <% form_tag("unregisterHook") do%>
+         <%= submit_tag "Invoke" %>
+       <% end %>
+    </td>
+  </tr>
+</table>
+<hr>
+<table>
+  <tr>
+    <td>
+      <b>Subscribe Collection:</b> </td>
+  </tr>
+  <tr>
+    <td>
+      <% form_tag("subscribeCollection") do%>
+        <table>
+
+          <tr>
+          <td>roomName:</td> <td><%= text_field("subscribecollection", "roomname", :size=>"20", :value=>"mymeeting")%></td>
+          </tr>
+          <tr><td>collectionNodeName:</td><td> <%= text_field("subscribecollection", "collectionnodename", :size=>"40",  :value=>"myChat_ModeratedChatModel")%></td></tr>
+
+        </table>
+
+         <%= submit_tag "Invoke" %>
+       <% end %>
+    </td>
+  </tr>
+</table>
+<hr>
+<table>
+  <tr>
+    <td>
+      <b>Un-Subscribe Collection:</b> </td>
+  </tr>
+  <tr>
+    <td>
+      <% form_tag("unsubscribeCollection") do%>
+        <table>
+
+          <tr>
+          <td>roomName:</td> <td><%= text_field("unsubscribecollection", "roomname", :size=>"20", :value=>"mymeeting")%></td>
+          </tr>
+          <tr><td>collectionNodeName:</td><td> <%= text_field("unsubscribecollection", "collectionnodename", :size=>"40",  :value=>"myChat_ModeratedChatModel")%></td></tr>
+
+        </table>
+
+         <%= submit_tag "Invoke" %>
+       <% end %>
+    </td>
+  </tr>
+</table>
+<hr>
+<table>
+  <tr>
+    <td>
+      <b>Create Node </b></td>
+  </tr>
+  <tr>
+    <td>
+      <% form_tag("createNode") do%>
+        <table>
+          <tr>
+          <td>roomName:</td> <td><%= text_field("createnode", "roomname", :size=>"20", :value=>"mymeeting")%></td>
+          </tr>
+          <tr>
+          <td>collectionName:</td> <td><%= text_field("createnode", "collectionname", :size=>"40", :value=>"myChat_ModeratedChatModel")%></td>
+          </tr>
+          <tr><td>nodeName:</td><td> <%= text_field("createnode", "nodename", :size=>"20",  :value=>"mySillyNode")%></td></tr>
+          <tr>
+            <td>Configuration: </td>
+            <td>
+
+            <table>
+              <tr>
+                  <td>persisItems</td>
+                  <td>
+                  <%= radio_button("createnode", "persistitems", true, :checked=>true) %>true
+                  <%= radio_button("createnode", "persistitems", false) %>false
+                  </td>
+              </tr>
+               <tr>
+                  <td>userDependentItems</td>
+                  <td>
+                  <%= radio_button("createnode", "userdependentitems", true) %>true
+                  <%= radio_button("createnode", "userdependentitems", false, :checked=>true) %>false
+                  </td>
+              </tr>
+              <tr>
+                  <td>publishModel</td>
+                  <td><%= text_field("createnode", "publishmodel", :size=>"20",  :value=>"10")%></td>
+              </tr>
+               <tr>
+                  <td>lazySubscription</td>
+                  <td>
+                  <%= radio_button("createnode", "lazysubscription", true) %>true
+                  <%= radio_button("createnode", "lazysubscription", false, :checked=>true) %>false
+                  </td>
+              </tr>
+               <tr>
+                  <td>allowPrivateMessages</td>
+                   <td>
+                  <%= radio_button("createnode", "allowprivatemessages", true) %>true
+                  <%= radio_button("createnode", "allowprivatemessages", false, :checked=>true) %>false
+                  </td>
+              </tr>
+              <tr>
+                  <td>modifyAnyItem</td>
+                   <td>
+                  <%= radio_button("createnode", "modifyanyitem", true) %>true
+                  <%= radio_button("createnode", "modifyanyitem", false, :checked=>true) %>false
+                  </td>
+              </tr>
+              <tr>
+                  <td>accessModel</td>
+                  <td><%= text_field("createnode", "accessmodel", :size=>"20",  :value=>"100")%></td>
+              </tr>
+              <tr>
+                  <td>itemStorageScheme</td>
+                  <td><%= text_field("createnode", "itemstoragescheme", :size=>"20",  :value=>"1")%></td>
+              </tr>
+               <tr>
+                  <td>sessionDependentItems</td>
+                  <td>
+                  <%= radio_button("createnode", "sessiondependentitems", true) %>true
+                  <%= radio_button("createnode", "sessiondependentitems", false, :checked=>true) %>false
+                  </td>
+              </tr>
+              <tr>
+                  <td>p2pDataMessaging</td>
+                   <td>
+                  <%= radio_button("createnode", "p2pdatamessaging", true) %>true
+                  <%= radio_button("createnode", "p2pdatamessaging", false, :checked=>true) %>false
+                  </td>
+              </tr>
+            </table>
+
+            </td>
+          </tr>
+        </table>
+
+         <%= submit_tag "Invoke" %>
+       <% end %>
+    </td>
+  </tr>
+</table>
+<hr>
+<table>
+  <tr>
+    <td>
+      <b>Remove Node</b> </td>
+  </tr>
+  <tr>
+    <td>
+      <% form_tag("removeNode") do%>
+        <table>
+          <tr>
+          <td>roomName:</td> <td><%= text_field("removenode", "roomname", :size=>"20", :value=>"mymeeting")%></td>
+          </tr>
+          <tr>
+          <td>collectionName:</td> <td><%= text_field("removenode", "collectionname", :size=>"40", :value=>"myChat_ModeratedChatModel")%></td>
+          </tr>
+          <tr><td>nodeName:</td><td> <%= text_field("removenode", "nodename", :size=>"20",  :value=>"mySillyNode")%></td></tr>
+        </table>
+
+         <%= submit_tag "Invoke" %>
+       <% end %>
+    </td>
+  </tr>
+</table>
+<hr>
+<table>
+  <tr>
+    <td>
+      <b>Publish Item</b> </td>
+  </tr>
+  <tr>
+    <td>
+      <% form_tag("publishItem") do%>
+        <table>
+          <tr>
+          <td>roomName:</td> <td><%= text_field("publishitem", "roomname", :size=>"20", :value=>"mymeeting")%></td>
+          </tr>
+          <tr>
+          <td>collectionName:</td> <td><%= text_field("publishitem", "collectionname", :size=>"40", :value=>"myChat_ModeratedChatModel")%></td>
+          </tr>
+          <tr><td>nodeName:</td><td> <%= text_field("publishitem", "nodename", :size=>"20",  :value=>"mySillyNode")%></td></tr>
+          <tr><td>publisher id:</td><td> <%= text_field("publishitem", "publisherid", :size=>"20",  :value=>"UNDEF-ROOT")%></td></tr>
+          <tr><td>Item Body Text (example):</td><td> <%= text_field("publishitem", "itembodymsg", :size=>"100",  :value=>"This is a publishItem test")%></td></tr>
+          <tr>
+            <td>overwrite: </td>
+            <td><%= radio_button("publishitem", "overwrite", true) %>true
+            <%= radio_button("publishitem", "overwrite", false, :checked=>true) %>false</td>
+          </tr>
+        </table>
+
+         <%= submit_tag "Invoke" %>
+       <% end %>
+    </td>
+  </tr>
+</table>
+<hr>
+<table>
+  <tr>
+    <td>
+      <b>Retract Item</b> </td>
+  </tr>
+  <tr>
+    <td>
+      <% form_tag("retractItem") do%>
+        <table>
+          <tr>
+          <td>roomName:</td> <td><%= text_field("retractitem", "roomname", :size=>"20", :value=>"mymeeting")%></td>
+          </tr>
+          <tr>
+          <td>collectionName:</td> <td><%= text_field("retractitem", "collectionname", :size=>"40", :value=>"myChat_ModeratedChatModel")%></td>
+          </tr>
+          <tr><td>nodeName:</td><td> <%= text_field("retractitem", "nodename", :size=>"20",  :value=>"mySillyNode")%></td></tr>
+          <tr><td>item id:</td><td> <%= text_field("retractitem", "itemid", :size=>"20",  :value=>"")%></td></tr>
+        </table>
+
+         <%= submit_tag "Invoke" %>
+       <% end %>
+    </td>
+  </tr>
+</table>
+<hr>
+<table>
+  <tr>
+    <td>
+      <b>Set NodeConfiguration</b> </td>
+  </tr>
+  <tr>
+    <td>
+      <% form_tag("setNodeConfiguration") do%>
+        <table>
+          <tr>
+          <td>roomName:</td> <td><%= text_field("setnodeconfiguration", "roomname", :size=>"20", :value=>"mymeeting")%></td>
+          </tr>
+          <tr>
+          <td>collectionName:</td> <td><%= text_field("setnodeconfiguration", "collectionname", :size=>"40", :value=>"myChat_ModeratedChatModel")%></td>
+          </tr>
+          <tr><td>nodeName:</td><td> <%= text_field("setnodeconfiguration", "nodename", :size=>"20",  :value=>"mySillyNode")%></td></tr>
+          <tr>
+            <td>Configuration: </td>
+            <td>
+
+            <table>
+              <tr>
+                  <td>persisItems</td>
+                  <td>
+                  <%= radio_button("setnodeconfiguration", "persistitems", true, :checked=>true) %>true
+                  <%= radio_button("setnodeconfiguration", "persistitems", false) %>false
+                  </td>
+              </tr>
+               <tr>
+                  <td>userDependentItems</td>
+                  <td>
+                  <%= radio_button("setnodeconfiguration", "userdependentitems", true) %>true
+                  <%= radio_button("setnodeconfiguration", "userdependentitems", false, :checked=>true) %>false
+                  </td>
+              </tr>
+              <tr>
+                  <td>publishModel</td>
+                  <td><%= text_field("setnodeconfiguration", "publishmodel", :size=>"20",  :value=>"10")%></td>
+              </tr>
+               <tr>
+                  <td>lazySubscription</td>
+                  <td>
+                  <%= radio_button("setnodeconfiguration", "lazysubscription", true) %>true
+                  <%= radio_button("setnodeconfiguration", "lazysubscription", false, :checked=>true) %>false
+                  </td>
+              </tr>
+               <tr>
+                  <td>allowPrivateMessages</td>
+                   <td>
+                  <%= radio_button("setnodeconfiguration", "allowprivatemessages", true) %>true
+                  <%= radio_button("setnodeconfiguration", "allowprivatemessages", false, :checked=>true) %>false
+                  </td>
+              </tr>
+              <tr>
+                  <td>modifyAnyItem</td>
+                   <td>
+                  <%= radio_button("setnodeconfiguration", "modifyanyitem", true) %>true
+                  <%= radio_button("setnodeconfiguration", "modifyanyitem", false, :checked=>true) %>false
+                  </td>
+              </tr>
+              <tr>
+                  <td>accessModel</td>
+                  <td><%= text_field("setnodeconfiguration", "accessmodel", :size=>"20",  :value=>"100")%></td>
+              </tr>
+              <tr>
+                  <td>itemStorageScheme</td>
+                  <td><%= text_field("setnodeconfiguration", "itemstoragescheme", :size=>"20",  :value=>"1")%></td>
+              </tr>
+               <tr>
+                  <td>sessionDependentItems</td>
+                  <td>
+                  <%= radio_button("setnodeconfiguration", "sessiondependentitems", true) %>true
+                  <%= radio_button("setnodeconfiguration", "sessiondependentitems", false, :checked=>true) %>false
+                  </td>
+              </tr>
+              <tr>
+                  <td>p2pDataMessaging</td>
+                   <td>
+                  <%= radio_button("setnodeconfiguration", "p2pdatamessaging", true) %>true
+                  <%= radio_button("setnodeconfiguration", "p2pdatamessaging", false, :checked=>true) %>false
+                  </td>
+              </tr>
+            </table>
+              
+            </td>
+          </tr>
+        </table>
+
+         <%= submit_tag "Invoke" %>
+       <% end %>
+    </td>
+  </tr>
+</table>
+<hr>
+<table>
+  <tr>
+    <td>
+      <b>Set User Role</b> </td>
+  </tr>
+  <tr>
+    <td>
+      <% form_tag("setUserRole") do%>
+        <table>
+          <tr>
+          <td>roomName:</td> <td><%= text_field("setuserrole", "roomname", :size=>"20", :value=>"mymeeting")%></td>
+          </tr>
+          <tr>
+          <td>collectionName:</td> <td><%= text_field("setuserrole", "collectionname", :size=>"40", :value=>"")%></td>
+          </tr>
+          <tr><td>nodeName:</td><td> <%= text_field("setuserrole", "nodename", :size=>"20",  :value=>"")%></td></tr>
+          <tr><td>user id:</td><td> <%= text_field("setuserrole", "userid", :size=>"20",  :value=>"undef-dean")%></td></tr>
+          <tr><td>role:</td><td> <%= text_field("setuserrole", "role", :size=>"20",  :value=>"100")%></td></tr>
+        </table>
+
+         <%= submit_tag "Invoke" %>
+       <% end %>
+    </td>
+  </tr>
+</table>
+<hr>
+<table>
+  <tr>
+    <td>
+      <b>Fetch Items</b> </td>
+  </tr>
+  <tr>
+    <td>
+      <% form_tag("fetchItems") do%>
+        <table>
+          <tr>
+          <td>roomName:</td> <td><%= text_field("fetchItems", "roomname", :size=>"20", :value=>"mymeeting")%></td>
+          </tr>
+          <tr>
+          <td>collectionName:</td> <td><%= text_field("fetchItems", "collectionname", :size=>"40", :value=>"myChat_ModeratedChatModel")%></td>
+          </tr>
+          <tr><td>nodeName:</td><td> <%= text_field("fetchItems", "nodename", :size=>"20",  :value=>"mySillyNode")%></td></tr>
+          <tr><td>items (separated by comma):</td><td> <%= text_field("fetchItems", "items", :size=>"40",  :value=>"")%></td></tr>
+        </table>
+
+         <%= submit_tag "Invoke" %>
+       <% end %>
+    </td>
+  </tr>
+</table>
+<hr>
+<br><br>
+<%= link_to "logout",:controller => "account", :action => "logout" %>

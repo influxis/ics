@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:Application 
+	xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" backgroundColor="white" creationComplete="init()" > 
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.utils.ObjectProxy;
+			import mx.controls.Alert;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.AbstractOperation;
+			import mx.rpc.remoting.mxml.Operation;
+			import mx.rpc.remoting.mxml.RemoteObject;
+			
+			private var INIT:int = 0;
+			private var LOGIN:int =1;
+			private var LCCSOPERATIONS:int = 2;
+			private var REGISTERHOOK:int = 3;
+			private var GETHOOKINFO:int = 4;
+			private var SUBSCRIBECOLLECTION:int = 5;
+			
+			[RemoteClass(alias="com.adobe.rtc.account.AccountManager")] 
+			private var afcs:RemoteObject = null;
+			
+			private var state:int = INIT;
+			
+			protected function init():void
+			{
+				currentState = "login";
+				state = INIT;
+			}
+			
+			protected function getAuthTokenResultHandler(event:ResultEvent):void 
+            {     
+            	// Do something
+                trace(event.result);
+                if(event.result == ""){
+                	currentState = "login";
+                }else {
+					currentState = "afcsoperations";
+                }
+            }
+            
+			protected function login():void
+			{
+				state = LOGIN;
+				rmSessionObj.createLCCSAccountManager.addEventListener("result", sessionResultHandler);
+				rmSessionObj.createLCCSAccountManager(account_url.text);
+				//rmSessionObj.getSessionObject("LCCS");
+			}
+			
+			public function loginResultHandler(event:ResultEvent):void {
+                 // Do something
+                if(event.result == true) {
+                	state = LCCSOPERATIONS
+                	currentState = "afcsoperations";
+                }
+                
+   			}
+   			
+   			public function setAccountUrlResultHandler(event:ResultEvent):void {
+                 // Do something
+                trace(event.result);
+   			}
+   			
+   			public function sessionResultHandler(event:ResultEvent):void {
+   				
+   				switch(state) {
+   					case INIT:
+   					{
+   						break;
+   					}
+   					case LOGIN: 
+   					{
+						rmSessionObj.login.addEventListener("result", loginResultHandler);
+						rmSessionObj.login(log_username.text, log_password.text);
+   					}
+   					case REGISTERHOOK:
+   					{
+   						break;
+   					}
+					default: 
+					{
+						break;
+					}
+   				}
+   				
+				
+   			}
+   			
+   			public function faultHandler (event:FaultEvent):void 
+   			{
+             // Deal with event.fault.faultString, etc.
+                Alert.show(event.fault.faultString, 'Error');
+                currentState = "login";
+            }
+			
+			protected function submitRegisterHook():void
+			{
+				try {
+					state = REGISTERHOOK;
+					//rmSessionObj.registerHook.addEventListener("result", registerHookResultHandler);
+					rmSessionObj.registerHook(registerhook_url.text, registerhook_token.text);
+					Alert.show("Registered");
+				}catch(e:Error) {
+					
+				}
+				
+			}
+			
+			protected function registerHookResultHandler(event:ResultEvent)
+			{
+				Alert.show(String(event.result));
+			}
+			
+			protected function getHookInfo()
+			{
+				try {
+					state = GETHOOKINFO;
+					rmSessionObj.getHookInfo.addEventListener("result", getHookInfoResultHandler);
+					rmSessionObj.getHookInfo();
+				}catch(e:Error) {
+					
+				}
+				
+			}
+			
+			protected function getHookInfoResultHandler(event:ResultEvent)
+			{
+				Alert.show(String(event.result));
+			}
+			
+			protected function submitSubscribeCollection():void
+			{
+				try {
+					state = SUBSCRIBECOLLECTION;
+					//rmSessionObj.subscribeCollection.addEventListener("result", submitSubscribeCollectionResultHandler);
+					rmSessionObj.subscribeCollection(subscribecollection_room.text, subscribecollection_collectionname.text);
+					Alert.show("Subscribed");
+				}catch(e:Error) {
+					
+				}
+				
+			}
+			
+			protected function submitSubscribeCollectionResultHandler(event:ResultEvent)
+			{
+				Alert.show(String(event.result));
+			}
+			
+			
+		]]>
+	</mx:Script>
+	
+
+	<mx:RemoteObject id="rmSessionObj" 
+		destination="MySessionHandler"
+		 result="sessionResultHandler(event)"
+		 fault="faultHandler(event)"/>
+		
+		
+	<!-- 
+		You would likely use external authentication here for a deployed application; 
+		you would certainly not hard code Adobe IDs here.
+	-->
+	
+	<mx:states>
+        <mx:State name="login">
+            <mx:AddChild>
+                <mx:Form id="loginForm">
+                    <mx:FormHeading label="LCCS Java Gateway Test" fontSize="24"/>
+                    <mx:FormItem label="Username:">
+                        <mx:TextInput id="log_username" text="root"/>
+                    </mx:FormItem>
+                    <mx:FormItem label="Password:">
+                        <mx:TextInput id="log_password" text="root"
+                                displayAsPassword="true" />
+                    </mx:FormItem>
+                    <mx:FormItem label="Account URL:">
+                        <mx:TextInput id="account_url" text="http://localhost:8080/UNDEF-ROOT"
+                                />
+                    </mx:FormItem>
+                    <mx:FormItem>
+                        <mx:Button label="Login" click="login()"/>
+                    </mx:FormItem>
+                </mx:Form>
+            </mx:AddChild>
+        </mx:State>
+        <mx:State name="afcsoperations">
+ 
+        	 <mx:AddChild >
+        	 	 <mx:Form id="afcsoperationsForm" x="80" y="10">
+                    <mx:FormHeading label="Register Hook" fontWeight="bold"/>
+                    <mx:FormItem label="Hook URL:">
+                        <mx:TextInput id="registerhook_url" text="http://10.58.122.50:8400/samples/messagebroker/amf"/>
+                    </mx:FormItem>
+                    <mx:FormItem label="Token:">
+                        <mx:TextInput id="registerhook_token" text="secret12345"
+                                />
+                    </mx:FormItem>
+   
+                    <mx:FormItem>
+                        <mx:Button label="Submit" click="submitRegisterHook()"/>
+                    </mx:FormItem>
+                    
+                    <mx:Spacer height="20" />
+                    <mx:FormHeading label="Get Hook Info" fontWeight="bold"/>
+                   <mx:FormItem label="Retrieve:">
+                        <mx:Button label="Submit" click="getHookInfo()"/>
+                    </mx:FormItem>
+                    
+                    <mx:Spacer height="20" />
+                    <mx:FormHeading label="Subscribe Collections" fontWeight="bold"/>
+   						<mx:FormItem label="Room Name:">
+                        	<mx:TextInput id="subscribecollection_room" text="mymeeting"/>
+		                </mx:FormItem>
+		                <mx:FormItem label="Collection Name:">
+		                   <mx:TextInput id="subscribecollection_collectionname" text="UserManager"
+		                                 />
+		                </mx:FormItem>
+		   
+		                <mx:FormItem>
+		                   <mx:Button label="Submit" click="submitSubscribeCollection()"/>
+		                </mx:FormItem>
+                </mx:Form>
+                
+			</mx:AddChild>
+			
+		</mx:State>
+	</mx:states>
+	<mx:transitions>
+	        <mx:Transition id="loginTransition"
+	                fromState="*"
+	                toState="login">
+	            <mx:WipeDown target="{loginForm}"/>
+	        </mx:Transition>
+	        <mx:Transition id="registerTransition"
+	                fromState="*"
+	                toState="afcsoperations">
+	            <mx:WipeDown target="{afcsoperationsForm}"/>
+	        </mx:Transition>
+	</mx:transitions>
+</mx:Application> 

@@ -1,0 +1,1424 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>LCCS JavaScript Reference - UserManager</title>
+
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+	width: 800px;
+}
+
+.header
+{
+	clear: both;
+	background-color: #ccc;
+	padding: 8px;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+	margin: 1em 0 0 .3em;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #7F8FB1;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	background-color: #F3F3F3;
+	padding: 8px;
+}
+
+#content
+{
+	margin-left: 190px;
+	width: 600px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #7F8FB1;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #7F8FB1 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #7F8FB1 solid;
+	border-right: 1px #7F8FB1 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #7F8FB1 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #002EBE;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px; 
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	text-align: right;
+	font-size: 10px;
+}
+		</style>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2>Classes</h2>
+<ul class="classList">
+	
+	<li><i><a href="../symbols/_global_.html">_global_</a></i></li>
+	
+	<li><a href="../symbols/Baton.html">Baton</a></li>
+	
+	<li><a href="../symbols/BatonObject.html">BatonObject</a></li>
+	
+	<li><a href="../symbols/BatonProperty.html">BatonProperty</a></li>
+	
+	<li><a href="../symbols/CollectionNode.html">CollectionNode</a></li>
+	
+	<li><a href="../symbols/ConnectSession.html">ConnectSession</a></li>
+	
+	<li><a href="../symbols/EventDispatcher.html">EventDispatcher</a></li>
+	
+	<li><a href="../symbols/SharedCollection.html">SharedCollection</a></li>
+	
+	<li><a href="../symbols/SharedCursorPane.html">SharedCursorPane</a></li>
+	
+	<li><a href="../symbols/SharedObject.html">SharedObject</a></li>
+	
+	<li><a href="../symbols/SharedProperty.html">SharedProperty</a></li>
+	
+	<li><a href="../symbols/SimpleChatModel.html">SimpleChatModel</a></li>
+	
+	<li><a href="../symbols/Tween.html">Tween</a></li>
+	
+	<li><a href="../symbols/UserManager.html">UserManager</a></li>
+	
+</ul>
+<hr />
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Class UserManager
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				
+			
+				UserManager is one of the "four pillars" of a room and is tasked with maintaining a list of the set of users in the room, along with their descriptors.It is also the primary class through which one publishes changes to a user role or other user information.<table><tr><th><b>Event</b></th><th><b>Summary</b></th></tr><tr><td valign="top"><code>anonymousPresenceChange </code></td> <td>	 Dispatched when anonymousPresence is set in the UserManager  </td></tr><tr><td valign="top"><code>customFieldChange</code></td> <td> Dispatched when a custom field value for a user has changed. </td></tr><tr><td valign="top"><code>customFieldDelete</code></td> <td> Dispatched when a custom field for a user is deleted. </td></tr><tr><td valign="top"><code>customFieldRegister</code></td> <td> Dispatched when a custom field for a user is registered. </td></tr><tr><td valign="top"><code>synchronizationChange</code></td> <td> Dispatched when the UserManager has received everything up to the current state of the room or has lost the connection. </td></tr><tr><td valign="top"><code>userBooted</code></td> <td> Dispatched when a user is forcibly ejected from the room.  </td></tr><tr><td valign="top"><code>userConnectionChange</code></td> <td> Dispatched when a user's connection speed has changed. </td></tr><tr><td valign="top"><code>userCreate</code></td> <td> Dispatched when a new user joins the room. </td></tr><tr><td valign="top"><code>userNameChange</code></td> <td> Dispatched when the user's displayName has changed. </td></tr><tr><td valign="top"><code>userPingDataChange</code></td> <td> Dispatched when a user's ping data has changed. </td></tr><tr><td valign="top"><code>userRemove</code></td> <td> Dispatched when a user leaves the room. </td></tr><tr><td valign="top"><code>userRoleChange</code></td> <td> Dispatched when the user's role has changed. </td></tr><tr><td valign="top"><code>userUsericonURLChange</code></td> <td> Dispatched when a user's icon URL has changed. </td></tr></table>
+				
+				
+					<br /><i>Defined in: </i> <a href="../symbols/src/E__flashfarm_main_connect_build_JavaScript_tools_jsdoc-toolkit_LCCS_JS_Bridge.js.html">LCCS_JS_Bridge.js</a>.
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class UserManager.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/UserManager.html#constructor">UserManager</a></b>()
+							</div>
+							<div class="description"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class UserManager.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/UserManager.html#anonymousPresence">anonymousPresence</a></b>
+								</div>
+								<div class="description">Determines whether all the others users in the room be revealed.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/UserManager.html#audienceCollection">audienceCollection</a></b>
+								</div>
+								<div class="description">Returns a sorted collection of user descriptors with root user roles of UserRoles.VIEWER (10).</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/UserManager.html#customFieldNames">customFieldNames</a></b>
+								</div>
+								<div class="description">Returns the list of all the custom fields created.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/UserManager.html#hostCollection">hostCollection</a></b>
+								</div>
+								<div class="description">Returns a sorted collection of user descriptors with root user roles of UserRoles.OWNER (100).</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/UserManager.html#isPeerEnable">isPeerEnable</a></b>
+								</div>
+								<div class="description">This field is set if anyone has peer to peer disabled.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/UserManager.html#isSynchronized">isSynchronized</a></b>
+								</div>
+								<div class="description">Specifies whether or not the UserManager has connected and has synchronized all of the user information from the service.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/UserManager.html#myBuddyList">myBuddyList</a></b>
+								</div>
+								<div class="description">An array of userIDs, which represents the set of users which might be listening for the current user's updatesNote, this isn't the set of users the current user is listening for, but rather the inverse.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/UserManager.html#myUserAffiliation">myUserAffiliation</a></b>
+								</div>
+								<div class="description">Specifies the current user's affiliation.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/UserManager.html#myUserID">myUserID</a></b>
+								</div>
+								<div class="description">The current user's userID.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/UserManager.html#myUserRole">myUserRole</a></b>
+								</div>
+								<div class="description">Specifies the current user's role</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/UserManager.html#participantCollection">participantCollection</a></b>
+								</div>
+								<div class="description">Returns a sorted collection of user descriptors with root user roles of UserRoles.PUBLISHER (50).</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class UserManager.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/UserManager.html#deleteCustomUserField">deleteCustomUserField</a></b>(p_fieldName)
+								</div>
+								<div class="description">Deletes a custom field for used in the customField Object).</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/UserManager.html#getIsPeerEnable">getIsPeerEnable</a></b>()
+								</div>
+								<div class="description">This function checks if anyone has peer to peer disabled.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/UserManager.html#getUserDescriptor">getUserDescriptor</a></b>(p_userID)
+								</div>
+								<div class="description">Fetches all available details about the specified user.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/UserManager.html#getUserRole">getUserRole</a></b>(p_userID)
+								</div>
+								<div class="description">Gets the role of the specified user for a particular node.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/UserManager.html#registerCustomUserField">registerCustomUserField</a></b>(p_fieldName)
+								</div>
+								<div class="description">Registers a custom field for use in the userDescriptor (will appear in the CustomField Object).</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/UserManager.html#setAnonymousPresence">setAnonymousPresence</a></b>(p_anonymousPresence)
+								</div>
+								<div class="description">Set whether other users in the room should be revealed or not.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/UserManager.html#setCustomUserField">setCustomUserField</a></b>(p_userID, p_fieldName, p_value)
+								</div>
+								<div class="description">Custom User Fields are used to store extended info about a particular user (for example, phone status, "I have a question", etc).</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/UserManager.html#setMyBuddyList">setMyBuddyList</a></b>(p_buddyList)
+								</div>
+								<div class="description">An array of userIDs, which represents the set of users which might be listening for the current user's updates Note, this isn't the set of users the current user is listening for, but rather the inverse.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/UserManager.html#setPeer">setPeer</a></b>(p_userID, p_name)
+								</div>
+								<div class="description">Modifies the isPeer property of a given user.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/UserManager.html#setPingData">setPingData</a></b>(p_userID, p_latency, p_drops)
+								</div>
+								<div class="description">Publishes a ping data update.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/UserManager.html#setUserConnection">setUserConnection</a></b>(p_userID, p_conn, p_forceUpdate)
+								</div>
+								<div class="description">Sets the user's connection to one of the following: <ul><li>RoomSettings.MODEM</li><li>RoomSettings.DSL</li><li>RoomSettings.LAN</li></ul> Note: If the <code>UserManager.anonymousPresence</code> is set to true, then this method might fail if theuser's userDescriptor has not been fetched.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/UserManager.html#setUserDisplayName">setUserDisplayName</a></b>(p_userID, p_name)
+								</div>
+								<div class="description">Modifies the displayName of a given user.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/UserManager.html#setUserRole">setUserRole</a></b>(p_userID, p_role)
+								</div>
+								<div class="description">Promotes or demotes the specified user at the "root level".</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/UserManager.html#setUserUsericonURL">setUserUsericonURL</a></b>(p_userID, p_usericonURL)
+								</div>
+								<div class="description">Sets the URL for the user's avatar icon.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>UserManager</b>()
+				</div>
+				
+				<div class="description">
+					
+					
+				</div>
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+					
+
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name="anonymousPresence"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>anonymousPresence</b>
+					
+					</div>
+					<div class="description">
+						Determines whether all the others users in the room be revealed. Upon setting this property to true, users aren't revealed until explicitly called for.UserManager.userCollection and getUserDescriptor won't have any entry for any user (other than one's self) unless there's a specific request for that user.Any call to the getUserDescriptor will cause the UserManager to fetch that particular UserDescriptor and cache it, dispatching the usual userCreate event.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="audienceCollection"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>audienceCollection</b>
+					
+					</div>
+					<div class="description">
+						Returns a sorted collection of user descriptors with root user roles of UserRoles.VIEWER (10).
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="customFieldNames"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>customFieldNames</b>
+					
+					</div>
+					<div class="description">
+						Returns the list of all the custom fields created.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="hostCollection"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>hostCollection</b>
+					
+					</div>
+					<div class="description">
+						Returns a sorted collection of user descriptors with root user roles of UserRoles.OWNER (100).
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="isPeerEnable"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>isPeerEnable</b>
+					
+					</div>
+					<div class="description">
+						This field is set if anyone has peer to peer disabled. i.e. behind firewall or something...
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="isSynchronized"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>isSynchronized</b>
+					
+					</div>
+					<div class="description">
+						Specifies whether or not the UserManager has connected and has synchronized all of the user information from the service.The userManager of the room's Primary Connect Session
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="myBuddyList"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>myBuddyList</b>
+					
+					</div>
+					<div class="description">
+						An array of userIDs, which represents the set of users which might be listening for the current user's updatesNote, this isn't the set of users the current user is listening for, but rather the inverse.The current user would notify users in the Array about all his activities. In other words the users in the Array users are listening to the current user even if he is not listening to them.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="myUserAffiliation"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>myUserAffiliation</b>
+					
+					</div>
+					<div class="description">
+						Specifies the current user's affiliation.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="myUserID"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>myUserID</b>
+					
+					</div>
+					<div class="description">
+						The current user's userID.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="myUserRole"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>myUserRole</b>
+					
+					</div>
+					<div class="description">
+						Specifies the current user's role
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="participantCollection"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>participantCollection</b>
+					
+					</div>
+					<div class="description">
+						Returns a sorted collection of user descriptors with root user roles of UserRoles.PUBLISHER (50).
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="deleteCustomUserField"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>deleteCustomUserField</b>(p_fieldName)
+					
+					</div>
+					<div class="description">
+						Deletes a custom field for used in the customField Object).Only hosts are allowed to create deleteFields.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_fieldName</b>
+									
+								</dt>
+								<dd>The name of the custom field to be deleted</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getIsPeerEnable"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{boolean}</span>
+					<b>getIsPeerEnable</b>()
+					
+					</div>
+					<div class="description">
+						This function checks if anyone has peer to peer disabled. i.e. behind firewall or something...
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{boolean}</span> returns if the p2p is disabled.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getUserDescriptor"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getUserDescriptor</b>(p_userID)
+					
+					</div>
+					<div class="description">
+						Fetches all available details about the specified user. If <code>anonymousPresence</code> is set to true,the method migth return a null if <code>UserDescriptor</code> was never fetched. In such a situation we mustlisten to <code>UserEvent.USER_CREATE</code> event and update the User's  <code>UserDescriptor</code> we wanted.Note: If the <code>UserManager.anonymousPresence</code> is set to true, then this method might fail if theuser's userDescriptor has not been fetched. So it is adviced to call this method after the required userDescriptor'sare fetched.In other words listen to <code>UserEvent.USER_CREATE</code> event and call this method after the requireduserDescriptor's are fetched.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The unique ID of the user being queried.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>The UserDescriptor of the specified user if <code>anonymousPresence</code> were false.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getUserRole"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getUserRole</b>(p_userID)
+					
+					</div>
+					<div class="description">
+						Gets the role of the specified user for a particular node.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The specified user's <code>userID</code>.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>int which is the user role value</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="registerCustomUserField"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>registerCustomUserField</b>(p_fieldName)
+					
+					</div>
+					<div class="description">
+						Registers a custom field for use in the userDescriptor (will appear in the CustomField Object).Only hosts are allowed to create regisfields, but users can publish them once
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_fieldName</b>
+									
+								</dt>
+								<dd>The name of the new custom field</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setAnonymousPresence"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setAnonymousPresence</b>(p_anonymousPresence)
+					
+					</div>
+					<div class="description">
+						Set whether other users in the room should be revealed or not.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_anonymousPresence</b>
+									
+								</dt>
+								<dd>{boolean}</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setCustomUserField"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setCustomUserField</b>(p_userID, p_fieldName, p_value)
+					
+					</div>
+					<div class="description">
+						Custom User Fields are used to store extended info about a particular user (for example, phone status, "I have a question", etc).A custom field must be registered before it can be modified. Custom fields are modifiable by the given user or a host.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The user to be modified</dd>
+							
+								<dt>
+									<b>p_fieldName</b>
+									
+								</dt>
+								<dd>The name of the custom field to modify</dd>
+							
+								<dt>
+									<b>p_value</b>
+									
+								</dt>
+								<dd>The new value for the custom field (null to delete)</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setMyBuddyList"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setMyBuddyList</b>(p_buddyList)
+					
+					</div>
+					<div class="description">
+						An array of userIDs, which represents the set of users which might be listening for the current user's updates Note, this isn't the set of users the current user is listening for, but rather the inverse.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_buddyList</b>
+									
+								</dt>
+								<dd>{array} List of buddies with their userId's</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setPeer"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setPeer</b>(p_userID, p_name)
+					
+					</div>
+					<div class="description">
+						Modifies the isPeer property of a given user. Note that only OWNERs and the user in question are able to change the user's displayName. This shows whether an user can do p2p streaming.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The userID of the specified user</dd>
+							
+								<dt>
+									<b>p_name</b>
+									
+								</dt>
+								<dd>The new displayName to assign to that user</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setPingData"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setPingData</b>(p_userID, p_latency, p_drops)
+					
+					</div>
+					<div class="description">
+						Publishes a ping data update.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The userID of the user to update.</dd>
+							
+								<dt>
+									<b>p_latency</b>
+									
+								</dt>
+								<dd>The new latency statistic.</dd>
+							
+								<dt>
+									<b>p_drops</b>
+									
+								</dt>
+								<dd>The new drops statistic.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setUserConnection"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setUserConnection</b>(p_userID, p_conn, p_forceUpdate)
+					
+					</div>
+					<div class="description">
+						Sets the user's connection to one of the following: <ul><li>RoomSettings.MODEM</li><li>RoomSettings.DSL</li><li>RoomSettings.LAN</li></ul> Note: If the <code>UserManager.anonymousPresence</code> is set to true, then this method might fail if theuser's userDescriptor has not been fetched. So it is adviced to call this method after the required userDescriptor'sare fetched.In other words listen to <code>UserEvent.USER_CREATE</code> event and call this method after the requireduserDescriptor's are fetched.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The userID of the user the change.</dd>
+							
+								<dt>
+									<b>p_conn</b>
+									
+								</dt>
+								<dd>The new connection speed value which is one of the RoomSetting constants.</dd>
+							
+								<dt>
+									<b>p_forceUpdate</b>
+									
+								</dt>
+								<dd>Whether or not the update should be forced; the default is false.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setUserDisplayName"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setUserDisplayName</b>(p_userID, p_name)
+					
+					</div>
+					<div class="description">
+						Modifies the displayName of a given user. Note that only OWNERs and the user in question are able to change the user's displayName.Note: If the <code>UserManager.anonymousPresence</code> is set to true, then this method might fail if theuser's userDescriptor has not been fetched. So it is adviced to call this method after the required userDescriptor'sare fetched.In other words listen to <code>UserEvent.USER_CREATE</code> event and call this method after the requireduserDescriptor's are fetched.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The userID of the specified user</dd>
+							
+								<dt>
+									<b>p_name</b>
+									
+								</dt>
+								<dd>The new displayName to assign to that user</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setUserRole"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setUserRole</b>(p_userID, p_role)
+					
+					</div>
+					<div class="description">
+						Promotes or demotes the specified user at the "root level". This is the primary way to change a user's role (although it's also possible to change a user's role relative to a specific CollectionNode within the application). Note that only users with an owner role  at the root level may call this method.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The unique ID of the user to affect</dd>
+							
+								<dt>
+									<b>p_role</b>
+									
+								</dt>
+								<dd>The new role for the user</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setUserUsericonURL"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setUserUsericonURL</b>(p_userID, p_usericonURL)
+					
+					</div>
+					<div class="description">
+						Sets the URL for the user's avatar icon.Note: If the <code>UserManager.anonymousPresence</code> is set to true, then this method might fail if theuser's userDescriptor has not been fetched. So it is adviced to call this method after the required userDescriptor'sare fetched.In other words listen to <code>UserEvent.USER_CREATE</code> event and call this method after the requireduserDescriptor's are fetched.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The userID of the user specified.</dd>
+							
+								<dt>
+									<b>p_usericonURL</b>
+									
+								</dt>
+								<dd>the URL of the icon desired.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a><br/>
+			2008-2011 Adobe Systems Incorporated. All rights reserved.
+		</div>
+	</body>
+</html>

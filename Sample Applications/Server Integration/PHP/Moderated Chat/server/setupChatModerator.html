@@ -1,0 +1,149 @@
+
+<html> 
+<head> 
+<title>Setup Moderator Chat</title> 
+</head> 
+<body> 
+<H1>Setup Moderator Chat</H1>
+<p>
+<b>Register Hook:</b>
+<form method="post" action="./flashservices/services/webHookManager.php">
+Meeting URL:<input type="text" size="100" maxlength="200" name="meetingurl" value="http://localhost:8080/UNDEF-ROOT/mymeeting"><br />
+UserName:<input type="text" size="100" maxlength="200" name="username" value="root"><br />
+Password:<input type="password" size="100" maxlength="200" name="password" value="root"><br />
+Hook URL:<input type="text" size="100" maxlength="200" name="hookurl" value="http://10.58.122.50/~deanchen/php/flashservices/gateway.php"><br />
+Token:<input type="text" size="100" maxlength="200" name="token" value="secret12345"><br />
+
+<input type="hidden" name="action" value="registerHook">
+<input type="submit" /> 
+</form>
+
+
+<p>
+<b>Subscribe Collection</b>
+<form method="post" action="./flashservices/services/webHookManager.php">
+Meeting URL:<input type="text" size="100" maxlength="200" name="meetingurl" value="http://localhost:8080/UNDEF-ROOT/mymeeting"><br />
+UserName:<input type="text" size="100" maxlength="200" name="username" value="root"><br />
+Password:<input type="password" size="100" maxlength="200" name="password" value="root"><br />
+Roomname:<input type="text" size="100" maxlength="200" name="roomname" value="mymeeting"><br />
+CollectionNodeName:<input type="text" size="100" maxlength="200" name="collectionname" value="myChat_ModeratedChatModel"><br />
+<input type="hidden" name="action" value="subscribeCollection">
+<input type="submit" />
+</form>
+
+<p>
+<b>Create Node</b>
+<form method="post" action="./flashservices/services/webHookManager.php">
+Meeting URL:<input type="text" size="100" maxlength="200" name="meetingurl" value="http://localhost:8080/UNDEF-ROOT/mymeeting"><br />
+UserName:<input type="text" size="100" maxlength="200" name="username" value="root"><br />
+Password:<input type="password" size="100" maxlength="200" name="password" value="root"><br />
+Roomname:<input type="text" size="100" maxlength="200" name="roomname" value="mymeeting"><br />
+CollectionNodeName:<input type="text" size="100" maxlength="200" name="collectionname" value="myChat_ModeratedChatModel"><br />
+NodeName:<input type="text" size="100" maxlength="200" name="nodename" value="MyPrivateNode"><br />
+Configuration:
+ <table border="1" cellpadding="1">
+              <tr>
+                  <td>persisItems</td>
+                  <td>
+                 <input type="radio" id="persistItems_configuration_createnode_true"  name="persistItem" checked value="true">
+                <input type="radio" id="persistItems_configuration_createnode_false"  name="persistItem" value="false">
+                  </td>
+              </tr>
+               <tr>
+                  <td>userDependentItems</td>
+                  <td>
+                 <input type="radio" id="userDependentItems_true"  name="userDependentItems" checked value="true">
+                <input type="radio" id="userDependentItems_false"  name="userDependentItems" value="false">
+                  </td>
+              </tr>
+              <tr>
+                  <td>publishModel
+                    <input type="text" name="publishmodel"   value="10" Width="300"/>
+                  </td>
+              </tr>
+               <tr>
+                  <td>lazySubscription</td>
+                  <td>
+                    <input type="radio" id="lazySubscription_true"  name="lazySubscription" value="true"/>
+                    <input type="radio" id="lazySubscription_false"  name="lazySubscription"   checked value="false"/>
+                  </td>
+              </tr>
+               <tr>
+                  <td>allowPrivateMessages</td>
+                   <td>
+                     <input type="radio" id="allowPrivateMessages_true"  name="allowPrivateMessages" value="true">
+                <input type="radio" id="allowPrivateMessages_false"  name="allowPrivateMessages"   checked value="false">
+                  </td>
+              </tr>
+              <tr>
+                  <td>modifyAnyItem</td>
+                   <td>
+                <input type="radio" id="modifyAnyItem_true"  name="modifyAnyItem" value="true">
+                <input type="radio" id="modifyAnyItem_false"  name="modifyAnyItem"   checked value="false">
+                  </td>
+              </tr>
+              <tr>
+                  <td>accessModel
+                  <input type="text" name="accessModel"   value="20" Width="300"/>
+                 </td>
+              </tr>
+              <tr>
+                  <td>itemStorageScheme
+                 <input type="text" name="itemStorageScheme"   value="1" Width="300"/>
+               </td>
+              </tr>
+               <tr>
+                  <td>sessionDependentItems</td>
+                  <td>
+                   <input type="radio" id="sessionDependentItems_true"  name="sessionDependentItems" value="true">
+  		    <input type="radio" id="sessionDependentItems_false"  name="sessionDependentItems"   checked value="false">
+                  </td>
+              </tr>
+              <tr>
+                <td>p2pDataMessaging</td>
+                   <td>
+                   <input type="radio" id="p2pDataMessaging_true"  name="p2pDataMessaging" value="true">
+                    <input type="radio" id="p2pDataMessaging_false"  name="p2pDataMessaging"   checked value="false">
+                  </td>
+              </tr>
+            </table>
+
+<input type="hidden" name="action" value="createNode">
+<input type="submit" />
+</form>
+
+
+<p>
+<b>GetNodeConfiguration</b>
+<form method="post" action="./flashservices/services/webHookManager.php">
+Meeting URL:<input type="text" size="100" maxlength="200" name="meetingurl" value="http://localhost:8080/UNDEF-ROOT/mymeeting"><br />
+UserName:<input type="text" size="100" maxlength="200" name="username" value="root"><br />
+Password:<input type="password" size="100" maxlength="200" name="password" value="root"><br />
+Roomname:<input type="text" size="100" maxlength="200" name="roomname" value="mymeeting"><br />
+CollectionNodeName:<input type="text" size="100" maxlength="200" name="collectionname" value="myChat_ModeratedChatModel"><br />
+NodeName:<input type="text" size="100" maxlength="200" name="nodename" value="MyPrivateNode"><br />
+<input type="hidden" name="action" value="getnodeconfiguration">
+<input type="submit" />
+</form>
+
+
+<p>
+<b>Get Hook Info</b>
+<form method="post" action="./flashservices/services/webHookManager.php">
+Meeting URL:<input type="text" size="100" maxlength="200" name="meetingurl" value="http://localhost:8080/UNDEF-ROOT/mymeeting"><br />
+UserName:<input type="text" size="100" maxlength="200" name="username" value="root"><br />
+Password:<input type="password" size="100" maxlength="200" name="password" value="root"><br />
+<input type="hidden" name="action" value="gethookinfo">
+<input type="submit" />
+</form>
+
+<p>
+<b>Update Chat Filter</b>
+<form method="post" action="./flashservices/services/webHookManager.php">
+Current Filter:<input type="text" size="100" maxlength="200" name="chatfilter" value="consectetuer,consequat,turpis, fuge"><br />
+<input type="hidden" name="action" value="updateChatFilter">
+<input type="submit" />
+</form>
+</body>
+</html>
+

@@ -1,0 +1,43 @@
+<p>
+  <b>Associateduserid:</b>
+  <%=h @item.associatedUserID %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%=h @item.body %>
+</p>
+
+<p>
+  <b>Collectionname:</b>
+  <%=h @item.collectionName %>
+</p>
+
+<p>
+  <b>Itemid:</b>
+  <%=h @item.itemID %>
+</p>
+
+<p>
+  <b>Nodename:</b>
+  <%=h @item.nodeName %>
+</p>
+
+<p>
+  <b>Publisherid:</b>
+  <%=h @item.publisherID %>
+</p>
+
+<p>
+  <b>Recipientid:</b>
+  <%=h @item.recipientID %>
+</p>
+
+<p>
+  <b>Timestamp:</b>
+  <%=h @item.timeStamp %>
+</p>
+
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>

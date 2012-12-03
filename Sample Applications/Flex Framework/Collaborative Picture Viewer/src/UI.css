@@ -1,0 +1,57 @@
+/* CSS file */
+
+		Panel {
+			borderStyle: none;
+			borderColor: #000000;
+			borderAlpha: 0;
+			borderThicknessLeft: 0;
+			borderThicknessTop: 0;
+			borderThicknessBottom: 2;
+			borderThicknessRight: 0;
+			roundedBottomCorners: true;
+			cornerRadius: 11;
+			headerHeight: 0;
+			backgroundAlpha: 0;
+			highlightAlphas: 0, 0;
+			headerColors: #000000, #000000;
+			footerColors: #000000, #000000;
+			backgroundColor: #000000;
+			shadowDistance: 0;
+			shadowDirection: right;
+			titleStyleName: "mypanelTitle";
+		}
+		.mypanelTitle {
+			letterSpacing: 1;
+			color: #333333;
+			fontSize: 12;
+			fontWeight: bold;
+		}
+		
+	   .controllerStyle {
+            bottom: 5;
+            left: 5;
+            right: 5;
+            paddingBottom: 5;
+            paddingLeft: 5;
+            paddingRight: 5;
+            paddingTop: 5;
+            alpha: 0;
+            background-color: #000000;
+            background-alpha: 0.5;
+        }
+        
+        .timeStyle {
+            color: #FFFFFF;
+            font-family: Arial;
+            font-size: 12;
+        }
+        
+        HScrollBar {
+	       cornerRadius: 8;
+		   highlightAlphas: 0.13, 0.57;
+		   fillAlphas: 0.55, 0.58, 0.55, 0.55;
+		   fillColors: #353533, #353535, #353535, #353535;
+		   trackColors: #353535, #353535;
+		   themeColor: #353535;
+		   borderColor: #353535;
+} 

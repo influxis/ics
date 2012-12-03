@@ -1,0 +1,1239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: RTC::AccountManager</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">RTC::AccountManager</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/lccs_rb.html">
+                lib/lccs.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+A class that deals with account information and provisioning.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000018">contentURL</a>&nbsp;&nbsp;
+      <a href="#M000040">createNode</a>&nbsp;&nbsp;
+      <a href="#M000022">createRoom</a>&nbsp;&nbsp;
+      <a href="#M000024">delete</a>&nbsp;&nbsp;
+      <a href="#M000027">deleteRoom</a>&nbsp;&nbsp;
+      <a href="#M000028">deleteTemplate</a>&nbsp;&nbsp;
+      <a href="#M000032">fetchItems</a>&nbsp;&nbsp;
+      <a href="#M000044">getAccountInfo</a>&nbsp;&nbsp;
+      <a href="#M000035">getHookInfo</a>&nbsp;&nbsp;
+      <a href="#M000031">getNodeConfiguration</a>&nbsp;&nbsp;
+      <a href="#M000045">getRoomInfo</a>&nbsp;&nbsp;
+      <a href="#M000029">getSession</a>&nbsp;&nbsp;
+      <a href="#M000030">invalidateSession</a>&nbsp;&nbsp;
+      <a href="#M000021">keepalive</a>&nbsp;&nbsp;
+      <a href="#M000023">list</a>&nbsp;&nbsp;
+      <a href="#M000025">listRooms</a>&nbsp;&nbsp;
+      <a href="#M000026">listTemplates</a>&nbsp;&nbsp;
+      <a href="#M000020">login</a>&nbsp;&nbsp;
+      <a href="#M000019">new</a>&nbsp;&nbsp;
+      <a href="#M000038">publishItem</a>&nbsp;&nbsp;
+      <a href="#M000033">registerHook</a>&nbsp;&nbsp;
+      <a href="#M000041">removeNode</a>&nbsp;&nbsp;
+      <a href="#M000039">retractItem</a>&nbsp;&nbsp;
+      <a href="#M000042">setNodeConfiguration</a>&nbsp;&nbsp;
+      <a href="#M000043">setUserRole</a>&nbsp;&nbsp;
+      <a href="#M000036">subscribeCollection</a>&nbsp;&nbsp;
+      <a href="#M000034">unregisterHook</a>&nbsp;&nbsp;
+      <a href="#M000037">unsubscribeCollection</a>&nbsp;&nbsp;
+      <a href="#M000017">url</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ROOM_ITEMS</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;meetings&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TEMPLATE_ITEMS</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;templates&quot;</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000019" class="method-detail">
+        <a name="M000019"></a>
+
+        <div class="method-heading">
+          <a href="#M000019" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(url)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000019-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000019-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 315</span>
+315:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">url</span>)
+316:         <span class="ruby-ivar">@url</span> = <span class="ruby-identifier">url</span>
+317:         <span class="ruby-ivar">@authToken</span> = <span class="ruby-keyword kw">nil</span>
+318:         <span class="ruby-ivar">@authHeaders</span> = {}
+319:         <span class="ruby-ivar">@authenticator</span> = <span class="ruby-keyword kw">nil</span>
+320:         <span class="ruby-ivar">@baseURL</span> = <span class="ruby-keyword kw">nil</span>
+321:         <span class="ruby-ivar">@contentPath</span> = <span class="ruby-keyword kw">nil</span>
+322:         <span class="ruby-ivar">@roomInstance</span> = <span class="ruby-keyword kw">nil</span>
+323: 
+324:         <span class="ruby-identifier">puts</span> <span class="ruby-constant">VERSION</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">DEBUG</span>
+325: 
+326:         <span class="ruby-identifier">do_initialize</span>
+327:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000018" class="method-detail">
+        <a name="M000018"></a>
+
+        <div class="method-heading">
+          <a href="#M000018" class="method-signature">
+          <span class="method-name">contentURL</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000018-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000018-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 311</span>
+311:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">contentURL</span>
+312:         <span class="ruby-node">&quot;#{@baseURL}app/content#{@contentPath}&quot;</span>
+313:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000040" class="method-detail">
+        <a name="M000040"></a>
+
+        <div class="method-heading">
+          <a href="#M000040" class="method-signature">
+          <span class="method-name">createNode</span><span class="method-args">(room, collection, node, configuration=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a node
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000040-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000040-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 664</span>
+664:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">createNode</span>(<span class="ruby-identifier">room</span>, <span class="ruby-identifier">collection</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">configuration</span>=<span class="ruby-keyword kw">nil</span>)
+665:         <span class="ruby-keyword kw">begin</span>
+666:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/#room#/</span>, <span class="ruby-identifier">room</span>)
+667:         <span class="ruby-keyword kw">rescue</span>
+668:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>
+669:         <span class="ruby-keyword kw">end</span>
+670: 
+671:         <span class="ruby-identifier">params</span> = <span class="ruby-node">&quot;instance=#{instance}&amp;action=configure&amp;collection=#{collection}&amp;node=#{node}&amp;#{@authToken}&quot;</span>
+672: 
+673:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">configuration</span>
+674:           <span class="ruby-identifier">headers</span> = { <span class="ruby-value str">&quot;Content-Type&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;text/xml&quot;</span> }
+675:           <span class="ruby-identifier">headers</span>.<span class="ruby-identifier">merge!</span> <span class="ruby-ivar">@authHeaders</span>
+676: 
+677:           <span class="ruby-identifier">data</span> = <span class="ruby-value str">&quot;&quot;</span><span class="ruby-node">&quot;
+678:             &lt;request&gt;
+679:             #{RTC::to_xml(configuration, &quot;configuration&quot;)}
+680:             &lt;/request&gt;
+681:           &quot;</span><span class="ruby-value str">&quot;&quot;</span>
+682:           <span class="ruby-identifier">res</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_post</span>(<span class="ruby-node">&quot;#{@baseURL}app/rtc?#{params}&quot;</span>, <span class="ruby-identifier">data</span>, <span class="ruby-identifier">headers</span>)
+683:         <span class="ruby-keyword kw">else</span>
+684:           <span class="ruby-identifier">res</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_post</span>(<span class="ruby-node">&quot;#{@baseURL}app/rtc&quot;</span>, <span class="ruby-identifier">params</span>, <span class="ruby-ivar">@authHeaders</span>)
+685:         <span class="ruby-keyword kw">end</span>
+686: 
+687:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">res</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span>
+688: 
+689:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">res</span>).<span class="ruby-identifier">root</span>
+690:         <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">check_status</span> <span class="ruby-identifier">response</span>
+691:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000022" class="method-detail">
+        <a name="M000022"></a>
+
+        <div class="method-heading">
+          <a href="#M000022" class="method-signature">
+          <span class="method-name">createRoom</span><span class="method-args">(room, template = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a room. If no template is specified, use the default, empty
+template.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000022-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000022-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 358</span>
+358:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">createRoom</span>(<span class="ruby-identifier">room</span>, <span class="ruby-identifier">template</span> = <span class="ruby-keyword kw">nil</span>)
+359:         <span class="ruby-identifier">template</span> = <span class="ruby-value str">&quot;default&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">template</span>
+360:         <span class="ruby-identifier">data</span> = <span class="ruby-node">&quot;mode=xml&amp;room=#{room}&amp;template=#{template}&amp;#{@authToken}&quot;</span>
+361:         <span class="ruby-identifier">res</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_post</span>(<span class="ruby-ivar">@url</span>, <span class="ruby-identifier">data</span>, <span class="ruby-ivar">@authHeaders</span>)
+362:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">res</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span>
+363: 
+364:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">res</span>).<span class="ruby-identifier">root</span>
+365:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">local_name</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;meeting-info&quot;</span>
+366:           <span class="ruby-identifier">raise</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-identifier">res</span>
+367:         <span class="ruby-keyword kw">else</span>
+368:           <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;ok&quot;</span>
+369:         <span class="ruby-keyword kw">end</span>
+370:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000024" class="method-detail">
+        <a name="M000024"></a>
+
+        <div class="method-heading">
+          <a href="#M000024" class="method-signature">
+          <span class="method-name">delete</span><span class="method-args">(item, type = ROOM_ITEMS, list = false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delete a room or a template.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000024-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000024-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 406</span>
+406:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">delete</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">type</span> = <span class="ruby-constant">ROOM_ITEMS</span>, <span class="ruby-identifier">list</span> = <span class="ruby-keyword kw">false</span>)
+407:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">type</span>
+408:           <span class="ruby-keyword kw">when</span> <span class="ruby-constant">ROOM_ITEMS</span><span class="ruby-operator">:</span>
+409:           <span class="ruby-keyword kw">when</span> <span class="ruby-constant">TEMPLATE_ITEMS</span><span class="ruby-operator">:</span>
+410:           <span class="ruby-keyword kw">else</span>
+411:             <span class="ruby-identifier">raise</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-value str">&quot;invalid-type&quot;</span>
+412:         <span class="ruby-keyword kw">end</span>
+413: 
+414:         <span class="ruby-identifier">durl</span> = <span class="ruby-node">&quot;#{contentURL}/#{type}/#{item}&quot;</span>
+415: 
+416:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">list</span>
+417:           <span class="ruby-identifier">limitCount</span> = <span class="ruby-value str">&quot;&quot;</span>
+418:         <span class="ruby-keyword kw">else</span>
+419:           <span class="ruby-identifier">limitCount</span> = <span class="ruby-value str">&quot;&amp;count=0&quot;</span>
+420:         <span class="ruby-keyword kw">end</span>
+421: 
+422:         <span class="ruby-identifier">data</span> = <span class="ruby-node">&quot;action=delete&amp;response=inline#{limitCount}&amp;#{@authToken}&quot;</span>
+423:         <span class="ruby-identifier">res</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_post</span>(<span class="ruby-identifier">durl</span>, <span class="ruby-identifier">data</span>, <span class="ruby-ivar">@authHeaders</span>)
+424:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">res</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span>
+425: 
+426:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">res</span>).<span class="ruby-identifier">root</span>
+427:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">response</span>
+428:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000027" class="method-detail">
+        <a name="M000027"></a>
+
+        <div class="method-heading">
+          <a href="#M000027" class="method-signature">
+          <span class="method-name">deleteRoom</span><span class="method-args">(r, list = false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delete a room.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000027-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000027-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 447</span>
+447:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deleteRoom</span>(<span class="ruby-identifier">r</span>, <span class="ruby-identifier">list</span> = <span class="ruby-keyword kw">false</span>)
+448:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-value str">&quot;parameter-required&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">nil?</span>
+449:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">delete</span>(<span class="ruby-identifier">r</span>.<span class="ruby-identifier">downcase</span>, <span class="ruby-constant">ROOM_ITEMS</span>, <span class="ruby-identifier">list</span>)
+450:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000028" class="method-detail">
+        <a name="M000028"></a>
+
+        <div class="method-heading">
+          <a href="#M000028" class="method-signature">
+          <span class="method-name">deleteTemplate</span><span class="method-args">(t, list = false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delete a template.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000028-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000028-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 455</span>
+455:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deleteTemplate</span>(<span class="ruby-identifier">t</span>, <span class="ruby-identifier">list</span> = <span class="ruby-keyword kw">false</span>)
+456:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-value str">&quot;parameter-required&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">nil?</span>
+457:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">delete</span>(<span class="ruby-identifier">t</span>, <span class="ruby-constant">TEMPLATE_ITEMS</span>, <span class="ruby-identifier">list</span>)
+458:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000032" class="method-detail">
+        <a name="M000032"></a>
+
+        <div class="method-heading">
+          <a href="#M000032" class="method-signature">
+          <span class="method-name">fetchItems</span><span class="method-args">(room, coll, node, items=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the <a href="../RTC.html">RTC</a> nodes @ path.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000032-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000032-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 503</span>
+503:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fetchItems</span>(<span class="ruby-identifier">room</span>, <span class="ruby-identifier">coll</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">items</span>=<span class="ruby-keyword kw">nil</span>)
+504:         <span class="ruby-keyword kw">begin</span>
+505:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/#room#/</span>, <span class="ruby-identifier">room</span>)
+506:         <span class="ruby-keyword kw">rescue</span>
+507:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>
+508:         <span class="ruby-keyword kw">end</span>
+509:         
+510:         <span class="ruby-identifier">params</span> = <span class="ruby-node">&quot;instance=#{instance}&amp;collection=#{coll}&amp;node=#{node}&quot;</span>
+511:         <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">items</span>.<span class="ruby-identifier">nil?</span>
+512:           <span class="ruby-identifier">items</span> = <span class="ruby-identifier">items</span>.<span class="ruby-identifier">to_a</span>
+513:           <span class="ruby-identifier">params</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">items</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-value str">&quot;&quot;</span>).<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;&amp;item=&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">items</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+514:         <span class="ruby-keyword kw">end</span>   
+515:         <span class="ruby-identifier">params</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&amp;#{@authToken}&quot;</span>
+516:         
+517:         <span class="ruby-identifier">data</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_get</span>(<span class="ruby-node">&quot;#{@baseURL}app/rtc?#{params}&quot;</span>, <span class="ruby-ivar">@authHeaders</span>)
+518:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">data</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span> 
+519: 
+520:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">data</span>).<span class="ruby-identifier">root</span>
+521:         <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">check_status</span> <span class="ruby-identifier">response</span>
+522: 
+523:         <span class="ruby-identifier">coll</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;collections/node&quot;</span>]
+524:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-value str">&quot;invalid-collection&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">coll</span>.<span class="ruby-identifier">nil?</span>
+525:         <span class="ruby-identifier">node</span> = <span class="ruby-identifier">coll</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;collection/nodes/node&quot;</span>]
+526:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-value str">&quot;invalid-node&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">nil?</span>
+527: 
+528:         <span class="ruby-keyword kw">return</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">from_xml</span>(<span class="ruby-identifier">node</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;collection/items&quot;</span>])
+529:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000044" class="method-detail">
+        <a name="M000044"></a>
+
+        <div class="method-heading">
+          <a href="#M000044" class="method-signature">
+          <span class="method-name">getAccountInfo</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return information about the account if it is active.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000044-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000044-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 763</span>
+763:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getAccountInfo</span>()
+764:         <span class="ruby-identifier">acctid</span> = <span class="ruby-ivar">@roomInstance</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;/&quot;</span>)[<span class="ruby-value">0</span>]
+765:         <span class="ruby-identifier">data</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_get</span>(<span class="ruby-node">&quot;#{@baseURL}app/account?account=#{acctid}&amp;#{@authToken}&quot;</span>, <span class="ruby-ivar">@authHeaders</span>)
+766:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">data</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">DEBUG</span>
+767: 
+768:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">data</span>).<span class="ruby-identifier">root</span>
+769:         <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">check_status</span> <span class="ruby-identifier">response</span>
+770: 
+771:         <span class="ruby-identifier">info</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'account-info'</span>]
+772:         <span class="ruby-identifier">ainfo</span> = <span class="ruby-constant">AccountInfo</span>.<span class="ruby-identifier">new</span>
+773:         <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">userCount</span>     = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'user-count'</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_i</span>
+774:         <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">peakUserCount</span> = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'peak-user-count'</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_i</span>
+775:         <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">bytesUp</span>       = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'total-bytes-up'</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_i</span>
+776:         <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">bytesDown</span>     = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'total-bytes-down'</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_i</span>
+777:         <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">messages</span>      = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'total-messages'</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_i</span>
+778:         <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">userTime</span>      = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">parseElapsed</span>(<span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'total-time'</span>].<span class="ruby-identifier">text</span>)
+779:         <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">dateCreated</span>   = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">parseDateTime</span>(<span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'date-created'</span>].<span class="ruby-identifier">text</span>)
+780:         <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">dateExpired</span>   = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">parseDateTime</span>(<span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'date-expired'</span>].<span class="ruby-identifier">text</span>)
+781:         <span class="ruby-identifier">activeInstances</span> = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'active-FMS-instances'</span>].<span class="ruby-identifier">text</span>
+782:         <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">activeRooms</span> = <span class="ruby-identifier">activeInstances</span>[<span class="ruby-value">1</span>,<span class="ruby-identifier">activeInstances</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">-</span><span class="ruby-value">2</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;,&quot;</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/.*\/(.*)/</span>)[<span class="ruby-value">1</span>] }
+783:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">ainfo</span>
+784:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000035" class="method-detail">
+        <a name="M000035"></a>
+
+        <div class="method-heading">
+          <a href="#M000035" class="method-signature">
+          <span class="method-name">getHookInfo</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the webhook information
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000035-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000035-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 557</span>
+557:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getHookInfo</span>()
+558:         <span class="ruby-identifier">acctid</span> = <span class="ruby-ivar">@roomInstance</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;/&quot;</span>)[<span class="ruby-value">0</span>]
+559:         <span class="ruby-identifier">data</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_get</span>(<span class="ruby-node">&quot;#{@baseURL}app/rtc?action=hookinfo&amp;account=#{acctid}&amp;#{@authToken}&quot;</span>, <span class="ruby-ivar">@authHeaders</span>)
+560:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">data</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span>
+561: 
+562:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">data</span>).<span class="ruby-identifier">root</span>
+563:         <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">check_status</span> <span class="ruby-identifier">response</span>
+564: 
+565:         <span class="ruby-keyword kw">return</span> {
+566:           <span class="ruby-value str">'endpoint'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;param[@name='registerHookEndpoint']&quot;</span>].<span class="ruby-identifier">text</span>,
+567:           <span class="ruby-value str">'token'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;param[@name='registerHookToken']&quot;</span>].<span class="ruby-identifier">text</span>
+568:         }
+569:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000031" class="method-detail">
+        <a name="M000031"></a>
+
+        <div class="method-heading">
+          <a href="#M000031" class="method-signature">
+          <span class="method-name">getNodeConfiguration</span><span class="method-args">(room, coll, node)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the node configuration
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000031-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000031-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 479</span>
+479:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getNodeConfiguration</span>(<span class="ruby-identifier">room</span>, <span class="ruby-identifier">coll</span>, <span class="ruby-identifier">node</span>)
+480:         <span class="ruby-keyword kw">begin</span>
+481:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/#room#/</span>, <span class="ruby-identifier">room</span>)
+482:         <span class="ruby-keyword kw">rescue</span>
+483:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>
+484:         <span class="ruby-keyword kw">end</span>
+485:         <span class="ruby-identifier">path</span> = <span class="ruby-node">&quot;/#{coll}/nodes/#{node}/configuration&quot;</span>
+486:         <span class="ruby-identifier">data</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_get</span>(<span class="ruby-node">&quot;#{@baseURL}app/rtc?instance=#{instance}&amp;path=#{path}&amp;#{@authToken}&quot;</span>, <span class="ruby-ivar">@authHeaders</span>)
+487:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">data</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span>
+488: 
+489:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">data</span>).<span class="ruby-identifier">root</span>
+490:         <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">check_status</span> <span class="ruby-identifier">response</span>
+491:         
+492:         <span class="ruby-identifier">coll</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;collections/node&quot;</span>]
+493:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-value str">&quot;invalid-collection&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">coll</span>.<span class="ruby-identifier">nil?</span>
+494:         <span class="ruby-identifier">node</span> = <span class="ruby-identifier">coll</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;collection/nodes/node&quot;</span>]
+495:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-value str">&quot;invalid-node&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">nil?</span>
+496: 
+497:         <span class="ruby-keyword kw">return</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">from_xml</span>(<span class="ruby-identifier">node</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;collection/configuration&quot;</span>])
+498:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000045" class="method-detail">
+        <a name="M000045"></a>
+
+        <div class="method-heading">
+          <a href="#M000045" class="method-signature">
+          <span class="method-name">getRoomInfo</span><span class="method-args">(room)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return information about the room or room instance if it is active.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000045-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000045-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 789</span>
+789:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getRoomInfo</span>(<span class="ruby-identifier">room</span>)
+790:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">room</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'/'</span>
+791:           <span class="ruby-identifier">instance</span> = <span class="ruby-identifier">room</span>
+792:         <span class="ruby-keyword kw">else</span>
+793:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/#room#/</span>, <span class="ruby-identifier">room</span>)
+794:         <span class="ruby-keyword kw">end</span>
+795:         <span class="ruby-identifier">data</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_get</span>(<span class="ruby-node">&quot;#{@baseURL}app/account?instance=#{instance}&amp;#{@authToken}&quot;</span>, <span class="ruby-ivar">@authHeaders</span>)
+796:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">data</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">DEBUG</span>
+797: 
+798:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">data</span>).<span class="ruby-identifier">root</span>
+799:         <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">check_status</span> <span class="ruby-identifier">response</span>
+800: 
+801:         <span class="ruby-identifier">info</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'meeting-info'</span>]
+802:         <span class="ruby-identifier">rinfo</span> = <span class="ruby-constant">RoomInfo</span>.<span class="ruby-identifier">new</span>
+803:         <span class="ruby-identifier">rinfo</span>.<span class="ruby-identifier">isConnected</span>  = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'is-connected'</span>].<span class="ruby-identifier">text</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'true'</span>
+804:         <span class="ruby-identifier">rinfo</span>.<span class="ruby-identifier">userCount</span>    = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'user-count'</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_i</span>
+805:         <span class="ruby-identifier">rinfo</span>.<span class="ruby-identifier">bytesUp</span>      = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'total-bytes-up'</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_i</span>
+806:         <span class="ruby-identifier">rinfo</span>.<span class="ruby-identifier">bytesDown</span>    = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'total-bytes-down'</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_i</span>
+807:         <span class="ruby-identifier">rinfo</span>.<span class="ruby-identifier">messages</span>     = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'total-messages'</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_i</span>
+808:         <span class="ruby-identifier">rinfo</span>.<span class="ruby-identifier">peakUsers</span>    = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'peak-users'</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_i</span>
+809:         <span class="ruby-identifier">rinfo</span>.<span class="ruby-identifier">dateCreated</span>  = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">parseDateTime</span>(<span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'date-created'</span>].<span class="ruby-identifier">text</span>)
+810:         <span class="ruby-identifier">rinfo</span>.<span class="ruby-identifier">dateStarted</span>  = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">parseDateTime</span>(<span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'date-started'</span>].<span class="ruby-identifier">text</span>)
+811:         <span class="ruby-identifier">rinfo</span>.<span class="ruby-identifier">dateEnded</span>    = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">parseDateTime</span>(<span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'date-ended'</span>].<span class="ruby-identifier">text</span>)
+812:         <span class="ruby-identifier">rinfo</span>.<span class="ruby-identifier">dateExpired</span>  = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">parseDateTime</span>(<span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'date-expired'</span>].<span class="ruby-identifier">text</span>)
+813:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">rinfo</span>
+814:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000029" class="method-detail">
+        <a name="M000029"></a>
+
+        <div class="method-heading">
+          <a href="#M000029" class="method-signature">
+          <span class="method-name">getSession</span><span class="method-args">(room)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return a room session for external authentication.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000029-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000029-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 463</span>
+463:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getSession</span>(<span class="ruby-identifier">room</span>)
+464:         <span class="ruby-identifier">session</span> = <span class="ruby-constant">Session</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@roomInstance</span>, <span class="ruby-identifier">url</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;/&quot;</span>)[<span class="ruby-value">-1</span>], <span class="ruby-identifier">room</span>)
+465:         <span class="ruby-identifier">session</span>.<span class="ruby-identifier">getSecret</span>(<span class="ruby-ivar">@baseURL</span>, <span class="ruby-ivar">@authToken</span>, <span class="ruby-ivar">@authHeaders</span>)
+466:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">session</span>
+467:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000030" class="method-detail">
+        <a name="M000030"></a>
+
+        <div class="method-heading">
+          <a href="#M000030" class="method-signature">
+          <span class="method-name">invalidateSession</span><span class="method-args">(session)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invalidate the room session.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000030-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000030-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 472</span>
+472:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">invalidateSession</span>(<span class="ruby-identifier">session</span>)
+473:         <span class="ruby-identifier">session</span>.<span class="ruby-identifier">invalidate</span>(<span class="ruby-ivar">@baseURL</span>, <span class="ruby-ivar">@authToken</span>, <span class="ruby-ivar">@authHeaders</span>)
+474:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000021" class="method-detail">
+        <a name="M000021"></a>
+
+        <div class="method-heading">
+          <a href="#M000021" class="method-signature">
+          <span class="method-name">keepalive</span><span class="method-args">(user = nil, password = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Keep the authentication token alive by accessing the account.
+</p>
+<p>
+If the requerst fails with an authentication error and credentials are
+provided, this method will authenticated again
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000021-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000021-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 348</span>
+348:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">keepalive</span>(<span class="ruby-identifier">user</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">password</span> = <span class="ruby-keyword kw">nil</span>)
+349:         <span class="ruby-ivar">@contentPath</span> = <span class="ruby-keyword kw">nil</span>
+350:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_initialize</span>
+351:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">login</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">password</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user</span>
+352:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+353:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000023" class="method-detail">
+        <a name="M000023"></a>
+
+        <div class="method-heading">
+          <a href="#M000023" class="method-signature">
+          <span class="method-name">list</span><span class="method-args">(type = ROOM_ITEMS)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+List rooms or templates.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000023-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000023-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 375</span>
+375:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list</span>(<span class="ruby-identifier">type</span> = <span class="ruby-constant">ROOM_ITEMS</span>)
+376:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">type</span>
+377:           <span class="ruby-keyword kw">when</span> <span class="ruby-constant">ROOM_ITEMS</span><span class="ruby-operator">:</span>
+378:           <span class="ruby-keyword kw">when</span> <span class="ruby-constant">TEMPLATE_ITEMS</span><span class="ruby-operator">:</span>
+379:           <span class="ruby-keyword kw">else</span>
+380:             <span class="ruby-identifier">raise</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-value str">&quot;invalid-type&quot;</span>
+381:         <span class="ruby-keyword kw">end</span>
+382: 
+383:         <span class="ruby-identifier">data</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_get</span>(<span class="ruby-node">&quot;#{contentURL}/#{type}/?#{@authToken}&quot;</span>, <span class="ruby-ivar">@authHeaders</span>)
+384: 
+385:         <span class="ruby-identifier">items</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+386: 
+387:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">data</span>).<span class="ruby-identifier">root</span>
+388:         <span class="ruby-identifier">response</span>.<span class="ruby-identifier">elements</span>.<span class="ruby-identifier">each</span>(<span class="ruby-value str">&quot;children/node&quot;</span>) {
+389:           <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+390: 
+391:           <span class="ruby-identifier">name</span> = <span class="ruby-identifier">n</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;name&quot;</span>].<span class="ruby-identifier">text</span>
+392:           <span class="ruby-identifier">desc</span> = <span class="ruby-identifier">n</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;properties/property[@name = 'cr:description']&quot;</span>]
+393:           <span class="ruby-identifier">desc</span> = <span class="ruby-identifier">desc</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;value&quot;</span>].<span class="ruby-identifier">text</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">desc</span>
+394:           <span class="ruby-identifier">created</span> = <span class="ruby-identifier">n</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;properties/property[@name = 'jcr:created']&quot;</span>]
+395:           <span class="ruby-identifier">created</span> = <span class="ruby-identifier">created</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;value&quot;</span>].<span class="ruby-identifier">text</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">created</span>
+396: 
+397:           <span class="ruby-identifier">items</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">Item</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">desc</span>, <span class="ruby-identifier">created</span>))
+398:         }
+399: 
+400:               <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">items</span>
+401:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000025" class="method-detail">
+        <a name="M000025"></a>
+
+        <div class="method-heading">
+          <a href="#M000025" class="method-signature">
+          <span class="method-name">listRooms</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+List rooms.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000025-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000025-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 433</span>
+433:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">listRooms</span>()
+434:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">list</span>(<span class="ruby-constant">ROOM_ITEMS</span>)
+435:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000026" class="method-detail">
+        <a name="M000026"></a>
+
+        <div class="method-heading">
+          <a href="#M000026" class="method-signature">
+          <span class="method-name">listTemplates</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+List templates.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000026-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000026-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 440</span>
+440:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">listTemplates</span>()
+441:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">list</span>(<span class="ruby-constant">TEMPLATE_ITEMS</span>)
+442:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000020" class="method-detail">
+        <a name="M000020"></a>
+
+        <div class="method-heading">
+          <a href="#M000020" class="method-signature">
+          <span class="method-name">login</span><span class="method-args">(user, password = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Login and connect to the account
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000020-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000020-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 332</span>
+332:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">login</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">password</span> = <span class="ruby-keyword kw">nil</span>)
+333:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">password</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword kw">nil</span>
+334:           <span class="ruby-ivar">@authToken</span> = <span class="ruby-ivar">@authenticator</span>.<span class="ruby-identifier">login</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">password</span>, <span class="ruby-ivar">@authHeaders</span>)
+335:         <span class="ruby-keyword kw">else</span>
+336:           <span class="ruby-ivar">@authToken</span> = <span class="ruby-constant">Authenticator</span>.<span class="ruby-identifier">guestLogin</span>(<span class="ruby-identifier">user</span>)
+337:         <span class="ruby-keyword kw">end</span>
+338: 
+339:         <span class="ruby-identifier">do_initialize</span>
+340:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000038" class="method-detail">
+        <a name="M000038"></a>
+
+        <div class="method-heading">
+          <a href="#M000038" class="method-signature">
+          <span class="method-name">publishItem</span><span class="method-args">(room, collection, node, item, overwrite = false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Publish an item
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000038-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000038-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 618</span>
+618:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">publishItem</span>(<span class="ruby-identifier">room</span>, <span class="ruby-identifier">collection</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">item</span>, <span class="ruby-identifier">overwrite</span> = <span class="ruby-keyword kw">false</span>)
+619:         <span class="ruby-keyword kw">begin</span>
+620:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/#room#/</span>, <span class="ruby-identifier">room</span>)
+621:         <span class="ruby-keyword kw">rescue</span>
+622:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>
+623:         <span class="ruby-keyword kw">end</span>
+624: 
+625:         <span class="ruby-identifier">headers</span> = { <span class="ruby-value str">&quot;Content-Type&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;text/xml&quot;</span> }
+626:         <span class="ruby-identifier">headers</span>.<span class="ruby-identifier">merge!</span> <span class="ruby-ivar">@authHeaders</span>
+627: 
+628:         <span class="ruby-identifier">params</span> = <span class="ruby-node">&quot;instance=#{instance}&amp;action=publish&amp;collection=#{collection}&amp;node=#{node}&quot;</span>
+629:         <span class="ruby-identifier">params</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&amp;overwrite=true&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">overwrite</span>
+630:         <span class="ruby-identifier">params</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&amp;#{@authToken}&quot;</span>
+631:         <span class="ruby-identifier">data</span> = <span class="ruby-value str">&quot;&quot;</span><span class="ruby-node">&quot;
+632:           &lt;request&gt;
+633:           #{RTC::to_xml(item, &quot;item&quot;)}
+634:           &lt;/request&gt;
+635:         &quot;</span><span class="ruby-value str">&quot;&quot;</span>
+636:         <span class="ruby-identifier">res</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_post</span>(<span class="ruby-node">&quot;#{@baseURL}app/rtc?#{params}&quot;</span>, <span class="ruby-identifier">data</span>, <span class="ruby-identifier">headers</span>)
+637:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">res</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span>
+638: 
+639:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">res</span>).<span class="ruby-identifier">root</span>
+640:         <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">check_status</span> <span class="ruby-identifier">response</span>
+641:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000033" class="method-detail">
+        <a name="M000033"></a>
+
+        <div class="method-heading">
+          <a href="#M000033" class="method-signature">
+          <span class="method-name">registerHook</span><span class="method-args">(endpoint=nil, token=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Register endpoint URL for webhooks
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000033-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000033-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 534</span>
+534:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">registerHook</span>(<span class="ruby-identifier">endpoint</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">token</span>=<span class="ruby-keyword kw">nil</span>)
+535:         <span class="ruby-identifier">acctid</span> = <span class="ruby-ivar">@roomInstance</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;/&quot;</span>)[<span class="ruby-value">0</span>]
+536:         <span class="ruby-identifier">data</span> = <span class="ruby-node">&quot;account=#{acctid}&amp;action=registerhook&quot;</span>
+537:         <span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&amp;endpoint=#{RTC.url_escape(endpoint)}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">endpoint</span>
+538:         <span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&amp;token=#{RTC.url_escape(token)}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">token</span>
+539:         <span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&amp;#{@authToken}&quot;</span>
+540:         <span class="ruby-identifier">res</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_post</span>(<span class="ruby-node">&quot;#{@baseURL}app/rtc&quot;</span>, <span class="ruby-identifier">data</span>, <span class="ruby-ivar">@authHeaders</span>)
+541:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">res</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span>
+542: 
+543:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">res</span>).<span class="ruby-identifier">root</span>
+544:         <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">check_status</span> <span class="ruby-identifier">response</span>
+545:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000041" class="method-detail">
+        <a name="M000041"></a>
+
+        <div class="method-heading">
+          <a href="#M000041" class="method-signature">
+          <span class="method-name">removeNode</span><span class="method-args">(room, collection, node=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove a node or collection
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000041-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000041-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 696</span>
+696:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">removeNode</span>(<span class="ruby-identifier">room</span>, <span class="ruby-identifier">collection</span>, <span class="ruby-identifier">node</span>=<span class="ruby-keyword kw">nil</span>)
+697:         <span class="ruby-keyword kw">begin</span>
+698:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/#room#/</span>, <span class="ruby-identifier">room</span>)
+699:         <span class="ruby-keyword kw">rescue</span>
+700:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>
+701:         <span class="ruby-keyword kw">end</span>
+702: 
+703:         <span class="ruby-identifier">data</span> = <span class="ruby-node">&quot;instance=#{instance}&amp;action=remove&amp;collection=#{collection}&amp;node=#{node}&amp;#{@authToken}&quot;</span>
+704: 
+705:         <span class="ruby-identifier">res</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_post</span>(<span class="ruby-node">&quot;#{@baseURL}app/rtc&quot;</span>, <span class="ruby-identifier">data</span>, <span class="ruby-ivar">@authHeaders</span>)
+706:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">res</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span>
+707: 
+708:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">res</span>).<span class="ruby-identifier">root</span>
+709:         <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">check_status</span> <span class="ruby-identifier">response</span>
+710:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000039" class="method-detail">
+        <a name="M000039"></a>
+
+        <div class="method-heading">
+          <a href="#M000039" class="method-signature">
+          <span class="method-name">retractItem</span><span class="method-args">(room, collection, node, item)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retract an item
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000039-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000039-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 646</span>
+646:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retractItem</span>(<span class="ruby-identifier">room</span>, <span class="ruby-identifier">collection</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">item</span>)
+647:         <span class="ruby-keyword kw">begin</span>
+648:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/#room#/</span>, <span class="ruby-identifier">room</span>)
+649:         <span class="ruby-keyword kw">rescue</span>
+650:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>
+651:         <span class="ruby-keyword kw">end</span>
+652: 
+653:         <span class="ruby-identifier">data</span> = <span class="ruby-node">&quot;instance=#{instance}&amp;collection=#{collection}&amp;node=#{node}&amp;item=#{item}&amp;#{@authToken}&quot;</span>
+654:         <span class="ruby-identifier">res</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_post</span>(<span class="ruby-node">&quot;#{@baseURL}app/rtc&quot;</span>, <span class="ruby-identifier">data</span>, <span class="ruby-ivar">@authHeaders</span>)
+655:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">res</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span>
+656: 
+657:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">res</span>).<span class="ruby-identifier">root</span>
+658:         <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">check_status</span> <span class="ruby-identifier">response</span>
+659:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000042" class="method-detail">
+        <a name="M000042"></a>
+
+        <div class="method-heading">
+          <a href="#M000042" class="method-signature">
+          <span class="method-name">setNodeConfiguration</span><span class="method-args">(room, collection, node, configuration)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Configure a node
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000042-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000042-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 715</span>
+715:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setNodeConfiguration</span>(<span class="ruby-identifier">room</span>, <span class="ruby-identifier">collection</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">configuration</span>)
+716:         <span class="ruby-keyword kw">begin</span>
+717:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/#room#/</span>, <span class="ruby-identifier">room</span>)
+718:         <span class="ruby-keyword kw">rescue</span>
+719:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>
+720:         <span class="ruby-keyword kw">end</span>
+721: 
+722:         <span class="ruby-identifier">headers</span> = { <span class="ruby-value str">&quot;Content-Type&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;text/xml&quot;</span> }
+723:         <span class="ruby-identifier">headers</span>.<span class="ruby-identifier">merge!</span> <span class="ruby-ivar">@authHeaders</span>
+724: 
+725:         <span class="ruby-identifier">params</span> = <span class="ruby-node">&quot;instance=#{instance}&amp;action=configure&amp;collection=#{collection}&amp;node=#{node}&amp;#{@authToken}&quot;</span>
+726: 
+727:         <span class="ruby-identifier">data</span> = <span class="ruby-value str">&quot;&quot;</span><span class="ruby-node">&quot;
+728:           &lt;request&gt;
+729:           #{RTC::to_xml(configuration, &quot;configuration&quot;)}
+730:           &lt;/request&gt;
+731:         &quot;</span><span class="ruby-value str">&quot;&quot;</span>
+732:         <span class="ruby-identifier">res</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_post</span>(<span class="ruby-node">&quot;#{@baseURL}app/rtc?#{params}&quot;</span>, <span class="ruby-identifier">data</span>, <span class="ruby-identifier">headers</span>)
+733:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">res</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span>
+734: 
+735:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">res</span>).<span class="ruby-identifier">root</span>
+736:         <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">check_status</span> <span class="ruby-identifier">response</span>
+737:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000043" class="method-detail">
+        <a name="M000043"></a>
+
+        <div class="method-heading">
+          <a href="#M000043" class="method-signature">
+          <span class="method-name">setUserRole</span><span class="method-args">(room, user, role, collection=nil, node=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Set user role
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000043-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000043-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 742</span>
+742:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setUserRole</span>(<span class="ruby-identifier">room</span>, <span class="ruby-identifier">user</span>, <span class="ruby-identifier">role</span>, <span class="ruby-identifier">collection</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">node</span>=<span class="ruby-keyword kw">nil</span>)
+743:         <span class="ruby-keyword kw">begin</span>
+744:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/#room#/</span>, <span class="ruby-identifier">room</span>)
+745:         <span class="ruby-keyword kw">rescue</span>
+746:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>
+747:         <span class="ruby-keyword kw">end</span>
+748: 
+749:         <span class="ruby-identifier">data</span> = <span class="ruby-node">&quot;action=setrole&amp;instance=#{instance}&amp;user=#{user}&amp;role=#{role.to_i}&quot;</span>
+750:         <span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&amp;collection=#{collection}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">collection</span>
+751:         <span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&amp;node=#{node}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>
+752:         <span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&amp;#{@authToken}&quot;</span>
+753:         <span class="ruby-identifier">res</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_post</span>(<span class="ruby-node">&quot;#{@baseURL}app/rtc&quot;</span>, <span class="ruby-identifier">data</span>, <span class="ruby-ivar">@authHeaders</span>)
+754:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">res</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span>
+755: 
+756:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">res</span>).<span class="ruby-identifier">root</span>
+757:         <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">check_status</span> <span class="ruby-identifier">response</span>
+758:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000036" class="method-detail">
+        <a name="M000036"></a>
+
+        <div class="method-heading">
+          <a href="#M000036" class="method-signature">
+          <span class="method-name">subscribeCollection</span><span class="method-args">(room, collection, nodes=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Subscribe to collection events
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000036-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000036-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 574</span>
+574:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">subscribeCollection</span>(<span class="ruby-identifier">room</span>, <span class="ruby-identifier">collection</span>, <span class="ruby-identifier">nodes</span>=<span class="ruby-keyword kw">nil</span>)
+575:         <span class="ruby-keyword kw">begin</span>
+576:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/#room#/</span>, <span class="ruby-identifier">room</span>)
+577:         <span class="ruby-keyword kw">rescue</span>
+578:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>
+579:         <span class="ruby-keyword kw">end</span>
+580:         <span class="ruby-identifier">params</span>=<span class="ruby-node">&quot;collection=#{collection}&quot;</span>
+581:         <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">nodes</span>.<span class="ruby-identifier">nil?</span>
+582:           <span class="ruby-identifier">nodes</span> = <span class="ruby-identifier">nodes</span>.<span class="ruby-identifier">to_a</span>
+583:           <span class="ruby-identifier">params</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">nodes</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-value str">&quot;&quot;</span>).<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;&amp;node=&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">nodes</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+584:         <span class="ruby-keyword kw">end</span>
+585:         <span class="ruby-identifier">data</span> = <span class="ruby-node">&quot;instance=#{instance}&amp;action=subscribe&amp;#{params}&amp;#{@authToken}&quot;</span>
+586:         <span class="ruby-identifier">res</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_post</span>(<span class="ruby-node">&quot;#{@baseURL}app/rtc&quot;</span>, <span class="ruby-identifier">data</span>, <span class="ruby-ivar">@authHeaders</span>)
+587:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">res</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span>
+588: 
+589:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">res</span>).<span class="ruby-identifier">root</span>
+590:         <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">check_status</span> <span class="ruby-identifier">response</span>
+591:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000034" class="method-detail">
+        <a name="M000034"></a>
+
+        <div class="method-heading">
+          <a href="#M000034" class="method-signature">
+          <span class="method-name">unregisterHook</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Unregister endpoint URL for webhooks
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000034-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000034-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 550</span>
+550:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unregisterHook</span>
+551:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">registerHook</span>()
+552:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000037" class="method-detail">
+        <a name="M000037"></a>
+
+        <div class="method-heading">
+          <a href="#M000037" class="method-signature">
+          <span class="method-name">unsubscribeCollection</span><span class="method-args">(room, collection, nodes=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Unsubscribe to collection events
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000037-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000037-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 596</span>
+596:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unsubscribeCollection</span>(<span class="ruby-identifier">room</span>, <span class="ruby-identifier">collection</span>, <span class="ruby-identifier">nodes</span>=<span class="ruby-keyword kw">nil</span>)
+597:         <span class="ruby-keyword kw">begin</span>
+598:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/#room#/</span>, <span class="ruby-identifier">room</span>)
+599:         <span class="ruby-keyword kw">rescue</span>
+600:           <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@roomInstance</span>
+601:         <span class="ruby-keyword kw">end</span>
+602:         <span class="ruby-identifier">params</span>=<span class="ruby-node">&quot;collection=#{collection}&quot;</span>
+603:         <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">nodes</span>.<span class="ruby-identifier">nil?</span>
+604:           <span class="ruby-identifier">nodes</span> = <span class="ruby-identifier">nodes</span>.<span class="ruby-identifier">to_a</span>
+605:           <span class="ruby-identifier">params</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">nodes</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-value str">&quot;&quot;</span>).<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;&amp;node=&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">nodes</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+606:         <span class="ruby-keyword kw">end</span>
+607:         <span class="ruby-identifier">data</span> = <span class="ruby-node">&quot;instance=#{instance}&amp;action=unsubscribe&amp;#{params}&amp;#{@authToken}&quot;</span>
+608:         <span class="ruby-identifier">res</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_post</span>(<span class="ruby-node">&quot;#{@baseURL}app/rtc&quot;</span>, <span class="ruby-identifier">data</span>, <span class="ruby-ivar">@authHeaders</span>)
+609:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">res</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span>
+610: 
+611:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">res</span>).<span class="ruby-identifier">root</span>
+612:         <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">check_status</span> <span class="ruby-identifier">response</span>
+613:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000017" class="method-detail">
+        <a name="M000017"></a>
+
+        <div class="method-heading">
+          <a href="#M000017" class="method-signature">
+          <span class="method-name">url</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000017-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000017-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/lccs.rb, line 307</span>
+307:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">url</span>
+308:         <span class="ruby-ivar">@url</span>
+309:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

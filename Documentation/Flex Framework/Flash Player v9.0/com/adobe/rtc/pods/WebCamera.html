@@ -1,0 +1,700 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<meta content="WebCamera,com.adobe.rtc.pods.WebCamera,amIsharingMyWebCam,aspectRatio,connectSession,currentPlayingStream,groupName,imageQuality,isSynchronized,layout,model,paused,publisher,close,getUserRole,setUserRole,startWebcam,subscribe" name="keywords">
+<title>com.adobe.rtc.pods.WebCamera</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'WebCamera - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?com/adobe/rtc/pods/WebCamera.html&amp;com/adobe/rtc/pods/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;WebCamera</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class WebCamera"); titleBar_setSubNav(false,true,false,false,true,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.pods</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class WebCamera</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">WebCamera <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> mx.core.UIComponent</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../session/ISessionSubscriber.html">ISessionSubscriber</a></td>
+</tr>
+</table>
+<p></p>
+   The WebCamera component is a high level "pod" component which allows multiple 
+   users to publish and display webcam video. In the MVC sense, the WebCamera is the view 
+      and controller to the NoteModel's model since it consumes user events, drives them 
+      to the model, accepts model events, and updates the view.
+   <p>
+   The component is comprised of a WebcamPublisher and one or more WebcamSubscribers, and resurfaces 
+   many of the features of these components. In general, users with publisher role and higher 
+   can publish their webcam streams users with a viewer role can display them. The WebCamera 
+   features synchronized quality, layout, and aspect ratio settings. 
+   
+   <p> 
+   Like all stream components, WebCamera has an API for setting and getting a <code>groupName</code>. 
+   This property can be used to create multiple video groups each with separate and different access/publish models, 
+   thereby allowing for multiple private conversations. For a subscriber to listen to a particular 
+   video stream from a publisher, both should have the same assigned <code>groupName</code>.
+   If no <code>groupName</code> is assigned, the WebCamera defaults to publishing and subscribing to the public group.
+   </p>
+   
+   TODO: The layout modes are currently undergoing a rewrite.(yes, still)
+   
+   <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../collaboration/WebcamPublisher.html" target="">com.adobe.rtc.collaboration.WebcamPublisher</a>
+<br>
+<a href="../collaboration/WebcamSubscriber.html" target="">com.adobe.rtc.collaboration.WebcamSubscriber</a>
+<br>
+<a href="../sharedManagers/StreamManager.html" target="">com.adobe.rtc.sharedManagers.StreamManager</a>
+<br>
+<a href="cameraClasses/CameraModel.html" target="">com.adobe.rtc.pods.cameraClasses.CameraModel</a>
+</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#amIsharingMyWebCam">amIsharingMyWebCam</a> : Boolean<div class="summaryTableDescription">[read-only]
+    Returns true if the current client has started their webcam (i.e.</div>
+</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#aspectRatio">aspectRatio</a> : String<div class="summaryTableDescription">
+    Specifies the aspect ratio for video display from one of the aspect ratio constants 
+    provided on StreamManager.</div>
+</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#connectSession">connectSession</a> : <a href="../session/IConnectSession.html">IConnectSession</a>
+<div class="summaryTableDescription">
+     The IConnectSession with which this component is associated.</div>
+</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#currentPlayingStream">currentPlayingStream</a> : <a href="../sharedManagers/descriptors/StreamDescriptor.html">StreamDescriptor</a>
+<div class="summaryTableDescription">[read-only]
+    Returns the <code>streamDescriptor</code> for the video stream currently 
+    this is being published, if any.</div>
+</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#groupName">groupName</a> : String<div class="summaryTableDescription">
+   Components (pods) are assigned to a group via <code class="property">groupName</code>; if not specified, 
+   the component is assigned to the default, public group (the room at large).</div>
+</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#imageQuality">imageQuality</a> : String<div class="summaryTableDescription">
+    Specifies the video quality settings for the camera from among the constants 
+    provided on CameraModel.</div>
+</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#isSynchronized">isSynchronized</a> : Boolean<div class="summaryTableDescription">[read-only]
+    Returns whether or not the component is synchronized.</div>
+</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#layout">layout</a> : String<div class="summaryTableDescription">
+    Specifies the video layout settings for the display from among the constants 
+    provided on CameraModel.</div>
+</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#model">model</a> : <a href="cameraClasses/CameraModel.html">CameraModel</a>
+<div class="summaryTableDescription">[read-only]
+    Returns the CameraModel associated with this pod.</div>
+</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#paused">paused</a> : Boolean<div class="summaryTableDescription">
+    Specifies whether the published stream (if any) is paused (true) or playing (false).</div>
+</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#publisher">publisher</a> : <a href="../collaboration/WebcamPublisher.html">WebcamPublisher</a>
+<div class="summaryTableDescription">[read-only]
+    Returns the WebcamPublisher component used within this pod.</div>
+</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#WebCamera()">WebCamera</a>()</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#close()">close</a>():void</div>
+<div class="summaryTableDescription">
+    Disposes all listeners to the network and framework classes.</div>
+</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getUserRole()">getUserRole</a>(p_userID:String):int</div>
+<div class="summaryTableDescription">
+     Returns the role of a given user for video streams that are within this component's assigned group.</div>
+</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setUserRole()">setUserRole</a>(p_userID:String, p_userRole:int):void</div>
+<div class="summaryTableDescription">
+     Sets the role of a given user for video streams that are within this component's assigned group.</div>
+</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#startWebcam()">startWebcam</a>():void</div>
+<div class="summaryTableDescription">
+    Helper function which causes the webcamera to start publishing.</div>
+</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#subscribe()">subscribe</a>():void</div>
+<div class="summaryTableDescription">
+   Tells the component to begin synchronizing with the service.</div>
+</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+</table>
+</div>
+<a name="eventSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Events</div>
+<table id="summaryTableEvent" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Event</th><th>Summary</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:aspectRatioChange">aspectRatioChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when the web camera's aspect ratio display changes.</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:layoutChange">layoutChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the layout value changes.</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:qualityChange">qualityChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the quality value changes.</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:streamDelete">streamDelete</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when a video stream is stopped and is no longer displayed.</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:streamPause">streamPause</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when a video stream is paused or unpaused.</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:streamReceive">streamReceive</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when a new video stream is received to display by the camera.</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:synchronizationChange">synchronizationChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when the NoteModel has fully connected and synchronized with the service
+   or when it loses that connection.</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:userRoleChange">userRoleChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when the current user's role changes with respect to this component.</td><td class="summaryTableOwnerCol">WebCamera</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="amIsharingMyWebCam"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">amIsharingMyWebCam</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>amIsharingMyWebCam:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+    Returns true if the current client has started their webcam (i.e. has a widget showing in the pod). 
+    </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get amIsharingMyWebCam():Boolean</code>
+<br>
+</div>
+<a name="aspectRatio"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">aspectRatio</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>aspectRatio:String</code>&nbsp;&nbsp;[read-write]<p>
+    Specifies the aspect ratio for video display from one of the aspect ratio constants 
+    provided on StreamManager. 
+    
+    </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get aspectRatio():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set aspectRatio(value:String):void</code>
+<br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../sharedManagers/StreamManager.html" target="">com.adobe.rtc.sharedManagers.StreamManager</a>
+</div>
+</div>
+<a name="connectSession"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">connectSession</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>connectSession:<a href="../session/IConnectSession.html">IConnectSession</a></code>&nbsp;&nbsp;[read-write]<p>
+     The IConnectSession with which this component is associated. 
+     Note that this may only be set once before <code>subscribe()</code>
+     is called; re-sessioning of components is not supported. 
+     Defaults to the first IConnectSession created in the application.
+     </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get connectSession():<a href="../session/IConnectSession.html">IConnectSession</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set connectSession(value:<a href="../session/IConnectSession.html">IConnectSession</a>):void</code>
+<br>
+</div>
+<a name="currentPlayingStream"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">currentPlayingStream</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>currentPlayingStream:<a href="../sharedManagers/descriptors/StreamDescriptor.html">StreamDescriptor</a></code>&nbsp;&nbsp;[read-only]<p>
+    Returns the <code>streamDescriptor</code> for the video stream currently 
+    this is being published, if any.
+    </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get currentPlayingStream():<a href="../sharedManagers/descriptors/StreamDescriptor.html">StreamDescriptor</a></code>
+<br>
+</div>
+<a name="groupName"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">groupName</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>groupName:String</code>&nbsp;&nbsp;[read-write]<p>
+   Components (pods) are assigned to a group via <code class="property">groupName</code>; if not specified, 
+   the component is assigned to the default, public group (the room at large). Groups are like separate 
+   conversations within the room, but each conversation could employ one or more pods; for example, one 
+   "conversation" may use a web camera, chat, and whiteboard pod, with each pod using different access 
+   and publish models. Users are members of and can only see components within the group they are assigned. 
+   Room hosts can see all the groups and all the members in those groups.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get groupName():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set groupName(value:String):void</code>
+<br>
+</div>
+<a name="imageQuality"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">imageQuality</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>imageQuality:String</code>&nbsp;&nbsp;[read-write]<p>
+    Specifies the video quality settings for the camera from among the constants 
+    provided on CameraModel.
+    
+    </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get imageQuality():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set imageQuality(value:String):void</code>
+<br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="cameraClasses/CameraModel.html" target="">com.adobe.rtc.pods.cameraClasses.CameraModel</a>
+</div>
+</div>
+<a name="isSynchronized"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isSynchronized</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>isSynchronized:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+    Returns whether or not the component is synchronized.
+    </p><p>This property can be used as the source for data binding.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get isSynchronized():Boolean</code>
+<br>
+</div>
+<a name="layout"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">layout</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>layout:String</code>&nbsp;&nbsp;[read-write]<p>
+    Specifies the video layout settings for the display from among the constants 
+    provided on CameraModel. 
+    </p><p>
+    TODO: Note that this functionality is undergoing a rewrite and results may vary.
+    
+    <span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get layout():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set layout(value:String):void</code>
+<br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="cameraClasses/CameraModel.html" target="">com.adobe.rtc.pods.cameraClasses.CameraModel</a>
+</div>
+</div>
+<a name="model"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">model</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>model:<a href="cameraClasses/CameraModel.html">CameraModel</a></code>&nbsp;&nbsp;[read-only]<p>
+    Returns the CameraModel associated with this pod.
+    </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get model():<a href="cameraClasses/CameraModel.html">CameraModel</a></code>
+<br>
+</div>
+<a name="paused"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">paused</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>paused:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+    Specifies whether the published stream (if any) is paused (true) or playing (false).
+    </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get paused():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set paused(value:Boolean):void</code>
+<br>
+</div>
+<a name="publisher"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">publisher</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>publisher:<a href="../collaboration/WebcamPublisher.html">WebcamPublisher</a></code>&nbsp;&nbsp;[read-only]<p>
+    Returns the WebcamPublisher component used within this pod.
+    </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get publisher():<a href="../collaboration/WebcamPublisher.html">WebcamPublisher</a></code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="WebCamera()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WebCamera</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function WebCamera()</code>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="close()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">close</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function close():void</code><p>
+    Disposes all listeners to the network and framework classes. 
+    Recommended for proper garbage collection of the component.
+    </p></div>
+<a name="getUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getUserRole(p_userID:String):int</code><p>
+     Returns the role of a given user for video streams that are within this component's assigned group.
+    
+     </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The user ID for the user being queried.
+    </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>int</code></td>
+</tr>
+</table>
+</div>
+<a name="setUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setUserRole(p_userID:String, p_userRole:int):void</code><p>
+     Sets the role of a given user for video streams that are within this component's assigned group.
+    
+     </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The role value to set on the specified user.
+     </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userRole</span>:int</code> &mdash; The ID of the user whose role should be set.
+    </td>
+</tr>
+</table>
+</div>
+<a name="startWebcam()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">startWebcam</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function startWebcam():void</code><p>
+    Helper function which causes the webcamera to start publishing.
+    </p></div>
+<a name="subscribe()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">subscribe</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function subscribe():void</code><p>
+   Tells the component to begin synchronizing with the service. 
+   For UIComponent-based components such as this one,
+   <code>subscribe()</code> is called automatically upon being added to the <code>displayList</code>. 
+   For "headless" components, this method must be called explicitly.
+   </p></div>
+<div class="detailSectionHeader">Event detail</div>
+<a name="event:aspectRatioChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">aspectRatioChange</td><td class="detailHeaderType">event&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/StreamEvent.html"><code>com.adobe.rtc.events.StreamEvent</code></a>
+<br>
+<p></p><p>
+   Dispatched when the web camera's aspect ratio display changes. 
+   </p></div>
+<a name="event:layoutChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">layoutChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CameraModelEvent.html"><code>com.adobe.rtc.events.CameraModelEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the layout value changes.
+  </p></div>
+<a name="event:qualityChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">qualityChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CameraModelEvent.html"><code>com.adobe.rtc.events.CameraModelEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the quality value changes.
+  </p></div>
+<a name="event:streamDelete"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">streamDelete</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/StreamEvent.html"><code>com.adobe.rtc.events.StreamEvent</code></a>
+<br>
+<p></p><p>
+   Dispatched when a video stream is stopped and is no longer displayed.
+   </p></div>
+<a name="event:streamPause"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">streamPause</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/StreamEvent.html"><code>com.adobe.rtc.events.StreamEvent</code></a>
+<br>
+<p></p><p>
+   Dispatched when a video stream is paused or unpaused.
+   </p></div>
+<a name="event:streamReceive"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">streamReceive</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/StreamEvent.html"><code>com.adobe.rtc.events.StreamEvent</code></a>
+<br>
+<p></p><p>
+   Dispatched when a new video stream is received to display by the camera.
+   </p></div>
+<a name="event:synchronizationChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">synchronizationChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+   Dispatched when the NoteModel has fully connected and synchronized with the service
+   or when it loses that connection.
+   </p></div>
+<a name="event:userRoleChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">userRoleChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+   Dispatched when the current user's role changes with respect to this component.
+   </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

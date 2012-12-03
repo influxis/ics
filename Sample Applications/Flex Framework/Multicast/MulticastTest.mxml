@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:rtc="http://ns.adobe.com/rtc" applicationComplete="init()"  
+		 layout="absolute" >
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.rtc.events.SessionEvent;
+			import mx.managers.PopUpManager;
+			import mx.core.IFlexDisplayObject;
+			import com.adobe.rtc.events.StreamEvent;
+			import com.adobe.rtc.messaging.UserRoles;
+			
+			private const applicationTitle:String = "LCCS Sample Application to test multicasting.";
+			
+			/**********************************************************
+			 * This example demonstrates the newly added feature to Test Stream Multicast. 
+			 * We have a new property called streamMulticast inside StreamManager. Owners need to
+			 * make this property true to enable multicast as default is false. Once in Multicast,
+			 * it can support 100's of streams like that of Stratus today. However, the default i.e. without multicast still 
+			 * behaves like player 10 p2p streaming i.e. only 3 streams per user and a upper limit on total number of streams.
+			 * If any user is behind firewall or using a lower player version than 10, the multicast will behave the same manner as 10 swc 
+			 * and streaming will be automatically done using server. 
+			 * Before starting streaming in room, I would recommend owners to set this property to true. Currently , we don't have it in dev console
+			 * so developers can set this programmatically similar to this example. You can read more details inside the Developer Manual.
+			 * This build of 10.1 is a beta build and is given for testing to users, should you find any issues with multicast, please report to us.
+			 * Make sure that you have 10.1 playerglobal as well as Flex Compiler option requiring player version set to 10.1. Also, download and install player 10.1 
+			 * before using this example. Users with lower player version will need to update their player first before using stream multicast as well as p2p Data Messaging.
+			 * *********************************/
+			 
+			  /**********************************************************
+			   * ADOBE SYSTEMS INCORPORATED
+			   * Copyright [2007-2010] Adobe Systems Incorporated
+			   * All Rights Reserved.
+			   * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			   * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			   * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			   * written permission of Adobe.
+		     	   * *********************************/
+			
+			private function init():void
+			{	
+				popup(loginWindow);
+				cSession.addEventListener(SessionEvent.SYNCHRONIZATION_CHANGE, onEventNotification);		
+			}
+			
+		
+			
+			private function popup(window:IFlexDisplayObject):void
+			{
+				PopUpManager.addPopUp(window, this, true);
+				PopUpManager.centerPopUp(window);
+				window.visible = true;
+			}
+
+			/**
+			 * Process LCCS Events
+			 */
+			private function onEventNotification(p_event:Event):void
+			{
+				if (p_event.type == SessionEvent.SYNCHRONIZATION_CHANGE) {
+					if (cSession.isSynchronized) {
+						panel.title = "Connected to room " + cSession.roomURL;
+						PopUpManager.removePopUp(loginWindow);
+						cSession.streamManager.addEventListener(StreamEvent.STREAM_MULTICAST_CHANGE,onMulticastChange);
+						cSession.streamManager.addEventListener(StreamEvent.CONNECTION_TYPE_CHANGE,onConnectionTypeChange);
+						multicastBtn.label = (!cSession.streamManager.streamMulticast)? 'Enable Multicast': 'Disable Multicast' ;
+						connChange.text += (!cSession.streamManager.streamMulticast)? 'Multicast is Disabled in Room': 'Multicast is enabled in Room' ; 
+						
+						if ( cSession.userManager.myUserRole == UserRoles.OWNER ) {
+							cSession.roomManager.autoPromote = true ;
+						}
+						
+					} 
+				}
+			}
+			
+			
+			private function login():void
+			{
+				auth.protocol = isRtmfp.selected ? "rtmfp" : "rtmps" ; 
+				auth.userName = username.text;
+				auth.password = passwordBox.visible ? password.text : null;
+				cSession.roomURL = roomURL.text;	
+				cSession.login();
+			}
+			
+			
+			
+			private function onMulticastClick(p_evt:MouseEvent):void
+			{
+				if ( !cSession.userManager.getUserDescriptor(cSession.userManager.myUserID).isRTMFP ) {
+					mx.controls.Alert.show(" Users need to have RTMFP connection for Multicast to work");
+					return ;
+				}
+
+				if ( multicastBtn.label == "Enable Multicast" ) {
+					multicastBtn.label = "Disable Multicast" ;
+					cSession.streamManager.streamMulticast = true ;
+				}else if ( multicastBtn.label == "Disable Multicast" ) {
+					cSession.streamManager.streamMulticast = false ;
+					multicastBtn.label = "Enable Multicast"
+				}
+			}
+			
+			protected function onMulticastChange(p_evt:StreamEvent):void
+			{
+				connChange.text += p_evt.name + "\n" ;
+			}
+			
+			protected function onConnectionTypeChange(p_evt:StreamEvent):void
+			{
+				connChange.text += "Current Connection:" + ((cSession.streamManager.isP2P)?"P2P":"Hub n Spoke") + "\n" ;
+			}
+			
+		]]>
+	</mx:Script>
+	
+	
+	<rtc:AdobeHSAuthenticator id="auth" />
+	
+		<!--
+		 | Automatically promote guests so they can use the application
+		 |
+		 | Note: In order for this to work, the host needs to enter the room once to enable all the pods
+		 | (enter the room and go through the various screens)
+		 -->
+	<rtc:RoomSettings id="settings" autoPromote="true"/>
+
+	<mx:Panel id="panel" title="{applicationTitle}" width="100%" height="100%" paddingLeft="5" paddingTop="5" paddingRight="5" paddingBottom="5" >
+	
+		<!--
+		 | Login Dialog Box
+		 -->
+		<mx:TitleWindow id="loginWindow" title="Connect to Room" visible="true"  >
+			<mx:VBox>
+				<mx:HBox>
+					<mx:Label text="Room URL:" width="70"/>
+					<mx:TextInput id="roomURL" width="295" tabIndex="1">
+						<mx:text>http://connect.acrobat.com/exampleURL/exampleroom</mx:text>
+					</mx:TextInput>
+				</mx:HBox>
+				<mx:HBox>
+					<mx:Label text="Username:" width="70"/>
+					<mx:TextInput id="username" tabIndex="2">
+						<mx:text>Your Username</mx:text>
+					</mx:TextInput>			
+					<mx:Button label="Login" click="login()" width="126" tabIndex="4"/>
+				</mx:HBox>
+				<mx:HBox>
+					<mx:HBox id="passwordBox">
+					<mx:Label text="Password:" width="70"/>
+					<mx:TextInput id="password" displayAsPassword="true" tabIndex="3">
+						<mx:text>Your password</mx:text>
+					</mx:TextInput>
+					</mx:HBox>
+					<mx:RadioButton label="User" selected="true" click="passwordBox.visible = true"/>
+					<mx:RadioButton label="Guest" click="passwordBox.visible = false"/>
+				</mx:HBox>
+				<mx:CheckBox label="Rtmfp" id="isRtmfp" selected="true" />
+			</mx:VBox>
+		</mx:TitleWindow>
+
+		<!--
+		 | LCCS application UI wrapped in ConnectSession
+		 -->		
+		<rtc:ConnectSessionContainer 
+			id="cSession" 
+			authenticator="{auth}" 
+			initialRoomSettings="{settings}" 
+			autoLogin="false" width="100%" height="100%" backgroundColor="0xcccccc">		
+			<mx:HBox top="10" right="10" left="10" bottom="10" verticalGap="6" horizontalAlign="center" >
+			 	<mx:VBox>
+					<rtc:AudioSubscriber id="audioSub" />
+					<rtc:AudioPublisher id="audioPub" />
+					<mx:Button id="but" toggle="true" label="{(!but.selected)? 'Start Audio': 'Stop Audio'}"
+						click="{(but.selected)? audioPub.publish() : audioPub.stop()}" />
+					<mx:Button click="onMulticastClick(event)" id="multicastBtn" visible="{cSession.userManager.myUserRole >= UserRoles.OWNER}" />
+				</mx:VBox>
+				<mx:Canvas width="300" height="350" borderThickness="2" borderStyle="solid" borderColor="0x333333"> 
+					<rtc:WebCamera width="100%" height="100%"/>
+				</mx:Canvas>
+				<mx:DataGrid id="rosterList" width="300" height="550" dataProvider="{cSession.userManager.userCollection}" borderThickness="2" borderColor="0x333333" >
+					<mx:columns>
+                		<mx:DataGridColumn dataField="displayName" headerText="Name" editable="false"/>
+                		<mx:DataGridColumn dataField="isRTMFP" headerText="Is the connection Rtmfp" editable="false"/>
+            		</mx:columns>
+				</mx:DataGrid>
+				<mx:VBox borderThickness="2" borderStyle="solid" borderColor="0x333333">
+					<mx:Label  fontWeight="bold" text="Shows Text when the connection type changes" />
+					<mx:TextArea id="connChange" width="400" height="400" editable="false" selectable="false" />
+				</mx:VBox>
+			</mx:HBox>
+		</rtc:ConnectSessionContainer>
+	</mx:Panel>
+</mx:Application>

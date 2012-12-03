@@ -1,0 +1,47 @@
+<h1>Listing rooms</h1>
+
+<table>
+  <tr>
+    <!--th>Roomurl</th-->
+    <th>Roomname</th>
+    <!--th>Roomtimeout</th-->
+    <!--th>Roomuserlimit</th-->
+    <!--th>Selectedbandwidth</th-->
+    <!--th>Autopromote</th-->
+    <!--th>Endmeetingmessage</th-->
+    <!--th>Webhookurl</th-->
+    <!--th>Guestshavetoknock</th-->
+    <!--th>Guestsnotallowed</th-->
+    <!--th>Productname</th-->
+    <!--th>Roomlocked</th-->
+    <!--th>Roomstate</th-->
+    <!--th>Roomsetting</th-->
+  </tr>
+
+<% @rooms.each do |room| %>
+  <tr>
+    <!--td><% if !room.roomURL.nil? %><%=h room.roomURL %><%end%></td-->
+    <td><%=h room.roomName %></td>
+    <!--td><%=h room.roomTimeOut %></td-->
+    <!--td><%=h room.roomUserLimit %></td-->
+    <!--td><%=h room.selectedBandwidth %></td-->
+    <!--td><%=h room.autoPromote %></td-->
+    <!--td><%=h room.endMeetingMessage %></td-->
+    <!--td><%=h room.webhookurl %></td-->
+    <!--td><%=h room.guestsHaveToKnock %></td-->
+    <!--td><%=h room.guestsNotAllowed %></td-->
+    <!--td><%=h room.productName %></td-->
+    <!--td><%=h room.roomLocked %></td-->
+    <!--td><%=h room.roomState %></td-->
+    <!--td><%=h room.roomsetting %></td-->
+    <td><%= link_to 'Show', room %></td>
+    <td><%= link_to 'Edit', edit_room_path(room) %></td>
+    <td><%= link_to 'Destroy', room, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New room', new_room_path %> |
+<%= link_to 'Back', :back %> 

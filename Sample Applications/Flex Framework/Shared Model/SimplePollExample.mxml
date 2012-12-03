@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<mx:Application 
+	xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" 
+	xmlns:rtc="http://ns.adobe.com/rtc"> 
+	
+	<mx:Script>
+		<![CDATA[
+			// This example shows how a shared model can be made easily bindable for MXML.
+			// See SimpleSharedPollModel for the real details.
+			
+			/**********************************************************
+			 * ADOBE SYSTEMS INCORPORATED
+			 * Copyright [2007-2010] Adobe Systems Incorporated
+			 * All Rights Reserved.
+			 * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			 * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			 * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			 * written permission of Adobe.
+		     	 * *********************************/
+			
+			[Bindable]
+			public var pollModel:SimpleSharedPollModel;
+			protected function buildModel():void
+			{
+				// Create the model: Just calling the constructor won't create the collection node or pass the messages.
+				// Call subscribe() and give the model a sharedID while creating it.
+				// The sharedID  becomes the name of the collection node.
+				cSession.roomManager.guestsHaveToKnock = false ;
+				pollModel = new SimpleSharedPollModel();
+				pollModel.sharedID = "myPoll_SimplePollModel" ;
+				pollModel.subscribe();
+			}
+			
+			protected function submitAnswer():void
+			{
+				pollModel.submitAnswer(yesRadio.selected);
+			}
+			
+			protected function labelFunction(p_item:Object):String
+			{
+				return cSession.userManager.getUserDescriptor(p_item as String).displayName;
+			}
+		]]>
+	</mx:Script>
+	
+	<!-- 
+		You would likely use external authentication here for a deployed application; 
+		you would certainly not hard code Adobe IDs here.
+	-->
+	<rtc:AdobeHSAuthenticator 
+		id="auth" 
+		userName="Your Username" 
+		password="Your password"  />
+	<rtc:ConnectSessionContainer roomURL="Your RoomUrl" id="cSession" authenticator="{auth}" width="100%" height="100%"> 
+		<mx:Canvas width="100%" height="100%" creationComplete="buildModel()"> 
+			<mx:HBox id="questionBox">
+				<mx:TextInput width="400" text="{pollModel.question}" editable="{pollModel.canISetQuestion}" id="qField"/>
+				<mx:Button label="Submit Question" visible="{pollModel.canISetQuestion}" click="pollModel.question=qField.text"/>
+			</mx:HBox>
+			<mx:HBox visible="{pollModel.canISetQuestion}" y="{questionBox.y+questionBox.height+10}">
+				<mx:VBox>
+					<mx:Label text="Yes Votes"/>
+					<mx:List width="200" height="300" dataProvider="{pollModel.yesAnswers}" labelFunction="{labelFunction}"/>
+				</mx:VBox>
+				<mx:VBox>
+					<mx:Label text="No Votes"/>
+					<mx:List width="200" height="300" dataProvider="{pollModel.noAnswers}" labelFunction="{labelFunction}"/>
+				</mx:VBox>
+			</mx:HBox>
+			<mx:HBox visible="{!pollModel.canISetQuestion}" y="{questionBox.y+questionBox.height+10}">
+				<mx:RadioButton label="yes" groupName="question" id="yesRadio" enabled="{pollModel.question!=''}" click="submitAnswer()"/>
+				<mx:RadioButton label="no" groupName="question" id="noRadio" enabled="{pollModel.question!=''}" click="submitAnswer()"/>
+			</mx:HBox>
+		</mx:Canvas> 
+	</rtc:ConnectSessionContainer> 
+</mx:Application> 

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow 
+     xmlns:mx="http://www.adobe.com/2006/mxml" 
+	 layout="vertical" width="400" title="{_lm.getString('File Share')}"  initialize="init()"
+	 implements="com.adobe.rtc.pods.fileSharePodClasses.IFileShareDialog">
+<mx:Script>
+	<![CDATA[
+		import com.adobe.coreUI.localization.Localization;
+		import com.adobe.coreUI.localization.ILocalizationManager;
+		import mx.events.CloseEvent;
+		import mx.managers.PopUpManager;
+		import mx.controls.Alert;		
+		
+		[Bindable]
+		protected var _displayMessage:String = "";
+		
+	/*
+     *
+     * ADOBE CONFIDENTIAL
+     * ___________________
+     *
+     * Copyright [2007-2010] Adobe Systems Incorporated
+     * All Rights Reserved.
+     *
+     * NOTICE:  All information contained herein is, and remains
+     * the property of Adobe Systems Incorporated and its suppliers,
+     * if any.  The intellectual and technical concepts contained
+     * herein are proprietary to Adobe Systems Incorporated and its
+     * suppliers and are protected by trade secret or copyright law.
+     * Dissemination of this information or reproduction of this material
+     * is strictly forbidden unless prior written permission is obtained
+     * from Adobe Systems Incorporated.
+     */
+		
+		[Bindable]
+		protected var _lm:ILocalizationManager = Localization.impl;
+
+		public function set displayMessage(p_msg:String):void
+		{
+			_displayMessage = p_msg;
+		}
+
+		
+		protected function init():void
+		{
+			//noop
+			addEventListener(KeyboardEvent.KEY_UP, onKeyUp);	
+			addEventListener(KeyboardEvent.KEY_DOWN, onKeyUp);
+			//addEventListener(Keyboard.ESCAPE, onCancelBtnClick);
+			//addEventListener(Keyboard.ENTER, onOkBtnClick); 
+			
+		}
+		protected function onCancelBtnClick():void
+		{
+			var e:CloseEvent = new CloseEvent(CloseEvent.CLOSE, false, false, Alert.CANCEL);
+			dispatchEvent(e);
+			
+			PopUpManager.removePopUp(this);
+		}
+		
+		protected function onOkBtnClick():void
+		{
+			var e:CloseEvent = new CloseEvent(CloseEvent.CLOSE, false, false, Alert.OK);
+			dispatchEvent(e);		
+			
+			PopUpManager.removePopUp(this);
+		}
+		
+		
+		protected function onKeyUp(event:KeyboardEvent):void
+		{
+			if(event.keyCode == Keyboard.ENTER)
+			{				
+				onOkBtnClick();
+			}
+			else if(event.keyCode == Keyboard.ESCAPE)
+			{
+				onCancelBtnClick();	
+			}
+					
+		}
+	]]>
+</mx:Script>
+	<mx:Text text="{_displayMessage}"  top="10" bottom="10" width="360" x="10" color="#000000"/>
+	<mx:ControlBar id="_myControlBar" horizontalAlign="right">
+		<mx:Button id="okBtn" label="OK"  click="onOkBtnClick()"/>
+		<mx:Button id="cancelBtn" label="Cancel" click="onCancelBtnClick()"/>
+	</mx:ControlBar>
+</mx:TitleWindow>

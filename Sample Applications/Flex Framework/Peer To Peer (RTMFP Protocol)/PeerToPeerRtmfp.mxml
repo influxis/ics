@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:rtc="http://ns.adobe.com/rtc" applicationComplete="init()">
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.rtc.clientManagers.MicrophoneManager;
+			import com.adobe.rtc.sharedManagers.constants.UserVoiceStatuses;
+			import com.adobe.rtc.sharedManagers.descriptors.StreamDescriptor;
+			import com.adobe.rtc.events.UserEvent;
+			import com.adobe.rtc.sharedManagers.StreamManager;
+			import com.adobe.rtc.events.StreamEvent;
+			import com.adobe.rtc.events.StreamStatusEvent;
+			import com.adobe.rtc.sharedManagers.descriptors.UserDescriptor;
+			import com.adobe.rtc.events.AuthenticationEvent;
+			import com.adobe.rtc.events.ConnectSessionEvent;
+			import com.adobe.rtc.events.SessionEvent;
+			import mx.core.IFlexDisplayObject;
+			import mx.managers.PopUpManager;
+			
+			private const applicationTitle:String = "LCCS Sample Application";
+			
+			/*******************************************************************
+			 * This is a very simple example showing how you can user Peer To Peer audio and camera streams
+			 * over the RTMFP network. If you are using RTMFP, then depending on the
+			 * number of user streams that are there, and whether everyone is using flash 
+			 * player 10 or not, you will be able to use Peer to Peer .
+			 * The switching between Peer To peer and connection to server takes places dynamically
+			 * depending on the number of user streams and the player version of users.
+			 * If you are using an RTMPS connection or any user is using player 9, it will always
+			 * be a connection to fms server and you can't get peer to peer.
+			 * There are tables that show whether you are using an RTMFP connection or not
+			 * Also, show are the two codec's supported in player 10, if you are using player 9, you can't use the speex codec.
+			 * For running this example, you need to have player 10. Also , make your compiler version is 10.0.0 for this project in Flex Builder.
+			 ***********************************************************************/
+			 
+			 /**********************************************************
+			  * ADOBE SYSTEMS INCORPORATED
+			  * Copyright [2007-2010] Adobe Systems Incorporated
+			  * All Rights Reserved.
+			  * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			  * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			  * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			  * written permission of Adobe.
+		     	  * *********************************/
+			 
+			private function init():void
+			{	
+				popup(loginWindow);
+				sess.addEventListener(SessionEvent.SYNCHRONIZATION_CHANGE, onEventNotification);		
+			}
+			
+		
+			
+			private function popup(window:IFlexDisplayObject):void
+			{
+				PopUpManager.addPopUp(window, this, true);
+				PopUpManager.centerPopUp(window);
+				window.visible = true;
+			}
+
+			/**
+			 * Process LCCS Events
+			 */
+			private function onEventNotification(p_event:Event):void
+			{
+				if (p_event.type == SessionEvent.SYNCHRONIZATION_CHANGE) {
+					if (sess.isSynchronized) {
+						panel.title = "Connected to room " + sess.roomURL;
+						PopUpManager.removePopUp(loginWindow);
+						audioSub.addEventListener(StreamEvent.CONNECTION_TYPE_CHANGE,onConnectionTypeChange);
+						audioPub.codec = SoundCodec.SPEEX ;
+						MicrophoneManager.getInstance().framesPerPacket = 1 ;
+						MicrophoneManager.getInstance().selectedMic.setSilenceLevel(0) ;
+						
+					} 
+				}
+			}
+			
+			protected function changeCodec(p_evt:MouseEvent):void
+			{
+				if ( speex.selected ) {
+					audioPub.codec = SoundCodec.SPEEX ;
+				}else if ( nellymoser.selected ) {
+					audioPub.codec = SoundCodec.NELLYMOSER ;
+				}
+				
+			}
+			
+			
+			
+			private function login():void
+			{
+				auth.protocol = isRtmfp.selected ? "rtmfp" : "rtmps" ; 
+				auth.userName = username.text;
+				auth.password = passwordBox.visible ? password.text : null;
+				sess.roomURL = roomURL.text;	
+				sess.login();
+			}
+			
+			
+			protected function onConnectionTypeChange(p_evt:StreamEvent):void
+			{
+				connChange.text += "Current Connection:" + ((sess.streamManager.isP2P)?"P2P":"Hub n Spoke") + "\n" ;
+			}
+			
+			private function onResetClick(p_evt:MouseEvent):void
+			{	
+				audioSub.resetAllStreams();
+			}
+			
+			
+		
+			
+		]]>
+	</mx:Script>
+
+	<rtc:AdobeHSAuthenticator id="auth" />
+	
+		<!--
+		 | Automatically promote guests so they can use the application
+		 |
+		 | Note: In order for this to work, the host needs to enter the room once to enable all the pods
+		 | (enter the room and go through the various screens)
+		 -->
+	<rtc:RoomSettings id="settings" autoPromote="true"/>
+
+	<mx:Panel id="panel" title="{applicationTitle}" width="100%" height="100%" paddingLeft="5" paddingTop="5" paddingRight="5" paddingBottom="5">
+	
+		<!--
+		 | Login Dialog Box
+		 -->
+		<mx:TitleWindow id="loginWindow" title="Connect to Room" visible="false">
+			<mx:VBox>
+				<mx:HBox>
+					<mx:Label text="Room URL:" width="70"/>
+					<mx:TextInput id="roomURL" width="295" tabIndex="1">
+						<mx:text>Your RoomUrl</mx:text>
+					</mx:TextInput>
+				</mx:HBox>
+				<mx:HBox>
+					<mx:Label text="Username:" width="70"/>
+					<mx:TextInput id="username" tabIndex="2">
+						<mx:text>Your Username</mx:text>
+					</mx:TextInput>			
+					<mx:Button label="Login" click="login()" width="126" tabIndex="4"/>
+				</mx:HBox>
+				<mx:HBox>
+					<mx:HBox id="passwordBox">
+					<mx:Label text="Password:" width="70"/>
+					<mx:TextInput id="password" displayAsPassword="true" tabIndex="3">
+						<mx:text>Your password</mx:text>
+					</mx:TextInput>
+					</mx:HBox>
+					<mx:RadioButton label="User" selected="true" click="passwordBox.visible = true"/>
+					<mx:RadioButton label="Guest" click="passwordBox.visible = false"/>
+				</mx:HBox>
+				<mx:CheckBox label="Rtmfp" id="isRtmfp" selected="true" />
+			</mx:VBox>
+		</mx:TitleWindow>
+
+		<!--
+		 | LCCS application UI wrapped in ConnectSession
+		 -->		
+		<rtc:ConnectSessionContainer 
+			id="sess" 
+			authenticator="{auth}" 
+			initialRoomSettings="{settings}" 
+			autoLogin="false" width="100%" height="100%" backgroundColor="0xcccccc">		
+			<mx:HBox horizontalGap="20">
+				<mx:VBox>
+					<rtc:AudioSubscriber id="audioSub" />
+					<rtc:AudioPublisher id="audioPub" />
+					<mx:Label text="Select Codec Type" />
+                    <mx:RadioButtonGroup id="codecGroup" />
+                    <mx:RadioButton id="nellymoser" selected="false" groupName="codecGroup" label="{SoundCodec.NELLYMOSER}" click="changeCodec(event)" />
+                   	<mx:RadioButton id="speex" selected="true" groupName="codecGroup" label="{SoundCodec.SPEEX}" click="changeCodec(event)"  />
+					<mx:Button id="but" toggle="true" label="{(!but.selected)? 'Start Audio': 'Stop Audio'}"
+						click="{(but.selected)? audioPub.publish() : audioPub.stop()}" />
+					<mx:Button click="onResetClick(event)" label="Reset All Streams" />
+				</mx:VBox>
+				<mx:Canvas width="300" height="350" borderThickness="2" borderStyle="solid" borderColor="0x333333"> 
+					<rtc:WebCamera width="100%" height="100%"/>
+				</mx:Canvas>
+				<mx:DataGrid id="rosterList" width="300" height="550" dataProvider="{sess.userManager.userCollection}" borderThickness="2" borderColor="0x333333" >
+					<mx:columns>
+                		<mx:DataGridColumn dataField="displayName" headerText="Name" editable="false"/>
+                		<mx:DataGridColumn dataField="isRTMFP" headerText="Is the connection Rtmfp" editable="false"/>
+            		</mx:columns>
+				</mx:DataGrid>
+				<mx:VBox borderThickness="2" borderStyle="solid" borderColor="0x333333">
+					<mx:Label text="Connection Change from P2P to Hub-Spoke" fontWeight="bold" />
+					<mx:TextArea id="connChange" width="400" height="400" editable="false" selectable="false" />
+				</mx:VBox>
+			</mx:HBox>
+		</rtc:ConnectSessionContainer>
+	</mx:Panel>
+
+</mx:Application>
+

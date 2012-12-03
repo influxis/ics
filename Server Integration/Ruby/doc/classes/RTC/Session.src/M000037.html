@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>getAuthenticationToken (RTC::Session)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lccs.rb, line 187</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getAuthenticationToken</span>(<span class="ruby-identifier">accountSecret</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">id</span>, <span class="ruby-identifier">role</span>)
+      <span class="ruby-identifier">token</span> = <span class="ruby-node">&quot;x:#{name}::#{@account}:#{id}:#{@room}:#{role.to_i}&quot;</span>
+      <span class="ruby-identifier">signed</span> = <span class="ruby-node">&quot;#{token}:#{sign(accountSecret, token)}&quot;</span>
+
+      <span class="ruby-comment cmt"># unencoded</span>
+      <span class="ruby-comment cmt">#return &quot;ext=#{signed}&quot;</span>
+
+      <span class="ruby-comment cmt"># encoded</span>
+      <span class="ruby-identifier">enc</span> = <span class="ruby-constant">Base64</span>.<span class="ruby-identifier">encode64</span>(<span class="ruby-identifier">signed</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">&quot;\n&quot;</span>,<span class="ruby-value str">&quot;&quot;</span>)
+      <span class="ruby-keyword kw">return</span> <span class="ruby-node">&quot;exx=#{enc}&quot;</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

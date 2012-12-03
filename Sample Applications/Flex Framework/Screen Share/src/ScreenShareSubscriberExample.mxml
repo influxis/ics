@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?> 
+
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" 
+	width="100%" height="100%"
+	xmlns:rtc="http://ns.adobe.com/rtc"
+	
+	>    
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.rtc.collaboration.ScreenShareSubscriberComplex;
+			
+			/**********************************************************
+			 * ADOBE SYSTEMS INCORPORATED
+			 * Copyright [2007-2010] Adobe Systems Incorporated
+			 * All Rights Reserved.
+			 * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			 * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			 * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			 * written permission of Adobe.
+	     	 * *********************************/
+			
+			private function init():void{
+				var sss:ScreenShareSubscriberComplex= new ScreenShareSubscriberComplex();
+				sss.connectSession = cSession;
+				sss.width = displayArea.width;
+				sss.height = displayArea.height;
+				sss.x = 0;
+				sss.y = 0;
+				displayArea.addChild(sss);
+			}
+		]]>
+	</mx:Script>
+	<rtc:AdobeHSAuthenticator id="auth"  userName="Your Username" password="Your password" />
+	<rtc:ConnectSessionContainer id="cSession" authenticator="{auth}" width="100%" height="100%" 
+		roomURL="Your RoomUrl"  backgroundAlpha="0" >	
+			<mx:HBox width="100%" height="100%" id="displayArea" creationComplete="init()"/>
+	</rtc:ConnectSessionContainer>  
+	
+</mx:Application>

@@ -1,0 +1,28 @@
+<h1>Listing roomsettings</h1>
+
+<table>
+  <tr>
+    <th>Autopromote</th>
+    <th>Guestmustknock</th>
+    <th>Roombandwidth</th>
+    <th>Roomstate</th>
+    <th>Room</th>
+  </tr>
+
+<% @roomsettings.each do |roomsetting| %>
+  <tr>
+    <td><%=h roomsetting.autoPromote %></td>
+    <td><%=h roomsetting.guestMustKnock %></td>
+    <td><%=h roomsetting.roomBandwidth %></td>
+    <td><%=h roomsetting.roomState %></td>
+    <td><%=h roomsetting.room_id %></td>
+    <td><%= link_to 'Show', roomsetting %></td>
+    <td><%= link_to 'Edit', edit_roomsetting_path(roomsetting) %></td>
+    <td><%= link_to 'Destroy', roomsetting, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New roomsetting', new_roomsetting_path %>

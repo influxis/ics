@@ -1,0 +1,2 @@
+module NodeconfigurationsHelper
+end

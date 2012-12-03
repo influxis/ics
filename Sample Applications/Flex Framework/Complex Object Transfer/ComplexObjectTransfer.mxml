@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute" 
+	xmlns:rtc="http://ns.adobe.com/rtc">
+	
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.rtc.messaging.MessageItem;
+			import com.adobe.rtc.events.CollectionNodeEvent;
+			import com.adobe.rtc.sharedModel.CollectionNode;
+			
+			private var collectionNode:CollectionNode ;
+			
+			/**************************************************
+			 * This example demonstrates the use of the registerBodyClass method
+			 * in MessageItem for passing items containing complex objects over
+			 * the AFC service. Every class that is passed over has to be registered using this method.
+			 * In this example, the complex object is the UserProfile class which contains two classes: 
+			 * Address and JobDescription, each of which contain date objects. After registration, the 
+			 * entire UserProfile class can be passed as a single as a message item.
+			 * 
+			 **********************************************/
+			 
+			 /**********************************************************
+			 * ADOBE SYSTEMS INCORPORATED
+			 * Copyright [2007-2010] Adobe Systems Incorporated
+			 * All Rights Reserved.
+			 * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			 * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			 * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			 * written permission of Adobe.
+			 * *********************************/
+		
+			private function onCreationComplete():void
+			{
+				//Creating and subscribing the collection node to pass the message
+				collectionNode = new CollectionNode();
+				collectionNode.sharedID = "complexObject" ;
+				collectionNode.connectSession = cSession ;
+				collectionNode.subscribe();
+				collectionNode.addEventListener(CollectionNodeEvent.SYNCHRONIZATION_CHANGE,onSyncChange);
+				collectionNode.addEventListener(CollectionNodeEvent.ITEM_RECEIVE,onItemReceive);
+				
+				/********Important*****************/
+				//Registering all the complex object classes using MessageItem.registerBodyClass(p_class:Class) method
+				MessageItem.registerBodyClass(UserProfile);
+				MessageItem.registerBodyClass(JobDescription);
+				MessageItem.registerBodyClass(Address);
+			}
+			
+			/**
+			 * Handler for synchronization change.
+			 */
+			private function onSyncChange(p_evt:CollectionNodeEvent):void
+			{
+				if ( collectionNode.isSynchronized ) {
+					if ( !collectionNode.isNodeDefined("complexObjectNode")) {
+						collectionNode.createNode("complexObjectNode");
+					}
+				}
+			}
+			
+			/**
+			 * Publishes the UserProfile object within the message by registering the objects as described above.
+			 * We have to no longer use createValueObject and readValueObject for passing complex objects.
+			 */
+			private function publish(p_profile:UserProfile):void
+			{
+				collectionNode.publishItem(new MessageItem("complexObjectNode",p_profile));
+			}
+			
+			/**
+			 * When we receive the item, update the user interface.
+			 */
+			private function onItemReceive(p_evt:CollectionNodeEvent):void
+			{
+				var userProfile:UserProfile = p_evt.item.body as UserProfile ;
+				
+				//assigning userProfile attributes
+				
+				if ( userProfile == null ) {
+					return ;
+				}
+				
+				fname.text = userProfile.firstName ;
+				lname.text = userProfile.lastName ;
+				if ( userProfile.age != 0 )
+					age.text = userProfile.age.toString() ;
+				else
+					age.text = "" ;
+				//assigning address attributes
+				addr1.text = userProfile.address.addressLine1 ;
+				addr2.text = userProfile.address.addressLine2 ;
+				city.text = userProfile.address.city ;
+				state.text = userProfile.address.state ;
+				zip.text = userProfile.address.zip ;
+				//assing jobdescription attributes
+				dateJoining.selectedDate = userProfile.currentJob.dateJoining ;
+				dateLeaving.selectedDate = userProfile.currentJob.dateLeaving ;
+				title.text = userProfile.currentJob.title ;
+				companyName.text = userProfile.currentJob.companyName ;	
+				
+			}
+			
+			
+			/**
+			 * Clicking on the Send User Data button creates the object and calls publish() to publish the data.
+			 */
+			private function onClick(p_evt:MouseEvent):void
+			{
+				var address:Address = new Address(addr1.text,addr2.text,city.text,state.text,zip.text);
+				var jobDescription:JobDescription = new JobDescription(dateJoining.selectedDate,dateLeaving.selectedDate,title.text,companyName.text);
+				var userProfile:UserProfile = new UserProfile(fname.text,lname.text,parseInt(age.text),address,jobDescription);
+				publish(userProfile);	
+			}
+			
+			
+		]]>
+	</mx:Script>
+	
+	<!-- 
+		You would likely use external authentication here for a deployed application; 
+		you would certainly not hard code Adobe IDs here.
+	-->
+	<rtc:AdobeHSAuthenticator 
+		id="auth" 
+		userName="Your Username" 
+		password="Your password" />
+			
+	<rtc:ConnectSessionContainer id="cSession" authenticator="{auth}" width="100%"
+		 height="100%" roomURL="Your RoomUrl" creationComplete="onCreationComplete()" >
+		<mx:VBox>
+			 <mx:Form>
+			 	 <mx:FormHeading label="User Job Information"/>
+			 	 
+			 	    <mx:FormItem label="First Name">
+	            		<mx:TextInput id="fname" width="100%"/>
+			        </mx:FormItem>
+			
+			        <mx:FormItem label="Last Name">
+			            <mx:TextInput id="lname" width="100%"/>
+			        </mx:FormItem>
+			        
+			        <mx:FormItem label="Age">
+			            <mx:TextInput id="age" width="100%"/>
+			        </mx:FormItem>
+			
+			        <mx:FormItem label="Address">
+			            <mx:TextInput id="addr1" width="100%"/>
+			            <mx:TextInput id="addr2" width="100%"/>
+			        </mx:FormItem>
+			
+			        <mx:FormItem label="City" direction="vertical">
+			            <mx:TextInput id="city"/>
+			        </mx:FormItem>
+					
+					 <mx:FormItem label="State" direction="vertical">
+			            <mx:TextInput id="state"/>
+			        </mx:FormItem>
+			        
+			        <mx:FormItem label="Zip Code">
+			            <mx:TextInput id="zip" width="100"/>
+			        </mx:FormItem>
+	
+					<mx:FormItem label="Current Job">
+						<mx:VBox>
+							<mx:HBox>
+								<mx:Label text="Date Joining" width="100"/>
+				            	<mx:DateField id="dateJoining" width="100"/>
+				            	<mx:Label text="Date Leaving" width="100"/>
+				            	<mx:DateField id="dateLeaving" width="100"/>
+							</mx:HBox>
+							<mx:HBox>
+								<mx:Label text="Company Name" width="100"/>
+								<mx:TextInput id="companyName" />
+							</mx:HBox>	
+							<mx:HBox>
+								<mx:Label text="Title" width="100"/>
+								<mx:TextInput id="title" />
+							</mx:HBox>
+						</mx:VBox>
+			        </mx:FormItem>
+			 </mx:Form>
+			 <mx:HBox width="100%" paddingTop="20">
+			 	 <mx:Spacer width="100" />
+			 	 <mx:Button label="Enter User Data" click="onClick(event)"  />
+			 </mx:HBox>
+		 	
+		</mx:VBox>
+	</rtc:ConnectSessionContainer>
+</mx:Application>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>delete (AFCS::AccountManager)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File afcs.rb, line 401</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">delete</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">type</span> = <span class="ruby-constant">ROOM_ITEMS</span>, <span class="ruby-identifier">list</span> = <span class="ruby-keyword kw">false</span>)
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">type</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">ROOM_ITEMS</span><span class="ruby-operator">:</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">TEMPLATE_ITEMS</span><span class="ruby-operator">:</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">AFCS</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-value str">&quot;invalid-type&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">durl</span> = <span class="ruby-node">&quot;#{contentURL}/#{type}/#{item}&quot;</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">list</span>
+          <span class="ruby-identifier">limitCount</span> = <span class="ruby-value str">&quot;&quot;</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">limitCount</span> = <span class="ruby-value str">&quot;&amp;count=0&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">data</span> = <span class="ruby-node">&quot;action=delete&amp;response=inline#{limitCount}&amp;#{@authToken}&quot;</span>
+        <span class="ruby-identifier">res</span> = <span class="ruby-constant">AFCS</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_post</span>(<span class="ruby-identifier">durl</span>, <span class="ruby-identifier">data</span>, <span class="ruby-ivar">@authHeaders</span>)
+        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">res</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">AFCS</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span>
+
+        <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">res</span>).<span class="ruby-identifier">root</span>
+        <span class="ruby-identifier">check_status</span> <span class="ruby-identifier">response</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

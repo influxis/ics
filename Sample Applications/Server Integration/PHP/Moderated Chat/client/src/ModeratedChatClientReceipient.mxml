@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<mx:Application 
+	xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" 
+	xmlns:rtc="http://ns.adobe.com/rtc"> 
+	
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.rtc.sharedModel.descriptors.ChatMessageDescriptor;
+			import com.adobe.rtc.events.ChatEvent;
+			
+			// This simple example just shows how this shared model can be made easily bindable for MXML.
+			// See SimpleChatModel for details.
+			
+			[Bindable]
+			public var chatModel:ModeratedChatModel;
+			protected function buildModel():void
+			{
+				// Create the model: just calling the constructor won't create the collection node or pass the messages.
+				// Call subscribe and give it a shared ID while creating the model. 
+				// The shared ID becomes the name of the collection node.
+				try{
+					chatModel = new ModeratedChatModel();
+					chatModel.sharedID = "myChat_ModeratedChatModel";
+					
+					chatModel.subscribe();
+					chatModel.addEventListener(ChatEvent.HISTORY_CHANGE, onChatMsg);
+					this.addEventListener(KeyboardEvent.KEY_UP, onKeyStroke);
+				}catch (error:Error){
+					if(error.message.indexOf("insufficient permissions") > 0) {
+						//do proper handling
+						trace("error: " + error.message);
+					}
+				}
+			}
+			
+			protected function submitChat(str:String):void
+			{
+				var cmd:ChatMessageDescriptor = new ChatMessageDescriptor();
+				cmd.displayName = cSession2.userManager.getUserDescriptor(cSession2.userManager.myUserID).displayName;
+				cmd.msg =  str;
+				chatModel.sendMessage(cmd);
+				chat_mesg_input2.text = "";
+			}
+			
+			protected function clearChat():void
+			{
+				chat_mesg_area2.text = "";
+				chatModel.clear();
+			}
+			
+			protected function onChatMsg(p_evt:ChatEvent):void
+			{
+				trace("got message");
+				if(p_evt.message != null && p_evt.message.msg != null && p_evt.message.displayName != null) {
+					
+					//chat_mesg_area.text += "\r\n" +  p_evt.message.displayName + ": " + p_evt.message.msg;
+					chat_mesg_area2.text += "\r\n" +  p_evt.message.displayName + ": " + p_evt.message.msg;
+				}
+				else {
+					//chat_mesg_area.text = "";
+					chat_mesg_area2.text = "";
+				}
+			}
+			
+			protected function onKeyStroke(p_evt:KeyboardEvent):void
+			{
+				if(p_evt.keyCode == Keyboard.ENTER) {
+					submitChat(chat_mesg_input2.text);
+				} 
+			}
+			
+		]]>
+	</mx:Script>
+	
+
+	<!-- 
+		You would likely use external authentication here for a deployed application; 
+		you would certainly not hard code Adobe IDs here.
+	-->
+	
+	<rtc:AdobeHSAuthenticator 
+		id="auth2" 
+		userName="Dean"   
+	/>
+	
+	<rtc:ConnectSessionContainer roomURL="http://localhost:8080/UNDEF-ROOT" id="cSession2" authenticator="{auth2}" width="100%" height="100%"> 
+		<mx:Canvas width="100%" height="100%" creationComplete="buildModel()"> 
+			<mx:VBox id="chatBox2">
+				<mx:TextArea width="800" height="500" id="chat_mesg_area2"/>
+				<mx:TextInput width="400" id="chat_mesg_input2"/>
+				<mx:HBox>
+					<mx:Button label="Submit Chat" click="submitChat(chat_mesg_input2.text)"/>
+					<mx:Button label="Clear Chat" click="clearChat()"/>
+				</mx:HBox>								
+			</mx:VBox>
+		</mx:Canvas> 
+	</rtc:ConnectSessionContainer> 
+	
+
+	
+</mx:Application> 

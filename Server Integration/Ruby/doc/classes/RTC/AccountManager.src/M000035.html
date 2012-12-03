@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>getAccountInfo (RTC::AccountManager)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lccs.rb, line 825</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getAccountInfo</span>()
+        <span class="ruby-identifier">acctid</span> = <span class="ruby-ivar">@roomInstance</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;/&quot;</span>)[<span class="ruby-value">0</span>]
+        <span class="ruby-identifier">data</span> = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">http_get</span>(<span class="ruby-node">&quot;#{@baseURL}app/account?account=#{acctid}&amp;#{@authToken}&quot;</span>, <span class="ruby-ivar">@authHeaders</span>)
+        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">data</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">DEBUG</span>
+
+        <span class="ruby-identifier">response</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">data</span>).<span class="ruby-identifier">root</span>
+        <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">check_status</span> <span class="ruby-identifier">response</span>
+
+        <span class="ruby-identifier">info</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'account-info'</span>]
+        <span class="ruby-identifier">ainfo</span> = <span class="ruby-constant">AccountInfo</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">userCount</span>     = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'user-count'</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_i</span>
+        <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">peakUserCount</span> = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'peak-user-count'</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_i</span>
+        <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">bytesUp</span>       = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'total-bytes-up'</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_i</span>
+        <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">bytesDown</span>     = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'total-bytes-down'</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_i</span>
+        <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">messages</span>      = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'total-messages'</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_i</span>
+        <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">userTime</span>      = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">parseElapsed</span>(<span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'total-time'</span>].<span class="ruby-identifier">text</span>)
+        <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">dateCreated</span>   = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">parseDateTime</span>(<span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'date-created'</span>].<span class="ruby-identifier">text</span>)
+        <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">dateExpired</span>   = <span class="ruby-constant">RTC</span><span class="ruby-operator">::</span><span class="ruby-identifier">parseDateTime</span>(<span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'date-expired'</span>].<span class="ruby-identifier">text</span>)
+        <span class="ruby-identifier">activeInstances</span> = <span class="ruby-identifier">info</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'active-FMS-instances'</span>].<span class="ruby-identifier">text</span>
+        <span class="ruby-identifier">ainfo</span>.<span class="ruby-identifier">activeRooms</span> = <span class="ruby-identifier">activeInstances</span>[<span class="ruby-value">1</span>,<span class="ruby-identifier">activeInstances</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">-</span><span class="ruby-value">2</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;,&quot;</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/.*\/(.*)/</span>)[<span class="ruby-value">1</span>] }
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">ainfo</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

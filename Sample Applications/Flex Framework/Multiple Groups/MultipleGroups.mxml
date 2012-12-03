@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application layout="absolute"
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:rtc="http://ns.adobe.com/rtc"
+	applicationComplete="init()" 
+	width="900" 
+	height="650" 
+	backgroundColor="black"	>
+	
+	<mx:Script>
+		<![CDATA[
+		
+			/**********************************************************
+			 * This is example is more advanced than DefaultPods, FilePublisher, SharedPropertyExample, and so on.
+			 * 
+			 * MultipleGroups demonstrates how to use multiple pod groups such as camera, chat, and note within a room.
+			 * Grouping is useful for building applications that support private chats, private groups, etc. and where
+			 * users can be divided into groups each of which see a different user interface.
+			 *
+			 * This example provides a common, default room that users enter first. A host can then assign a user to 
+			 * a particular room, delete a user from a room, and create and delete rooms. When a room gets deleted, 
+			 * room members are automatically moved to the default room. The application has a model that handles user 
+			 * and group bookkeeping as well as a dialog for adding and removing groups.
+			 * *********************************/
+			 
+			  /**********************************************************
+			   * ADOBE SYSTEMS INCORPORATED
+			   * Copyright [2007-2010] Adobe Systems Incorporated
+			   * All Rights Reserved.
+			   * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			   * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			   * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			   * written permission of Adobe.
+		     	   * *********************************/
+			 
+			 
+			import mx.events.ListEvent;
+			import mx.events.ItemClickEvent;
+			import com.adobe.rtc.messaging.NodeConfiguration;
+			import com.adobe.rtc.sharedManagers.StreamManager;
+			import com.adobe.rtc.pods.noteClasses.NoteModel;
+			import com.adobe.rtc.events.UserEvent;
+			import com.adobe.rtc.messaging.UserRoles;
+			import com.adobe.rtc.sharedModel.SimpleChatModel;
+			import mx.collections.ArrayCollection;
+			import mx.events.CollectionEvent;
+			import com.adobe.rtc.events.CollectionNodeEvent;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import com.adobe.rtc.sharedManagers.descriptors.UserDescriptor;
+			import com.adobe.rtc.events.AuthenticationEvent;
+			import com.adobe.rtc.events.ConnectSessionEvent;
+			import com.adobe.rtc.events.SessionEvent;
+			import mx.core.IFlexDisplayObject;
+			import mx.managers.PopUpManager;
+			
+			
+			private const applicationTitle:String = "Multiple Group Application";
+			private var addGroupDialog:AddRemoveGroupDialog ;
+			private var removeGroupDialog:AddRemoveGroupDialog ;
+			
+			[Bindable]
+			private var groupList:ArrayCollection = new ArrayCollection();
+			
+			private var _model:MultipleGroupModel ;
+			private var _simpleChatModel:SimpleChatModel ;
+			private var _noteModel:NoteModel ;
+			private var _streamManager:StreamManager ;
+			
+			/**
+			 * This function gets called initially and provides event handlers for synchronization and 
+			 * authentication success/failure.
+			 */
+			private function init():void
+			{
+				sess.addEventListener(SessionEvent.ERROR, onEventNotification);
+				sess.addEventListener(SessionEvent.SYNCHRONIZATION_CHANGE, onEventNotification);
+				auth.addEventListener(AuthenticationEvent.AUTHENTICATION_FAILURE, onEventNotification);
+				auth.addEventListener(AuthenticationEvent.AUTHENTICATION_SUCCESS, onEventNotification);				
+				popup(loginWindow);
+
+			}
+			
+			/**
+			 * Shows the first Login Dialog. Part of this first UI is can be found in the LoginDialog example.
+			 */
+			private function popup(window:IFlexDisplayObject):void
+			{
+				PopUpManager.addPopUp(window, this, true);
+				PopUpManager.centerPopUp(window);
+				window.visible = true;
+			}
+
+			
+			/**
+			 * Handles the events for authentication success/failure as well as
+			 * the session event for any errors and synchronizations.
+			 */
+			private function onEventNotification(p_event:Event):void
+			{
+				if (p_event.type == SessionEvent.SYNCHRONIZATION_CHANGE) {
+					if (sess.isSynchronized) {
+						//
+						// isSyncronized==true : we are connected to the room
+						//
+						panel.title = "Connected to room " + sess.roomURL;
+						PopUpManager.removePopUp(loginWindow);
+						
+						_model = MultipleGroupModel.getInstance();
+						_model.addEventListener(CollectionNodeEvent.NODE_CREATE,groupCreate);
+						_model.addEventListener(CollectionNodeEvent.NODE_DELETE,groupDelete);
+						_model.addEventListener(CollectionNodeEvent.ITEM_RECEIVE,userAdded);
+						_model.addEventListener(CollectionNodeEvent.ITEM_RETRACT,userRemoved);
+						groupList.addItem("default");
+						groupNameList.selectedIndex = 0 ;
+						
+						if ( sess.userManager.myUserRole != UserRoles.OWNER ) {
+							UI.removeChild(btnHBox);
+							listHBox.removeChild(breakoutVBox);
+							userGroupLabel.text = "Users in My Group"
+						}else {
+							userGroupLabel.text = "Users in Selected Group"
+						}
+						
+						_streamManager = sess.streamManager ;
+						
+					} else {
+						//
+						// isSyncronized==false : we are disconnected from the room
+						//
+						panel.title = applicationTitle;
+						sess.roomURL = null;
+						notificationMessage.text = "";
+						popup(loginWindow);
+					}
+				}
+				
+				else if (p_event.type == AuthenticationEvent.AUTHENTICATION_SUCCESS) {
+					//
+					// Authentication succeeded
+					//
+					notificationMessage.text = "Authentication Succeeded";
+				}
+				
+				else if (p_event.type == AuthenticationEvent.AUTHENTICATION_FAILURE) {
+					//
+					// Authentication failed because of a bad password or invalid username.
+					//
+					notificationMessage.text = "Authentication Failed";
+				}
+				
+				else if (p_event.type == SessionEvent.ERROR) {
+					//
+					// Generic session error caused by a bad account or room name.
+					// (sError.error.name == "INVALID_INSTANCE" and sError.error.message == "Invalid Instance")
+					//
+					var sError:SessionEvent = p_event as SessionEvent;
+					notificationMessage.text = sError.error.message;
+				}
+				
+				else
+					notificationMessage.text = "Got event " + p_event;
+			}
+			
+			/**
+			 * Called when you click Login button to log in to the room.
+			 */
+			private function login():void
+			{
+				notificationMessage.text = "";
+				auth.userName = username.text;
+				auth.password = passwordBox.visible ? password.text : null; // If password==null, then the user is a guest.
+				sess.roomURL = roomURL.text;		
+				sess.login();
+				
+				
+			}
+			
+		
+		 
+			/***
+			 *  Handler for the Add Group button which pops up a dialog for adding a group.
+			 ***/
+			protected function onGroupCreate(event:MouseEvent):void
+			{
+				if ( !addGroupDialog ) {
+					addGroupDialog = new AddRemoveGroupDialog();
+					addGroupDialog.title = "Add Group" ;
+					addGroupDialog.addEventListener(CloseEvent.CLOSE,onAddOkClose);
+					PopUpManager.addPopUp(addGroupDialog,this,true);
+					PopUpManager.centerPopUp(addGroupDialog);
+				}
+			}
+			
+			/***
+			 * Handler for the Remove Group button which pops up a dialog for removing a group.
+			 ****/
+			protected function onGroupRemove(event:MouseEvent):void
+			{
+				if ( !removeGroupDialog ) {
+					removeGroupDialog = new AddRemoveGroupDialog();
+					removeGroupDialog.title = "Remove Group" ;
+					removeGroupDialog.addEventListener(CloseEvent.CLOSE,onRemoveOkClose);
+					PopUpManager.addPopUp(removeGroupDialog,this,true);
+					PopUpManager.centerPopUp(removeGroupDialog);
+				}
+			}
+			
+			/**
+			 * Handler for adding a user to a particular room.
+			 * Both a user and a room must be selected for this operation to be successful
+			 ****/
+			protected function onAddUser(event:MouseEvent):void
+			{
+				if ( userList.selectedItem == null ) {
+					mx.controls.Alert.show("Select a user from the user list, select a group from Group List, then click Add.");
+					return ;
+				}
+				
+				if ( groupComboBox.selectedLabel == "default" ) {
+					mx.controls.Alert.show("Select a group other than the default.");
+					return ;
+				}
+				
+				_model.notifyAddUserToGroup((userList.selectedItem as UserDescriptor).userID,groupComboBox.selectedLabel) ;	
+			}
+			
+			/**
+			 * Handler for removing a user from a particular room.
+			 * Both a user and a room must be selected for this operation to be successful
+			 ****/
+			protected function onRemoveUser(event:MouseEvent):void
+			{
+				if ( userList.selectedItem == null ) {
+					mx.controls.Alert.show("Select a user from the user list, select a group from Group List, then click Remove.");
+					return ;
+				}
+				
+				if ( groupComboBox.selectedLabel == "default" ) {
+					mx.controls.Alert.show("Select a group other than the default.");
+					return ;
+				}
+				_model.notifyRemoveUserFromGroup((userList.selectedItem as UserDescriptor).userID,groupComboBox.selectedLabel) ;
+			}
+			
+			
+			/**
+			 * Handler for the group removal event which is dispatched from AddRemoveGroupDialog
+			 **/
+			protected function onRemoveOkClose(p_evt:CloseEvent):void
+			{
+				if (p_evt.detail == Alert.OK) {
+					if ( _model.isGroupDefined(removeGroupDialog.titleTextInput.text)){
+						_model.removeGroup(removeGroupDialog.titleTextInput.text);
+					}else {
+						mx.controls.Alert.show("Group Doesn't Exist");
+					}
+				}
+				
+				PopUpManager.removePopUp(removeGroupDialog);
+				removeGroupDialog = null ;
+			}
+			
+			/**
+			 * Handler for the group addition event which is dispatched from AddRemoveGroupDialog
+			 **/
+			protected function onAddOkClose(p_evt:CloseEvent):void
+			{
+				if (p_evt.detail == Alert.OK) {
+					if ( !_model.isGroupDefined(addGroupDialog.titleTextInput.text)){
+						_model.createGroup(addGroupDialog.titleTextInput.text);
+					} else {
+						mx.controls.Alert.show("Group Already Exists");
+					}
+				}
+				
+				PopUpManager.removePopUp(addGroupDialog);
+				addGroupDialog = null ;
+			}
+			
+			/**
+			 * Listens to the model and creates the group and initializes the models for all the groups.
+			 */
+			protected function groupCreate(p_evt:CollectionNodeEvent):void
+			{
+				groupList.addItem(p_evt.nodeName);
+				initializeGroupModels(p_evt.nodeName);
+			}
+			
+			/**
+			 * Listens to the model and deletes the group.
+			 */
+			protected function groupDelete(p_evt:CollectionNodeEvent):void
+			{
+				for ( var i:int=0; i <groupList.length ; i++ ) {
+					if ( groupList.getItemAt(i) == p_evt.nodeName ) {
+						groupList.removeItemAt(i);
+						break;
+					}
+				}
+			}
+			
+			/**
+			 * Listens to the model, adds the user to the group, and assigns the various LCCS components to be part of the group.
+			 */
+			protected function userAdded(p_evt:CollectionNodeEvent):void
+			{
+				
+				if ( p_evt.item.itemID == sess.userManager.myUserID ) {
+					simpleChat.groupName = p_evt.nodeName ;
+					simpleNote.groupName = p_evt.nodeName ;
+					camera1.groupName = p_evt.nodeName ;
+				}
+				
+				userList.dataProvider =  _model.getUsersInGroup(_model.getMyGroup());
+			}
+			
+			/**
+			 * Listens to the model, removes the user from the group, and assigns the various LCCS components to be part of the main group.
+			 */
+			protected function userRemoved(p_evt:CollectionNodeEvent):void
+			{
+				if ( p_evt.item.itemID == sess.userManager.myUserID ) {
+					simpleChat.groupName = null ;
+					simpleNote.groupName = null ;
+					camera1.groupName = null ;
+					userList.dataProvider =  _model.getUsersInGroup(_model.getMyGroup());
+				}	
+			}
+			
+			/**
+			 * Initializes the group models for chat, note, camera, and so on.
+			 */
+			protected function initializeGroupModels(p_groupName:String):void
+			{
+				// the values at the runtime should be coming from the layout 
+				
+				_simpleChatModel = new SimpleChatModel();
+				_simpleChatModel.sharedID = simpleChat.id + p_groupName ;
+				_simpleChatModel.connectSession = sess ;
+				_simpleChatModel.subscribe();
+				
+				
+				_noteModel = new NoteModel() ;
+				_noteModel.sharedID = simpleNote.id + p_groupName ;
+				_noteModel.connectSession = sess ;
+				_noteModel.subscribe();
+				
+				_streamManager.createGroup(p_groupName);
+				
+				
+			}
+			
+			/**
+			 * A callback function to display the name in the UserList.
+			 */
+			protected function myLabelFunction(p_item:Object):String
+			{
+				return (p_item as UserDescriptor).displayName ;
+			}
+
+			/**
+			 * Gets the users in a particular group.
+			 */
+			private function onGroupItemClick(p_evt:ListEvent):void
+			{
+				userList.dataProvider = _model.getUsersInGroup(p_evt.itemRenderer.data as String)
+			}
+			
+		]]>
+	</mx:Script>
+
+		<!--
+		 | Standard Authenticator
+		 -->
+	 <rtc:AdobeHSAuthenticator id="auth"/>
+	
+		<!--
+		 | Automatically promote guests so they can use the application
+		 |
+		 | Note: In order for this to work, the host needs to enter the room once to enable all the pods
+		 | (enter the room and go through the various screens)
+		 -->
+	<rtc:RoomSettings id="settings" autoPromote="true"/>
+
+	<mx:Panel id="panel" title="{applicationTitle}" width="100%" height="100%" paddingLeft="5" paddingTop="5" paddingRight="5" paddingBottom="5">
+	
+		<!--
+		 | Login Dialog Box
+		 -->
+		<mx:TitleWindow id="loginWindow" title="Connect to Room" visible="false">
+			<mx:VBox>
+				<mx:HBox>
+					<mx:Label text="Room URL:" width="70"/>
+					<mx:TextInput id="roomURL" width="295" tabIndex="1">
+						<mx:text>http://connect.acrobat.com/exampleURL/exampleroom</mx:text>
+					</mx:TextInput>
+				</mx:HBox>
+				<mx:HBox>
+					<mx:Label text="Username:" width="70"/>
+					<mx:TextInput id="username" tabIndex="2">
+						<mx:text>Your Username</mx:text>
+					</mx:TextInput>			
+					<mx:Button label="Login" click="login()" width="126" tabIndex="4"/>
+				</mx:HBox>
+				<mx:HBox>
+					<mx:HBox id="passwordBox">
+					<mx:Label text="Password:" width="70"/>
+					<mx:TextInput id="password" displayAsPassword="true" tabIndex="3">
+						<mx:text>Your password</mx:text>
+					</mx:TextInput>
+					</mx:HBox>
+					<mx:RadioButton label="User" selected="true" click="passwordBox.visible = true"/>
+					<mx:RadioButton label="Guest" click="passwordBox.visible = false"/>
+				</mx:HBox>
+				<mx:Text id="notificationMessage" text=""/>
+			</mx:VBox>
+		</mx:TitleWindow>
+
+		<!--
+		 | LCCS application UI wrapped in ConnectSession
+		 -->	
+		<rtc:ConnectSessionContainer	id="sess" authenticator="{auth}" initialRoomSettings="{settings}" autoLogin="false" width="100%" height="100%">	
+			<mx:VBox width="100%" height="100%" id="UI" backgroundColor="0xcccccc">
+				<mx:VBox id="btnHBox" width="100%" height="140" paddingTop="10" verticalGap="2" paddingBottom="10">
+						<mx:Label text = "Group Operations" fontWeight="bold" />
+						<mx:HBox width="100%" height="100%" >
+							<mx:Button label="Create New Group" width="160" click="onGroupCreate(event)" />
+							<mx:Button label="Remove Existing Group"  width="160" click="onGroupRemove(event)"/>
+						</mx:HBox>
+						<mx:Label text = "User Operations" fontWeight="bold" />
+						<mx:HBox width="100%" height="100%" >
+							<mx:Button label="Move User To Group"  width="160" click="onAddUser(event)"/>
+							<mx:Button label="Delete User From Group"  width="175" click="onRemoveUser(event)"/>	
+							<mx:Label text="Select Group Name for Adding/Removing User:" fontWeight="bold" />
+							<mx:ComboBox id="groupComboBox" dataProvider="{groupList}" width="120"  />
+						</mx:HBox>
+				</mx:VBox>
+				<!--mx:Button id="peeping" label="Listen to Others" click="onListenClick(event)" visible="false" /-->
+				<mx:HBox width="100%" height="100%" id="hBox" >
+					<mx:VBox width="100%" height="100%" borderStyle="solid" borderThickness="1" >
+						<mx:VBox id="chatCanvas" width="100%" height="100%" borderStyle="solid" borderThickness="1" >
+							<mx:Label text = "Chat" fontWeight="bold" />
+							<rtc:SimpleChat id="simpleChat" width="100%" height="100%" />
+						</mx:VBox>
+						<mx:VBox id="noteCanvas" width="100%" height="100%" borderStyle="solid" borderThickness="1" >
+							<mx:Label text = "Note" fontWeight="bold" />
+							<rtc:Note id="simpleNote" width="100%" height="100%" />
+						</mx:VBox>
+					</mx:VBox>
+					<mx:VBox width="100%" height="100%" borderStyle="solid" borderThickness="1" >
+						<mx:VBox id="cameraCanvas" width="100%" height="100%" borderStyle="solid" borderThickness="1" >
+							<mx:Label text = "Camera" fontWeight="bold" />
+							<rtc:WebCamera id="camera1" width="100%" height="100%"  />
+						</mx:VBox>
+						<mx:HBox width="100%" id="listHBox" height="100%" borderStyle="solid" borderThickness="1" >
+							<mx:VBox id="breakoutVBox" width="100%" height="100%">
+								<mx:Label text = "Group List" fontWeight="bold" />
+								<mx:List dataProvider="{groupList}" id="groupNameList" itemClick="onGroupItemClick(event)" width="100%" />
+							</mx:VBox>
+							<mx:VBox width="100%" height="100%">	
+								<mx:Label id="userGroupLabel"  fontWeight="bold" />
+								<mx:List  height="100%" width="100%" id="userList" dataProvider="{sess.userManager.userCollection}" labelFunction="{myLabelFunction}" />
+							</mx:VBox>
+						</mx:HBox>
+					</mx:VBox>
+				</mx:HBox>	
+			</mx:VBox>
+		</rtc:ConnectSessionContainer>
+	</mx:Panel>
+</mx:Application>
+

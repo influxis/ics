@@ -1,0 +1,97 @@
+
+<h1>LCCS Room Manager <strong> <%=@roomName%></strong> Room Details</h>
+
+
+
+<% if flash[:result] %>
+
+  <div style="font-family:'Trebuchet MS'; color:green; font-size:14px;">
+
+  <%= flash[:result] %>
+
+  </div>
+
+<% end %>
+
+<% if flash[:notice] %>
+
+  <div style="font-family:'Trebuchet MS'; color:red; font-size:14px;">
+
+  <%= flash[:notice] %>
+
+  </div>
+
+<% end %>
+
+ <% if !@roominfo.nil? %>
+<table>
+  <tr>
+    <td><b>bytesDown:</b></td>
+    <td> <%=@roominfo.bytesDown%></td>
+  </tr>
+  <tr>
+    <td><b>btyesUp:</b></td>
+    <td> <%=@roominfo.bytesUp%></td>
+  </tr>
+  <tr>
+    <td><b>dateCreated: </b></td>
+    <td><%=@roominfo.dateCreated%></td>
+  </tr>
+  <tr>
+    <td><b>dateEnded:</b></td>
+    <td> <%=@roominfo.dateEnded%></td>
+  </tr>
+  <tr>
+    <td><b>dateStarted:</b></td>
+    <td> <%=@roominfo.dateStarted%></td>
+  </tr>
+  <tr>
+    <td><b>isConnected:</b></td>
+    <td> <%=@roominfo.isConnected%></td>
+  </tr>
+  <tr>
+    <td><b>messages: </b></td>
+    <td><%=@roominfo.messages%></td>
+  </tr>
+  <tr>
+    <td><b>btyesUp: </b></td>
+    <td><%=@roominfo.peakUsers%></td>
+  </tr>
+</table>
+ <%end%>
+
+<% if !@users.nil? %>
+<h2>Current User List <%=DateTime.now%></h2>
+  <table border="1">
+     <tr>
+      <th>Displayname</th>
+      <th>UserID</th>
+      <th>Connection</th>
+      <th>Role</th>
+      <th>Userid</th>
+      <th>Affiliation</th>
+      <th>Starttime</th>
+      <th>Online Duration</th>
+      <th>Remove</th>
+    </tr>
+
+
+    <% @users.each do |user| %>
+
+      <tr>
+        <td><%=h user.displayName %></td>
+        <td><%=h user.userID %></td>
+        <td><%=h user.userconnection %></td>
+        <td><%=h user.role %></td>
+        <td><%=h user.userID %></td>
+        <td><%=h user.affiliation %></td>
+        <td><%=h Time.at(user.starttime/1000)%></td>
+        <td><%=h RoomController.timedifffromnow(user.starttime) %></td>
+         <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <%end%>
+  </table>
+
+
+
+<%end%>

@@ -1,0 +1,451 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">	
+    <!-- 
+    Smart developers always View Source. 
+    
+    This application was built using Adobe Flex, an open source framework
+    for building rich Internet applications that get delivered via the
+    Flash Player or to desktops via Adobe AIR. 
+    
+    Learn more about Flex at http://flex.org 
+    // -->
+    <head>
+        <title>${title}</title>         
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!-- Include CSS to eliminate any default margins/padding and set the height of the html element and 
+		     the body element to 100%, because Firefox, or any Gecko based browser, interprets percentage as 
+			 the percentage of the height of its parent container, which has to be set explicitly.  Initially, 
+			 don't display flashContent div so it won't show if JavaScript disabled.
+		-->
+        <style type="text/css" media="screen"> 
+			html, body	{ height:100%; }
+			body { margin:0; padding:0; overflow:auto; text-align:left; 
+			       background-color: ${bgcolor}; align:left}   
+			#flashContent { display:none; width:0; height:0}
+			.button {
+				/*border-top: 1px solid #96d1f8;*/
+				   background: #65a9d7;
+				   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+				   background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+				   -webkit-border-radius: 6px;
+				   -moz-border-radius: 6px;
+				   border-radius: 6px;
+				   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+				   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+				   box-shadow: rgba(0,0,0,1) 0 1px 0;
+				   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+				   color: #ffffff;
+				   font-family: Georgia, serif;
+				   text-decoration: none;
+				   vertical-align: middle;
+				   }
+				   .buttonBigger {
+					      font-size: 18px;
+						  height: 50px;
+						  padding: 10.5px 21px;
+				   }
+				   .buttonSmaller {
+					      font-size: 14px;
+				  		  height: 30px;
+						  padding: 5.5px 11px;
+				   }
+				.button:hover {
+				   border-top-color: #3e84b3;
+				   background: #3e84b3;
+				   color: #ffffff;
+				   }
+				.button:active {
+				   border-top-color: #1b435e;
+				   background: #1b435e;
+				   }
+				.textArea {
+					color : #747862;
+					padding:4px 8px;
+					margin-bottom:0px;
+					border: 3px double #CCCCCC;
+				   font-family: Georgia, serif;
+				
+					
+				}
+				
+				.textAreaQuestion {
+					width: 400px;
+					height:50px;
+				   font-size: 18px;
+				}
+				
+				.textAreaPollQuestions {
+					width: 300px;
+					height:30px;
+				   font-size: 14px;
+				   padding: 5.5px 21px;
+				}
+				
+				.divStyle {
+					padding: 5px 10px;
+				}
+
+				.label {
+					font-family: Georgia, serif;
+					font-size: 18px;
+					color: #ffffff;
+					
+				}
+        </style>
+		
+		<!-- Enable Browser History by replacing useBrowserHistory tokens with two hyphens -->
+        <!-- BEGIN Browser History required section ${useBrowserHistory}>
+        <link rel="stylesheet" type="text/css" href="history/history.css" />
+        <script type="text/javascript" src="history/history.js"></script>
+        <!${useBrowserHistory} END Browser History required section -->  
+		    
+        <script type="text/javascript" src="swfobject.js"></script>
+        <script type="text/javascript">
+            <!-- For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. --> 
+            var swfVersionStr = "${version_major}.${version_minor}.${version_revision}";
+            <!-- To use express install, set to playerProductInstall.swf, otherwise the empty string. -->
+            var xiSwfUrlStr = "${expressInstallSwf}";
+            var flashvars = {};
+            var params = {};
+            params.quality = "high";
+            params.bgcolor = "${bgcolor}";
+            params.allowscriptaccess = "sameDomain";
+            params.allowfullscreen = "true";
+            var attributes = {};
+            attributes.id = "${application}";
+            attributes.name = "${application}";
+            attributes.align = "middle";
+            swfobject.embedSWF(
+                "${swf}.swf", "flashContent", 
+                "${width}", "${height}",  
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes);
+			<!-- JavaScript enabled so display the flashContent div in case it is not replaced with a swf object. -->
+			swfobject.createCSS("#flashContent", "display:block;text-align:left;");
+        </script>
+        
+        <script type="text/javascript" src="LCCS_JS_Bridge.js"></script>
+	<script language="JavaScript">
+		var chatModel;
+		var sharedProp;
+		var sharedCollection;
+		var connectSession;
+		var sharedObj;
+		var oldValue;
+		/**
+		 * The first function that gets called after html page is loaded
+		 * We instantiate a connection to the LCCS service through the application swf
+		*/
+		function init() {
+			connectSession = new ConnectSession("JSPoll");
+			connectSession.addEventListener("synchronizationChange",this);
+		}
+		
+		/**
+		 * This method hides the swf after its loaded.
+		*/
+		function changeSWFattributes(p_swfName) {
+		    var p_bridgeSWF;
+		    if (navigator.appName.indexOf("Microsoft") != -1) {
+			p_bridgeSWF = window[p_swfName];
+		    } else {
+			    p_bridgeSWF = document[p_swfName];
+		    }
+		    p_bridgeSWF.width = p_bridgeSWF.height = 0;
+		    //p_bridgeSWF.x = p_bridgeSWF.y = -10;
+		    //p_bridgeSWF.style.visibility = "hidden";
+		}
+		
+		/**
+		 * The synchronizationChange event handler function for ConnectSession and all the components used.
+		 * The app is booted only after all the components have synched.
+		*/
+		function synchronizationChange(evt) 
+		{
+			if (evt.target instanceof ConnectSession && evt.value) {
+				changeSWFattributes("JSPoll");
+				sharedProp = new SharedProperty();
+				sharedProp.sharedID = "sharedProp";
+				sharedProp.addEventListener("synchronizationChange",this);
+				sharedProp.addEventListener("change",this);
+				sharedProp.subscribe();
+				
+				sharedCollection = new SharedCollection();
+				sharedCollection.sharedID = "pollSharedModel";
+				sharedCollection.idField = "pollId" ;
+				sharedCollection.addEventListener("synchronizationChange", this);
+				sharedCollection.addEventListener("collectionChange",this);
+				sharedCollection.subscribe();
+				
+				sharedObj = new SharedObject();
+				sharedObj.sharedID = "pollObject";
+				sharedObj.addEventListener("synchronizationChange",this);
+				sharedObj.addEventListener("propertyChange",this);
+				sharedObj.addEventListener("propertyAdd",this);
+				sharedObj.addEventListener("propertyRetracted",this);
+				sharedObj.subscribe(); 
+				
+			} else if (evt.target instanceof SharedProperty && evt.target.isSynchronized()) {
+				this.document.getElementById("SharedQuestion").value = sharedProp.value;
+			}else if (evt.target instanceof SharedCollection && evt.target.isSynchronized) {
+				addPollFieldAndValue();
+			}
+		}
+		
+		function addPollField(p_idName) {
+		    var idFieldNum;
+			var btnLabel;
+			var readOnly;
+			if (p_idName.type && p_idName.type=="click") {
+			    btnLabel = "Submit";
+			    readOnly = false;
+			    idFieldNum = "temp123456temp";
+			} else {
+			    btnLabel = "Edit";
+			    readOnly = true;
+			    idFieldNum = p_idName;
+			}
+			var divElement = this.document.createElement('div');
+			divElement.id = "sharedRadioField_" + idFieldNum ;
+			var htmlString = "<input type='radio' name='SharedCollectionPollGroup' value='radio' id='SharedCollectionPollGroup_"+(idFieldNum)+"' /> <input class='textArea textAreaPollQuestions' type='text' name='SharedOptionQuestion' id='SharedOptionQuestion_"+(idFieldNum)+ "'width='300' height='20'/> <button class='button buttonSmaller' id='btn_"+(idFieldNum)+ "' onClick='pollRadioLabelSubmit(event)'>"+btnLabel+"</button> <button class='button buttonSmaller' onClick='pollLabelDelete(event)'>Delete</button><label class='label' id='voteLabel_"+(idFieldNum)+"'>0 VOTE</label>";
+			divElement.innerHTML= htmlString;
+			divElement.className = "divStyle";
+			//divElement.align = "center";
+			var tmpObj =  this.document.getElementById("form2");
+			tmpObj.appendChild(divElement);
+			this.document.getElementById("SharedOptionQuestion_" + idFieldNum).readOnly = readOnly;
+			var btn = this.document.getElementById("btn_" + idFieldNum);
+			btn.value = btn.title = btn.textContent = btnLabel;
+		}
+		
+		function addPollFieldAndValue() {
+		    for (var i = 0; i < sharedCollection.length(); i++) {
+			addPollField(sharedCollection.getItemAt(i)[sharedCollection.idField]);
+			this.document.getElementById("SharedOptionQuestion_" + sharedCollection.getItemAt(i)[sharedCollection.idField]).value = sharedCollection.getItemAt(i)["value"];
+		    }
+		}
+		
+		/**
+		 * Method demonstrating the use of SharedCursorPane
+		*/
+		function startSharedCursor(p_evt) {
+			var sharedCursor = new SharedCursorPane();
+			//sharedCursor.x = sharedCursor.y = 30;
+			//sharedCursor.width = sharedCursor.height = 330;
+			sharedCursor.subscribe();
+		}
+		
+		/**
+		 * The change event handler function for SharedProperty. It updates the PollQuestion when someone modifies it
+		 */ 
+		function change(p_evt) {
+		    this.document.getElementById("SharedQuestion").value = sharedProp.value;
+		}
+		
+		/**
+		 * It updates or sets the PollQuestion. The change is broadcasted if the SharedProperty used id updated in the server
+		 */ 
+		function setPollQuestion(p_evt) {
+			if(this.sharedProp && this.sharedProp.isSynchronized()) {
+				this.sharedProp.setValue(this.document.getElementById("SharedQuestion").value); 
+			}
+		}
+		
+		function pollRadioLabelSubmit(p_evt) {
+			var idIndex = p_evt.target.parentElement.id;
+			idIndex = idIndex.substring(idIndex.lastIndexOf("_")+1);
+			if (p_evt.target.value == "Submit") {
+			    p_evt.target.value = p_evt.target.title = p_evt.target.textContent = "Edit";
+			    this.document.getElementById("SharedOptionQuestion_"+ idIndex).readOnly = true;
+			} else {
+			    p_evt.target.value = p_evt.target.title = p_evt.target.textContent = "Submit";
+			    oldValue = this.document.getElementById("SharedOptionQuestion_"+ idIndex).value;
+			    this.document.getElementById("SharedOptionQuestion_"+ idIndex).readOnly = false;
+			    return;
+			}
+			var value = this.document.getElementById("SharedOptionQuestion_"+ idIndex).value;
+			for (var i=0; i<sharedCollection.length(); i++) {
+			    if (sharedCollection.source[i][sharedCollection.idField] == idIndex) {
+				sharedCollection.setItemAt({pollId:sharedCollection.source[i][sharedCollection.idField],value:value},i);
+				return;
+			    }
+			}
+			
+			sharedCollection.addItem({pollId:this.document.getElementById("SharedOptionQuestion_"+ idIndex).value,value:this.document.getElementById("SharedOptionQuestion_"+ idIndex).value});
+			this.document.getElementById("form2").removeChild(this.document.getElementById("sharedRadioField_"+ idIndex));
+		}
+		
+		function pollLabelDelete(p_evt) {
+			var idIndex = p_evt.target.parentElement.id;
+			idIndex = idIndex.substring(idIndex.lastIndexOf("_")+1);
+			var value = this.document.getElementById("SharedOptionQuestion_"+ idIndex).value;
+			for (var i=0; i<sharedCollection.length(); i++) {
+			    if (sharedCollection.source[i]["value"] == value) {
+				sharedCollection.removeItemAt(i);
+			    }
+			}
+			//this.document.getElementById("form2").removeChild(p_evt.target.parentElement);
+		}
+		
+		/**
+		 * The collectionChange event handler function for SharedCollection. It updates,removes or add new PollOptions when someone modifies it
+		 */ 
+		function collectionChange(p_evt) {
+		    if (p_evt.kind == "remove") {
+			this.document.getElementById("form2").removeChild(this.document.getElementById("sharedRadioField_"+ p_evt.oldItem[sharedCollection.idField]));
+		    }
+		    if (p_evt.kind == "add" && sharedCollection.isSynchronized()) {
+			    addPollField(p_evt.newItem[sharedCollection.idField]);
+			    this.document.getElementById("SharedOptionQuestion_"+ p_evt.newItem[sharedCollection.idField]).readOnly = true;
+			    this.document.getElementById("SharedOptionQuestion_" + p_evt.newItem[sharedCollection.idField]).value = p_evt.newItem["value"];
+		    }
+		    if (p_evt.kind == "replace" && sharedCollection.isSynchronized()) {
+			    this.document.getElementById("SharedOptionQuestion_"+ p_evt.item[sharedCollection.idField]).readOnly = true;
+			    this.document.getElementById("SharedOptionQuestion_" + p_evt.item[sharedCollection.idField]).value = p_evt.newValue;
+		    }
+
+		}
+		
+		function submitVote(p_evt) {
+		    for (var i = 0; i < this.document.getElementsByName("SharedCollectionPollGroup").length ; i++) {
+				if (this.document.getElementsByName("SharedCollectionPollGroup")[i].checked) {
+				    var radioElement = this.document.getElementsByName("SharedCollectionPollGroup")[i];
+				    var subId = radioElement.id.substring(radioElement.id.lastIndexOf("_")+1);
+				    //var userName = this.connectSession.userManager.getUserDescriptor(this.connectSession.userManager.myUserID).displayName;
+				    //userName = userName.replace(/ /g,'')
+				    var usrId = this.connectSession.userManager.myUserID;
+				    usrId = usrId.replace(/\-/g,'');
+				    usrId = usrId.replace(/\//g,'');
+				    var optionKey = subId;
+				    var sharedObjValue = sharedObj.getProperty(optionKey);
+				    var shLocObject = sharedObj.getValues();
+				    for (var i in shLocObject) {
+					var tmpObj = shLocObject[i];
+					if (tmpObj[usrId]) {
+					    var deleteUserObj = sharedObj.getProperty(i);
+					    delete deleteUserObj[usrId];
+					    var count = 0;
+					    for (var j in deleteUserObj) {
+						count++;
+					    }
+					    if (count == 0) {
+						sharedObj.removeProperty(i);
+					    } else {					    
+						sharedObj.setProperty(i,deleteUserObj);
+					    }
+					}
+				    }
+
+				    if (!sharedObjValue) {
+					var usrObj = new Object();
+					usrObj[usrId] = 1;
+					sharedObj.setProperty(optionKey, usrObj);
+				    } else {
+					var newUserObj = sharedObj.getProperty(optionKey);
+					newUserObj[usrId] = 1;
+					sharedObj.setProperty(optionKey,newUserObj);
+				    }
+				}
+			    }
+		}
+		
+	    	/**
+		 * The propertyChange event handler function for SharedObject. It updates,removes or add new votes when someone modifies it
+		 */ 
+		function propertyChange(p_evt) {
+		    var usrTmpValues = new Object();
+		    usrTmpValues = p_evt.value;
+		    var count = 0;
+		    for (var i in usrTmpValues) {
+			count++;
+		    }
+		    if (count == 0 && sharedObj.isSynchronized()) {
+			sharedObj.removeProperty(p_evt.itemID);
+		    }
+		    var labelElement = this.document.getElementById("voteLabel_"+ p_evt.itemID);
+		    labelElement.innerHTML = count + " VOTE";
+		    
+		}
+ 
+	    	/**
+		 * The propertyAdd event handler function for SharedObject. It adds new votes when someone votes for a new item.
+		 */ 
+		function propertyAdd(p_evt){
+		    if (sharedObj.isSynchronized()) {
+			this.document.getElementById("voteLabel_"+ p_evt.itemID).innerHTML = "1 VOTE";
+		    } else {
+			propertyChange(p_evt);				
+		    }
+		}
+		
+	    	/**
+		 * The propertyRetracted event handler function for SharedObject. Clean up method when certain poll options dont have any votes
+		 */ 
+		function propertyRetracted(p_evt){
+		    if (sharedObj.isSynchronized()) {
+			this.document.getElementById("voteLabel_"+ p_evt.itemID).innerHTML = "0 VOTE";
+		    }
+		}
+		
+    </script>
+    </head>
+    <body bgcolor="#393939" onload="init()">
+        <!-- SWFObject's dynamic embed method replaces this alternative HTML content with Flash content when enough 
+			 JavaScript and Flash plug-in support is available. The div is initially hidden so that it doesn't show
+			 when JavaScript is disabled.
+		-->
+        <div id="flashContent">
+        	<p>
+	        	To view this page ensure that Adobe Flash Player version 
+				${version_major}.${version_minor}.${version_revision} or greater is installed. 
+			</p>
+			<script type="text/javascript"> 
+				var pageHost = ((document.location.protocol == "https:") ? "https://" :	"http://"); 
+				document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='" 
+								+ pageHost + "www.adobe.com/images/shared/download_buttons/get_flash_player.gif' alt='Get Adobe Flash player' /></a>" ); 
+			</script> 
+        </div>
+	   	
+       	<noscript>
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="10" height="10" id="${application}" align="middle" play="true" >
+                <param name="movie" value="${swf}.swf" />
+                <param name="quality" value="high" />
+                <param name="bgcolor" value="${bgcolor}" />
+                <param name="allowScriptAccess" value="sameDomain" />
+                <!--[if !IE]>-->
+                <object type="application/x-shockwave-flash" data="${swf}.swf" width="10" height="10" align="middle" play="true" >
+                    <param name="quality" value="high" />
+                    <param name="bgcolor" value="${bgcolor}" />
+                    <param name="allowScriptAccess" value="sameDomain" />
+                <!--<![endif]-->
+                <!--[if gte IE 6]>-->
+                	<p> 
+                		Either scripts and active content are not permitted to run or Adobe Flash Player version
+                		${version_major}.${version_minor}.${version_revision} or greater is not installed.
+                	</p>
+                <!--<![endif]-->
+                    <a href="http://www.adobe.com/go/getflashplayer">
+                        <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" />
+                    </a>
+                <!--[if !IE]>-->
+                </object>
+                <!--<![endif]-->
+            </object>
+	    </noscript>
+	    <div align="center">
+	      <input class="textArea textAreaQuestion" type="text" name="SharedQuestion" id="SharedQuestion" width="400" height="30"/>
+	      <button class="button buttonBigger" onClick="setPollQuestion()">Set Poll Question</button><br/>
+	    </div>
+	    <div id="form2" align="center" >
+	    </div>
+	    <br/><div align="center">
+		<button class="button buttonBigger" onClick="submitVote()">Submit</button>
+		<button class="button buttonBigger" onClick="addPollField(event)">Add a Poll field</button>
+		<!--<button class="button buttonBigger">Reset Form</button>-->
+	    </div><br/>
+	    <div align="center">
+		<button class="button buttonBigger" onClick="startSharedCursor()">Try SharedCursor :)</button>
+	    </div>    
+   </body>
+</html>

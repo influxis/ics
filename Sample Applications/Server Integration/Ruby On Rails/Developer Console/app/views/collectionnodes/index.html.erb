@@ -1,0 +1,24 @@
+<h1>Listing collectionnodes</h1>
+
+<table>
+  <tr>
+    <th>Sharedid</th>
+    <th>Nodes</th>
+    <th>Userroles</th>
+  </tr>
+
+<% @collectionnodes.each do |collectionnode| %>
+  <tr>
+    <td><%=h collectionnode.sharedID %></td>
+    <td><%=h collectionnode.nodes %></td>
+    <td><%=h collectionnode.userroles %></td>
+    <td><%= link_to 'Show', collectionnode %></td>
+    <td><%= link_to 'Edit', edit_collectionnode_path(collectionnode) %></td>
+    <td><%= link_to 'Destroy', collectionnode, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New collectionnode', new_collectionnode_path %>

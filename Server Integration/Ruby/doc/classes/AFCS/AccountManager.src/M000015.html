@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>getSession (AFCS::AccountManager)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File afcs.rb, line 458</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getSession</span>(<span class="ruby-identifier">room</span>)
+        <span class="ruby-identifier">session</span> = <span class="ruby-constant">Session</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@roomInstance</span>, <span class="ruby-identifier">url</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;/&quot;</span>)[<span class="ruby-value">-1</span>], <span class="ruby-identifier">room</span>)
+        <span class="ruby-identifier">session</span>.<span class="ruby-identifier">getSecret</span>(<span class="ruby-ivar">@baseURL</span>, <span class="ruby-ivar">@authToken</span>, <span class="ruby-ivar">@authHeaders</span>)
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">session</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

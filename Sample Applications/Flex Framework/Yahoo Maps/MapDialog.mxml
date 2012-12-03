@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="282" height="192" title="Map Controls" backgroundColor="#62619B" alpha="1.0" borderColor="#3D0606" color="#F2F6F7" creationComplete="init()" verticalGap="1">
+	<mx:Metadata>
+        [Event(name="zoomChange", type="flash.events.Event")]
+        [Event(name="modeChange", type="flash.events.Event")]
+        [Event(name="addressSubmit", type="flash.events.Event")]
+        
+	</mx:Metadata>
+	<mx:Script>
+		<![CDATA[
+			import mx.events.SliderEvent;
+			public static const MODE_NAVIGATION:String = "MODE_NAVIGATION";
+			public static const MODE_ANNOTATION:String = "MODE_ANNOTATION";
+
+			protected function init():void
+			{
+				_zoomSlider.addEventListener(SliderEvent.CHANGE, onZoomChange);
+			}
+			protected function onZoomChange(p_evt:SliderEvent):void
+			{
+				dispatchEvent(new Event("zoomChange"));
+			}
+			
+			public function set zoom(p_zoom:int):void
+			{
+				_zoomSlider.removeEventListener(SliderEvent.CHANGE, onZoomChange);
+				_zoomSlider.value = p_zoom;
+				_zoomSlider.addEventListener(SliderEvent.CHANGE, onZoomChange);
+			}
+			public function get zoom():int
+			{
+				return _zoomSlider.value;
+			}
+			
+			public function get mode():String
+			{
+				return (_navigationRadio.selected) ? MODE_NAVIGATION : MODE_ANNOTATION;
+			}
+			
+			public function set mode(p_string:String):void
+			{
+				if (p_string==MODE_ANNOTATION) {
+					_annotationRadio.selected = true;
+					_navigationRadio.selected = false;
+				} else {
+					_navigationRadio.selected = true;
+					_annotationRadio.selected = false;
+				}
+				
+			}
+			
+			public function get address():String
+			{
+				return addressField.text;
+			}
+			
+			protected function submitAddress():void
+			{
+				dispatchEvent(new Event("addressSubmit"));
+			}
+			
+		]]>
+	</mx:Script>
+	<mx:HBox enabled="{_navigationRadio.selected}" x="10" y="45" width="246" borderStyle="inset" height="33" horizontalAlign="center" verticalAlign="middle">
+		<mx:Label text="Zoom : " color="#EDDFDF"/>
+		<mx:HSlider width="167" minimum="1" maximum="20" snapInterval="1" allowTrackClick="true" id="_zoomSlider"/>
+	</mx:HBox>
+	<mx:RadioButton x="60" y="15" click="dispatchEvent(new Event('modeChange'))" label="Navigation" selected="true" id="_navigationRadio" groupName="_mapMode" color="#EDDFDF"/>
+	<mx:Label x="10" y="17" text="Mode:" color="#EDDFDF"/>
+	<mx:RadioButton x="151" y="15" click="dispatchEvent(new Event('modeChange'))" label="Annotation" id="_annotationRadio" groupName="_mapMode" color="#EDDFDF"/>
+	<mx:VBox x="10" y="95" width="246" height="53" verticalGap="1" borderStyle="none">
+		<mx:Label text="Address Search :" width="193"/>
+		<mx:HBox width="90%">
+			<mx:TextInput enabled="{_navigationRadio.selected}" id="addressField" width="204" enter="submitAddress()" color="#6a6a6a"/>
+			<mx:Button enabled="{_navigationRadio.selected}" label="Go!" width="34" paddingLeft="1" paddingRight="1" click="submitAddress()"/>
+		</mx:HBox>
+	</mx:VBox>
+	
+</mx:TitleWindow>

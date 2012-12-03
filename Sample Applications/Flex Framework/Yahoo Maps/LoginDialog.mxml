@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="126" title="Login" creationComplete="userNameField.setFocus();">
+	<mx:Metadata>
+        [Event(name="loginEnter", type="flash.events.Event")]
+	</mx:Metadata>
+	<mx:Script>
+		<![CDATA[
+			public function get userName():String
+			{
+				return userNameField.text;
+			}
+			
+			public function get password():String
+			{
+				return (_passwordField.text!="") ? _passwordField.text : null;
+			}
+		]]>
+	</mx:Script>
+   	<mx:Label x="10" y="20" text="Enter Your User Name:"/>
+	<mx:TextInput id="userNameField" x="150" y="18" enter="dispatchEvent(new Event('loginEnter'))" creationComplete="userNameField.setFocus();" width="131"/>
+	<mx:Button x="289" y="18" label="Login" click="dispatchEvent(new Event('loginEnter'))"/>
+	<mx:Label x="10" y="48" text="Password (optional):"/>
+	<mx:TextInput x="150" y="46" width="131" id="_passwordField" displayAsPassword="true" enter="dispatchEvent(new Event('loginEnter'))"/>
+	
+</mx:TitleWindow>

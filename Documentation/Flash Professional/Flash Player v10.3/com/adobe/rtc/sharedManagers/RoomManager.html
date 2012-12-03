@@ -1,0 +1,875 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<meta content="RoomManager,com.adobe.rtc.sharedManagers.RoomManager,COLLECTION_NAME,NO_TIME_OUT,NO_USER_LIMIT,accountUserLimit,allowDuplicateUserIDs,autoPromote,bandwidth,connectSession,endMeetingMessage,guestsHaveToKnock,guestsNotAllowed,isSynchronized,roomLocked,roomName,roomState,roomTimeOut,roomURL,roomUserLimit,selectedBandwidth,sharedID,getBandwidthString,onKnockingQueueUpdate" name="keywords">
+<title>com.adobe.rtc.sharedManagers.RoomManager</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'RoomManager - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS Flash-Only Player 10.3 API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?com/adobe/rtc/sharedManagers/RoomManager.html&amp;com/adobe/rtc/sharedManagers/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;RoomManager</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class RoomManager"); titleBar_setSubNav(true,true,false,false,true,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.sharedManagers</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class RoomManager</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">RoomManager <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> flash.events.EventDispatcher</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../session/ISessionSubscriber.html">ISessionSubscriber</a></td>
+</tr>
+</table>
+<p></p>
+  One of the "4 pillars" of a room, the RoomManager is responsible for handling all 
+  runtime configuration changes to the room. Note that the APIs called here 
+  (as they are for all sharedManagers) are asynchronous: changes won't be reflected 
+  until the server has validated them and returned the result to all clients. At that 
+  point, RoomManager will dispatch the appropriate event. General areas covered by 
+  the RoomManager include: 
+  <ul>
+  <li><strong>Room state</strong>: Open, closed, etc.
+  <li><strong>Room privacy settings</strong>: Determines if guests must knock to enter.
+  <li><strong>Room bandwidth settings</strong>: The specified room bandwidth.
+  </ul>
+  <p>
+  Only a user with an owner role may modify room settings. Many of these settings 
+  can be declared <b>the first time the room is made</b> by using IConnectSession's 
+  <code class="property">initialRoomSettings</code> property and by specifying a <code>RoomSettings</code> 
+  object. 
+  <p>Each IConnectSession handles creation/setup of its own RoomManager instance.  Use an <code>IConnectSession</code>'s
+  <code class="property">roomManager</code> property to access it.</p>
+  <blockquote>
+  <b>Note</b>: You can configure room settings programmatically or via the Room Console.
+  Some settings are owned by the RoomSettings class, and others by the RoomManager class.
+  Room settings are saved with any templates created from the room.
+  </blockqoute><p></p>
+  <img src="../../../../devimages/dc_roomsettings.png" alt="LCCS room settings">
+  
+  <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../session/RoomSettings.html" target="">com.adobe.rtc.session.RoomSettings</a>
+<br>
+<a href="../messaging/UserRoles.html" target="">com.adobe.rtc.messaging.UserRoles</a>
+<br>
+<a href="../events/RoomManagerEvent.html" target="">com.adobe.rtc.events.RoomManagerEvent</a>
+<br>
+<a href="../session/IConnectSession.html" target="">com.adobe.rtc.session.IConnectSession</a>
+</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#accountUserLimit">accountUserLimit</a> : Number<div class="summaryTableDescription">[read-only]
+   Returns the number of users this account is allowed to have connected at one time.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#allowDuplicateUserIDs">allowDuplicateUserIDs</a> : Boolean<div class="summaryTableDescription">
+   Specifies whether the room allows users of the same userID to enter the room.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#autoPromote">autoPromote</a> : Boolean<div class="summaryTableDescription">
+   If true, all users with a viewer role are promoted upon entry to a publisher role.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#bandwidth">bandwidth</a> : String<div class="summaryTableDescription">[read-only]
+   Returns the actual bandwidth calculated by the room.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#connectSession">connectSession</a> : <a href="../session/IConnectSession.html">IConnectSession</a>
+<div class="summaryTableDescription">
+   (Read Only) Specifies the IConnectSession to which this manager is assigned.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#endMeetingMessage">endMeetingMessage</a> : String<div class="summaryTableDescription">
+   The message to display once a session has ended.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#guestsHaveToKnock">guestsHaveToKnock</a> : Boolean<div class="summaryTableDescription">
+   Whether or not guests must knock and get permission before entering a room.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#guestsNotAllowed">guestsNotAllowed</a> : Boolean<div class="summaryTableDescription">
+   Specifies whether the room currently allows guests or not.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#isSynchronized">isSynchronized</a> : Boolean<div class="summaryTableDescription">[read-only]
+   Returns true if the model is synchronized.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#roomLocked">roomLocked</a> : Boolean<div class="summaryTableDescription">
+   Specifies whether the room access state is locked or not.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#roomName">roomName</a> : String<div class="summaryTableDescription">[read-only]
+   The room name, if any.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#roomState">roomState</a> : String<div class="summaryTableDescription">
+   Specifies the room state from among values supplied by RoomSettings constants.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#roomTimeOut">roomTimeOut</a> : Number<div class="summaryTableDescription">
+   Specifies a timeout duration (in seconds) for the room after which the room session ends.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#roomURL">roomURL</a> : String<div class="summaryTableDescription">[read-only]
+   The room URL.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#roomUserLimit">roomUserLimit</a> : Number<div class="summaryTableDescription">
+   Specifies the number of users permitted to enter the room.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#selectedBandwidth">selectedBandwidth</a> : String<div class="summaryTableDescription">
+   Specifies the bandwidth setting as selected by the user with an owner role.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#sharedID">sharedID</a> : String<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#RoomManager()">RoomManager</a>()</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getBandwidthString()">getBandwidthString</a>(p_value:String):String</div>
+<div class="summaryTableDescription">[static]
+   Returns a display string corresponding to the supplied bandwidth setting.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+</table>
+</div>
+<a name="protectedMethodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Methods</div>
+<table id="summaryTableProtectedMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#onKnockingQueueUpdate()">onKnockingQueueUpdate</a>(p_evt:<a href="../events/UserQueueEvent.html">UserQueueEvent</a>):void</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+</table>
+</div>
+<a name="eventSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Events</div>
+<table id="summaryTableEvent" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Event</th><th>Summary</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:autoPromoteChange">autoPromoteChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the value of "auto promote" changes.</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:bwActualChange">bwActualChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the room bandwidth changes.</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:bwSelectionChange">bwSelectionChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the selected room bandwidth changes.</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:endMeetingMessageChange">endMeetingMessageChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the end-meeting message changes.</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:guestsHaveToKnockChange">guestsHaveToKnockChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the room goes from private to public and vice-versa.</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:roomGuestsNotAllowedChange">roomGuestsNotAllowedChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when guests not allowed parameter is changed.</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:roomLockChange">roomLockChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the room Lock value changes.</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:roomStateChange">roomStateChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the room state changes.</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:roomTimeOutChange">roomTimeOutChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the time out for the room changes.</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:roomUserLimitChange">roomUserLimitChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the user limit for the room changes.</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:synchronizationChange">synchronizationChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched either when the RoomManager has received everything up to the current 
+  state of the room or when it has lost connection to the service.</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#COLLECTION_NAME">COLLECTION_NAME</a> : String = "RoomManager"<div class="summaryTableDescription">[static]
+   The name of the collectionNode used to represent the RoomManager's shared model.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#NO_TIME_OUT">NO_TIME_OUT</a> : Number = -1<div class="summaryTableDescription">[static]
+   Constant which defines no time out for the RoomManager.roomTimeOut property.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#NO_USER_LIMIT">NO_USER_LIMIT</a> : Number = -1<div class="summaryTableDescription">[static]
+   Constant which defines no user limit for the RoomManager.roomUserLimit property.</div>
+</td><td class="summaryTableOwnerCol">RoomManager</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="accountUserLimit"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">accountUserLimit</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>accountUserLimit:Number</code>&nbsp;&nbsp;[read-only]<p>
+   Returns the number of users this account is allowed to have connected at one time.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get accountUserLimit():Number</code>
+<br>
+</div>
+<a name="allowDuplicateUserIDs"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">allowDuplicateUserIDs</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>allowDuplicateUserIDs:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+   Specifies whether the room allows users of the same userID to enter the room. If set to false, a new user who enters the room with a pre-existing userID
+   will eject the existing user with that userID. 
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get allowDuplicateUserIDs():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set allowDuplicateUserIDs(value:Boolean):void</code>
+<br>
+</div>
+<a name="autoPromote"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">autoPromote</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>autoPromote:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+   If true, all users with a viewer role are promoted upon entry to a publisher role.
+   
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get autoPromote():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set autoPromote(value:Boolean):void</code>
+<br>
+</div>
+<a name="bandwidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">bandwidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>bandwidth:String</code>&nbsp;&nbsp;[read-only]<p>
+   Returns the actual bandwidth calculated by the room.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get bandwidth():String</code>
+<br>
+</div>
+<a name="connectSession"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">connectSession</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>connectSession:<a href="../session/IConnectSession.html">IConnectSession</a></code>&nbsp;&nbsp;[read-write]<p>
+   (Read Only) Specifies the IConnectSession to which this manager is assigned. 
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get connectSession():<a href="../session/IConnectSession.html">IConnectSession</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set connectSession(value:<a href="../session/IConnectSession.html">IConnectSession</a>):void</code>
+<br>
+</div>
+<a name="endMeetingMessage"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">endMeetingMessage</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>endMeetingMessage:String</code>&nbsp;&nbsp;[read-write]<p>
+   The message to display once a session has ended. It's important to set 
+   this prior to ending the room since no messages may be sent once the session ends.
+   
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get endMeetingMessage():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set endMeetingMessage(value:String):void</code>
+<br>
+</div>
+<a name="guestsHaveToKnock"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">guestsHaveToKnock</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>guestsHaveToKnock:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+   Whether or not guests must knock and get permission before entering a room. 
+   
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get guestsHaveToKnock():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set guestsHaveToKnock(value:Boolean):void</code>
+<br>
+</div>
+<a name="guestsNotAllowed"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">guestsNotAllowed</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>guestsNotAllowed:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+   Specifies whether the room currently allows guests or not.
+   If this parameter is true, then no new guests are allowed.
+   However, note the following: xxx
+   <ul>
+   <li>Those with roles higher than guests can enter.</li>
+   <li>Guests who are already inside the room can return if they are disconnected.</li>
+   </ul>
+   
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get guestsNotAllowed():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set guestsNotAllowed(value:Boolean):void</code>
+<br>
+</div>
+<a name="isSynchronized"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isSynchronized</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>isSynchronized:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+   Returns true if the model is synchronized.
+   
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get isSynchronized():Boolean</code>
+<br>
+</div>
+<a name="roomLocked"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomLocked</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>roomLocked:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+   Specifies whether the room access state is locked or not.
+   If a room is locked, no new users other than hosts are allowed 
+   to enter the room. However, users who are already inside can return to the
+   room if they get disconnected.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get roomLocked():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set roomLocked(value:Boolean):void</code>
+<br>
+</div>
+<a name="roomName"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomName</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>roomName:String</code>&nbsp;&nbsp;[read-only]<p>
+   The room name, if any.
+   
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get roomName():String</code>
+<br>
+</div>
+<a name="roomState"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomState</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>roomState:String</code>&nbsp;&nbsp;[read-write]<p>
+   Specifies the room state from among values supplied by RoomSettings constants.
+   
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get roomState():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set roomState(value:String):void</code>
+<br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../session/RoomSettings.html" target="">com.adobe.rtc.session.RoomSettings</a>
+</div>
+</div>
+<a name="roomTimeOut"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomTimeOut</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>roomTimeOut:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Specifies a timeout duration (in seconds) for the room after which the room session ends. 
+   Only users with role UserRoles.OWNER can set this property. 
+   Defaults to NO_TIME_OUT, meaning there is no timeout duration.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get roomTimeOut():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set roomTimeOut(value:Number):void</code>
+<br>
+</div>
+<a name="roomURL"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomURL</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>roomURL:String</code>&nbsp;&nbsp;[read-only]<p>
+   The room URL.
+   
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get roomURL():String</code>
+<br>
+</div>
+<a name="roomUserLimit"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomUserLimit</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>roomUserLimit:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Specifies the number of users permitted to enter the room. 
+   Only users with the role UserRoles.OWNER can set this property. 
+   Defaults to NO_USER_LIMIT
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get roomUserLimit():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set roomUserLimit(value:Number):void</code>
+<br>
+</div>
+<a name="selectedBandwidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">selectedBandwidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>selectedBandwidth:String</code>&nbsp;&nbsp;[read-write]<p>
+   Specifies the bandwidth setting as selected by the user with an owner role.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get selectedBandwidth():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set selectedBandwidth(value:String):void</code>
+<br>
+</div>
+<a name="sharedID"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">sharedID</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>sharedID:String</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get sharedID():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set sharedID(value:String):void</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="RoomManager()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">RoomManager</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function RoomManager()</code>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="getBandwidthString()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getBandwidthString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function getBandwidthString(p_value:String):String</code><p>
+   Returns a display string corresponding to the supplied bandwidth setting. 
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_value</span>:String</code> &mdash; One of the constants supplied by RoomSettings.
+   
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; A display string.
+   </td>
+</tr>
+</table>
+</div>
+<a name="onKnockingQueueUpdate()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">onKnockingQueueUpdate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function onKnockingQueueUpdate(p_evt:<a href="../events/UserQueueEvent.html">UserQueueEvent</a>):void</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_evt</span>:<a href="../events/UserQueueEvent.html">UserQueueEvent</a></code></td>
+</tr>
+</table>
+</div>
+<div class="detailSectionHeader">Event detail</div>
+<a name="event:autoPromoteChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">autoPromoteChange</td><td class="detailHeaderType">event&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/RoomManagerEvent.html"><code>com.adobe.rtc.events.RoomManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the value of "auto promote" changes.
+  </p></div>
+<a name="event:bwActualChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">bwActualChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/RoomManagerEvent.html"><code>com.adobe.rtc.events.RoomManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the room bandwidth changes. This could happen independently 
+  from <code>bwSelectionChange</code> when the bandwidth is set to AUTO.
+  
+  </p></div>
+<a name="event:bwSelectionChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">bwSelectionChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/RoomManagerEvent.html"><code>com.adobe.rtc.events.RoomManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the selected room bandwidth changes. This could happen independently 
+  than <code>bwActualChange</code>. 
+  
+  </p></div>
+<a name="event:endMeetingMessageChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">endMeetingMessageChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/RoomManagerEvent.html"><code>com.adobe.rtc.events.RoomManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the end-meeting message changes. 
+  
+  </p></div>
+<a name="event:guestsHaveToKnockChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">guestsHaveToKnockChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/RoomManagerEvent.html"><code>com.adobe.rtc.events.RoomManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the room goes from private to public and vice-versa.
+  </p></div>
+<a name="event:roomGuestsNotAllowedChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomGuestsNotAllowedChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/RoomManagerEvent.html"><code>com.adobe.rtc.events.RoomManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when guests not allowed parameter is changed.
+  </p></div>
+<a name="event:roomLockChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomLockChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/RoomManagerEvent.html"><code>com.adobe.rtc.events.RoomManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the room Lock value changes.
+  </p></div>
+<a name="event:roomStateChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomStateChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/RoomManagerEvent.html"><code>com.adobe.rtc.events.RoomManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the room state changes.
+  </p></div>
+<a name="event:roomTimeOutChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomTimeOutChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/RoomManagerEvent.html"><code>com.adobe.rtc.events.RoomManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the time out for the room changes. Defaults to NO_USER_LIMIT meaning no timeout.
+  </p></div>
+<a name="event:roomUserLimitChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">roomUserLimitChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/RoomManagerEvent.html"><code>com.adobe.rtc.events.RoomManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the user limit for the room changes. Defaults to NO_TIME_OUT meaning no timeout.
+  </p></div>
+<a name="event:synchronizationChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">synchronizationChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched either when the RoomManager has received everything up to the current 
+  state of the room or when it has lost connection to the service.
+    </p></div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="COLLECTION_NAME"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">COLLECTION_NAME</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const COLLECTION_NAME:String = "RoomManager"</code><p>
+   The name of the collectionNode used to represent the RoomManager's shared model.
+   </p></div>
+<a name="NO_TIME_OUT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">NO_TIME_OUT</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const NO_TIME_OUT:Number = -1</code><p>
+   Constant which defines no time out for the RoomManager.roomTimeOut property. 
+   </p></div>
+<a name="NO_USER_LIMIT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">NO_USER_LIMIT</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const NO_USER_LIMIT:Number = -1</code><p>
+   Constant which defines no user limit for the RoomManager.roomUserLimit property. 
+   </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

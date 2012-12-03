@@ -1,0 +1,1099 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<meta content="FileManager,com.adobe.rtc.sharedManagers.FileManager,COLLECTION_NAME,fileDescriptors,amIUploadingFile,connectSession,isSynchronized,maxFileSize,canIUpload,clearFileDescriptor,createGroup,findGroupFor,getFileDescriptor,getFileDescriptors,getGroupNames,getNodeConfiguration,getUserRole,isGroupDefined,publishFileDescriptor,removeGroup,setNodeConfiguration,setUserRole,updateFileDescriptor,updateFilename,updateSubmitterID,updateUploadProgress" name="keywords">
+<title>com.adobe.rtc.sharedManagers.FileManager</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'FileManager - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS Flash-Only Player 10.3 API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?com/adobe/rtc/sharedManagers/FileManager.html&amp;com/adobe/rtc/sharedManagers/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;FileManager</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class FileManager"); titleBar_setSubNav(true,true,false,false,true,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.sharedManagers</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class FileManager</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">FileManager <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> flash.events.EventDispatcher</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../session/ISessionSubscriber.html">ISessionSubscriber</a></td>
+</tr>
+</table>
+<p></p>
+  One of the "4 pillars" of a room, the FileManager represents the shared model for files 
+  available for download for the client. It expresses a variety of methods for other 
+  components to access, modify, or publish specific files. FileManager uses FileDescriptors 
+  as control metadata to represent the available files; files themselves may be added, 
+  modified, and downloaded through FileSubscriber and FilePublisher.
+  
+  <p>
+  The FileManager keeps files in "groups," with permissions settable on a per-group basis. 
+  Users with the owner role are able to add, modify, and delete these groups. By default, 
+  only users with a publisher role and higher may publish a file to a group, while those with
+  role of viewer or higher are able to download.</p>
+  
+  <p>Note: If you're listening to the <code>NEW_FILE_DESCRIPTOR</code> and <code>UPDATE_FILE_DESCRIPTOR</code>
+  events, just because the Manager dispatches a <code>NEW_FILE_DESCRIPTOR</code> does not mean that the 
+  file is ready for download. On the contrary, the <code>NEW_FILE_DESCRIPTOR</code> is emitted when the 
+  file is ready to begin uploading, not after it's uploaded. Instead, listen to <code>UPDATE_FILE_DESCRIPTOR</code>, 
+  and check to see when the <code class="property">uploadProgress</code> property of FileDescriptor equals 100.</p>
+  
+  <p>Each IConnectSession handles creation/setup of its own FileManager instance.  Use an <code>IConnectSession</code>'s
+  <code class="property">fileManager</code> property to access it.</p>
+   
+  <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">
+<a href="descriptors/FileDescriptor.html" target="">com.adobe.rtc.sharedManagers.descriptors.FileDescriptor</a>
+<br>
+<a href="../collaboration/FilePublisher.html" target="">com.adobe.rtc.collaboration.FilePublisher</a>
+<br>
+<a href="../collaboration/FileSubscriber.html" target="">com.adobe.rtc.collaboration.FileSubscriber</a>
+<br>com.adobe.rtc.collaboration.BinaryPublisher<br>com.adobe.rtc.collaboration.BinarySubscriber<br>
+<a href="../events/FileManagerEvent.html" target="">com.adobe.rtc.events.FileManagerEvent</a>
+<br>
+<a href="../session/IConnectSession.html" target="">com.adobe.rtc.session.IConnectSession</a>
+</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#amIUploadingFile">amIUploadingFile</a> : Boolean<div class="summaryTableDescription">
+   Specifies whether the current user is currently uploading a file.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#connectSession">connectSession</a> : <a href="../session/IConnectSession.html">IConnectSession</a>
+<div class="summaryTableDescription">
+   (Read Only) Specifies the IConnectSession to which this manager is assigned.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#fileDescriptors">fileDescriptors</a> : <a href="../util/UtilArrayCollection.html">UtilArrayCollection</a>
+<div class="summaryTableDescription">
+   The set of all <code>fileDescriptors</code> in the room.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#isSynchronized">isSynchronized</a> : Boolean<div class="summaryTableDescription">[read-only]
+   Returns true if the model is synchronized.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#maxFileSize">maxFileSize</a> : Number<div class="summaryTableDescription">[read-only]
+   Specifies the maximum filesize allowed.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#FileManager()">FileManager</a>()</div>
+<div class="summaryTableDescription">
+   Constructor.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#canIUpload()">canIUpload</a>(p_groupName:String):Boolean</div>
+<div class="summaryTableDescription">
+   Indicates whether or not the local client has upload privileges on the chosen group.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#clearFileDescriptor()">clearFileDescriptor</a>(p_id:String):void</div>
+<div class="summaryTableDescription">
+   Clears a file descriptor by retracting the file in question and thereby making it
+   unavailable for download.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#createGroup()">createGroup</a>(p_groupName:String, p_nodeConfiguration:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a> = null):void</div>
+<div class="summaryTableDescription">
+   Creates a new group for files with the specified name and <code>nodeConfiguration</code>.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#findGroupFor()">findGroupFor</a>(p_id:String):String</div>
+<div class="summaryTableDescription">
+   Returns the group name of which the indicated descriptor is a member.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getFileDescriptor()">getFileDescriptor</a>(p_id:String):<a href="descriptors/FileDescriptor.html">FileDescriptor</a>
+</div>
+<div class="summaryTableDescription">
+   Returns a specific file descriptor.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getFileDescriptors()">getFileDescriptors</a>(p_groupName:String):<a href="../util/UtilArrayCollection.html">UtilArrayCollection</a>
+</div>
+<div class="summaryTableDescription">
+   Returns the set of <code>fileDescriptors</code> in a specified group.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getGroupNames()">getGroupNames</a>():Array</div>
+<div class="summaryTableDescription">
+   Returns all the group names.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getNodeConfiguration()">getNodeConfiguration</a>(p_groupName:String):<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>
+</div>
+<div class="summaryTableDescription">
+   Gets the NodeConfiguration of a node within a group.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getUserRole()">getUserRole</a>(p_userID:String, p_groupName:String = null):int</div>
+<div class="summaryTableDescription">
+   Gets the role of the specified user for a particular group.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isGroupDefined()">isGroupDefined</a>(p_groupName:String):Boolean</div>
+<div class="summaryTableDescription">
+   Returns whether or not a specified group exists.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#publishFileDescriptor()">publishFileDescriptor</a>(p_descriptor:<a href="descriptors/FileDescriptor.html">FileDescriptor</a>, p_associatedUserID:String = null):void</div>
+<div class="summaryTableDescription">
+   Announces to the service that a file will be uploaded for the first time by the 
+   local client or by somebody else.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#removeGroup()">removeGroup</a>(p_groupName:String):void</div>
+<div class="summaryTableDescription">
+   Removes a group if it does exist as well as the nodes associated with it.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setNodeConfiguration()">setNodeConfiguration</a>(p_nodeConf:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>, p_groupName:String):void</div>
+<div class="summaryTableDescription">
+   Sets the NodeConfiguration of a node within a group.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setUserRole()">setUserRole</a>(p_userID:String, p_role:int, p_groupName:String):void</div>
+<div class="summaryTableDescription">
+   Sets the specified user's role to the indicated role for the node.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#updateFileDescriptor()">updateFileDescriptor</a>(p_id:String, p_name:String = null, p_filename:String = null, p_url:String = null, p_type:String = null, p_size:int = -1, p_uploadProgress:Number = -1, p_state:String = null):void</div>
+<div class="summaryTableDescription">
+   Updates any field of a file descriptor except for its <code>ID</code>, <code>submitterID</code>, 
+   and <code>lastModified</code>.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#updateFilename()">updateFilename</a>(p_id:String, p_name:String, p_filename:String):void</div>
+<div class="summaryTableDescription">
+   Updates the name field in an existing file descriptor.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#updateSubmitterID()">updateSubmitterID</a>(p_id:String, p_submitterID:String):void</div>
+<div class="summaryTableDescription">
+   Updates the submitter field in an existing file descriptor.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#updateUploadProgress()">updateUploadProgress</a>(p_id:String, p_uploadProgress:Number):void</div>
+<div class="summaryTableDescription">
+   Updates the <code>uploadProgress</code> field in an existing file descriptor.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+</table>
+</div>
+<a name="eventSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Events</div>
+<table id="summaryTableEvent" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Event</th><th>Summary</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:clearedFileDescriptor">clearedFileDescriptor</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a <code>fileDescriptor</code> is retracted from the service, 
+  and its corresponding file has been deleted.</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:myRoleChange">myRoleChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the my role with respect to a stream changes.</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:newFileDescriptor">newFileDescriptor</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a new <code>fileDescriptor</code> is sent to the service.</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:readyForUpload">readyForUpload</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a user's request to upload has been validated.</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:synchronizationChange">synchronizationChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the manager goes in and out of sync either on connect or disconnect.</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:updatedFileDescriptor">updatedFileDescriptor</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when a <code>fileDescriptor</code> has been updated.</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:userRoleChange">userRoleChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the user's role with respect to a stream changes.</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#COLLECTION_NAME">COLLECTION_NAME</a> : String = "FileManager"<div class="summaryTableDescription">[static]
+   The name of the CollectionNode used to represent the FileManager's shared model.</div>
+</td><td class="summaryTableOwnerCol">FileManager</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="amIUploadingFile"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">amIUploadingFile</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>amIUploadingFile:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+   Specifies whether the current user is currently uploading a file. Note that only one file 
+   may be uploaded at a time.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get amIUploadingFile():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set amIUploadingFile(value:Boolean):void</code>
+<br>
+</div>
+<a name="connectSession"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">connectSession</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>connectSession:<a href="../session/IConnectSession.html">IConnectSession</a></code>&nbsp;&nbsp;[read-write]<p>
+   (Read Only) Specifies the IConnectSession to which this manager is assigned. 
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get connectSession():<a href="../session/IConnectSession.html">IConnectSession</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set connectSession(value:<a href="../session/IConnectSession.html">IConnectSession</a>):void</code>
+<br>
+</div>
+<a name="fileDescriptors"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">fileDescriptors</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var fileDescriptors:<a href="../util/UtilArrayCollection.html">UtilArrayCollection</a></code><p>
+   The set of all <code>fileDescriptors</code> in the room.
+   </p></div>
+<a name="isSynchronized"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isSynchronized</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>isSynchronized:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+   Returns true if the model is synchronized.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get isSynchronized():Boolean</code>
+<br>
+</div>
+<a name="maxFileSize"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">maxFileSize</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>maxFileSize:Number</code>&nbsp;&nbsp;[read-only]<p>
+   Specifies the maximum filesize allowed.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get maxFileSize():Number</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="FileManager()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">FileManager</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function FileManager()</code><p>
+   Constructor.
+   </p></div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="canIUpload()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">canIUpload</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function canIUpload(p_groupName:String):Boolean</code><p>
+   Indicates whether or not the local client has upload privileges on the chosen group.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; True if we can, false if not.
+   </td>
+</tr>
+</table>
+</div>
+<a name="clearFileDescriptor()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">clearFileDescriptor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function clearFileDescriptor(p_id:String):void</code><p>
+   Clears a file descriptor by retracting the file in question and thereby making it
+   unavailable for download.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_id</span>:String</code> &mdash; The ID of the file descriptor.
+   </td>
+</tr>
+</table>
+</div>
+<a name="createGroup()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">createGroup</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function createGroup(p_groupName:String, p_nodeConfiguration:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a> = null):void</code><p>
+   Creates a new group for files with the specified name and <code>nodeConfiguration</code>.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> &mdash; The name for the new group.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_nodeConfiguration</span>:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code> (default = <code>null</code>)<code></code> &mdash; The settings for the new group; most notably, <code>accessModel</code> 
+   and <code>publishModel</code> for rights.
+   </td>
+</tr>
+</table>
+</div>
+<a name="findGroupFor()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">findGroupFor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function findGroupFor(p_id:String):String</code><p>
+   Returns the group name of which the indicated descriptor is a member.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_id</span>:String</code> &mdash; The ID of the descriptor to look up.
+   
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; The name of the group of which the indicated descriptor is a member.
+   </td>
+</tr>
+</table>
+</div>
+<a name="getFileDescriptor()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getFileDescriptor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getFileDescriptor(p_id:String):<a href="descriptors/FileDescriptor.html">FileDescriptor</a></code><p>
+   Returns a specific file descriptor.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_id</span>:String</code> &mdash; The ID of the file descriptor.
+   
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="descriptors/FileDescriptor.html">FileDescriptor</a></code> &mdash; 
+                        The filedescriptor.
+   
+   
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="getFileDescriptors()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getFileDescriptors</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getFileDescriptors(p_groupName:String):<a href="../util/UtilArrayCollection.html">UtilArrayCollection</a></code><p>
+   Returns the set of <code>fileDescriptors</code> in a specified group.
+      </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> &mdash; The name of the group to query.
+   
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../util/UtilArrayCollection.html">UtilArrayCollection</a></code> &mdash; 
+                        An UtilArrayCollection of FileDescriptors.
+   
+   
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="getGroupNames()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getGroupNames</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getGroupNames():Array</code><p>
+   Returns all the group names. 
+   
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Array</code> &mdash; An array of group names
+    </td>
+</tr>
+</table>
+</div>
+<a name="getNodeConfiguration()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getNodeConfiguration</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getNodeConfiguration(p_groupName:String):<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code><p>
+   Gets the NodeConfiguration of a node within a group.
+    
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> &mdash; The group name for the node on which to get the node configuration. The default is null.
+   
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code></td>
+</tr>
+</table>
+</div>
+<a name="getUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getUserRole(p_userID:String, p_groupName:String = null):int</code><p>
+   Gets the role of the specified user for a particular group. 
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The specified user's <code>userID</code>.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The group name for which to get the user role. The default is null.
+   
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>int</code> &mdash; int which is the user role value
+   </td>
+</tr>
+</table>
+</div>
+<a name="isGroupDefined()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isGroupDefined</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function isGroupDefined(p_groupName:String):Boolean</code><p>
+   Returns whether or not a specified group exists. 
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> &mdash; The name of the group to query.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; True if the group exists; false if not.
+   </td>
+</tr>
+</table>
+</div>
+<a name="publishFileDescriptor()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">publishFileDescriptor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function publishFileDescriptor(p_descriptor:<a href="descriptors/FileDescriptor.html">FileDescriptor</a>, p_associatedUserID:String = null):void</code><p>
+   Announces to the service that a file will be uploaded for the first time by the 
+   local client or by somebody else. Only a host can request that someone else upload a file.  
+   To specify this, set <code>p_associatedUserID</code> to another user's <code>userID</code>.
+   Also if the <code>p_associatedUserID</code>is set to another user's <code>userID</code> and if
+   the <code>UserManager.anonymousPresence</code> is set to true, then please do check if the
+    <code>UserManager</code> has the intended user uploaders <code>UserDescriptor</code>
+   
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_descriptor</span>:<a href="descriptors/FileDescriptor.html">FileDescriptor</a></code> &mdash; The file descriptor to publish.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_associatedUserID</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The ID of the intended uploader of the file.
+   
+   </td>
+</tr>
+</table>
+</div>
+<a name="removeGroup()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">removeGroup</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function removeGroup(p_groupName:String):void</code><p>
+   Removes a group if it does exist as well as the nodes associated with it.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> &mdash; The group Name.
+    </td>
+</tr>
+</table>
+</div>
+<a name="setNodeConfiguration()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setNodeConfiguration</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setNodeConfiguration(p_nodeConf:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>, p_groupName:String):void</code><p>
+   Sets the NodeConfiguration of a node within a group.
+    
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_nodeConf</span>:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a></code> &mdash; The group name for the node on which to set the node configuration. The default is null.
+   
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code></td>
+</tr>
+</table>
+</div>
+<a name="setUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setUserRole(p_userID:String, p_role:int, p_groupName:String):void</code><p>
+   Sets the specified user's role to the indicated role for the node. Only users with an owner role may call this method.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The specified user's <code>userID</code>.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_role</span>:int</code> &mdash; The role desired.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_groupName</span>:String</code> &mdash; The group name for which the user role is being set. The default is null.
+   </td>
+</tr>
+</table>
+</div>
+<a name="updateFileDescriptor()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">updateFileDescriptor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function updateFileDescriptor(p_id:String, p_name:String = null, p_filename:String = null, p_url:String = null, p_type:String = null, p_size:int = -1, p_uploadProgress:Number = -1, p_state:String = null):void</code><p>
+   Updates any field of a file descriptor except for its <code>ID</code>, <code>submitterID</code>, 
+   and <code>lastModified</code>.
+   
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_id</span>:String</code> &mdash;    The ID of the descriptor to change.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_name</span>:String</code> (default = <code>null</code>)<code></code> &mdash;   The new name (if null, no change).
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_filename</span>:String</code> (default = <code>null</code>)<code></code> &mdash;  The new filename (if null, no change).
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_url</span>:String</code> (default = <code>null</code>)<code></code> &mdash;    The new URL (if null, no change)
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_type</span>:String</code> (default = <code>null</code>)<code></code> &mdash;   The new type (if null, no change)
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_size</span>:int</code> (default = <code>-1</code>)<code></code> &mdash;   The new size (-1, no change)
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_uploadProgress</span>:Number</code> (default = <code>-1</code>)<code></code> &mdash; The new uploadProgress (if -1, no change)
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_state</span>:String</code> (default = <code>null</code>)<code></code> &mdash;    The new state (one of the constants defined on FileDescriptor. If null, no change)
+   </td>
+</tr>
+</table>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="descriptors/FileDescriptor.html" target="">com.adobe.rtc.sharedManagers.descriptors.FileDescriptor</a>
+</div>
+</div>
+<a name="updateFilename()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">updateFilename</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function updateFilename(p_id:String, p_name:String, p_filename:String):void</code><p>
+   Updates the name field in an existing file descriptor.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_id</span>:String</code> &mdash; The ID of the file descriptor to change.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_name</span>:String</code> &mdash; The new name.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_filename</span>:String</code> &mdash; The new filename.
+   </td>
+</tr>
+</table>
+</div>
+<a name="updateSubmitterID()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">updateSubmitterID</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function updateSubmitterID(p_id:String, p_submitterID:String):void</code><p>
+   Updates the submitter field in an existing file descriptor. Only hosts can use this.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_id</span>:String</code> &mdash; The ID of the file descriptor to change.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_submitterID</span>:String</code> &mdash; The new submitter's ID.
+   </td>
+</tr>
+</table>
+</div>
+<a name="updateUploadProgress()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">updateUploadProgress</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function updateUploadProgress(p_id:String, p_uploadProgress:Number):void</code><p>
+   Updates the <code>uploadProgress</code> field in an existing file descriptor.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_id</span>:String</code> &mdash; The ID of the file descriptor to change.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_uploadProgress</span>:Number</code> &mdash; The new upload progress percentage.
+   </td>
+</tr>
+</table>
+</div>
+<div class="detailSectionHeader">Event detail</div>
+<a name="event:clearedFileDescriptor"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">clearedFileDescriptor</td><td class="detailHeaderType">event&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/FileManagerEvent.html"><code>com.adobe.rtc.events.FileManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a <code>fileDescriptor</code> is retracted from the service, 
+  and its corresponding file has been deleted.
+  </p></div>
+<a name="event:myRoleChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">myRoleChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the my role with respect to a stream changes.
+  </p></div>
+<a name="event:newFileDescriptor"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">newFileDescriptor</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/FileManagerEvent.html"><code>com.adobe.rtc.events.FileManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a new <code>fileDescriptor</code> is sent to the service. Note that this doesn't 
+  indicate that a file has been uploaded but rather that a user has begun uploading a file.
+  </p></div>
+<a name="event:readyForUpload"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">readyForUpload</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/FileManagerEvent.html"><code>com.adobe.rtc.events.FileManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a user's request to upload has been validated.
+  </p></div>
+<a name="event:synchronizationChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">synchronizationChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the manager goes in and out of sync either on connect or disconnect.
+  </p></div>
+<a name="event:updatedFileDescriptor"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">updatedFileDescriptor</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/FileManagerEvent.html"><code>com.adobe.rtc.events.FileManagerEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when a <code>fileDescriptor</code> has been updated. This may mean any of 
+  the properties on the FileDescriptor has changed. If the <code>uploadProgress</code> is 100, the 
+  file is ready for download.
+  </p></div>
+<a name="event:userRoleChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">userRoleChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the user's role with respect to a stream changes.
+  </p></div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="COLLECTION_NAME"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">COLLECTION_NAME</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const COLLECTION_NAME:String = "FileManager"</code><p>
+   The name of the CollectionNode used to represent the FileManager's shared model.
+   </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

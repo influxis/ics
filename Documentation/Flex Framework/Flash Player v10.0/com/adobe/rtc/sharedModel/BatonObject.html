@@ -1,0 +1,1000 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<meta content="BatonObject,com.adobe.rtc.sharedModel.BatonObject,accessModel,canIAdminister,canIGrab,publishModel,batonNodeName,grabbable,amIHolding,canUserAdminister,canUserGrab,close,extendTimer,getHolderID,getTimeOut,getUserRole,giveTo,grab,isAvailable,putDown,removeAll,removeProperty,setProperty,setTimeOut,setUserRole" name="keywords">
+<title>com.adobe.rtc.sharedModel.BatonObject</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'BatonObject - LiveCycle Collaboration Services API Reference';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">LCCS API Reference Player 10</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?com/adobe/rtc/sharedModel/BatonObject.html&amp;com/adobe/rtc/sharedModel/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;BatonObject</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class BatonObject"); titleBar_setSubNav(false,true,false,false,true,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.adobe.rtc.sharedModel</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class BatonObject</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">BatonObject <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> <a href="SharedObject.html">SharedObject</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> flash.events.EventDispatcher</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../session/ISessionSubscriber.html">ISessionSubscriber</a></td>
+</tr>
+</table>
+<p></p>
+  BatonObject is a model class which provides a workflow between users for muliple resources. Essentially, it 
+  tracks the "holder" of a given resource and provides APIs for grabbing, putting down, 
+  and giving control to others. Users with an owner role always have the power to 
+  grab the BatonObject, put it down, or give it to others regardless of who has the BatonObject. 
+  Users with a publisher role must wait according to the <code class="property">grabbable</code> property:
+  <ul>
+  <li>If the BatonObject is set to <code>grabbable</code>, they may grab the resources in the BatonObject as soon 
+  as it is available (since it will then have no controller).</li>
+  <li>If the BatonObject is not <code>grabbable</code>, the owner must explicitly pass the resources in the BatonObject
+  to someone else. 
+  </ul>
+  By default, a BatonObject will timeout in five seconds and be released. This timeout can be 
+  adjusted in the constructor and extended during use of the resource in question using 
+  <code>extendTimer</code>.
+  <p>
+  Note that users with an owner role may adjust the roles of other users relative to the 
+  BatonObject using <code>allowUserToGrab</code> (which makes that user a publisher) and <code>
+  allowUserToAdminister</code> (which makes that user an owner).
+  </p>
+  <p>
+  This component also supports "piggybacking" on existing CollectionNodes through its constructor. 
+  Developers can avoid CollectionNode proliferation in their applications by pre-supplying a 
+  CollectionNode and a <code>nodeName</code> for the BatonObject to use. If none is supplied, the 
+  BatonObject will create its own collection node for sending and receiving messages.
+  
+  <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../sharedModel/CollectionNode.html" target="">com.adobe.rtc.sharedModel.CollectionNode</a>
+<br>
+<a href="../messaging/UserRoles.html" target="">com.adobe.rtc.messaging.UserRoles</a>
+<br>
+<a href="../sharedModel/Baton.html" target="">com.adobe.rtc.sharedModel.Baton</a>
+</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<div class="showHideLinks">
+<div class="hideInheritedProperty" id="hideInheritedProperty">
+<a onclick="javascript:setInheritedVisible(false,'Property');" href="#propertySummary" class="showHideLink"><img src="../../../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Properties</a>
+</div>
+<div class="showInheritedProperty" id="showInheritedProperty">
+<a onclick="javascript:setInheritedVisible(true,'Property');" href="#propertySummary" class="showHideLink"><img src="../../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Properties</a>
+</div>
+</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#accessModel">accessModel</a> : int<div class="summaryTableDescription">
+   Role value which is required for seeing the BatonObject
+   </div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#batonNodeName">batonNodeName</a> : String<div class="summaryTableDescription">
+   Sets the Node Name to which the value is published
+   </div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#canIAdminister">canIAdminister</a> : Boolean<div class="summaryTableDescription">[read-only]
+   Determines whether the current user has permission to administer the BatonObject 
+   by taking it from someone or forcing them to put it down.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#canIGrab">canIGrab</a> : Boolean<div class="summaryTableDescription">[read-only]
+   Determines whether the current user has permission to grab the BatonObject 
+   when available.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="SharedObject.html#collectionNode">collectionNode</a> : <a href="../sharedModel/CollectionNode.html">CollectionNode</a>
+<div class="summaryTableDescription">
+   Specifies an existing collectionNode to use in case a developer wishes to supply their own, and avoid having the 
+   sharedObject create a new one.</div>
+</td><td class="summaryTableOwnerCol"><a href="SharedObject.html">SharedObject</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="SharedObject.html#connectSession">connectSession</a> : <a href="../session/IConnectSession.html">IConnectSession</a>
+<div class="summaryTableDescription">
+   The IConnectSession with which this component is associated.</div>
+</td><td class="summaryTableOwnerCol"><a href="SharedObject.html">SharedObject</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#grabbable">grabbable</a> : Boolean<div class="summaryTableDescription">
+   Whether or not to allow users with a publisher role to grab an available resource in BatonObject.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="SharedObject.html#isSynchronized">isSynchronized</a> : Boolean<div class="summaryTableDescription">
+   Returns whether or not the SharedObject has retrieved any information previously stored on the service, and 
+   is currently connected to the service.</div>
+</td><td class="summaryTableOwnerCol"><a href="SharedObject.html">SharedObject</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="SharedObject.html#nodeName">nodeName</a> : String<div class="summaryTableDescription">
+   Sets the Node name for the node being created
+   
+   </div>
+</td><td class="summaryTableOwnerCol"><a href="SharedObject.html">SharedObject</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#publishModel">publishModel</a> : int<div class="summaryTableDescription">
+   Role Value required to grab the BatonObject
+   </div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="SharedObject.html#sharedID">sharedID</a> : String<div class="summaryTableDescription">
+   Defines the logical location of the component on the service - typically this assigns the sharedID of the collectionNode
+   used by the component.</div>
+</td><td class="summaryTableOwnerCol"><a href="SharedObject.html">SharedObject</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="SharedObject.html#values">values</a> : Object<div class="summaryTableDescription">
+   Return all the items in the shared object as one big hashMap (Object)
+   </div>
+</td><td class="summaryTableOwnerCol"><a href="SharedObject.html">SharedObject</a></td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<div class="showHideLinks">
+<div class="hideInheritedMethod" id="hideInheritedMethod">
+<a onclick="javascript:setInheritedVisible(false,'Method');" href="#methodSummary" class="showHideLink"><img src="../../../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Methods</a>
+</div>
+<div class="showInheritedMethod" id="showInheritedMethod">
+<a onclick="javascript:setInheritedVisible(true,'Method');" href="#methodSummary" class="showHideLink"><img src="../../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Methods</a>
+</div>
+</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#BatonObject()">BatonObject</a>()</div>
+<div class="summaryTableDescription">
+   Constructor.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#amIHolding()">amIHolding</a>(p_propertyName:String):Boolean</div>
+<div class="summaryTableDescription">
+   Determines whether the current user is holding a resource in the BatonObject.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#canUserAdminister()">canUserAdminister</a>(p_userID:String):Boolean</div>
+<div class="summaryTableDescription">
+   Determines whether a specified user can administer the BatonObject from others.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#canUserGrab()">canUserGrab</a>(p_userID:String):Boolean</div>
+<div class="summaryTableDescription">
+   Determines whether a specified user can grab the BatonObject if it's available.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#close()">close</a>():void</div>
+<div class="summaryTableDescription">
+   Cleans up all networking and event handling; recommended for garbage collection.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#extendTimer()">extendTimer</a>(p_propertyName:String):void</div>
+<div class="summaryTableDescription">
+   Extends the timeout if the BatonObject has one.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getHolderID()">getHolderID</a>(p_propertyName:String):String</div>
+<div class="summaryTableDescription">
+   Specifies the <code>userID</code> of the person controlling the the resource in the BatonObject.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="SharedObject.html#getProperty()">getProperty</a>(p_propertyName:String):*</div>
+<div class="summaryTableDescription">
+   Returns the value of the given property name
+   </div>
+</td><td class="summaryTableOwnerCol"><a href="SharedObject.html">SharedObject</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getTimeOut()">getTimeOut</a>(p_propertyName:String = null):int</div>
+<div class="summaryTableDescription">
+   Number of seconds after which the BatonObject times out
+   </div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getUserRole()">getUserRole</a>(p_userID:String):int</div>
+<div class="summaryTableDescription">
+    Returns the role of a given user for the BatonObject.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#giveTo()">giveTo</a>(p_userID:String, p_propertyName:String):void</div>
+<div class="summaryTableDescription">
+   If the BatonObject is grabbable, the holding user can hand the BatonObject's resource to a specified user.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#grab()">grab</a>(p_propertyName:String):void</div>
+<div class="summaryTableDescription">
+   If grabbable, users with a publisher role can grab the control if it's available 
+   by using this method.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="SharedObject.html#hasProperty()">hasProperty</a>(p_propertyName:String):Boolean</div>
+<div class="summaryTableDescription">
+   Returns whether the given property exists or not in the shared object
+   </div>
+</td><td class="summaryTableOwnerCol"><a href="SharedObject.html">SharedObject</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isAvailable()">isAvailable</a>(p_propertyName:String):Boolean</div>
+<div class="summaryTableDescription">
+   Determines whether the resource in the BatonObject is up for grabs because it has no current holder.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="SharedObject.html#isEmpty()">isEmpty</a>():Boolean</div>
+<div class="summaryTableDescription">
+   Check if the shared object is empty
+   </div>
+</td><td class="summaryTableOwnerCol"><a href="SharedObject.html">SharedObject</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#putDown()">putDown</a>(p_propertyName:String):void</div>
+<div class="summaryTableDescription">
+   Users with an publisher role in control can use this method to 
+   release their control.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#removeAll()">removeAll</a>():void</div>
+<div class="summaryTableDescription">
+   Calls the <code>removeProperty</code> for all the properties in the BatonObject.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#removeProperty()">removeProperty</a>(p_propertyName:String):void</div>
+<div class="summaryTableDescription">
+   The value of the BatonObjects property which a user can only delete it if the user is in 
+   control of it.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="SharedObject.html#setNodeConfiguration()">setNodeConfiguration</a>(p_nodeConfig:<a href="../messaging/NodeConfiguration.html">NodeConfiguration</a>):void</div>
+<div class="summaryTableDescription">
+   Sets the Node Configuration on a already defined node that holds the sharedObject
+   </div>
+</td><td class="summaryTableOwnerCol"><a href="SharedObject.html">SharedObject</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setProperty()">setProperty</a>(p_propertyName:String, p_value:Object = null):void</div>
+<div class="summaryTableDescription">
+   The value of the BatonObjects property which a user can only set it if the user is in 
+   control of it.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setTimeOut()">setTimeOut</a>(p_timeOut:int, p_propertyName:String = null):void</div>
+<div class="summaryTableDescription">
+   Number of seconds after which the BatonObject times out
+   If 0, no timeout is used.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setUserRole()">setUserRole</a>(p_userID:String, p_userRole:int):void</div>
+<div class="summaryTableDescription">
+   When called by an owner, <code>setUserRole()</code> sets the role of the specified 
+   user with respect to this BatonObject.</div>
+</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="SharedObject.html#subscribe()">subscribe</a>():void</div>
+<div class="summaryTableDescription">
+   Tells the component to begin synchronizing with the service.</div>
+</td><td class="summaryTableOwnerCol"><a href="SharedObject.html">SharedObject</a></td>
+</tr>
+</table>
+</div>
+<a name="eventSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Events</div>
+<div class="showHideLinks">
+<div class="hideInheritedEvent" id="hideInheritedEvent">
+<a onclick="javascript:setInheritedVisible(false,'Event');" href="#eventSummary" class="showHideLink"><img src="../../../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Events</a>
+</div>
+<div class="showInheritedEvent" id="showInheritedEvent">
+<a onclick="javascript:setInheritedVisible(true,'Event');" href="#eventSummary" class="showHideLink"><img src="../../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Events</a>
+</div>
+</div>
+<table id="summaryTableEvent" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Event</th><th>Summary</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:batonHolderChange">batonHolderChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the batonObject is given to someone or put down.</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="SharedObject.html#event:propertyAdd">propertyAdd</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when an item to SharedObject is added.</td><td class="summaryTableOwnerCol"><a href="SharedObject.html">SharedObject</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="SharedObject.html#event:propertyChange">propertyChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when the SharedObject has been updated in some way.</td><td class="summaryTableOwnerCol"><a href="SharedObject.html">SharedObject</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="SharedObject.html#event:propertyRetracted">propertyRetracted</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   Dispatched when an item from SharedObject is removed.</td><td class="summaryTableOwnerCol"><a href="SharedObject.html">SharedObject</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="SharedObject.html#event:reconnect">reconnect</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+   The type of event emitted when the CollectionNode is about to reconnect to the server.</td><td class="summaryTableOwnerCol"><a href="SharedObject.html">SharedObject</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:synchronizationChange">synchronizationChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the component has fully connected and synchronized with 
+  the service or when it loses the connection.</td><td class="summaryTableOwnerCol">BatonObject</td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="SharedObject.html#event:synchronizationChange">synchronizationChange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+  Dispatched when the SharedObject goes in and out of sync with the service.</td><td class="summaryTableOwnerCol"><a href="SharedObject.html">SharedObject</a></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="accessModel"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">accessModel</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>accessModel:int</code>&nbsp;&nbsp;[read-write]<p>
+   Role value which is required for seeing the BatonObject
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get accessModel():int</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set accessModel(value:int):void</code>
+<br>
+</div>
+<a name="batonNodeName"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">batonNodeName</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>batonNodeName:String</code>&nbsp;&nbsp;[read-write]<p>
+   Sets the Node Name to which the value is published
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get batonNodeName():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set batonNodeName(value:String):void</code>
+<br>
+</div>
+<a name="canIAdminister"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">canIAdminister</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>canIAdminister:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+   Determines whether the current user has permission to administer the BatonObject 
+   by taking it from someone or forcing them to put it down.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get canIAdminister():Boolean</code>
+<br>
+</div>
+<a name="canIGrab"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">canIGrab</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>canIGrab:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+   Determines whether the current user has permission to grab the BatonObject 
+   when available.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get canIGrab():Boolean</code>
+<br>
+</div>
+<a name="grabbable"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">grabbable</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>grabbable:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+   Whether or not to allow users with a publisher role to grab an available resource in BatonObject.
+   When false, the resources in BatonObject can only be handed off by users with an owner role.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get grabbable():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set grabbable(value:Boolean):void</code>
+<br>
+</div>
+<a name="publishModel"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">publishModel</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>publishModel:int</code>&nbsp;&nbsp;[read-write]<p>
+   Role Value required to grab the BatonObject
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get publishModel():int</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set publishModel(value:int):void</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="BatonObject()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">BatonObject</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function BatonObject()</code><p>
+   Constructor. 
+   
+   </p></div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="amIHolding()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">amIHolding</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function amIHolding(p_propertyName:String):Boolean</code><p>
+   Determines whether the current user is holding a resource in the BatonObject.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_propertyName</span>:String</code> &mdash; The id of the property
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="canUserAdminister()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">canUserAdminister</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function canUserAdminister(p_userID:String):Boolean</code><p>
+   Determines whether a specified user can administer the BatonObject from others. 
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The <code>userID</code> of the user to check if they have 
+   adminstrator rights.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="canUserGrab()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">canUserGrab</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function canUserGrab(p_userID:String):Boolean</code><p>
+   Determines whether a specified user can grab the BatonObject if it's available.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash;  The <code>userID</code> of the user to check if they 
+   can grab the BatonObject. 
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="close()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">close</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function close():void</code><p>
+   Cleans up all networking and event handling; recommended for garbage collection.
+   </p></div>
+<a name="extendTimer()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">extendTimer</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function extendTimer(p_propertyName:String):void</code><p>
+   Extends the timeout if the BatonObject has one.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_propertyName</span>:String</code> &mdash; The id of the property  
+   </td>
+</tr>
+</table>
+</div>
+<a name="getHolderID()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getHolderID</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getHolderID(p_propertyName:String):String</code><p>
+   Specifies the <code>userID</code> of the person controlling the the resource in the BatonObject. Returns null if 
+   no one has the BatonObject. For example, this function might be used to create a "controlled 
+   by XXX" tooltip for your component.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_propertyName</span>:String</code> &mdash; The id of the property
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="getTimeOut()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getTimeOut</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getTimeOut(p_propertyName:String = null):int</code><p>
+   Number of seconds after which the BatonObject times out
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_propertyName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The id of the property
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>int</code></td>
+</tr>
+</table>
+</div>
+<a name="getUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function getUserRole(p_userID:String):int</code><p>
+    Returns the role of a given user for the BatonObject.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; UserID of the user in question
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>int</code></td>
+</tr>
+</table>
+</div>
+<a name="giveTo()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">giveTo</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function giveTo(p_userID:String, p_propertyName:String):void</code><p>
+   If the BatonObject is grabbable, the holding user can hand the BatonObject's resource to a specified user. 
+   A user with an owner role can give a BatonObject resource to anyone with the required permissions 
+   at any time.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash;  The <code>userID</code> of the user to allow to grab the BatonObject.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_propertyName</span>:String</code> &mdash; The id of the property   
+   </td>
+</tr>
+</table>
+</div>
+<a name="grab()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">grab</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function grab(p_propertyName:String):void</code><p>
+   If grabbable, users with a publisher role can grab the control if it's available 
+   by using this method. Users with an owner role may grab a resource in the BatonObject at any time.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_propertyName</span>:String</code> &mdash; The id of the property 
+   </td>
+</tr>
+</table>
+</div>
+<a name="isAvailable()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isAvailable</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function isAvailable(p_propertyName:String):Boolean</code><p>
+   Determines whether the resource in the BatonObject is up for grabs because it has no current holder.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_propertyName</span>:String</code> &mdash; The id of the property 
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="putDown()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">putDown</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function putDown(p_propertyName:String):void</code><p>
+   Users with an publisher role in control can use this method to 
+   release their control. Users with an owner role  can use this method 
+   to remove the BatonObject resource from a user who has it.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_propertyName</span>:String</code> &mdash; The id of the property 
+   </td>
+</tr>
+</table>
+</div>
+<a name="removeAll()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">removeAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function removeAll():void</code><p>
+   Calls the <code>removeProperty</code> for all the properties in the BatonObject. It would delete all the properties that are
+   avialable or properties that you are holding.
+   </p></div>
+<a name="removeProperty()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">removeProperty</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function removeProperty(p_propertyName:String):void</code><p>
+   The value of the BatonObjects property which a user can only delete it if the user is in 
+   control of it.
+   </p><p>
+   If the BatonObject is not yet synchrnonized, the value will be cached and 
+   deleted when the BatonProperty is back in sync.
+   <p>
+   If the BatonObjects property is available, deleting the value will also try to grab 
+   control of the property before deleting the value and then release the control as well.
+   <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_propertyName</span>:String</code></td>
+</tr>
+</table>
+</div>
+<a name="setProperty()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setProperty</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function setProperty(p_propertyName:String, p_value:Object = null):void</code><p>
+   The value of the BatonObjects property which a user can only set it if the user is in 
+   control of it.
+   </p><p>
+   If the BatonObject is not yet synchrnonized, the value will be cached and 
+   sent when the BatonProperty is back in sync.
+   <p>
+   If the BatonObjects property is available, setting the value will also try to grab 
+   control of the property before setting the value.
+   <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_propertyName</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_value</span>:Object</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="setTimeOut()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setTimeOut</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setTimeOut(p_timeOut:int, p_propertyName:String = null):void</code><p>
+   Number of seconds after which the BatonObject times out
+   If 0, no timeout is used. 
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_timeOut</span>:int</code> &mdash; Number of seconds until the resources in the BatonObject is released
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_propertyName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The id of the property 
+   </td>
+</tr>
+</table>
+</div>
+<a name="setUserRole()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setUserRole</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function setUserRole(p_userID:String, p_userRole:int):void</code><p>
+   When called by an owner, <code>setUserRole()</code> sets the role of the specified 
+   user with respect to this BatonObject. The following rules apply: 
+   <ul>
+   <li>Setting the role to <code>UserRoles.PUBLISHER</code> allows the user to grab the resources in the BatonObject. </li>
+   <li>Setting the role to <code>UserRoles.OWNER</code> allows the user to administer the resources in the BatonObject.</li> 
+   <li>Setting to <code>UserRoles.VIEWER</code> will allow neither.</li>
+   </ul>
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userID</span>:String</code> &mdash; The <code>userID</code> of the user to set the role for. 
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">p_userRole</span>:int</code> &mdash; The new role for that user.  
+   </td>
+</tr>
+</table>
+</div>
+<div class="detailSectionHeader">Event detail</div>
+<a name="event:batonHolderChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">batonHolderChange</td><td class="detailHeaderType">event&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/SharedModelEvent.html"><code>com.adobe.rtc.events.SharedModelEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the batonObject is given to someone or put down.
+  </p></div>
+<a name="event:synchronizationChange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">synchronizationChange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../events/CollectionNodeEvent.html"><code>com.adobe.rtc.events.CollectionNodeEvent</code></a>
+<br>
+<p></p><p>
+  Dispatched when the component has fully connected and synchronized with 
+  the service or when it loses the connection.
+  </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">2008-2010 Adobe Systems Incorporated. All rights reserved.</center>
+</div>
+</body>
+</html>
+<!--2008-2010 Adobe Systems Incorporated. All rights reserved.-->

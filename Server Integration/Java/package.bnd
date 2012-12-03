@@ -1,0 +1,5 @@
+Main-Class: com.adobe.rtc.util.Main
+Bundle-Name: Adobe LiveCycle Collaboration Service
+Bundle-SymbolicName: com.adobe.rtc
+Export-Package: com.adobe.rtc.*;-split-package:=merge-first
+Import-Package: *

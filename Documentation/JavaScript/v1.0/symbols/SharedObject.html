@@ -1,0 +1,1070 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>LCCS JavaScript Reference - SharedObject</title>
+
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+	width: 800px;
+}
+
+.header
+{
+	clear: both;
+	background-color: #ccc;
+	padding: 8px;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+	margin: 1em 0 0 .3em;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #7F8FB1;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	background-color: #F3F3F3;
+	padding: 8px;
+}
+
+#content
+{
+	margin-left: 190px;
+	width: 600px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #7F8FB1;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #7F8FB1 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #7F8FB1 solid;
+	border-right: 1px #7F8FB1 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #7F8FB1 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #002EBE;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px; 
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	text-align: right;
+	font-size: 10px;
+}
+		</style>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2>Classes</h2>
+<ul class="classList">
+	
+	<li><i><a href="../symbols/_global_.html">_global_</a></i></li>
+	
+	<li><a href="../symbols/Baton.html">Baton</a></li>
+	
+	<li><a href="../symbols/BatonObject.html">BatonObject</a></li>
+	
+	<li><a href="../symbols/BatonProperty.html">BatonProperty</a></li>
+	
+	<li><a href="../symbols/CollectionNode.html">CollectionNode</a></li>
+	
+	<li><a href="../symbols/ConnectSession.html">ConnectSession</a></li>
+	
+	<li><a href="../symbols/EventDispatcher.html">EventDispatcher</a></li>
+	
+	<li><a href="../symbols/SharedCollection.html">SharedCollection</a></li>
+	
+	<li><a href="../symbols/SharedCursorPane.html">SharedCursorPane</a></li>
+	
+	<li><a href="../symbols/SharedObject.html">SharedObject</a></li>
+	
+	<li><a href="../symbols/SharedProperty.html">SharedProperty</a></li>
+	
+	<li><a href="../symbols/SimpleChatModel.html">SimpleChatModel</a></li>
+	
+	<li><a href="../symbols/Tween.html">Tween</a></li>
+	
+	<li><a href="../symbols/UserManager.html">UserManager</a></li>
+	
+</ul>
+<hr />
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Class SharedObject
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				
+			
+				SharedObject is used to store data in an unordered hash (key-value) across the AFCS services; elements can only be accessed using its key.A SharedObject can be used in situations where you need to access a property using its key value as opposed toindex. Similar to SharedCollection and SharedProperty,this component supports "piggybacking" on existing CollectionNodes,through its <code>collectionNode</code> property and its subscribe method. Developers can avoid CollectionNodeproliferation in their applications by pre-supplying a CollectionNode (to the <code>collectionNode</code> property)and a nodeName (in the subscribe method) for the SharedObject to use. If none is supplied, the SharedObject will create its own collectionNode (named for the uniqueID supplied in subscribe()) for sending and receiving messages.<table><tr><th><b>Event</b></th><th><b>Summary</b></th></tr><tr><td valign="top"><code>propertyAdd </code></td> <td> Dispatched when an item to SharedObject is added.</td></tr><tr><td valign="top"><code>propertyChange</code></td> <td> Dispatched when the SharedObject has been updated in some way.</td></tr><tr><td valign="top"><code>propertyRetracted</code></td> <td> Dispatched when an item from SharedObject is removed.</td></tr><tr><td valign="top"><code>reconnect</code></td> <td> The type of event emitted when the CollectionNode is about to reconnect to the server.</td></tr><tr><td valign="top"><code>synchronizationChange</code></td> <td> Dispatched when the SharedObject goes in and out of sync with the service.</td></tr></table>
+				
+				
+					<br /><i>Defined in: </i> <a href="../symbols/src/E__flashfarm_main_connect_build_JavaScript_tools_jsdoc-toolkit_LCCS_JS_Bridge.js.html">LCCS_JS_Bridge.js</a>.
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class SharedObject.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/SharedObject.html#constructor">SharedObject</a></b>()
+							</div>
+							<div class="description"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class SharedObject.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/SharedObject.html#collectionNode">collectionNode</a></b>
+								</div>
+								<div class="description">Specifies an existing collectionNode to use in case a developer wishes to supply their own, and avoid having the sharedObject create a new one.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/SharedObject.html#connectSession">connectSession</a></b>
+								</div>
+								<div class="description">The ConnectSession with which this component is associated.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/SharedObject.html#nodeConfiguration">nodeConfiguration</a></b>
+								</div>
+								<div class="description">Sets the Node Configuration on a already defined node that holds the sharedObject</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/SharedObject.html#nodeName">nodeName</a></b>
+								</div>
+								<div class="description">Sets the Node name for the node being created</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/SharedObject.html#sharedID">sharedID</a></b>
+								</div>
+								<div class="description">Defines the logical location of the component on the service - typically this assigns the sharedID of the collectionNodeused by the component.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class SharedObject.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedObject.html#close">close</a></b>()
+								</div>
+								<div class="description">Disposes all listeners to the network and framework classes.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedObject.html#getProperty">getProperty</a></b>(p_propertyName)
+								</div>
+								<div class="description">Returns the value of the given property name</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedObject.html#getUserRole">getUserRole</a></b>(p_userID)
+								</div>
+								<div class="description">Returns the role of a given user for the SharedObject.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedObject.html#getValues">getValues</a></b>()
+								</div>
+								<div class="description">Return all the items in the shared object as one big hashMap (Object)</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedObject.html#hasProperty">hasProperty</a></b>(p_propertyName)
+								</div>
+								<div class="description">Returns whether the given property exists or not in the shared object</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedObject.html#isEmpty">isEmpty</a></b>()
+								</div>
+								<div class="description">Check if the shared object is empty</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedObject.html#isSynchronized">isSynchronized</a></b>()
+								</div>
+								<div class="description">Returns whether or not the SharedObject has retrieved any information previously stored on the service, and is currently connected to the service.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedObject.html#removeAll">removeAll</a></b>()
+								</div>
+								<div class="description">Remove all the items in the shared object.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedObject.html#removeProperty">removeProperty</a></b>(p_propertyName)
+								</div>
+								<div class="description">Remove the property from the shared object</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedObject.html#setNodeConfiguration">setNodeConfiguration</a></b>(p_nodeConfig)
+								</div>
+								<div class="description">Sets the Node Configuration on a already defined node that holds the sharedObject</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedObject.html#setProperty">setProperty</a></b>(p_propertyName, p_value)
+								</div>
+								<div class="description">Add or Update the value of a given property name in a shared object</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedObject.html#setUserRole">setUserRole</a></b>(p_userRole, p_userID)
+								</div>
+								<div class="description">Sets the role of a given user for the SharedObject.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SharedObject.html#subscribe">subscribe</a></b>()
+								</div>
+								<div class="description">Tells the component to begin synchronizing with the service.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>SharedObject</b>()
+				</div>
+				
+				<div class="description">
+					
+					
+				</div>
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+					
+
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name="collectionNode"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>collectionNode</b>
+					
+					</div>
+					<div class="description">
+						Specifies an existing collectionNode to use in case a developer wishes to supply their own, and avoid having the sharedObject create a new one.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="connectSession"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>connectSession</b>
+					
+					</div>
+					<div class="description">
+						The ConnectSession with which this component is associated. Note that this may only be set once before <code>subscribe</code>is called; re-sessioning of components is not supported.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="nodeConfiguration"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>nodeConfiguration</b>
+					
+					</div>
+					<div class="description">
+						Sets the Node Configuration on a already defined node that holds the sharedObject
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="nodeName"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>nodeName</b>
+					
+					</div>
+					<div class="description">
+						Sets the Node name for the node being created
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="sharedID"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>sharedID</b>
+					
+					</div>
+					<div class="description">
+						Defines the logical location of the component on the service - typically this assigns the sharedID of the collectionNodeused by the component. sharedIDs should be unique within a room (if they're expressing 2 unique locations). Note thatthis can only be assigned once (before <code>subscribe()</code> is called). For components with an <code>id</code> property, sharedID defaults to that value.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="close"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>close</b>()
+					
+					</div>
+					<div class="description">
+						Disposes all listeners to the network and framework classes. Recommended for proper garbage collection of the component.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getProperty"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getProperty</b>(p_propertyName)
+					
+					</div>
+					<div class="description">
+						Returns the value of the given property name
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_propertyName</b>
+									
+								</dt>
+								<dd>The key of the Property whose value is requested.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getUserRole"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getUserRole</b>(p_userID)
+					
+					</div>
+					<div class="description">
+						Returns the role of a given user for the SharedObject.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The user ID for the user being queried.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getValues"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getValues</b>()
+					
+					</div>
+					<div class="description">
+						Return all the items in the shared object as one big hashMap (Object)
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="hasProperty"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>hasProperty</b>(p_propertyName)
+					
+					</div>
+					<div class="description">
+						Returns whether the given property exists or not in the shared object
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_propertyName</b>
+									
+								</dt>
+								<dd>The key of the Property whose presence is verified</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="isEmpty"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>isEmpty</b>()
+					
+					</div>
+					<div class="description">
+						Check if the shared object is empty
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="isSynchronized"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{boolean}</span>
+					<b>isSynchronized</b>()
+					
+					</div>
+					<div class="description">
+						Returns whether or not the SharedObject has retrieved any information previously stored on the service, and is currently connected to the service.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{boolean}</span> </dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeAll"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>removeAll</b>()
+					
+					</div>
+					<div class="description">
+						Remove all the items in the shared object.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeProperty"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>removeProperty</b>(p_propertyName)
+					
+					</div>
+					<div class="description">
+						Remove the property from the shared object
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_propertyName</b>
+									
+								</dt>
+								<dd>The key of the Property that needs to be retracted from the sharedObject</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setNodeConfiguration"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setNodeConfiguration</b>(p_nodeConfig)
+					
+					</div>
+					<div class="description">
+						Sets the Node Configuration on a already defined node that holds the sharedObject
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_nodeConfig</b>
+									
+								</dt>
+								<dd>The Node Configuration</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setProperty"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setProperty</b>(p_propertyName, p_value)
+					
+					</div>
+					<div class="description">
+						Add or Update the value of a given property name in a shared object
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_propertyName</b>
+									
+								</dt>
+								<dd>The key of the Property being added</dd>
+							
+								<dt>
+									<b>p_value</b>
+									
+								</dt>
+								<dd>The value of the property, defaults to null</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setUserRole"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setUserRole</b>(p_userRole, p_userID)
+					
+					</div>
+					<div class="description">
+						Sets the role of a given user for the SharedObject.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>p_userRole</b>
+									
+								</dt>
+								<dd>The role value to set on the specified user.</dd>
+							
+								<dt>
+									<b>p_userID</b>
+									
+								</dt>
+								<dd>The ID of the user whose role should be set.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="subscribe"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>subscribe</b>()
+					
+					</div>
+					<div class="description">
+						Tells the component to begin synchronizing with the service.  For "headless" components such as this one, this method must be called explicitly.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a><br/>
+			2008-2011 Adobe Systems Incorporated. All rights reserved.
+		</div>
+	</body>
+</html>
