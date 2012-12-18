@@ -1,0 +1,1 @@
+This library allows for the creation of authentication tokens. This is particularly useful for testing application development, but wouldn't be appropriate for deployed applications due to the requirement of the developers secret key.
