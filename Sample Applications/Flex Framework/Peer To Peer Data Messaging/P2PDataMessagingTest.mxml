@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:rtc="http://ns.adobe.com/rtc"
+		 layout="absolute" width="100%" height="100%" >
+	<mx:Script>
+		<![CDATA[
+			
+			
+			/**********************************************************
+			 * This example demonstrates the newly added feature for doing Data Streams over P2P 
+			 * Every node now has a nodeConfiguration property called p2pDataMessaging, which is false by default.
+			 * Owners can set this property to true for any node to have p2p Data Messaging.
+			 * Nodes decide on runtime based on this property whether to send the data through server or p2p. 
+			 * This is particularly useful when you do not want persistent messages e.g. cursor movement messages on a whiteboard.
+			 * The messages over p2p will not be persistent and any user coming late won't be able to receive any p2p existing message
+			 * sent over this node. Also, users under firewall or without an rtmfp connection or without having player 10.1 will not get any message
+			 * over such a node.
+			 * You can use dev console to change this properties in a node. I am also adding another file called NodeConfigSetUP, which you can use a seperate test app 
+			 * to see the nodes and set/unset the p2pDataMessaging property.
+			 * This build of 10.1 is a beta build and is given for testing to users, should you find any issues with this feature, please report to us.
+			 * Make sure that you have 10.1 playerglobal as well as Flex Compiler option requiring player version set to 10.1. Also, download and install player 10.1 
+			 * before using this example. Users with lower player version will need to update their player first before using stream multicast as well as p2p Data Messaging.
+			 * Flash Player 10.1 can be downloaded from adobe labs.
+			 * *********************************/
+			 
+			 /**********************************************************
+			  * ADOBE SYSTEMS INCORPORATED
+			  * Copyright [2007-2010] Adobe Systems Incorporated
+			  * All Rights Reserved.
+			  * NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the 
+			  * terms of the Adobe license agreement accompanying it.If you have received this file from a 
+			  * source other than Adobe, then your use, modification, or distribution of it requires the prior 
+			  * written permission of Adobe.
+		     	  * *********************************/
+		
+		]]>
+	</mx:Script>
+	<rtc:AdobeHSAuthenticator id="auth" protocol="rtmfp" userName="Your Username" password="Your password" />
+	<rtc:ConnectSessionContainer id="cSession" authenticator="{auth}" width="100%" height="100%" 
+		roomURL="Your RoomUrl"  >
+		<mx:HBox top="10" right="10" left="10" bottom="10" verticalGap="6" horizontalAlign="center">
+			<mx:VBox width="100%" height="100%" >
+				<rtc:SimpleChat width="100%" height="100%" id="simpleChat" />
+				<rtc:SharedWhiteBoard width="100%" height="100%" id="swb" />
+			 </mx:VBox>
+		</mx:HBox>
+	</rtc:ConnectSessionContainer>
+</mx:Application>
