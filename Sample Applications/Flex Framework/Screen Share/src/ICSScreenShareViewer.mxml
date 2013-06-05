@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+  		   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:rtc="http://ns.adobe.com/rtc"
+			   minWidth="955" minHeight="600" 
+			   backgroundColor="black" xmlns:collaboration="com.adobe.rtc.collaboration.*">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.rtc.events.UserEvent;
+			import com.adobe.rtc.sharedManagers.UserManager;
+			import com.adobe.rtc.sharedManagers.descriptors.UserDescriptor;
+			import com.influxis.views.RosterItem;
+			
+			import mx.collections.ArrayCollection;
+			
+			
+			protected var presenterItems:Object = new Object();
+			
+			
+			public var version:String = 		"0.5.1.2";
+			public var authPath:String = 		"http://YOURDOMAIN.com/auth.php";
+			public var room:String = 			"YOURROOMNAME";
+			public var role:int = 				10;//viewer
+			
+			protected var users:UserManager;
+			
+			[Bindable]
+			public var zoomMode:uint = 1;
+			
+			
+			
+			protected function refreshUserList( event:UserEvent=null ):void
+			{
+				/* var audience:ArrayCollection = users.audienceCollection;
+				var n:int = audience.length;
+				usersView.label = n + (n == 1 ? " User" : " Users" ); */
+				
+				var audience:ArrayCollection = users.audienceCollection;
+				//var ot:ArrayCollection = users.userCollection;
+				var n:int = audience.length;
+				//usersView.label = n + (n == 1 ? " User" : " Users" );
+				userCount.text = n.toString();
+				//if is null we are refreshing it.
+				var user:UserDescriptor;
+				var view:RosterItem;
+				if( event == null ) {
+					
+					var participants:ArrayCollection = users.participantCollection;
+					for( var i:String in participants ){
+						user = participants[i] as UserDescriptor;
+						if( this.presenterItems[user.userID] == null ){
+							view = new RosterItem();
+							view.icsUser = user;
+							this.presenterRoster.addChild( view );
+							this.presenterItems[user.userID] = view;
+						}
+					}
+					return;
+				}
+				
+				tracer( "refreshUserList "+event );
+				//todo - make this a presenter list view. contain the code in 1 class.
+				user = event.userDescriptor;
+				if( user.role != 50 ) return;//not a presenter
+				
+				var item:DisplayObject;
+				var type:String = event.type;
+				
+				switch( type ){
+					case UserEvent.USER_REMOVE:
+						item = presenterItems[user.userID];
+						//remove presenter item
+						if( item ){
+							this.presenterRoster.removeChild(item);
+							delete presenterItems[user.userID];
+							tracer("user: "+user.userID+", has been removed: "+presenterItems[user.userID]);
+						}
+						break;
+					case UserEvent.USER_CREATE:
+						view = new RosterItem();
+						view.icsUser = user;
+						this.presenterRoster.addChild( view );
+						this.presenterItems[user.userID] = view;
+						tracer("user: "+user.userID+", has been added: "+presenterItems[user.userID]);
+						break;
+				}
+				
+			}
+			
+			protected function onLogin(event:MouseEvent):void
+			{
+				var un:String = this.userNameTxt.text;
+				
+				conStatusLabel.text = "Connecting...";
+				
+				this.loginBtn.enabled = false;
+				
+				var req:URLRequest = new URLRequest( authPath );
+				req.method = URLRequestMethod.GET;
+				req.data = new URLVariables();
+				req.data.user = un;
+				req.data.role = role;
+				req.data.room = this.room;
+				trace("user "+un+", role: "+role+",  url: "+req.url);
+				
+				var ldr:URLLoader = new URLLoader();
+				ldr.dataFormat = URLLoaderDataFormat.VARIABLES;
+				ldr.addEventListener(Event.COMPLETE, onLoginData );
+				ldr.load( req );
+			}
+			
+			protected function onLoginData( event:Event ):void
+			{
+				var ldr:URLLoader = event.target as URLLoader;
+				var data:* = ldr.data;
+				
+				var token:String = data.token as String;
+				var room:String = data.roomURL as String;
+				trace("onLoginData token: "+token+", roomURL: "+room);
+				this.auth.authenticationKey = token;
+				this.cSession.roomURL = room;
+				this.cSession.login();
+				
+				// TODO Auto-generated method stub
+				//var pass:String = "";//this.passTxt.text;//
+				//this.auth.password = pass;
+				//this.auth.authenticationKey = token;
+				//trace("onLogin - Pass: "+pass+", Token: "+token);
+				//this.cSession.login();
+			}
+			
+			protected function onAuthSuccess():void
+			{
+				//init screen share control 
+				tracer("onAuthSuccess ");
+				this.users = this.cSession.userManager as UserManager;
+				this.users.addEventListener(UserEvent.USER_CREATE, refreshUserList );
+				this.users.addEventListener(UserEvent.USER_REMOVE, refreshUserList );
+				
+				this.refreshUserList();
+				
+				loginWindow.visible = false;
+			}
+			
+			protected function onZoomMode( event:Event ):void
+			{
+				var targ:ToggleButton = event.target as ToggleButton;
+				var id:String = targ.id;
+				var mode:uint = sSub.zoomMode;
+				switch( id ){
+					case "scaleSizeBtn":
+						zoomMode = 0;
+						break;
+					case "fitSizeBtn":
+						zoomMode = 1;
+						break;
+					case "actualSizeBtn":
+						zoomMode = 100;
+						break;
+				}
+				
+				trace("onZoomMode "+id+", new "+zoomMode+", old: "+mode);
+			}
+			
+			protected function tracer( msg:* ):void
+			{
+				trace("#ScreenViewer#  "+msg);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	
+	<fx:Declarations>
+		<rtc:AdobeHSAuthenticator id="auth" userName="$NameText" />
+	</fx:Declarations>
+	
+	<!-- 
+	Login Window
+	-->
+	<s:Group width="100%" height="100%" visible="true">
+		
+		<s:layout>
+			<s:VerticalLayout verticalAlign="middle" horizontalAlign="center"/>
+		</s:layout>
+		
+		<s:SkinnableContainer width="300" height="230" >
+			
+			<s:Rect left="0" right="0" top="0" bottom="0" radiusX="5" radiusY="5">
+				<s:stroke>
+					<s:SolidColorStroke color="0x333333" weight="0.5"/>
+				</s:stroke>
+				<s:fill>
+					<s:LinearGradient rotation="90">
+						<s:entries>
+							<s:GradientEntry color="white"/>
+							<s:GradientEntry color="white"/>
+							<s:GradientEntry color="0x999999"/>
+						</s:entries>
+					</s:LinearGradient>
+				</s:fill>
+			</s:Rect>
+			
+			<s:VGroup id="loginWindow" width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+				<s:Label text="Welcome to Our Session" textAlign="center" fontSize="18" fontFamily="Arial" fontWeight="bold"/>
+				<s:Spacer height="10"/>
+				<s:HGroup width="80%" horizontalAlign="center" verticalAlign="middle">
+					<s:Label text="User Name:" textAlign="right" width="70"/>
+					<s:TextInput id="userNameTxt" width="140" />
+				</s:HGroup>
+				
+				<s:Spacer height="10"/>
+				
+				<s:Button id="loginBtn" width="80" height="40" label="Login" click="onLogin(event)" />
+			</s:VGroup>
+			
+			<s:VGroup width="100%" height="100%" >
+				<s:Spacer height="100%"/>
+				<s:Label id="conStatusLabel" width="100%" text="" textAlign="center" fontFamily="Arial" paddingBottom="20"/>
+			</s:VGroup>
+			
+		</s:SkinnableContainer>
+	</s:Group>
+	
+	<rtc:ConnectSessionContainer id="cSession" backgroundAlpha="0.0" autoLogin="false" authenticator="{auth}" 
+								 width="100%" height="100%" creationComplete="onAuthSuccess()">
+		<s:HGroup id="displayArea" width="100%" height="100%" />
+		
+		<rtc:AudioSubscriber id="audioSub" height="0" />
+		
+		<s:BorderContainer width="100%" height="100%" backgroundAlpha="0.0" borderAlpha="0.0">
+			<s:VGroup width="100%" height="100%" verticalAlign="middle" horizontalAlign="center" gap="0" >
+				
+				<!-- 
+				ScreenShare viewer
+				-->
+				<s:BorderContainer width="100%" height="100%" bottom="0" backgroundColor="black" borderAlpha="0.0" >
+					<s:Group width="100%" height="100%">
+						<collaboration:ScreenShareSubscriberComplex id="sSub" zoomMode="{zoomMode}" width="100%" height="100%" showMyStream="true"/>
+						
+						<s:VGroup width="100%" height="100%">
+							<s:Spacer height="100%"/>
+							<mx:HBox id="presenterRoster" width="100%" height="40" />
+						</s:VGroup>
+						
+					</s:Group>
+				</s:BorderContainer>
+				
+				<s:SkinnableContainer width="100%" height="50" verticalCenter="middle" right="10" left="10" backgroundColor="#CCCCCC">
+					
+					<s:Rect left="0" right="0" top="0" bottom="0">
+						<s:fill>
+							<s:LinearGradient rotation="90">
+								<s:entries>
+									<s:GradientEntry color="#CCCCCC" ratio="0.3" />
+									<s:GradientEntry color="#CCCCCC" ratio="0.8" />
+									<s:GradientEntry color="#7B7B7B" ratio="1"/>
+								</s:entries>
+							</s:LinearGradient>
+						</s:fill>
+					</s:Rect>
+					
+					<s:HGroup id="menuBar" width="100%" height="100%" verticalAlign="middle" right="10" left="10">
+						<s:Group>
+							<s:ToggleButton id="scaleSizeBtn" selected="{zoomMode==0}" width="40" height="40" click="onZoomMode(event)"/>
+							<s:Image id="actualIcon" source="skins/iscale.png" width="40" height="40" fillMode="clip" 
+									 backgroundColor="#999999" backgroundAlpha="0.1" verticalAlign="middle" horizontalAlign="center" 
+									 useHandCursor="false" mouseEnabled="false" buttonMode="false" mouseChildren="false"/>
+						</s:Group>
+						<s:Group>
+							<s:ToggleButton id="fitSizeBtn" selected="{zoomMode==1}" width="40" height="40" click="onZoomMode(event)"/>
+							<s:Image id="scaleIcon" source="skins/ifit.png" width="40" height="40" fillMode="clip" 
+									 backgroundColor="#999999" backgroundAlpha="0.1" verticalAlign="middle" horizontalAlign="center" 
+									 useHandCursor="false" mouseEnabled="false" buttonMode="false" mouseChildren="false"/>
+						</s:Group>
+						<s:Group>
+							<s:ToggleButton id="actualSizeBtn" selected="{zoomMode==100}" width="40" height="40" click="onZoomMode(event)"/>
+							<s:Image id="fitIcon" source="skins/iactual.png" width="40" height="40" fillMode="clip" 
+									 backgroundColor="#999999" backgroundAlpha="0.1" verticalAlign="middle" horizontalAlign="center" 
+									 useHandCursor="false" mouseEnabled="false" buttonMode="false" mouseChildren="false"/>
+						</s:Group>
+						<s:Image id="coLogo" source="skins/logo.png" width="100%" height="100%" fillMode="clip" 
+								 backgroundAlpha="0.3" verticalAlign="middle" horizontalAlign="center" useHandCursor="true" buttonMode="true"/>
+						<s:Image id="tweetIcon" source="skins/itw.png" width="30" height="40" fillMode="clip" backgroundColor="#999999" 
+								 backgroundAlpha="0.01" verticalAlign="middle" horizontalAlign="center" useHandCursor="true" buttonMode="true"/>
+						<s:Image id="fbIcon" source="skins/ifb.png" width="30" height="40" fillMode="clip" backgroundColor="#999999" 
+								 backgroundAlpha="0.01" verticalAlign="middle" horizontalAlign="center" useHandCursor="true" buttonMode="true"/>
+						<s:Image id="linkIcon" source="skins/ilink.png" width="30" height="40" fillMode="clip" backgroundColor="#999999"
+								 backgroundAlpha="0.01" verticalAlign="middle" horizontalAlign="center" useHandCursor="true" buttonMode="true"/>
+					</s:HGroup>
+				</s:SkinnableContainer>
+				
+			</s:VGroup>
+			
+		</s:BorderContainer>
+		
+		<!-- This is the user count of viewers watching --> 
+		<!--<s:Button id="usersView" width="80" label="0 Users"/>-->
+		
+		<!-- 
+		Viewer Count 
+		--> 
+		<s:BorderContainer width="80" height="30" backgroundAlpha="0.0" borderAlpha="0.0" >
+			
+			<s:Rect left="0" right="0" top="0" bottom="0" bottomRightRadiusX="5" 
+					topRightRadiusX="5" topRightRadiusY="5" bottomRightRadiusY="5">
+				<s:stroke>
+					<s:SolidColorStroke color="0x333333" weight="0.5"/>
+				</s:stroke>
+				<s:fill>
+					<s:LinearGradient rotation="90">
+						<s:entries>
+							<s:GradientEntry color="#505050"/>
+							<s:GradientEntry color="#505050"/>
+							<s:GradientEntry color="#333333"/>
+						</s:entries>
+					</s:LinearGradient>
+				</s:fill>
+			</s:Rect>
+			
+			<s:HGroup width="100%" height="100%" gap="0" verticalAlign="middle" paddingLeft="5" paddingRight="5" color="#666666" >
+				<s:Label id="userCount" text="0" textAlign="center" width="100%" color="#CCCCCC" fontFamily="Arial" fontSize="12" paddingTop="1" />
+				<s:Image source="skins/iusers.png"/>
+			</s:HGroup>
+			
+		</s:BorderContainer>
+		
+	</rtc:ConnectSessionContainer>
+	
+</s:Application>
