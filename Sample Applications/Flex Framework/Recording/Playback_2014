@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+				xmlns:rtc="http://ns.adobe.com/rtc"
+				width="100%" height="100%" applicationComplete="onCreationComplete()"
+				layout="absolute" viewSourceURL="srcview/index.html">
+	
+	<!--Simple Play Back ICS Example-->
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.rtc.events.SessionEvent;
+			import mx.managers.PopUpManager;
+			import mx.core.IFlexDisplayObject;
+
+			
+			
+			private var rtmfpTimer:Timer = null;
+			private var netConnection:NetConnection = null;
+			private const ConnectionTimeout:int = 5000;
+			
+		
+			import com.adobe.rtc.events.SessionEvent;
+
+
+			[Bindable]private var allowStream:String;
+			[Bindable]private var role:Number;
+		    public var archiveId:String
+			
+
+			
+			private const applicationTitle:String = "Play Sample";
+
+			private function onCreationComplete():void
+			{
+				popup(loginWindow);
+				cSession.addEventListener(SessionEvent.SYNCHRONIZATION_CHANGE, onEventNotification);
+			}
+			private function popup(window:IFlexDisplayObject):void
+			{
+				PopUpManager.addPopUp(window, this, true);
+				PopUpManager.centerPopUp(window);
+				window.visible = true;
+			}
+			
+			/**
+			 * Process LCCS Events
+			 */
+			private function onEventNotification(p_event:Event):void
+			{
+				if (p_event.type == SessionEvent.SYNCHRONIZATION_CHANGE) {
+					if (cSession.isSynchronized) {
+						panel.title = "Connected to room " + cSession.roomURL + "{archiveID}";
+						PopUpManager.removePopUp(loginWindow);
+						if ( cSession.userManager.myUserRole == 100 ) {
+							cSession.roomManager.autoPromote = true ;
+							archiveID=LoaderInfo(this.root.loaderInfo).parameters["archiveID"];
+						}
+					}
+				}
+			}
+			private function listLabelFunction(p_object:Object):String
+			{
+				var roleString:String ;
+				
+				
+				if ( p_object is String ) {
+					return p_object as String;
+				}
+				
+				if ( p_object.role == 100 ) {
+					roleString = "Viewer" ;
+				}else if ( p_object.role == 100 ) {
+					roleString = "Publisher" ;
+				}else if (p_object.role == 100 ) {
+					roleString = "Owner" ;
+				}
+				if ( p_object.userID == cSession.userManager.myUserID ) {
+					return "*" + p_object.displayName + " : " + roleString ;
+				}
+				return p_object.displayName + " : " + roleString ;
+			}
+	/*		private function onEveryoneAudioClick():void
+			{
+				if (audioPub.recipientIDs != null ) {
+					mx.controls.Alert.show("User is having a set of recipients for Audio.\n Set recipients to null before sending everyone");
+					return ;
+				}
+				audioPub.recipientIDs = null ;
+				audioPub.publish();
+				audioList.visible = false ;
+			} */
+           private function login():void
+			{
+	//			auth.userName = username.text;
+	//			auth.password = passwordBox.visible ? password.text : null;
+
+				cSession.archiveID = archiveID.text;
+				cSession.roomURL = roomURL.text;
+				cSession.login();
+			}
+			
+
+
+		]]>
+	</mx:Script>
+	<rtc:RoomSettings id="myRoomSettings" roomBandwidth="auto" autoPromote="true" guestsMustKnock="false"/>
+	<rtc:PlaybackAuthenticator id="auth" />
+	<mx:Panel id="panel" title="{applicationTitle}" width="100%" height="100%" paddingLeft="5" paddingTop="5" paddingRight="5" paddingBottom="5">
+		
+		<!--
+		| Login Dialog Box
+		-->
+		<mx:TitleWindow id="loginWindow" title="Connect to Room" visible="false">
+			<mx:VBox>
+				<mx:HBox>
+					<mx:Label text="Room URL:" width="70"/>
+					<mx:TextInput id="roomURL" width="295" tabIndex="1">
+						<mx:text>Your RoomUrl</mx:text>
+					</mx:TextInput>
+				</mx:HBox> 
+				<mx:HBox>
+					<mx:Label text="Recording Name:" width="70"/>
+					<mx:TextInput id="archiveID" tabIndex="4">
+						<mx:text>Recording Name</mx:text>
+					</mx:TextInput>	
+				</mx:HBox>
+			<mx:HBox>
+					<mx:Label text="Username:" width="70"/>
+					<mx:TextInput id="username" tabIndex="2">
+						<mx:text>Your Username</mx:text>
+					</mx:TextInput>	
+			</mx:HBox> 
+				<mx:HBox>
+				<mx:HBox id="passwordBox">
+						<mx:Label text="Password:" width="70"/>
+						<mx:TextInput id="password" displayAsPassword="true" tabIndex="3">
+							<mx:text>Your password</mx:text>
+						</mx:TextInput>
+					</mx:HBox>
+					<mx:RadioButton label="User" selected="true" click="passwordBox.visible = true"/>
+					<mx:RadioButton label="Guest" click="passwordBox.visible = false"/>
+					<mx:Button label="Play" click="login()" width="126" tabIndex="5"/>
+				</mx:HBox> 
+			</mx:VBox>
+		</mx:TitleWindow>
+		
+		<!--
+		| ICS application UI wrapped in ConnectSession
+		-->	
+		<rtc:ConnectSessionContainer id="cSession" authenticator="{auth}" archiveID="{archiveID}"  width="100%" height="100%" autoLogin="false"
+									initialRoomSettings="{myRoomSettings}" >
+			
+		   
+				<mx:HBox width="100%" height="100%">
+					<mx:VBox width="25%" height="100%">
+						<rtc:WebcamPublisher>
+						</rtc:WebcamPublisher>
+						<rtc:WebCamera width="100%" height="50%"/>
+						<rtc:AudioPublisher/>
+						<rtc:SimpleChat width="100%" height="50%" />
+						
+					</mx:VBox>
+					<rtc:SharedWhiteBoard width="75%" height="100%" backgroundColor="#C0C0C0"/>
+					<!--		<mx:ComboBox id="recordingSelection" dataProvider="{recordingList}" change="selectRecording();"/>	-->	
+				</mx:HBox>
+				<!--		<currentDir:PlaybackBar width="100%" height="10%" />   -->
+			
+			
+
+		</rtc:ConnectSessionContainer>
+	</mx:Panel>
+</mx:Application>
