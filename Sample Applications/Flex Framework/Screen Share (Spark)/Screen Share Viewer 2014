@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   width="100%" height="100%" applicationComplete="onCreationComplete()"
+			   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:rtc="http://ns.adobe.com/rtc">
+
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.rtc.collaboration.ScreenShareSubscriberComplex;
+			import com.adobe.rtc.events.SessionEvent;
+			
+			import mx.core.IFlexDisplayObject;
+			import mx.managers.PopUpManager;
+
+			// This is the upload part...
+			//[Embed (source = 'cursor.png')]
+			//protected var CursorShareClass:Class;
+			private const applicationTitle:String = "ICS Sample Application Simple Screen Share Viewer "
+				
+				
+			private function init():void{
+				var sss:ScreenShareSubscriberComplex= new ScreenShareSubscriberComplex();
+				sss.connectSession = cSession;
+				sss.width = displayArea.width;
+				sss.height = displayArea.height;
+				sss.x = 0;
+				sss.y = 0;
+				displayArea.addChild(sss);
+				//var _cursor:DisplayObject = DisplayObject(new CursorShareClass);
+				//displayArea.addChild(_cursor);
+				// var sss:ScreenShareSubscriberSprite = new ScreenShareSubscriberSprite();
+				// sss.connectSession = cSession;
+				// sss.graphics.drawRect(0, 0, displayArea.width, displayArea.height);
+				// displayArea.rawChildren.addChild( sss );
+			}
+			
+			
+			
+			//log  in stuff
+			private function onCreationComplete():void
+			{
+				popup(loginWindow);
+				cSession.addEventListener(SessionEvent.SYNCHRONIZATION_CHANGE, onEventNotification);
+			}
+			private function popup(window:IFlexDisplayObject):void
+			{
+				PopUpManager.addPopUp(window, this, true);
+				PopUpManager.centerPopUp(window);
+				window.visible = true;
+			}
+			
+			/**
+			 * Process LCCS Events
+			 */
+			private function onEventNotification(p_event:Event):void
+			{
+				if (p_event.type == SessionEvent.SYNCHRONIZATION_CHANGE) {
+					if (cSession.isSynchronized) {
+						panel.title = "Connected to room " + cSession.roomURL;
+						PopUpManager.removePopUp(loginWindow);
+						if ( cSession.userManager.myUserRole == 100 ) {
+							cSession.roomManager.autoPromote = true ;
+						}
+					}
+				}
+			}
+			private function listLabelFunction(p_object:Object):String
+			{
+				var roleString:String ;
+				
+				
+				if ( p_object is String ) {
+					return p_object as String;
+				}
+				
+				if ( p_object.role == 10 ) {
+					roleString = "Viewer" ;
+				}else if ( p_object.role == 50 ) {
+					roleString = "Publisher" ;
+				}else if (p_object.role == 100 ) {
+					roleString = "Owner" ;
+				}
+				if ( p_object.userID == cSession.userManager.myUserID ) {
+					return "*" + p_object.displayName + " : " + roleString ;
+				}
+				return p_object.displayName + " : " + roleString ;
+			}
+			
+			private function login():void
+			{
+				
+				auth.userName = username.text;
+				auth.password = passwordBox.visible ? password.text : null;
+				cSession.roomURL = roomURL.text;	
+				cSession.login();
+			}
+		]]>
+	</fx:Script>	
+		<!--
+		| Login Dialog Box
+		-->
+		<mx:TitleWindow id="loginWindow" title="Connect to Room" visible="false">
+			<mx:VBox>
+				<mx:HBox>
+					<mx:Label text="Room URL:" width="70"/>
+					<mx:TextInput id="roomURL" width="295" tabIndex="1">
+						<mx:text>Your RoomUrl</mx:text>
+					</mx:TextInput>
+				</mx:HBox>
+				<mx:HBox>
+					<mx:Label text="Username:" width="70"/>
+					<mx:TextInput id="username" tabIndex="2">
+						<mx:text>Your Username</mx:text>
+					</mx:TextInput>	
+					<mx:Button label="Login" click="login()" width="126" tabIndex="4"/>
+				</mx:HBox>
+				<mx:HBox>
+					<mx:HBox id="passwordBox">
+						<mx:Label text="Password:" width="70"/>
+						<mx:TextInput id="password" displayAsPassword="true" tabIndex="3">
+							<mx:text>Your password</mx:text>
+						</mx:TextInput>	
+					</mx:HBox>
+					<mx:RadioButton label="User" selected="true" click="passwordBox.visible = true"/>
+					<mx:RadioButton label="Guest" click="passwordBox.visible = false"/>
+				</mx:HBox>
+			</mx:VBox>
+		</mx:TitleWindow>
+		<!--
+		This is set up for external use
+		-->
+	<fx:Declarations>
+		<rtc:RoomSettings id="myRoomSettings" roomBandwidth="auto" autoPromote="true" guestsMustKnock="false"/>
+<rtc:AdobeHSAuthenticator id="auth" />
+	</fx:Declarations>
+
+	<mx:Panel id="panel" title="{applicationTitle}" width="100%" height="100%" paddingLeft="5" paddingTop="5" paddingRight="5" paddingBottom="5">
+		<rtc:ConnectSessionContainer backgroundAlpha="0.0" id="cSession" authenticator="{auth}" width="100%" autoLogin="false"
+									 height="100%" initialRoomSettings="{myRoomSettings}" >
+			<mx:HBox width="100%" height="100%" id="displayArea" creationComplete="init()"/>
+		</rtc:ConnectSessionContainer>
+	</mx:Panel>	
+</mx:Application>
