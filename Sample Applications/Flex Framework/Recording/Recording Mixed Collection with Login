@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+				xmlns:rtc="http://ns.adobe.com/rtc"
+				width="100%" height="100%" applicationComplete="onCreationComplete()"
+				layout="absolute" viewSourceURL="srcview/index.html">
+			
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.rtc.events.ArchiveEvent;
+			import com.adobe.rtc.events.SessionEvent;
+			import mx.managers.PopUpManager;
+			import mx.controls.Alert;
+			
+			import com.adobe.rtc.collaboration.WebcamSubscriber;
+			import com.adobe.rtc.sharedManagers.UserManager;
+			
+			import com.adobe.rtc.archive.ArchiveManager;
+			import com.adobe.rtc.events.ArchiveEvent;
+			import com.adobe.rtc.events.SessionEvent;
+			import mx.controls.Alert;
+			
+			protected var users:UserManager;
+			protected var presenterItems:Object = new Object();
+				
+				
+			import mx.core.IFlexDisplayObject;
+			
+			[Bindable] public static var DEFAULT_CONFIGURATION:String = "default";
+			[Bindable] public static var HUB_SPOKE_CONFIGURATION:String = "hub-spoke";
+			[Bindable] public static var MULTICAST_CONFIGURATION:String = "multicast";
+			
+			private var rtmfpTimer:Timer = null;
+			private var netConnection:NetConnection = null;
+			private const ConnectionTimeout:int = 5000;
+			
+            import com.adobe.rtc.events.SessionEvent;
+
+			
+			[Bindable]public var autToken:String = "authToken";
+			[Bindable]public var userName:String = "userName";
+			[Bindable]public var archiveId:String  //need this
+
+			[Bindable]private var allowStream:String;
+			[Bindable]private var role:Number;
+			
+	   //this is a workaround to stop and start streams 
+			public var audPub:Boolean = false;
+			public var webCam:Boolean = false;
+			public var allowPrivateStreams:Boolean = false;
+			
+			protected function startBtn_clickHandler(event:MouseEvent):void
+			{
+				if ( startBtn.label == "Start Audio" ) {
+				
+					audioPub.publish();
+					startBtn.label = "Stop Audio" ;
+					}
+				else if (startBtn.label == "Stop Audio" ){
+		
+					audioPub.stop();
+					startBtn.label = "Start Audio" ;
+				}
+			}
+			
+
+		
+			private const applicationTitle:String = "ICS Sample Application AV Chat WhiteBoard with Record (save your recording name for playback)";
+
+			public function startAudio():void
+			{
+				var b:Boolean = audioPub.isPublishing;
+				trace("startAudio: "+b);
+				if( !b ){
+					audioPub.publish();
+					
+				} else {
+					audioPub.stop();
+				}
+				
+			}
+
+			private function onCreationComplete():void
+			{
+				popup(loginWindow);
+				cSession.addEventListener(SessionEvent.SYNCHRONIZATION_CHANGE, onEventNotification);
+			}
+			private function popup(window:IFlexDisplayObject):void
+			{
+				PopUpManager.addPopUp(window, this, true);
+				PopUpManager.centerPopUp(window);
+				window.visible = true;
+			}
+			
+			/**
+			 * Process LCCS Events
+			 */
+			private function onEventNotification(p_event:Event):void
+			{
+				if (p_event.type == SessionEvent.SYNCHRONIZATION_CHANGE) {
+					if (cSession.isSynchronized) {
+						panel.title = "Connected to room " + cSession.roomURL;
+						PopUpManager.removePopUp(loginWindow);
+						if ( cSession.userManager.myUserRole == 100 ) {
+							cSession.roomManager.autoPromote = true ;
+						}
+					}
+				}
+			}
+
+			
+			//recording Functions
+			private function onGuestClick():void
+			{
+				cSession.archiveManager.guestsAllowed = guestsAllowed.selected ;
+			}
+			
+			private function onBtnClick():void
+			{
+				cSession.archiveManager.isRecording =!record.selected ;
+				cSession.archiveManager.isRecording = true;
+			} 
+			private function onBtnClick2():void
+			{
+				cSession.archiveManager.isRecording =!record_stop.selected ;
+			}
+			
+			private function onError(p_error:SessionEvent):void {
+				Alert.show(p_error.error.message, p_error.error.name + " error");
+			}
+			
+			private function onRecordingChange(p_recChange:ArchiveEvent):void {                                
+				if (cSession.archiveManager.isRecording) {
+					Alert.show("Started Recording...", "RecordingState");
+				} else {
+					Alert.show("Stopped Recording...", "RecordingState");
+				}
+			}
+			
+			private function connectSession(string:String):void
+			{
+				
+				
+				cSession.roomURL = string;
+				cSession.addEventListener(SessionEvent.ERROR, onError);
+				archiveID=LoaderInfo(this.root.loaderInfo).parameters["archiveID"];//need this 
+				cSession.archiveManager.addEventListener(ArchiveEvent.RECORDING_CHANGE, onRecordingChange);       
+				cSession.login();
+			}
+			
+			private function login():void
+			{
+				auth.userName = username.text;
+				auth.password = passwordBox.visible ? password.text : null;
+				cSession.roomURL = roomURL.text;
+				cSession.archiveID = archiveID.text;//need this
+				cSession.login();
+			}
+			
+		]]>
+</mx:Script>
+	<!--	Auto Promote to false so only admin has access to the record features 
+	You will have a second URL for viewers with no record buttons!!!-->	
+	<rtc:RoomSettings id="myRoomSettings" roomBandwidth="auto" autoPromote="true" guestsMustKnock="false"/>
+
+	<rtc:AdobeHSAuthenticator id="auth" />
+
+	
+	<mx:Panel id="panel" title="{applicationTitle}" width="100%" height="100%" paddingLeft="5" paddingTop="5" paddingRight="5" paddingBottom="5">
+		
+		<!--
+		| Login Dialog Box
+		-->
+		<mx:TitleWindow id="loginWindow" title="Connect to Room" visible="false">
+			<mx:VBox>
+				<mx:HBox>
+					<mx:Label text="Room URL:" width="70"/>
+					<mx:TextInput id="roomURL" width="295" tabIndex="1">
+		
+	         <mx:text>Your RoomUrl</mx:text> 
+					</mx:TextInput>
+				</mx:HBox>
+				
+				<mx:HBox>
+					<mx:Label text="Recording Name:" width="70"/>
+					<mx:TextInput id="archiveID" tabIndex="4">
+						<mx:text>Recording Name</mx:text>
+					</mx:TextInput>	
+				</mx:HBox>
+				
+				<mx:HBox>
+					<mx:Label text="Username:" width="70"/>
+					<mx:TextInput id="username" tabIndex="2">
+				<mx:text>Your Username</mx:text>
+					</mx:TextInput>	
+		
+				</mx:HBox>
+				
+				<mx:HBox>
+					<mx:HBox id="passwordBox">
+						<mx:Label text="Password:" width="70"/>
+						<mx:TextInput id="password" displayAsPassword="true" tabIndex="3">
+					<!--		<mx:text>Your password</mx:text> -->
+							
+						</mx:TextInput>	
+					</mx:HBox>
+					<mx:RadioButton label="User" selected="true" click="passwordBox.visible = true"/>
+					<mx:RadioButton label="Guest" click="passwordBox.visible = false"/>
+					<mx:Button label="Login" click="login()" width="126" tabIndex="4"/>
+				</mx:HBox>
+			</mx:VBox>
+		</mx:TitleWindow>
+		
+		
+		<!--
+		| LCCS application UI wrapped in ConnectSession
+		-->	
+
+		<rtc:ConnectSessionContainer id="cSession" authenticator="{auth}" width="100%" autoLogin="false"
+									 height="100%" initialRoomSettings="{myRoomSettings}" backgroundColor="#C0C0C0" >
+			<mx:HBox width="100%" height="100%">
+				<mx:VBox width="25%" height="100%">
+				<!--	<mx:Button  id="starcameratBtn" label="Start Audio"  click="startBtn_clickHandler(event)" height="20"     /> -->
+					<rtc:WebCamera width="100%" height="200"/>
+					<mx:Button  id="startBtn" label="Start Audio"  click="startBtn_clickHandler(event)" height="20"  right="30"/>
+					<rtc:AudioPublisher id="audioPub" />
+					<rtc:AudioSubscriber id="audioSub"   />
+					<rtc:SimpleChat width="100%" height="50%" />
+					<mx:CheckBox id="guestsAllowed" label="allowGuestPlayback" selected="true" click="onGuestClick()"/> 
+					<mx:Button id="record" label="Start Record" click="onBtnClick()" toggle="true" selected="{cSession.archiveManager.isRecording}" color="#993300" height="20" right="30"/>                
+					<mx:Button id="record_stop" label="Stop Record" click="onBtnClick2()" toggle="true" height="20" right="30" color="#993300"  selected="true"/>
+				</mx:VBox>
+				<rtc:SharedWhiteBoard width="75%" height="100%" backgroundColor="#ffffff"/>
+			</mx:HBox>
+		</rtc:ConnectSessionContainer> 
+	</mx:Panel>
+</mx:Application>
