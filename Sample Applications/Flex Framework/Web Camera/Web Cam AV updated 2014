@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+				xmlns:rtc="http://ns.adobe.com/rtc"
+				width="100%" height="100%" applicationComplete="onCreationComplete()"
+				layout="absolute" viewSourceURL="srcview/index.html">
+	
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.coreUI.controls.CameraUserBar;
+			import com.adobe.rtc.collaboration.WebcamSubscriber;
+			import com.adobe.rtc.events.CollectionNodeEvent;
+			import com.adobe.rtc.events.SessionEvent;
+			import com.adobe.rtc.events.SharedPropertyEvent;
+			import com.adobe.rtc.events.StreamEvent;
+			import com.adobe.rtc.events.UserEvent;
+			import com.adobe.rtc.messaging.UserRoles;
+			import com.adobe.rtc.sharedManagers.StreamManager;
+			import com.adobe.rtc.sharedManagers.descriptors.StreamDescriptor;
+			import com.adobe.rtc.sharedModel.SharedProperty
+				
+			import com.adobe.rtc.events.SessionEvent;
+			import mx.managers.PopUpManager;
+			import mx.core.IFlexDisplayObject;
+			
+			
+			import com.adobe.rtc.sharedManagers.descriptors.UserDescriptor;
+			import mx.controls.Alert;;
+			
+			protected var _camSubscribers:Object;
+			protected var _currentSubscriber:WebcamSubscriber ;
+			protected var _sharedProperty:SharedProperty ;
+			
+			
+			import com.adobe.rtc.sharedManagers.descriptors.UserDescriptor;
+			import mx.controls.Alert;
+			
+			private const applicationTitle:String = "ICS Sample Application WebCamera";
+			
+			//this is a workaround to stop and start streams 
+			public var audPub:Boolean = false;
+			public var webCam:Boolean = false;
+			public var allowPrivateStreams:Boolean = false;
+			
+			public function startAudio():void
+			{
+				var b:Boolean = audioPub.isPublishing;
+				trace("startAudio: "+b);
+				if( !b ){
+					audioPub.publish();
+					
+				} else {
+					audioPub.stop();
+				}
+				
+			}
+
+
+			/**
+			 *  Handler for the stop and start buttons.
+			 */ 
+			protected function startBtn_clickHandler(event:MouseEvent):void
+			{
+				if ( startBtn.label == "Start" ) {
+					webCamPub.publish();
+					startBtn.label = "Stop" ;
+					
+					if (_camSubscribers && _camSubscribers[cSession.userManager.myUserID]) {
+						var webcamSubscriber:WebcamSubscriber = _camSubscribers[cSession.userManager.myUserID];
+						smallSubscriberContainer.addChild(webcamSubscriber);
+					}
+				}else if (startBtn.label == "Stop" ){
+					webCamPub.stop();
+					startBtn.label = "Start" ;
+				}
+			}
+			
+			/**
+			 * SynchronizationChange event handler. Initialize the Shared property used to sync the Subscriber info
+			 * who would be the centre of the app.
+			 */
+			protected function cSession_synchronizationChangeHandler(event:Event):void
+			{
+				if (cSession.isSynchronized) {
+					_sharedProperty = new SharedProperty();
+					_sharedProperty.isSessionDependent = true ;
+					_sharedProperty.sharedID = "webcamShare2" ;
+					_sharedProperty.connectSession = cSession ;
+					_sharedProperty.subscribe();
+					_sharedProperty.addEventListener(SharedPropertyEvent.CHANGE,onChange);
+					
+					_camSubscribers = new Object();
+					cSession.streamManager.addEventListener(StreamEvent.STREAM_RECEIVE,onStreamRecieved);
+					cSession.streamManager.addEventListener(StreamEvent.STREAM_DELETE,onStreamDelete);
+					addExistingStreamers();
+				}
+			}
+			
+			/**
+			 *  Set up a thumbnail subscriber for every new camera stream
+			 */
+			protected function onStreamRecieved(p_evt:StreamEvent):void
+			{
+				if (p_evt.streamDescriptor.type == StreamManager.CAMERA_STREAM) {
+					setUpfromDescriptor(p_evt.streamDescriptor);
+				}
+			}
+			
+			/**
+			 * Clicking a subscriber updates the shared value, which in turn enlarges the thumbnail after getting updated
+			 */ 
+			protected function onClick(p_evt:MouseEvent):void
+			{
+				if ( (p_evt.currentTarget is WebcamSubscriber) &&  !(p_evt.target.parent is CameraUserBar)) {
+					_sharedProperty.value = (p_evt.currentTarget as WebcamSubscriber).publisherIDs;
+				}
+			}
+			
+			/**
+			 * Clean up when a user stops publishing his camera or exits his app.
+			 */ 
+			protected function onStreamDelete(p_evt:StreamEvent):void
+			{
+				if (p_evt.streamDescriptor.type == StreamManager.CAMERA_STREAM) {
+					if ( _camSubscribers[p_evt.streamDescriptor.streamPublisherID]) {
+						var webcamSubscriber:WebcamSubscriber = _camSubscribers[p_evt.streamDescriptor.streamPublisherID];
+						if (webcamSubscriber) {
+							smallSubscriberContainer.removeChild(webcamSubscriber);	
+						}
+						if (p_evt.streamDescriptor.streamPublisherID != cSession.userManager.myUserID) {
+							webcamSubscriber.removeEventListener(UserEvent.STREAM_CHANGE,onCameraPause);
+							webcamSubscriber.removeEventListener(UserEvent.USER_BOOTED,onUserBooted);
+							delete _camSubscribers[p_evt.streamDescriptor.streamPublisherID];
+							webcamSubscriber.close();
+							webcamSubscriber = null;
+						} else {
+							if (_currentSubscriber && _currentSubscriber.publisherIDs[0] == cSession.userManager.myUserID) {
+								_sharedProperty.value = null;
+							}
+						}
+					}
+				}
+			}
+			
+			/**
+			 * Logic for handling the Pause event on CameraUserBar on every Subscriber
+			 */ 
+			protected function onCameraPause(p_evt:UserEvent):void
+			{
+				var userStreams:Array = cSession.streamManager.getStreamsForPublisher(p_evt.userDescriptor.userID,StreamManager.CAMERA_STREAM);
+				
+				if (userStreams.length == 0) {
+					trace("onCameraPause: no userStreams");
+					return;
+				}
+				
+				for (var i:int = 0; i< userStreams.length ; i++ ) {
+					if (userStreams[i].type == StreamManager.CAMERA_STREAM ) {
+						break;
+					}
+				}
+				
+				var streamDescriptor:StreamDescriptor = userStreams[i];
+				if ( streamDescriptor.streamPublisherID == cSession.userManager.myUserID ) {
+					cSession.streamManager.pauseStream(StreamManager.CAMERA_STREAM,!streamDescriptor.pause,streamDescriptor.streamPublisherID);
+				}	
+			}
+			
+			/**
+			 * Initial set up of all users who are streaming when this app launches
+			 */ 
+			protected function addExistingStreamers():void
+			{
+				var streamDescritpors:Object = cSession.streamManager.getStreamsOfType(StreamManager.CAMERA_STREAM);
+				for (var i:String in streamDescritpors) {
+					setUpfromDescriptor(streamDescritpors[i]);
+				}
+			}
+			
+			/**
+			 * Helper method to create a thumbnail subscriber.
+			 */ 
+			protected function setUpfromDescriptor(p_descriptor:StreamDescriptor):void
+			{
+				if (! _camSubscribers[p_descriptor.streamPublisherID]) {
+					var webCamSubscriber:WebcamSubscriber = new WebcamSubscriber();
+					webCamSubscriber.connectSession = cSession ;
+					webCamSubscriber.addEventListener(UserEvent.STREAM_CHANGE,onCameraPause);
+					webCamSubscriber.addEventListener(UserEvent.USER_BOOTED,onUserBooted);
+					webCamSubscriber.webcamPublisher = webCamPub;
+					webCamSubscriber.subscribe();
+					webCamSubscriber.sharedID = p_descriptor.streamPublisherID;
+					webCamSubscriber.publisherIDs = [p_descriptor.streamPublisherID];
+					webCamSubscriber.height = webCamSubscriber.width = 180;
+					webCamSubscriber.addEventListener(MouseEvent.CLICK, onClick);
+					smallSubscriberContainer.addChild(webCamSubscriber);
+					_camSubscribers[p_descriptor.streamPublisherID] = webCamSubscriber;
+				}
+			}
+			
+			/**
+			 * This method is the listener to SharedPropertyEvent.CHANGE event. It updates the centred subscribes as its value
+			 * changes.
+			 */ 
+			protected function onChange(p_evt:SharedPropertyEvent):void
+			{
+				if ( _currentSubscriber != null ) {
+					_currentSubscriber.removeEventListener(UserEvent.USER_BOOTED,onUserBooted);
+					_currentSubscriber.removeEventListener(UserEvent.STREAM_CHANGE,onCameraPause);
+					centeredSubscriber.removeChild(_currentSubscriber);
+					_currentSubscriber.close();
+					_currentSubscriber = null ;
+				}
+				
+				if ( _sharedProperty.value == null || _sharedProperty.value.length == 0 ) {
+					return ;
+				}
+				
+				
+				_currentSubscriber = new WebcamSubscriber();
+				_currentSubscriber.connectSession = cSession ;
+				_currentSubscriber.subscribe();
+				_currentSubscriber.webcamPublisher = webCamPub ;
+				_currentSubscriber.publisherIDs = _sharedProperty.value ;
+				_currentSubscriber.addEventListener(UserEvent.USER_BOOTED,onUserBooted);
+				_currentSubscriber.addEventListener(UserEvent.STREAM_CHANGE,onCameraPause);
+				_currentSubscriber.width = _currentSubscriber.height = 500;
+				centeredSubscriber.addChild(_currentSubscriber);
+			}
+			
+			/**
+			 * Logic for handling the Close event on CameraUserBar on every Subscriber
+			 */ 
+			protected function onUserBooted(p_evt:UserEvent=null):void
+			{
+				var tmpFlag:Boolean = false;
+				if (_currentSubscriber && _currentSubscriber.publisherIDs[0] == p_evt.userDescriptor.userID) {
+					if (_currentSubscriber.parent) {
+						_currentSubscriber.removeEventListener(UserEvent.USER_BOOTED,onUserBooted);
+						_currentSubscriber.removeEventListener(UserEvent.STREAM_CHANGE,onCameraPause);
+						_currentSubscriber.close();
+						_currentSubscriber.parent.removeChild(_currentSubscriber);
+						_currentSubscriber = null;
+						_sharedProperty.value = null;
+					}
+					tmpFlag = true;
+				}
+				
+				if ( _camSubscribers[p_evt.userDescriptor.userID]) {
+					var webcamSubscriber:WebcamSubscriber = _camSubscribers[p_evt.userDescriptor.userID];
+					tmpFlag = true;
+				}
+				
+				if (tmpFlag) {
+					webCamPub.stop();
+					startBtn.label = "Start";
+				}
+			}
+			
+			//login
+			private function onCreationComplete():void
+			{
+				popup(loginWindow);
+				cSession.addEventListener(SessionEvent.SYNCHRONIZATION_CHANGE, onEventNotification);
+			}
+			
+			private function popup(window:IFlexDisplayObject):void
+			{
+				PopUpManager.addPopUp(window, this, true);
+				PopUpManager.centerPopUp(window);
+				window.visible = true;
+			}
+			
+			/**
+			 * Process LCCS Events
+			 */
+			private function onEventNotification(p_event:Event):void
+			{
+				if (p_event.type == SessionEvent.SYNCHRONIZATION_CHANGE) {
+					if (cSession.isSynchronized) {
+						panel.title = "Connected to room " + cSession.roomURL;
+						PopUpManager.removePopUp(loginWindow);
+						if ( cSession.userManager.myUserRole == 100 ) {
+							cSession.roomManager.autoPromote = true ;
+						}
+						
+					} 
+				}
+			}
+			
+			
+			private function listLabelFunction(p_object:Object):String
+			{
+				var roleString:String ;
+				
+				
+				if ( p_object is String ) {
+					return p_object as String;
+				}				
+				
+				if ( p_object.role == 10 ) {
+					roleString = "Viewer" ;
+				}else if ( p_object.role == 50 ) {
+					roleString = "Publisher" ;
+				}else if (p_object.role == 100 ) {
+					roleString = "Owner" ;
+				}
+				
+				if ( p_object.userID == cSession.userManager.myUserID ) {
+					return  "*" + p_object.displayName + " : " + roleString ;
+				}
+				
+				return  p_object.displayName + " : " + roleString ;
+			}
+			
+			private function login():void
+			{
+				auth.userName = username.text;
+				auth.password = passwordBox.visible ? password.text : null;
+				cSession.roomURL = roomURL.text;	
+				cSession.login();
+			}
+			
+		]]>
+	</mx:Script>
+	
+	
+	<rtc:RoomSettings id="myRoomSettings" roomBandwidth="auto" autoPromote="true" guestsMustKnock="false"/>
+	<rtc:AdobeHSAuthenticator id="auth"  />
+	
+	<mx:Panel id="panel" title="{applicationTitle}" width="100%" height="100%" paddingLeft="5" paddingTop="5" paddingRight="5" paddingBottom="5">
+		
+		<!--
+		| Login Dialog Box
+		-->
+		<mx:TitleWindow id="loginWindow" title="Connect to Room" visible="false">
+			<mx:VBox>
+				<mx:HBox>
+					<mx:Label text="Room URL:" width="70"/>
+					<mx:TextInput id="roomURL" width="295" tabIndex="1">
+						<mx:text>Your RoomUrl</mx:text>
+					</mx:TextInput>
+				</mx:HBox>
+				<mx:HBox>
+					<mx:Label text="Username:" width="70"/>
+					<mx:TextInput id="username" tabIndex="2">
+						<mx:text>Your Username</mx:text>
+					</mx:TextInput>			
+					<mx:Button label="Login" click="login()" width="126" tabIndex="4"/>
+				</mx:HBox>
+				<mx:HBox>
+					<mx:HBox id="passwordBox">
+						<mx:Label text="Password:" width="70"/>
+						<mx:TextInput id="password" displayAsPassword="true" tabIndex="3">
+							<mx:text>Your password</mx:text>
+						</mx:TextInput>			
+					</mx:HBox>
+					<mx:RadioButton label="User" selected="true" click="passwordBox.visible = true"/>
+					<mx:RadioButton label="Guest" click="passwordBox.visible = false"/>
+				</mx:HBox>
+			</mx:VBox>
+		</mx:TitleWindow>
+		
+		<!--
+		| LCCS application UI wrapped in ConnectSession
+		-->		
+		<rtc:ConnectSessionContainer id="cSession" authenticator="{auth}" width="100%"  autoLogin="false" 
+									 height="100%"  initialRoomSettings="{myRoomSettings}" >
+		<mx:VBox id="rootContainer" width="100%" height="800" horizontalAlign="center">
+			<rtc:WebcamPublisher width="100" height="100" id="webCamPub"/>
+			<rtc:AudioPublisher id="audioPub" />
+			<rtc:AudioSubscriber id="audioSub" />
+			<mx:VBox width="500" height="400" id="centeredSubscriber" horizontalAlign="center" verticalAlign="middle"/>
+			<mx:List id="userList" height="100%" width="100%" 
+					 dataProvider="{cSession.userManager.userCollection}" allowMultipleSelection="true" labelField="displayName" 
+					 fontWeight="bold"  fontSize="14"  />
+			<mx:Label text="Click on a Subscriber thumbnail to make it bigger." />
+			<mx:HBox width="100%" height="160" horizontalAlign="center" verticalAlign="top" 
+					 id="smallSubscriberContainer" creationComplete="cSession_synchronizationChangeHandler(event)"/>
+			<mx:Button  id="startBtn" label="Start"  click="startBtn_clickHandler(event)" height="20"/>
+			<mx:Button id="but" toggle="true" label="{(!but.selected)? 'Start Audio': 'Stop Audio'}"
+					   click="{(but.selected)? audioPub.publish() : audioPub.stop()}" />
+		</mx:VBox>
+		</rtc:ConnectSessionContainer>
+	</mx:Panel>
+</mx:Application>
