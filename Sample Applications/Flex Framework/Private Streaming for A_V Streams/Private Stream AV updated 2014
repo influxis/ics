@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+				xmlns:rtc="http://ns.adobe.com/rtc"
+				width="100%" height="100%" applicationComplete="onCreationComplete()"
+				layout="absolute" viewSourceURL="srcview/index.html">
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.rtc.events.SessionEvent;
+			import mx.managers.PopUpManager;
+			import mx.core.IFlexDisplayObject;
+			import com.adobe.rtc.sharedManagers.descriptors.UserDescriptor;
+			import mx.controls.Alert;
+//			import com.adobe.rtc.sharedManagers.UserManager;
+			
+			[Bindable] public static var DEFAULT_CONFIGURATION:String = "default";
+			[Bindable] public static var HUB_SPOKE_CONFIGURATION:String = "hub-spoke";
+			[Bindable] public static var MULTICAST_CONFIGURATION:String = "multicast";
+			
+			private var rtmfpTimer:Timer = null;
+			private var netConnection:NetConnection = null;
+			private const ConnectionTimeout:int = 5000;
+			
+			import com.adobe.rtc.collaboration.WebcamSubscriber;
+            import com.adobe.rtc.events.SessionEvent;
+ //           import com.adobe.rtc.sharedManagers.UserManager;
+			
+			/**********************************************************
+			 * This example demonstrates the newly added Private Stream Feature.
+			 * We have a new property called recipients inside Audio/Camera Publishers
+			 * that stores an array of userIDs to be sent the private message to. The default value
+			 * is null, meaning send to everyone. You can't change this property i.e. list of users you are sending private streams to
+			 * while you are already publishing your stream. You need to stop your stream, set the recipient IDs and then again
+			 * call publish methods. A owner can enable/disable private streaming in a room. By default, it is disabled.
+			 * You can only send private streams to an user or group of users if private streaming is enabled.
+			 * This example allows you to select a group of users and send them your streams. Receiving users will only see
+			 * that stream and will not know whom else the stream was sent to. The example also shows list of users who are getting
+			 * your private audio/camera streams.
+			 * For sending private stream to just one user, have just one user ID to the recipients array.
+			 * This exanple has a workaround to ensure stream start and stop
+			 * *********************************/
+			[Bindable]private var allowStream:String;
+			[Bindable]private var role:Number;
+			
+	   //this is a workaround to stop and start streams 
+			public var audPub:Boolean = false;
+			public var webCam:Boolean = false;
+			public var allowPrivateStreams:Boolean = false;
+			
+//			var camera:Camera = Camera.getCamera();
+			
+		//	camera.setMode(width, height, camera.fps);
+//			var video:Video = new  Video(camera.width, camera.height);
+		//	video.attachCamera(camera);
+		
+			private const applicationTitle:String = "ICS Sample Application";
+			private function onClick(event:MouseEvent):void
+			{
+				if ( btn.label == "Start" ) {
+					webcamPub.publish();
+					btn.label = "Stop" ;
+				}else if ( btn.label == "Stop") {
+					webcamPub.stop();
+					btn.label = "Start" ;
+				}
+			}
+			public function startAudio():void
+			{
+				var b:Boolean = audioPub.isPublishing;
+				trace("startAudio: "+b);
+				if( !b ){
+					audioPub.publish();
+					
+				} else {
+					audioPub.stop();
+				}
+				
+			}
+			public function startCamera():void
+			{
+				var b:Boolean = webcamPub.isPublishing;
+				trace("startCamera: "+b);
+				if( !b ){
+					webcamPub.publish();
+					
+				} else {
+					webcamPub.stop();
+				}
+				
+			}
+			private function onCreationComplete():void
+			{
+				popup(loginWindow);
+				cSession.addEventListener(SessionEvent.SYNCHRONIZATION_CHANGE, onEventNotification);
+			}
+			private function popup(window:IFlexDisplayObject):void
+			{
+				PopUpManager.addPopUp(window, this, true);
+				PopUpManager.centerPopUp(window);
+				window.visible = true;
+			}
+			
+			/**
+			 * Process LCCS Events
+			 */
+			private function onEventNotification(p_event:Event):void
+			{
+				if (p_event.type == SessionEvent.SYNCHRONIZATION_CHANGE) {
+					if (cSession.isSynchronized) {
+						panel.title = "Connected to room " + cSession.roomURL;
+						PopUpManager.removePopUp(loginWindow);
+						if ( cSession.userManager.myUserRole == 100 ) {
+							cSession.roomManager.autoPromote = true ;
+						}
+					}
+				}
+			}
+			private function listLabelFunction(p_object:Object):String
+			{
+				var roleString:String ;
+				
+				
+				if ( p_object is String ) {
+					return p_object as String;
+				}
+				
+				if ( p_object.role == 10 ) {
+					roleString = "Viewer" ;
+				}else if ( p_object.role == 50 ) {
+					roleString = "Publisher" ;
+				}else if (p_object.role == 100 ) {
+					roleString = "Owner" ;
+				}
+				if ( p_object.userID == cSession.userManager.myUserID ) {
+					return "*" + p_object.displayName + " : " + roleString ;
+				}
+				return p_object.displayName + " : " + roleString ;
+			}
+			private function onEveryoneAudioClick():void
+			{
+				if (audioPub.recipientIDs != null ) {
+					mx.controls.Alert.show("User is having a set of recipients for Audio.\n Set recipients to null before sending everyone");
+					return ;
+				}
+				audioPub.recipientIDs = null ;
+				audioPub.publish();
+				audioList.visible = false ;
+			}
+			private function onEveryoneWebcamClick():void
+			{
+				if (webcamPub.recipientIDs != null ) {
+					mx.controls.Alert.show("User is having a set of recipients for Webcam.\n Set recipients to null before sending everyone");
+					return ;
+				}
+				
+				webcamPub.quality = 95;
+				webcamPub.keyframeInterval = 120;
+				webcamPub.fps = 30;
+			
+				
+		        webcamPub.recipientIDs = null ;
+				webcamPub.publish();
+				camList.visible = false ;
+			}
+			//set h264   
+			/*
+			if(isFlashPlayer11()) {	
+				var h264Settings:H264VideoStreamSettings = new H264VideoStreamSettings();
+				h264Settings.setProfileLevel(H264Profile.BASELINE, H264Level.LEVEL_2);
+				_stream.videoStreamSettings = h264Settings;
+				}	
+		   return _stream ;   
+			*/
+		  //set h264	
+			private function onPrivateAudioClick():void
+			{
+				if ( userList.selectedItems.length == 1 && (userList.selectedItem as UserDescriptor).userID == cSession.userManager.myUserID ) {
+					mx.controls.Alert.show("Select at least one user other than yourself.");
+					return ;
+				}
+				var selectedUsers:Array = userList.selectedItems ;
+				var recipientIDs:Array = new Array();
+				var userNames:Array = new Array();
+				for ( var i:int = 0 ; i < selectedUsers.length ; i++ ) {
+					// I don't need to add my UserID as private stream item also come back to myself anyways.
+					// Private stream item goes to the list of recipients as well as myself. Adding myuserID or not doesnt make any difference.
+					if ( (selectedUsers[i] as UserDescriptor).userID != cSession.userManager.myUserID ) {
+						recipientIDs.push((selectedUsers[i] as UserDescriptor).userID);
+						userNames.push((selectedUsers[i] as UserDescriptor).displayName);
+					}
+				}
+				audioPub.recipientIDs = recipientIDs ;
+				audioPub.publish();
+				audioList.dataProvider = userNames ;
+				audioList.visible = true ;
+			}
+			private function onPrivateWebcamClick():void
+			{
+				if ( userList.selectedItems.length == 1 && (userList.selectedItem as UserDescriptor).userID == cSession.userManager.myUserID ) {
+					mx.controls.Alert.show("Select at least one user other than yourself.");
+					return ;
+				}
+				var selectedUsers:Array = userList.selectedItems ;
+				var recipientIDs:Array = new Array();
+				var userNames:Array = new Array();
+			
+				
+	
+				
+				for ( var i:int = 0 ; i < selectedUsers.length ; i++ ) {
+					// I don't need to add my UserID as private stream item also come back to myself anyways.
+					// Private stream item goes to the list of recipients as well as myself. Adding myuserID or not doesnt make any difference.
+					//if ( (selectedUsers[i] as UserDescriptor).userID != cSession.userManager.myUserID ) {
+					recipientIDs.push((selectedUsers[i] as UserDescriptor).userID);
+					userNames.push((selectedUsers[i] as UserDescriptor).displayName);
+					//}
+				}
+				webcamPub.recipientIDs = recipientIDs ;
+				webcamPub.publish();
+				camList.dataProvider = userNames ;
+				camList.visible = true ;
+			}
+			private function login():void
+			{
+				auth.userName = username.text;
+				auth.password = passwordBox.visible ? password.text : null;
+				cSession.roomURL = roomURL.text;
+				cSession.login();
+			}
+			private function onAllowPrivateStreamClick():void
+			{
+				if ( allowPrivateStream.label == 'Stop Private Streams' ) {
+					allowPrivateStream.label = 'Allow Private Streams' ;
+				}else {
+					allowPrivateStream.label = 'Stop Private Streams'
+				}
+				cSession.streamManager.allowPrivateStreams = !cSession.streamManager.allowPrivateStreams ;
+			    cSession.streamManager.allowPrivateStreams = true;
+			}
+			//added for error allow private stream//Testing!!
+			
+			
+			/****
+			 * When published stream is received, start polling the activity level of my microphone.
+			 */
+	/*		private function onStreamReceive(p_evt:StreamEvent):void
+			{
+				if ( p_evt.streamDescriptor.finishPublishing && p_evt.streamDescriptor.streamPublisherID == cSession.userManager.myUserID) {
+		
+				}
+			} */
+			public function register(rtmp:Boolean):void 
+			{ netConnection = new NetConnection();
+				netConnection.addEventListener(NetStatusEvent.NET_STATUS, connectionHandler);
+				netConnection.connect(rtmp ? "rtmp:" : "rtmfp:" + "//server.domain/application");
+				if (!rtmp) { rtmfpTimer = new Timer(ConnectionTimeout, 1);
+					rtmfpTimer.addEventListener(TimerEvent.TIMER_COMPLETE, rtmfpTimeoutHandler);
+					rtmfpTimer.start(); } } private function rtmfpTimeoutHandler(e:TimerEvent):void { netConnection.close();
+						netConnection = null;
+						register(true);
+					} 
+			private function connectionHandler(e:NetStatusEvent):void
+			{ if (rtmfpTimer) { rtmfpTimer.stop(); rtmfpTimer = null;
+			} if ("NetConnection.Connect.Success" == e.info.code)
+			{
+				// RTMFP or RTMP connection succeeded
+			} 
+			else if ("NetConnection.Connect.Failed" == e.info.code) {
+				// RTMFP or RTMP connection failed } } 
+			}
+			}
+			
+		]]>
+	</mx:Script>
+	<rtc:RoomSettings id="myRoomSettings" roomBandwidth="auto" autoPromote="true" guestsMustKnock="false"/>
+	<rtc:AdobeHSAuthenticator id="auth" />
+	<mx:Panel id="panel" title="{applicationTitle}" width="100%" height="100%" paddingLeft="5" paddingTop="5" paddingRight="5" paddingBottom="5">
+		
+		<!--
+		| Login Dialog Box
+		-->
+		<mx:TitleWindow id="loginWindow" title="Connect to Room" visible="false">
+			<mx:VBox>
+				<mx:HBox>
+					<mx:Label text="Room URL:" width="70"/>
+					<mx:TextInput id="roomURL" width="295" tabIndex="1">
+						<mx:text>Your RoomUrl</mx:text>
+					</mx:TextInput>
+				</mx:HBox>
+				<mx:HBox>
+					<mx:Label text="Username:" width="70"/>
+					<mx:TextInput id="username" tabIndex="2">
+						<mx:text>Your Username</mx:text>
+					</mx:TextInput>	
+					<mx:Button label="Login" click="login()" width="126" tabIndex="4"/>
+				</mx:HBox>
+				<mx:HBox>
+					<mx:HBox id="passwordBox">
+						<mx:Label text="Password:" width="70"/>
+						<mx:TextInput id="password" displayAsPassword="true" tabIndex="3">
+							<mx:text>Your password</mx:text>
+						</mx:TextInput>	
+					</mx:HBox>
+					<mx:RadioButton label="User" selected="true" click="passwordBox.visible = true"/>
+					<mx:RadioButton label="Guest" click="passwordBox.visible = false"/>
+				</mx:HBox>
+			</mx:VBox>
+		</mx:TitleWindow>
+		
+		<!--
+		| LCCS application UI wrapped in ConnectSession
+		-->	
+		<rtc:ConnectSessionContainer id="cSession" authenticator="{auth}" width="100%" autoLogin="false"
+									 height="100%" initialRoomSettings="{myRoomSettings}" >
+			<mx:VBox width="100%" height="100%" >
+				<mx:HBox width="100%" height="100%">
+					<mx:VBox width="70%" height="100%" horizontalAlign="center">
+						<rtc:AudioPublisher id="audioPub" />
+						<rtc:AudioSubscriber id="audioSub" />
+						<rtc:WebcamPublisher id="webcamPub" />
+						<rtc:WebcamSubscriber width="100%" height="100%" webcamPublisher="{webcamPub}" />
+					</mx:VBox>
+					<mx:VBox width="30%" height="100%">
+						<mx:Label text="All User List" />
+						<mx:List id="userList" height="100%" width="100%"
+								 dataProvider="{cSession.userManager.userCollection}" allowMultipleSelection="true" labelField="displayName"
+								 fontWeight="bold" fontSize="14" />
+						<mx:Label text="Private Audio Recipient List" />
+						<mx:List id="audioList" height="100%" width="100%" allowMultipleSelection="true" toolTip="This List contains List of users you are privately sharing your audio with."
+								 fontWeight="bold" fontSize="14" visible="false" />
+						<mx:Label text="Private Camera Recipient List" />
+						<mx:List id="camList" height="100%" width="100%"
+								 allowMultipleSelection="true" toolTip="This List contains List of users you are privately sharing your camera with."
+								 fontWeight="bold" labelFunction="listLabelFunction" fontSize="14" visible="false" />
+					</mx:VBox>
+				</mx:HBox>
+				<mx:HBox height="40" width="100%" horizontalAlign="center">
+					<mx:Button label="Send Everyone Audio" id="audioBtn" click="onEveryoneAudioClick()" height="30" />
+					<mx:Button label="Send Everyone Webcam" id="btn" click="onEveryoneWebcamClick()" height="30" />
+					<mx:Button label="Send Private Audio" id="privateAudioBtn" click="onPrivateAudioClick()" height="30" enabled="{userList.selectedItem!= null }" />
+					<mx:Button label="Send Private Webcam" id="privateWebcamBtn" click="onPrivateWebcamClick()" height="30" enabled="{userList.selectedItem!= null }"/>
+				<mx:Button label="{cSession.streamManager.allowPrivateStreams ? 'Stop Private Streams' : 'Allow Private Streams'}" id="allowPrivateStream"
+							   click="onAllowPrivateStreamClick()" visible="{cSession.userManager.myUserRole>=100}" height="30" /> 
+					<mx:Button label="Stop My Audio" click="{audioPub.stop();audioList.visible=false;}" height="30" enabled="{audioPub.isPublishing}"/>
+					<mx:Button label="Stop My Camera" click="{webcamPub.stop();camList.visible=false;}" height="30" enabled="{webcamPub.isPublishing}"/> 
+				</mx:HBox>
+			</mx:VBox>
+		</rtc:ConnectSessionContainer>
+	</mx:Panel>
+</mx:Application>
