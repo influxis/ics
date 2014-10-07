@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:mx="library://ns.adobe.com/flex/mx"
+               xmlns:rtc="http://ns.adobe.com/rtc"
+               minWidth="955" minHeight="600" applicationComplete="init()"
+               viewSourceURL="srcview/index.html">
+    
+    
+    <fx:Script>
+        <![CDATA[
+            import com.adobe.coreUI.controls.CameraUserBar;
+            import com.adobe.rtc.clientManagers.MicrophoneManager;
+            import com.adobe.rtc.collaboration.WebcamSubscriber;
+            import com.adobe.rtc.events.CollectionNodeEvent;
+            import com.adobe.rtc.events.SessionEvent;
+            import com.adobe.rtc.events.SharedPropertyEvent;
+            import com.adobe.rtc.events.StreamEvent;
+            import com.adobe.rtc.events.UserEvent;
+            import com.adobe.rtc.messaging.UserRoles;
+            import com.adobe.rtc.sharedManagers.StreamManager;
+            import com.adobe.rtc.sharedManagers.descriptors.StreamDescriptor;
+            import com.adobe.rtc.sharedModel.SharedProperty;
+//            import com.influxis.controls.MicActivityControl;
+//            import com.influxis.views.SettingsView;
+            
+            protected var _camSubscribers:Object;
+            protected var _currentSubscriber:WebcamSubscriber ;
+            protected var _sharedProperty:SharedProperty ;
+            
+            import com.adobe.rtc.archive.ArchiveManager;
+            import com.adobe.rtc.events.ArchiveEvent;
+            import com.adobe.rtc.events.SessionEvent;
+            import com.adobe.rtc.sharedManagers.UserManager;
+            import mx.controls.Alert;
+            
+            import flash.net.navigateToURL;
+            import flash.net.URLRequest;
+            import flash.net.URLRequestMethod;
+            
+            public var audPub:Boolean = false;
+            public var webCam:Boolean = false;
+            
+            
+            protected var users:UserManager;
+            protected var presenterItems:Object = new Object();
+            
+            [Bindable]public static var DEFAULT_CONFIGURATION:String = "default";
+            [Bindable]public static var HUB_SPOKE_CONFIGURATION:String = "hub-spoke";
+            [Bindable]public static var MULTICAST_CONFIGURATION:String = "multicast";
+            
+            [Bindable]public var roomURL:String = "roomURL";
+            [Bindable]public var autToken:String = "authToken";
+            [Bindable]public var userName:String = "userName";
+            [Bindable]public var archiveID:String="archiveID";    
+            [Bindable]private var authToken:String;
+            [Bindable]private var role:Number;
+            [Bindable]private var userID:String;
+
+            //web Cam start stop added
+            
+            /*http://web.tuckerconnelly.com/ironcoding/2011/02/flash-as3-video-chat-using-adobe-lccs/
+            * Handler for the stop and start buttons.
+            */
+            protected function startBtn_clickHandler(event:MouseEvent):void
+            {
+                if ( startBtn.label == "Start" ) {
+                    webCamPub.publish();
+                    audioPub.publish();
+                    startBtn.label = "Stop" ;
+                    
+                    
+                    if (_camSubscribers && _camSubscribers[cSession.userManager.myUserID]) {
+                        var webcamSubscriber:WebcamSubscriber = _camSubscribers[cSession.userManager.myUserID];
+                        smallSubscriberContainer.addChild(webcamSubscriber);
+                    }
+                }else if (startBtn.label == "Stop" ){
+                    webCamPub.stop();
+                    audioPub.stop();
+                    
+                //    audioPub.close();
+                //    webCamPub.close();
+                    startBtn.label = "Start" ;
+                }
+            }
+            public function startAudio():void
+            {
+                var b:Boolean = audioPub.isPublishing;
+                trace("startAudio: "+b);
+                if( !b ){
+                    audioPub.publish();
+                    //activityTimer.start();
+                } else {
+                    audioPub.stop();
+                    //activityTimer.stop();
+                
+                }
+                //this.mic_bt.label = !b ? "Stop Audio" : "Start Audio";
+            }
+            public function startCamera():void
+            {
+                var b:Boolean = webCamPub.isPublishing;
+                trace("startCamera: "+b);
+                if( !b ){
+                    webCamPub.publish();
+                    
+                } else {
+                    webCamPub.stop();
+                    
+                    
+                }
+                
+            }
+    
+            
+            /**
+             * SynchronizationChange event handler. Initialize the Shared property used to sync the Subscriber info
+             * who would be the centre of the app.
+             */
+            protected function cSession_synchronizationChangeHandler(event:Event):void
+            {
+                if (cSession.isSynchronized) {
+                    _sharedProperty = new SharedProperty();
+                    _sharedProperty.isSessionDependent = true ;
+                    _sharedProperty.sharedID = "webcamShare2" ;
+                    _sharedProperty.connectSession = cSession ;
+                    _sharedProperty.subscribe();
+                    _sharedProperty.addEventListener(SharedPropertyEvent.CHANGE,onChange);
+                    
+                    _camSubscribers = new Object();
+                    cSession.streamManager.addEventListener(StreamEvent.STREAM_RECEIVE,onStreamRecieved);
+                    cSession.streamManager.addEventListener(StreamEvent.STREAM_DELETE,onStreamDelete);
+                    addExistingStreamers();
+                }
+            }
+            
+            /**
+             * Set up a thumbnail subscriber for every new camera stream
+             */
+            protected function onStreamRecieved(p_evt:StreamEvent):void
+            {
+                if (p_evt.streamDescriptor.type == StreamManager.CAMERA_STREAM) {
+                    setUpfromDescriptor(p_evt.streamDescriptor);
+                }
+            }
+            
+            /**
+             * Clicking a subscriber updates the shared value, which in turn enlarges the thumbnail after getting updated
+             */
+            protected function onClick(p_evt:MouseEvent):void
+            {
+                if ( (p_evt.currentTarget is WebcamSubscriber) && !(p_evt.target.parent is CameraUserBar)) {
+                    _sharedProperty.value = (p_evt.currentTarget as WebcamSubscriber).publisherIDs;
+                }
+            }
+            
+            /*
+            * Clean up when a user stops publishing his camera or exits his app.
+            */
+            protected function onStreamDelete(p_evt:StreamEvent):void
+            {
+                if (p_evt.streamDescriptor.type == StreamManager.CAMERA_STREAM) {
+                    if ( _camSubscribers[p_evt.streamDescriptor.streamPublisherID]) {
+                        var webcamSubscriber:WebcamSubscriber = _camSubscribers[p_evt.streamDescriptor.streamPublisherID];
+                        if (webcamSubscriber) {
+                            smallSubscriberContainer.removeChild(webcamSubscriber);        
+                        }
+                        if (p_evt.streamDescriptor.streamPublisherID != cSession.userManager.myUserID) {
+                            webcamSubscriber.removeEventListener(UserEvent.STREAM_CHANGE,onCameraPause);
+                            webcamSubscriber.removeEventListener(UserEvent.USER_BOOTED,onUserBooted);
+                            delete _camSubscribers[p_evt.streamDescriptor.streamPublisherID];
+                            webcamSubscriber.close();
+                            webcamSubscriber = null;
+                        } else {
+                            if (_currentSubscriber && _currentSubscriber.publisherIDs[0] == cSession.userManager.myUserID) {
+                                _sharedProperty.value = null;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            /*
+            * Logic for handling the Pause event on CameraUserBar on every Subscriber
+            */
+            protected function onCameraPause(p_evt:UserEvent):void
+            {
+                var userStreams:Array = cSession.streamManager.getStreamsForPublisher(p_evt.userDescriptor.userID,StreamManager.CAMERA_STREAM);
+                
+                if (userStreams.length == 0) {
+                    trace("onCameraPause: no userStreams");
+                    return;
+                }
+                
+                for (var i:int = 0; i< userStreams.length ; i++ ) {
+                    if (userStreams[i].type == StreamManager.CAMERA_STREAM ) {
+                        break;
+                    }
+                }
+                
+                var streamDescriptor:StreamDescriptor = userStreams[i];
+                if ( streamDescriptor.streamPublisherID == cSession.userManager.myUserID ) {
+                    cSession.streamManager.pauseStream(StreamManager.CAMERA_STREAM,!streamDescriptor.pause,streamDescriptor.streamPublisherID);
+                }        
+            }
+            
+            /*
+            * Initial set up of all users who are streaming when this app launches
+            */
+            protected function addExistingStreamers():void
+            {
+                var streamDescritpors:Object = cSession.streamManager.getStreamsOfType(StreamManager.CAMERA_STREAM);
+                for (var i:String in streamDescritpors) {
+                    setUpfromDescriptor(streamDescritpors[i]);
+                }
+            }
+            
+            /*
+            * Helper method to create a thumbnail subscriber.
+            */
+            protected function setUpfromDescriptor(p_descriptor:StreamDescriptor):void
+            {
+                if (! _camSubscribers[p_descriptor.streamPublisherID]) {
+                    var webCamSubscriber:WebcamSubscriber = new WebcamSubscriber();
+                    webCamSubscriber.connectSession = cSession ;
+                    webCamSubscriber.addEventListener(UserEvent.STREAM_CHANGE,onCameraPause);
+                    webCamSubscriber.addEventListener(UserEvent.USER_BOOTED,onUserBooted);
+                    webCamSubscriber.webcamPublisher = webCamPub;
+                    webCamSubscriber.subscribe();
+                    webCamSubscriber.sharedID = p_descriptor.streamPublisherID;
+                    webCamSubscriber.publisherIDs = [p_descriptor.streamPublisherID];
+                    webCamSubscriber.height = webCamSubscriber.width = 180;
+                    webCamSubscriber.addEventListener(MouseEvent.CLICK, onClick);
+                    smallSubscriberContainer.addChild(webCamSubscriber);
+                    _camSubscribers[p_descriptor.streamPublisherID] = webCamSubscriber;
+                }
+            }
+            
+            /*
+            * This method is the listener to SharedPropertyEvent.CHANGE event. It updates the centred subscribes as its value
+            * changes.
+            */
+            protected function onChange(p_evt:SharedPropertyEvent):void
+            {
+                if ( _currentSubscriber != null ) {
+                    _currentSubscriber.removeEventListener(UserEvent.USER_BOOTED,onUserBooted);
+                    _currentSubscriber.removeEventListener(UserEvent.STREAM_CHANGE,onCameraPause);
+                    //    centeredSubscriber.removeChild(_currentSubscriber);
+                    _currentSubscriber.close();
+                    _currentSubscriber = null ;
+                }
+                
+                if ( _sharedProperty.value == null || _sharedProperty.value.length == 0 ) {
+                    return ;
+                }
+                
+                
+                _currentSubscriber = new WebcamSubscriber();
+                _currentSubscriber.connectSession = cSession ;
+                _currentSubscriber.subscribe();
+                _currentSubscriber.webcamPublisher = webCamPub ;
+                _currentSubscriber.publisherIDs = _sharedProperty.value ;
+                _currentSubscriber.addEventListener(UserEvent.USER_BOOTED,onUserBooted);
+                _currentSubscriber.addEventListener(UserEvent.STREAM_CHANGE,onCameraPause);
+                _currentSubscriber.width = _currentSubscriber.height = 500;
+                //            centeredSubscriber.addChild(_currentSubscriber);
+            }
+            
+            /*
+            * Logic for handling the Close event on CameraUserBar on every Subscriber
+            */
+            protected function onUserBooted(p_evt:UserEvent=null):void
+            {
+                var tmpFlag:Boolean = false;
+                if (_currentSubscriber && _currentSubscriber.publisherIDs[0] == p_evt.userDescriptor.userID) {
+                    if (_currentSubscriber.parent) {
+                        _currentSubscriber.removeEventListener(UserEvent.USER_BOOTED,onUserBooted);
+                        _currentSubscriber.removeEventListener(UserEvent.STREAM_CHANGE,onCameraPause);
+                        _currentSubscriber.close();
+                        _currentSubscriber.parent.removeChild(_currentSubscriber);
+                        _currentSubscriber = null;
+                        _sharedProperty.value = null;
+                    }
+                    tmpFlag = true;
+                }
+                
+                if ( _camSubscribers[p_evt.userDescriptor.userID]) {
+                    var webcamSubscriber:WebcamSubscriber = _camSubscribers[p_evt.userDescriptor.userID];
+                    tmpFlag = true;
+                }
+                
+                if (tmpFlag) {
+                    webCamPub.stop();
+                    startBtn.label = "Start";
+                }
+            }
+            //Original
+            private function onGuestClick():void
+            {
+                cSession.archiveManager.guestsAllowed = guestsAllowed.selected ;
+            }
+            
+            private function onBtnClick():void
+            {
+                cSession.archiveManager.isRecording =!record.selected ;
+                cSession.archiveManager.archiveID=LoaderInfo(this.root.loaderInfo).parameters["archiveID"];
+                cSession.archiveManager.isRecording = true;
+            } 
+            private function onBtnClick2():void
+            {
+                cSession.archiveManager.isRecording =!record_stop.selected ;
+            }
+            
+            private function onError(p_error:SessionEvent):void {
+                Alert.show(p_error.error.message, p_error.error.name + " error");
+            }
+            
+            private function onRecordingChange(p_recChange:ArchiveEvent):void {                                
+                if (cSession.archiveManager.isRecording) {
+                    Alert.show("Started Recording...", "RecordingState");
+                } else {
+                    Alert.show("Stopped Recording...", "RecordingState");
+                }
+            }
+            //end cam start audio !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //for Audio Connection
+    
+    /*        private function startStreams(): void {
+            
+            {
+            
+            _audioSubscriber = new AudioSubscriber();
+            
+            _audioSubscriber.connectSession = _currentSession;
+            
+            _audioSubscriber.groupName = _currentGroupName;
+            
+            _audioSubscriber.addEventListener(StreamEvent.CONNECTION_TYPE_CHANGE, this.audioConnectionTypeChanged);
+            
+            _audioSubscriber.subscribe();
+            
+            
+            
+            
+            
+            _audioPublisher = new AudioPublisher();
+            
+            _audioPublisher.connectSession = _currentSession;
+            
+            _audioPublisher.groupName = _currentGroupName;
+            
+            _audioPublisher.codec = SoundCodec.SPEEX;
+            
+            _audioPublisher.subscribe();
+            
+            _audioPublisher.publish();
+            
+            }
+            
+            
+            
+            private function disposeStreams(): void
+            
+            {
+            
+            _audioSubscriber.close();
+            
+            _audioSubscriber.removeEventListener(StreamEvent.CONNECTION_TYPE_CHANGE, this.audioConnectionTypeChanged);
+            
+            _audioSubscriber = null;
+            
+            _audioPublisher.stop();
+            
+            _audioPublisher.close();
+            
+            _audioPublisher = null;
+            
+            } 
+            } */
+            //original
+    /*        private function onAudioPubreationComplete():void {
+                audioPub.publish();
+                audioPub.stop();
+                
+                } 
+            private function onAudioSubreationComplete():void {
+                audioPub.publish();
+                audioPub.stop();
+                
+            } */
+            
+            ////for log in
+            private function init():void 
+            {
+                
+                var req:URLRequest = new URLRequest( authToken );
+                //var req:URLRequest = new URLRequest( roomURL );
+                
+                
+                req.method = URLRequestMethod.GET;
+                req.method = URLRequestMethod.POST;
+                req.data = new URLVariables();
+                
+                
+                
+                
+                // Test Hard Code before Exteranl Authentication
+                // authToken is created by the developer's server from the developer's 
+                
+                
+                
+                
+                //roomURL="https://singapore.ics.influxis.com/YOURACCOUNT/record1";
+                //authToken="GENRATEAVALIDTOKENexx=eDo6OnJvYmVydHZvZ2VsOjEzOTExMzM0ODMzMzk6cmVjb3JkMToxMDA6OGYyZDg1MGFlZTlhZWYxN2M2Y2U1NTFiZTRjMzgwZDAwZGU0OTI3NA==";
+                //role=100;
+                //archiveID="youknowitworks";
+                //userName="JohnDoe";
+                
+                //Deployed             
+                var roomURLs:String=LoaderInfo(this.root.loaderInfo).parameters["roomURL"] != null ? LoaderInfo(this.root.loaderInfo).parameters["roomURL"]:roomURL;
+                role=LoaderInfo(this.root.loaderInfo).parameters["role"]!= null ? LoaderInfo(this.root.loaderInfo).parameters["role"]:role;
+                var userName:String=LoaderInfo(this.root.loaderInfo).parameters["userName"] != null ? LoaderInfo(this.root.loaderInfo).parameters["userName"]:userName;
+                userID=LoaderInfo(this.root.loaderInfo).parameters["userID"];
+                authToken=LoaderInfo(this.root.loaderInfo).parameters["authToken"];
+                archiveID=LoaderInfo(this.root.loaderInfo).parameters["archiveID"]; 
+                
+                
+                if(roomURLs != null  )
+                {
+                    connectSession(roomURLs);
+                }
+                
+            }
+            private function connectSession(string:String):void
+            {
+                
+                
+                cSession.roomURL = string;
+                cSession.addEventListener(SessionEvent.ERROR, onError);
+                cSession.archiveManager.archiveID=LoaderInfo(this.root.loaderInfo).parameters["archiveID"];
+                cSession.archiveManager.addEventListener(ArchiveEvent.RECORDING_CHANGE, onRecordingChange);       
+                cSession.login();
+            }
+
+            
+
+            protected function onLogin(event:SessionEvent):void
+            {
+                var ldr:URLLoader = event.target as URLLoader;
+                var data:* = ldr.data;
+                var userName:String = this.userName;
+                var token:String = data.token as String;
+                var room:String = data.roomURL as String;
+                trace("onLoginData token: "+token+", roomURL: "+room);
+                
+                this.users = this.cSession.userManager as UserManager;
+                this.auth.authenticationKey = token;
+                this.cSession.roomURL = room;
+                //this.cSession.userName = userName;
+                this.cSession.login();
+                trace('onLogin: '+ event);    
+                //cSession.userManager.setUserRole( cSession.userManager.myUserID, 50);
+                trace(cSession.userManager.myUserID + ' -----  '+ cSession.userManager.myUserRole)
+            }
+            protected function logoutBtn_clickHandler(event:MouseEvent):void
+                {
+                var request:URLRequest = new URLRequest("http://robertdev.influxis.com/ics/record4");
+                request.method = URLRequestMethod.GET;
+                var target:String = "_blank";
+                navigateToURL(request, target);
+                }
+        
+            
+            
+            
+        ]]>
+    </fx:Script>
+    <fx:Declarations>
+        <!-- Place non-visual elements (e.g., services, value objects) here -->
+        <rtc:AdobeHSAuthenticator id="auth" userName="{userName}" authenticationKey="{authToken}"/>
+    </fx:Declarations>
+    <rtc:ConnectSessionContainer id="cSession" autoLogin="false" authenticator="{auth}" roomURL="{roomURL}" width="100%" height="100%"  backgroundColor="#C0C0C0" >
+        <mx:HBox width="100%" height="100%">
+            <mx:VBox id="rootcontainer" width="25%" height="100%" borderAlpha="1">
+                <rtc:WebcamPublisher width="1" height="1" id="webCamPub"/>
+                <mx:Button  id="startBtn" label="Start"  click="startBtn_clickHandler(event)" height="20"     />
+                <!--<rtc:AudioPublisher id="audioPub"  creationComplete="onAudioPubreationComplete()"  gain="100"/>
+                <rtc:AudioSubscriber id="audioSub"  creationComplete="onAudioSubreationComplete()" /> -->
+                <rtc:AudioPublisher id="audioPub" />
+                <rtc:AudioSubscriber id="audioSub"   />
+                <mx:HBox width="100%" height="200" horizontalAlign="center" verticalAlign="top" id="smallSubscriberContainer" creationComplete="cSession_synchronizationChangeHandler(event)"/>
+                <rtc:SimpleChat width="100%" height="50%"/>
+                <mx:Label text="Click on a Subscriber thumbnail to make it bigger." />
+                <s:CheckBox id="guestsAllowed" label="allowGuestPlayback" selected="true" click="onGuestClick()"/>                
+                <mx:Button id="record" label="Start Record" click="onBtnClick()" toggle="true" selected="{cSession.archiveManager.isRecording}" height="30"   />                
+                <mx:Button id="record_stop" label="Stop Record" click="onBtnClick2()" toggle="true" height="30"  />
+            <mx:Button id="logoutBtn" label="Logout" click="onBtnClick()" toggle="true" height="30"  /> 
+            </mx:VBox>
+            <rtc:SharedWhiteBoard width="75%" height="100%" backgroundColor="#C0C0C0"/>
+        </mx:HBox>
+    </rtc:ConnectSessionContainer>  
+</s:Application>
