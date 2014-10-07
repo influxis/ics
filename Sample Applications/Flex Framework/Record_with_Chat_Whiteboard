@@ -464,7 +464,7 @@
             }
             protected function logoutBtn_clickHandler(event:MouseEvent):void
                 {
-                var request:URLRequest = new URLRequest("http://robertdev.influxis.com/ics/record4");
+                var request:URLRequest = new URLRequest("http://YOURAPPLICATIONURL");
                 request.method = URLRequestMethod.GET;
                 var target:String = "_blank";
                 navigateToURL(request, target);
