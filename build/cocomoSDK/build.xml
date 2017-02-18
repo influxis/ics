@@ -10,10 +10,6 @@ Each of the main targets for the modules will call clean themselves before proce
     <!-- targets -->
     <target name="main" depends="cocomo10_3_SDK"/>
 
-    <target name="cocomoSDK">
-        <ant antfile="${basedir}/build_cocomoSDK.xml"/>
-    </target>
-
     <target name="cocomo10SDK">
         <ant antfile="${basedir}/buildSDK_10_0.xml"/>
     </target>

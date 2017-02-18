@@ -1,0 +1,73 @@
+﻿<?xml version="1.0"?>
+
+<!--
+
+	ADOBE SYSTEMS INCORPORATED
+	Copyright 2005-2007 Adobe Systems Incorporated
+	All Rights Reserved.
+
+	NOTICE: Adobe permits you to use, modify, and distribute this file
+	in accordance with the terms of the license agreement accompanying it.
+
+-->
+
+<componentPackage>
+
+		<!--authentication -->
+	
+	<component id="AbstractAuthenticator" class="com.adobe.rtc.authentication.AbstractAuthenticator"/>
+	<component id="AdobeHSAuthenticator" class="com.adobe.rtc.authentication.AdobeHSAuthenticator"/>
+	<component id="LocalAuthenticator" class="com.adobe.rtc.authentication.LocalAuthenticator"/>
+	<component id="PlaybackAuthenticator" class="com.adobe.rtc.authentication.PlaybackAuthenticator"/>
+	
+		<!--clientManagers -->
+	<component id="MicrophoneManager" class="com.adobe.rtc.clientManagers.MicrophoneManager"/>
+	<component id="PlayerCapabilities" class="com.adobe.rtc.clientManagers.PlayerCapabilities"/>
+	
+	
+    	<!-- collaboration -->
+    <component id="AudioPublisher" class="com.adobe.rtc.collaboration.AudioPublisher"/>
+    <component id="AudioSubscriber" class="com.adobe.rtc.collaboration.AudioSubscriber"/>
+    <component id="BinaryPublisher" class="com.adobe.rtc.collaboration.BinaryPublisher"/>
+    <component id="BinarySubscriber" class="com.adobe.rtc.collaboration.BinarySubscriber"/>
+    <component id="FilePublisher" class="com.adobe.rtc.collaboration.FilePublisher"/>
+    <component id="FileSubscriber" class="com.adobe.rtc.collaboration.FileSubscriber"/>
+    <component id="WebcamPublisher" class="com.adobe.rtc.collaboration.WebcamPublisher"/>
+    <component id="WebcamSubscriber" class="com.adobe.rtc.collaboration.WebcamSubscriber"/>
+    <component id="ScreenSharePublisher" class="com.adobe.rtc.collaboration.ScreenSharePublisher"/>
+    <component id="ScreenShareSubscriber" class="com.adobe.rtc.collaboration.ScreenShareSubscriber"/>
+    <component id="SharedCursorPane" class="com.adobe.rtc.collaboration.SharedCursorPane"/>
+    <component id="RemoteUserCursor" class="com.adobe.rtc.collaboration.sharedCursorClasses.RemoteUserCursor"/>
+    <component id="JSBridge" class="com.adobe.rtc.util.JSBridge"/>
+	
+	  	<!-- session -->
+    <component id="ConnectSession" class="com.adobe.rtc.session.ConnectSession"/>
+    <component id="ConnectSessionContainer" class="com.adobe.rtc.session.ConnectSessionContainer"/>
+    <component id="RoomSettings" class="com.adobe.rtc.session.RoomSettings"/>
+	
+	
+    	<!--pods -->
+    <component id="FileShare" class="com.adobe.rtc.pods.FileShare"/>
+    <component id="HorizontalRoster" class="com.adobe.rtc.pods.HorizontalRoster"/>
+    <component id="Note" class="com.adobe.rtc.pods.Note"/>
+    <component id="Roster" class="com.adobe.rtc.pods.Roster"/>
+    <component id="SharedWhiteBoard" class="com.adobe.rtc.pods.SharedWhiteBoard"/>
+    <component id="SimpleChat" class="com.adobe.rtc.pods.SimpleChat"/>
+    <component id="WebCamera" class="com.adobe.rtc.pods.WebCamera"/>
+    
+	
+    
+		<!--shared models -->
+    <component id="Baton" class="com.adobe.rtc.sharedModel.Baton"/>
+    <component id="BatonProperty" class="com.adobe.rtc.sharedModel.BatonProperty"/>
+    <component id="SharedProperty" class="com.adobe.rtc.sharedModel.SharedProperty"/>
+    <component id="CollectionNode" class="com.adobe.rtc.sharedModel.CollectionNode"/>
+    <component id="SharedCollection" class="com.adobe.rtc.sharedModel.SharedCollection"/>
+    <component id="UserQueue" class="com.adobe.rtc.sharedModel.UserQueue"/>
+   
+    
+	
+    
+    
+
+</componentPackage>

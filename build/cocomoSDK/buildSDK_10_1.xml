@@ -8,15 +8,15 @@ Each of the main targets for the modules will call clean themselves before proce
 Important : You need to mention where you player 10 sdk is in nuild.properties as FLEX_10HOME. I am using that variable
 here to get the player 10 SDK
 -->
-<project name="Cocomo SDK 10.3" default="main" basedir=".">
+<project name="Cocomo SDK 10.1" default="main" basedir=".">
 
     <property name="base_repository.dir" location="${basedir}/../.."/>
 
     <property environment="env"/>
     <property file="${basedir}/build.properties"/>
 
-    <property name="player.version" value="10.3"/>
-    <property name="asdoc_build.xml" location="${basedir}/build-asdoc10_3.xml"/>
+    <property name="player.version" value="10.1"/>
+    <property name="asdoc_build.xml" location="${basedir}/build-asdoc10_1.xml"/>
 
     <property name="FlexSDK.dir" location="${env.FLEX_HOME}"/>
     <property name="flex-config.xml" location="${FlexSDK.dir}/frameworks/flex-config.xml"/>
@@ -58,10 +58,16 @@ here to get the player 10 SDK
         <replace dir="${src.dir}" token="// FP_10_3_Specific_End" value=""/>
         <replace dir="${src.dir}" token="// FP_10_1_Specific_Begin" value=""/>
         <replace dir="${src.dir}" token="// FP_10_1_Specific_End" value=""/>
+        <replace dir="${src.dir}" token="// FLeX Begin" value=""/>
+        <replace dir="${src.dir}" token="// FLeX End" value=""/>
     </target>
 
     <target name="deleteCode">
         <echo message="Deleting unwanted code"/>
+        <replaceregexp match="\/\/ FP_10_3_Specific_Begin[\s\S]*?\/\/ FP_10_3_Specific_End" replace=" " flags="g">
+            <fileset dir="${src.dir}"/>
+        </replaceregexp>
+
         <replaceregexp match="\/\/ FP_10_0_Specific_Begin[\s\S]*?\/\/ FP_10_0_Specific_End" replace=" " flags="g">
             <fileset dir="${src.dir}"/>
         </replaceregexp>

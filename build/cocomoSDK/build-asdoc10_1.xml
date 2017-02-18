@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<!--
+Notes: If you're running the main target, then there is no need to call clean first.
+Each of the main targets for the modules will call clean themselves before proceeding.
+-->
+
+<project name="Cocomo AsDoc" default="main" basedir=".">
+
+    <property name="base_repository.dir" location="${basedir}/../.."/>
+
+    <!-- properties -->
+    <property environment="env"/>
+    <property file="${basedir}/build.properties"/>
+
+    <property name="player.version" value="10.1"/>
+
+    <property name="FlexSDK.dir" location="${env.FLEX_HOME}"/>
+    <property name="flex-config.xml" location="${FlexSDK.dir}/frameworks/flex-config.xml"/>
+    <property name="asdoc.jar" location="${FlexSDK.dir}/lib/asdoc.jar"/>
+
+    <property name="CocomoSDKRoot.dir" location="${base_repository.dir}/Software Development Kit (SDK)/Flex Framework/Flash Player v${player.version}"/>
+    <property name="devimages.dir" location="${CocomoSDKRoot.dir}/config/devimages"/>
+
+    <property name="temp_base.dir" location="${base_repository.dir}/temp"/>
+    <property name="temp_version.dir" location="${temp_base.dir}/${player.version}"/>
+    <property name="asdoc_src.dir" location="${temp_version.dir}/asdoc_src"/>
+
+    <property name="output_base.dir" location="${base_repository.dir}/dist"/>
+    <property name="output_docs.dir" location="${output_base.dir}/cocomoSDK/docs/player${player.version}/asdocs"/>
+
+    <property name="browserTitle" value="Influxis Collaboration Services API Reference"/>
+    <property name="docTitle" value="ICS API Reference Player ${player.version}"/>
+    <property name="footer" value="2008-2010 Adobe Systems Incorporated. All rights reserved."/>
+    <property name="customCSSsrc" location="${devimages.dir}/style.css"/>
+    <property name="screenShareCursor" location="${CocomoSDKRoot.dir}/src/com/adobe/rtc/collaboration/screenShareSubscriberClasses/screenShareSubscriberCursorAssets"/>
+
+    <target name="clean">
+        <delete dir="${output_docs.dir}" failOnError="false" includeEmptyDirs="true"/>
+        <mkdir dir="${output_docs.dir}"/>
+    </target>
+
+    <target name="createTemp" depends="removeTemp">
+        <mkdir dir="${asdoc_src.dir}/com"/>
+        <copy todir="${asdoc_src.dir}/com">
+            <fileset dir="${CocomoSDKRoot.dir}/src/com">
+                <!--exclude name="**/*.mxml"/-->
+                <exclude name="**/*.swf"/>
+                <exclude name="**/*.png"/>
+                <exclude name="**/Drag*"/>
+                <exclude name="**/ScreenCamera*"/>
+                <exclude name="**/metadata/**"/>
+            </fileset>
+        </copy>
+        <copy todir="${output_docs.dir}/devimages">
+            <fileset dir="${devimages.dir}/"></fileset>
+        </copy>
+        <antcall target="codeClean"/>
+    </target>
+
+    <target name="codeClean" depends="deleteCode">
+        <replace dir="${asdoc_src.dir}" token="// FP_10_3_Specific_Begin" value=""/>
+        <replace dir="${asdoc_src.dir}" token="// FP_10_3_Specific_End" value=""/>
+        <replace dir="${asdoc_src.dir}" token="// FP_10_1_Specific_Begin" value=""/>
+        <replace dir="${asdoc_src.dir}" token="// FP_10_1_Specific_End" value=""/>
+    </target>
+
+    <target name="deleteCode">
+        <replaceregexp match="\/\/ FP_10_3_Specific_Begin[\s\S]*?\/\/ FP_10_3_Specific_End" replace=" " flags="g">
+            <fileset dir="${asdoc_src.dir}"/>
+        </replaceregexp>
+    </target>
+
+    <target name="removeTemp">
+        <delete dir="${asdoc_src.dir}" includeemptydirs="true"/>
+    </target>
+
+    <!-- Execute the ASDoc Compile -->
+    <target name="main" depends="clean, createTemp" description="generates the asdocs for the project">
+        <java jar="${asdoc.jar}" dir="${FlexSDK.dir}/frameworks" fork="true" maxmemory="256m" failonerror="true">
+            <arg line='-target-player "${player.version}"'/>
+            <arg line='-load-config "${flex-config.xml}"'/>
+            <arg line='-external-library-path "${FlexSDK.dir}/frameworks/libs/player/${player.version}"'/>
+            <arg line='-library-path+="${FlexSDK.dir}/frameworks/libs/player/${player.version}"'/>
+            <arg line='-library-path+="${screenShareCursor}"'/>
+            <arg line='-source-path "${asdoc_src.dir}"'/>
+            <arg line='-doc-sources "${asdoc_src.dir}/com"'/>
+            <arg line='-output "${output_docs.dir}"'/>
+            <arg line='-exclude-classes com.adobe.rtc.pods.fileSharePodClasses.FileSharePodConfirmation'/>
+
+            <arg line='-package com.adobe.coreUI.controls "Contains standalone UI classes for building applications such as WhiteBoard."'/>
+            <arg line='-package com.adobe.coreUI.controls.whiteboardClasses "Contains standalone WhiteBoard supporting classes such as WBModel."'/>
+            <arg line='-package com.adobe.rtc.authentication "Contains classes required for logging in to Adobe Hosted Services."'/>
+            <arg line='-package com.adobe.rtc.clientManagers "Contains utility classes for managing the microphone and the Flash player."'/>
+            <arg line='-package com.adobe.rtc.collaboration "Provides the basic building blocks for building pod components."'/>
+            <arg line='-package com.adobe.rtc.messaging "Contains infrastructure classes for sending and recieving real-time messages."'/>
+            <arg line='-package com.adobe.rtc.pods "Contains higher-level, turnkey pod components."'/>
+            <arg line='-package com.adobe.rtc.session "Contains classes required to establish a session with a real-time room."'/>
+            <arg line='-package com.adobe.rtc.session.sessionClasses "Contains support classes required to establish a session with a real-time room."'/>
+            <arg line='-package com.adobe.rtc.sharedManagers "Contains the four pillar classes of a real time colloboration (RTC) application: User, Room, Stream, and File Managers."'/>
+            <arg line='-package com.adobe.rtc.sharedModel "Contains the low-level classes required to build data models which are shared in real-time."'/>
+            <arg line='-package com.adobe.rtc.events "Contains the set of events dispatched by various RTC components."'/>
+            <arg line='-package com.adobe.rtc.messaging.errors "Contains the set of errors dispatched by the messaging classes."'/>
+            <arg line='-package com.adobe.rtc.sharedManagers.descriptors "Contains the set of descriptors used by the sharedManager classes."'/>
+            <arg line='-package com.adobe.rtc.messaging.errors "Contains the set of errors dispatched by the messaging classes."'/>
+            <arg line='-package com.adobe.rtc.pods.cameraClasses "Contains model components which drive the WebCamera pod and keeps its shared properties synchronized across users. "'/>
+            <arg line='-package com.adobe.rtc.pods.noteClasses "Contains model components which drive the Note pod and keeps its shared properties synchronized across users. "'/>
+            <arg line='-package com.adobe.rtc.pods.sharedWhiteBoardClasses "Contains collaborative WhiteBoard supporting classes such as SharedWBModel."'/>
+            <arg line='-package com.adobe.rtc.sharedModel.userQueueClasses "Contains the set of descriptors which define user requests in a queue."'/>
+            <arg line='-package com.adobe.rtc.util "Contains a set of utility classes used for debugging, encoding and decoding, and other development tasks."'/>
+
+            <arg line='-window-title "${browserTitle}"'/>
+            <arg line='-main-title "${docTitle}"'/>
+            <arg line='-footer "${footer}"'/>
+        </java>
+        <!--exec executable="${browser.bin}">
+            <arg line='file:///${output_docs.dir}/index.html'/>
+        </exec-->
+        <antcall target="removeTemp"/>
+        <delete file="${output_docs.dir}/style.css"/>
+        <copy file="${customCSSsrc}" todir="${output_docs.dir}"/>
+    </target>
+
+
+    <target name="asdoc.full" depends="clean, createTemp" description="generates the asdocs for the project, including the mx stuff">
+        <java jar="${asdoc.jar}" dir="${FlexSDK.dir}/frameworks" fork="true" maxmemory="256m" failonerror="true">
+            <arg line='-load-config "${flex-config.xml}"'/>
+            <arg line='-source-path "${framework.src.dir}"'/>
+            <arg line='-source-path "${asdoc_src.dir}"'/>
+            <arg line='-doc-sources "${asdoc_src.dir}/com"'/>
+            <arg line='-output "${output_docs.dir}"'/>
+            <arg line='-window-title "${browserTitle} "'/>
+        </java>
+        <exec executable="${browser.bin}">
+            <arg line='file:///${output_docs.dir}/index.html'/>
+        </exec>
+    </target>
+
+
+    <target name="asdoc.deploy" depends="asdoc.full" description="Copies the full AsDocs to TattooDev">
+        <property name="target.dir" location="\\\\tattoodev\\cocomo"/>
+        <delete dir="${target.dir}" failOnError="false" includeEmptyDirs="true"/>
+        <mkdir dir="${target.dir}"/>
+        <copydir dest="${target.dir}" src="${output_docs.dir}"></copydir>
+        <!--exec executable="${browser.bin}">
+            <arg line='http://tattoodev:8080/cocomo/'/>
+        </exec-->
+    </target>
+
+</project>

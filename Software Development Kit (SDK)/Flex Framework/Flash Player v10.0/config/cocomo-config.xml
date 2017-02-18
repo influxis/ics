@@ -1,0 +1,45 @@
+﻿<?xml version="1.0"?>
+
+<!--
+
+	ADOBE SYSTEMS INCORPORATED
+	Copyright 2005-2007 Adobe Systems Incorporated
+	All Rights Reserved.
+
+	NOTICE: Adobe permits you to use, modify, and distribute this file
+	in accordance with the terms of the license agreement accompanying it.
+
+-->
+
+<flex-config>
+
+   <compiler>
+
+     
+      <namespaces>
+      <!-- Specify a URI to associate with a manifest of components for use as MXML -->
+      <!-- elements.                                                                -->
+		<namespace>
+            <uri>http://ns.adobe.com/rtc</uri>
+            <manifest>cocomo-manifest.xml</manifest>
+         </namespace>
+		 <namespace>
+            <uri>http://ns.adobe.com/coreUI</uri>
+            <manifest>coreUI-manifest.xml</manifest>
+         </namespace>
+      </namespaces>
+      
+    </compiler>
+  
+     
+   <include-namespaces>
+        <uri>http://ns.adobe.com/rtc</uri>
+		<uri>http://ns.adobe.com/coreUI</uri>
+   </include-namespaces>
+   
+   <include-file>
+   	<name>design.xml</name>
+   	<path>../../../../build/design.xml</path>
+   </include-file>   
+
+</flex-config>
