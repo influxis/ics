@@ -15,23 +15,23 @@ Each of the main targets for the modules will call clean themselves before proce
     <property name="player.version" value="10.3"/>
 
     <property name="FlexSDK.dir" location="${env.FLEX_HOME}"/>
-    <property name="flex-config.xml" value="${FlexSDK.dir}/frameworks/flex-config.xml"/>
-    <property name="asdoc.jar" value="${FlexSDK.dir}/lib/asdoc.jar"/>
+    <property name="flex-config.xml" location="${FlexSDK.dir}/frameworks/flex-config.xml"/>
+    <property name="asdoc.jar" location="${FlexSDK.dir}/lib/asdoc.jar"/>
 
-    <property name="CocomoSDKRoot.dir" value="${base_repository.dir}/Software Development Kit (SDK)/Flex Framework/Flash Player v${player.version}"/>
-    <property name="devimages.dir" value="${CocomoSDKRoot.dir}/config/devimages"/>
+    <property name="CocomoSDKRoot.dir" location="${base_repository.dir}/Software Development Kit (SDK)/Flex Framework/Flash Player v${player.version}"/>
+    <property name="devimages.dir" location="${CocomoSDKRoot.dir}/config/devimages"/>
 
     <property name="temp_base.dir" location="${base_repository.dir}/temp"/>
     <property name="temp_version.dir" location="${temp_base.dir}/${player.version}"/>
-    <property name="asdoc_src.dir" value="${temp_version.dir}/asdoc_src"/>
+    <property name="asdoc_src.dir" location="${temp_version.dir}/asdoc_src"/>
 
     <property name="output_base.dir" location="${base_repository.dir}/dist"/>
-    <property name="output_docs.dir" value="${output_base.dir}/cocomoSDK/docs/player${player.version}/asdocs"/>
+    <property name="output_docs.dir" location="${output_base.dir}/cocomoSDK/docs/player${player.version}/asdocs"/>
 
     <property name="browserTitle" value="Influxis Collaboration Services API Reference"/>
     <property name="docTitle" value="ICS API Reference Player ${player.version}"/>
     <property name="footer" value="2008-2010 Adobe Systems Incorporated. All rights reserved."/>
-    <property name="customCSSsrc" value="${devimages.dir}/style.css"/>
+    <property name="customCSSsrc" location="${devimages.dir}/style.css"/>
     <property name="screenShareCursor" location="${CocomoSDKRoot.dir}/src/com/adobe/rtc/collaboration/screenShareSubscriberClasses/screenShareSubscriberCursorAssets"/>
 
     <target name="clean">

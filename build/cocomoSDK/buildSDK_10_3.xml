@@ -16,23 +16,23 @@ here to get the player 10 SDK
     <property file="${basedir}/build.properties"/>
 
     <property name="player.version" value="10.3"/>
-    <property name="asdoc_build.xml" value="${basedir}/build-asdoc10_3.xml"/>
+    <property name="asdoc_build.xml" location="${basedir}/build-asdoc10_3.xml"/>
 
     <property name="FlexSDK.dir" location="${env.FLEX_HOME}"/>
-    <property name="flex-config.xml" value="${FlexSDK.dir}/frameworks/flex-config.xml"/>
-    <property name="design.xml" value="${FlexSDK.dir}/frameworks/design.xml"/>
-    <property name="compc.jar" value="${FlexSDK.dir}/lib/compc.jar"/>
-    <property name="mxmlc.jar" value="${FlexSDK.dir}/lib/mxmlc.jar"/>
+    <property name="flex-config.xml" location="${FlexSDK.dir}/frameworks/flex-config.xml"/>
+    <property name="design.xml" location="${FlexSDK.dir}/frameworks/design.xml"/>
+    <property name="compc.jar" location="${FlexSDK.dir}/lib/compc.jar"/>
+    <property name="mxmlc.jar" location="${FlexSDK.dir}/lib/mxmlc.jar"/>
 
-    <property name="CocomoSDKRoot.dir" value="${base_repository.dir}/Software Development Kit (SDK)/Flex Framework/Flash Player v${player.version}"/>
-    <property name="cocomo-config.xml" value="${CocomoSDKRoot.dir}/config/cocomo-config.xml"/>
+    <property name="CocomoSDKRoot.dir" location="${base_repository.dir}/Software Development Kit (SDK)/Flex Framework/Flash Player v${player.version}"/>
+    <property name="cocomo-config.xml" location="${CocomoSDKRoot.dir}/config/cocomo-config.xml"/>
     <property name="link-report.xsl" location="${CocomoSDKRoot.dir}/config/link-report.xsl"/>
 
     <property name="output_base.dir" location="${base_repository.dir}/dist"/>
     <property name="output.dir" location="${output_base.dir}/cocomoSDK/libs/player${player.version}"/>
-    <property name="src.dir" value="${output.dir}/src"/>
-    <property name="bin.dir" value="${output.dir}/bin"/>
-    <property name="lib.dir" value="${output.dir}/lib"/>
+    <property name="src.dir" location="${output.dir}/src"/>
+    <property name="bin.dir" location="${output.dir}/bin"/>
+    <property name="lib.dir" location="${output.dir}/lib"/>
     <property name="report.filename" value="CocomoSDK10_3Report"/>
     <property name="screenShareCursor.swc"
               location="${output.dir}/src/com/adobe/rtc/collaboration/screenShareSubscriberClasses/screenShareSubscriberCursorAssets/screenShareCursor.swc"/>
