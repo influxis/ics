@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<!--
+
+Notes: If you're running the main target, then there is no need to call clean first.
+Each of the main targets for the modules will call clean themselves before proceeding.
+
+
+Important : You need to mention where you player 10 sdk is in nuild.properties as FLEX_10HOME. I am using that variable
+here to get the player 10 SDK
+-->
+<project name="Cocomo SDK 10.3" default="main" basedir=".">
+
+    <property name="base_repository.dir" location="${basedir}/../.."/>
+
+    <property environment="env"/>
+    <property file="${basedir}/build.properties"/>
+
+    <property name="player.version" value="10.3"/>
+    <property name="asdoc_build.xml" value="${basedir}/build-asdoc10_3.xml"/>
+
+    <property name="FlexSDK.dir" location="${env.FLEX_HOME}"/>
+    <property name="flex-config.xml" value="${FlexSDK.dir}/frameworks/flex-config.xml"/>
+    <property name="design.xml" value="${FlexSDK.dir}/frameworks/design.xml"/>
+    <property name="compc.jar" value="${FlexSDK.dir}/lib/compc.jar"/>
+    <property name="mxmlc.jar" value="${FlexSDK.dir}/lib/mxmlc.jar"/>
+
+    <property name="CocomoSDKRoot.dir" value="${base_repository.dir}/Software Development Kit (SDK)/Flex Framework/Flash Player v${player.version}"/>
+    <property name="cocomo-config.xml" value="${CocomoSDKRoot.dir}/config/cocomo-config.xml"/>
+    <property name="link-report.xsl" location="${CocomoSDKRoot.dir}/config/link-report.xsl"/>
+
+    <property name="output_base.dir" location="${base_repository.dir}/dist"/>
+    <property name="output.dir" location="${output_base.dir}/cocomoSDK/libs/player${player.version}"/>
+    <property name="src.dir" value="${output.dir}/src"/>
+    <property name="bin.dir" value="${output.dir}/bin"/>
+    <property name="lib.dir" value="${output.dir}/lib"/>
+    <property name="report.filename" value="CocomoSDK10_3Report"/>
+    <property name="screenShareCursor.swc"
+              location="${output.dir}/src/com/adobe/rtc/collaboration/screenShareSubscriberClasses/screenShareSubscriberCursorAssets/screenShareCursor.swc"/>
+
+    <!-- targets -->
+    <target name="main" depends="copySource_10, codeClean, cocomoSWC, asdoc"/>
+
+    <target name="asdoc">
+        <ant antfile="${asdoc_build.xml}" target="main"/>
+    </target>
+
+    <target name="asdoc.full">
+        <ant antfile="${asdoc_build.xml}" target="asdoc.full"/>
+    </target>
+
+    <target name="asdoc.deploy">
+        <ant antfile="${asdoc_build.xml}" target="asdoc.deploy"/>
+    </target>
+
+    <target name="codeClean" depends="deleteCode">
+        <echo message="Deleting unwanted compiler pragmas from the code"/>
+        <replace dir="${src.dir}" token="// FP_10_3_Specific_Begin" value=""/>
+        <replace dir="${src.dir}" token="// FP_10_3_Specific_End" value=""/>
+        <replace dir="${src.dir}" token="// FP_10_1_Specific_Begin" value=""/>
+        <replace dir="${src.dir}" token="// FP_10_1_Specific_End" value=""/>
+    </target>
+
+    <target name="deleteCode">
+        <echo message="Deleting unwanted code"/>
+        <replaceregexp match="\/\/ FP_10_0_Specific_Begin[\s\S]*?\/\/ FP_10_0_Specific_End" replace=" " flags="g">
+            <fileset dir="${src.dir}"/>
+        </replaceregexp>
+    </target>
+
+    <target name="copySource_10">
+        <echo message="Copying Src from CocomoSDK root folder"/>
+        <delete dir="${output.dir}"/>
+        <mkdir dir="${output.dir}"/>
+        <copy todir="${src.dir}">
+            <fileset dir="${CocomoSDKRoot.dir}/src">
+                <include name="**/rtc/**"/>
+                <include name="**/coreUI/**"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- compiles the cocomo SDK swc -->
+    <target name="cocomoSWC" depends="filelist">
+        <java jar="${compc.jar}" dir="${FlexSDK.dir}/frameworks" fork="true" maxmemory="256m" failonerror="true">
+            <arg line=' -source-path+=${src.dir} ${cocomoSDK.classes} -target-player "${player.version}"
+						-load-config "${flex-config.xml}" 
+						-load-config "${cocomo-config.xml}"
+						-external-library-path "${FlexSDK.dir}/frameworks/libs/player/${player.version}"
+						-library-path+="${FlexSDK.dir}/frameworks/libs/player/${player.version}"
+                        -library-path+="${screenShareCursor.swc}"
+						-link-report "${output.dir}/${report.filename}.xml"
+						-load-externs "${CocomoSDKRoot.dir}/config/framework_report.xml"
+						-output "${output.dir}/ics.swc"'/>
+        </java>
+        <xslt in="${output.dir}/${report.filename}.xml" out="${output.dir}/${report.filename}.html" style="${link-report.xsl}"/>
+    </target>
+
+    <!--
+    converts all the .as files to AS class paths and sets a property name
+    Must specify the packagemapper source directory like: C:\directory were source is located
+    -->
+    <target name="filelist">
+        <pathconvert property="cocomoSDK.classes" pathsep=" ">
+            <mapper>
+                <chainedmapper>
+                    <packagemapper from="${src.dir}${file.separator}" to="*"/>
+                    <regexpmapper from="^(.*)\.as$$" to="\1"/>
+                </chainedmapper>
+                <chainedmapper>
+                    <packagemapper from="${src.dir}${file.separator}com" to="*"/>
+                    <regexpmapper from="^(.*)\.mxml$$" to="com\1"/>
+                </chainedmapper>
+            </mapper>
+            <path>
+                <fileset dir="${src.dir}">
+                    <include name="**/*.as"/>
+                    <include name="**/*.mxml"/>
+                    <exclude name="**/styles/metadata/*"/>
+                </fileset>
+            </path>
+        </pathconvert>
+        <echo>cocomoSDK.classes: ${cocomoSDK.classes}</echo>
+    </target>
+</project>

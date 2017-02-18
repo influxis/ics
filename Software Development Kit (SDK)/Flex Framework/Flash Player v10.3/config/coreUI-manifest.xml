@@ -1,0 +1,35 @@
+﻿<?xml version="1.0"?>
+
+<!--
+
+	ADOBE SYSTEMS INCORPORATED
+	Copyright 2005-2007 Adobe Systems Incorporated
+	All Rights Reserved.
+
+	NOTICE: Adobe permits you to use, modify, and distribute this file
+	in accordance with the terms of the license agreement accompanying it.
+
+-->
+
+<componentPackage>
+
+    
+    	<!--controls-->
+    <component id="BitmapComponent" class="com.adobe.coreUI.controls.BitmapComponent"/>
+	<component id="CameraUserBar" class="com.adobe.coreUI.controls.CameraUserBar"/>
+	<component id="ChatPullDown" class="com.adobe.coreUI.controls.ChatPullDown"/>
+	<component id="ControllingUserBar" class="com.adobe.coreUI.controls.ControllingUserBar"/>
+	<component id="CustomHBox" class="com.adobe.coreUI.controls.CustomHBox"/>
+	<component id="CustomMenu" class="com.adobe.coreUI.controls.CustomMenu"/>
+	<component id="CustomTextEditor" class="com.adobe.coreUI.controls.CustomTextEditor"/>
+	<component id="EditorToolBar" class="com.adobe.coreUI.controls.EditorToolBar"/>
+	<component id="EmoticonTextArea" class="com.adobe.coreUI.controls.EmoticonTextArea"/>
+	<component id="NoCtrlList" class="com.adobe.coreUI.controls.NoCtrlList"/>
+	<component id="NullColorPicker" class="com.adobe.coreUI.controls.NullColorPicker"/>
+	<component id="ProgressiveDisclosureContainer" class="com.adobe.coreUI.controls.ProgressiveDisclosureContainer"/>
+	<component id="RichTextArea" class="com.adobe.coreUI.controls.RichTextArea"/>
+	<component id="VideoComponent" class="com.adobe.coreUI.controls.VideoComponent"/>
+	<component id="WhiteBoard" class="com.adobe.coreUI.controls.WhiteBoard"/>
+	<component id="ToolBar" class="com.adobe.coreUI.controls.ToolBar"/>
+   
+</componentPackage>

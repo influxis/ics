@@ -1,0 +1,216 @@
+﻿<?xml version="1.0"?>
+
+<!--
+
+	ADOBE SYSTEMS INCORPORATED
+	Copyright 2005-2007 Adobe Systems Incorporated
+	All Rights Reserved.
+
+	NOTICE: Adobe permits you to use, modify, and distribute this file
+	in accordance with the terms of the license agreement accompanying it.
+
+-->
+
+
+<design version="2">
+
+	<namespaces>
+		<namespace prefix="rtc" uri="http://ns.adobe.com/rtc" />
+		<namespace prefix="coreUI" uri="http://ns.adobe.com/coreUI" />
+	</namespaces>
+	
+	<categories>
+	   <category id="lccs" label="lccs" defaultExpand="true" />
+	</categories>
+
+	<components>
+	
+
+		<component name="ConnectSessionContainer" namespace="rtc" category="lccs" displayName="ConnectSessionContainer">
+		
+			<mxmlProperties>
+				<textfield id="roomURL" name="Room Url:" />
+				<textfield id="authenticator" name="Authenticator:" />
+			</mxmlProperties>
+		
+		</component>
+
+		<component name="AudioPublisher" namespace="rtc" category="lccs" displayName="AudioPublisher">
+
+			<mxmlProperties>
+				<textfield id="accessModel" name="Access Role:" />
+				<textfield id="publishModel" name="Publish Role:" />
+				<textfield id="gain" name="Gain:" />
+				<textfield id="silenceTimeout" name="Silence Timeout:" />
+				<combo id="useEchoSuppression" name="Echo Suppression:"/>
+			</mxmlProperties>
+			
+			<defaultAttribute name="useEchoSuppression" value="false"/>
+			<defaultAttribute name="gain" value="50"/>
+			<defaultAttribute name="silenceTimeout" value="2000"/>
+
+		</component>
+		
+		<component name="AudioSubscriber" namespace="rtc" category="lccs" displayName="AudioSubscriber">
+		
+			<mxmlProperties>
+				<textfield id="accessModel" name="Access Role:" />
+				<textfield id="publishModel" name="Publish Role:" />
+				<textfield id="publisherIDs" name="Array of User IDs:" />
+			</mxmlProperties>
+		
+		</component>
+		
+		
+		<component name="BinaryPublisher" namespace="rtc" category="lccs" displayName="BinaryPublisher">
+		
+			<mxmlProperties>
+				
+			</mxmlProperties>
+		
+		</component>
+				
+		<component name="BinarySubscriber" namespace="rtc" category="lccs" displayName="BinarySubscriber">
+				
+			<mxmlProperties>
+				
+			</mxmlProperties>
+				
+				
+		</component>
+		
+		<component name="FilePublisher" namespace="rtc" category="lccs" displayName="FilePublisher">
+				
+			<mxmlProperties>
+				<textfield id="accessModel" name="Access Role:" />
+				<textfield id="publishModel" name="Publish Role:" />
+				<textfield id="progressInterval" name="Progress Interval:" />
+			</mxmlProperties>
+				
+		</component>
+						
+		<component name="FileSubscriber" namespace="rtc" category="lccs" displayName="FileSubscriber">
+						
+			<mxmlProperties>
+				<textfield id="accessModel" name="Access Role:" />
+				<textfield id="publishModel" name="Publish Role:" />
+			</mxmlProperties>
+						
+		</component>
+		
+		<component name="WebcamPublisher" namespace="rtc" category="lccs" displayName="WebcamPublisher">
+		
+			<mxmlProperties>
+				<textfield id="accessModel" name="Access Role:" />
+				<textfield id="publishModel" name="Publish Role:" />
+				<textfield id="keyframeInterval" name="Key FrameInterval:" />
+				<textfield id="fps" name="Fps:" />
+				<textfield id="quality" name="Quality:" />
+				<textfield id="captureWidthHeightFactor" name="Width Height Factor:" />
+			</mxmlProperties>
+		
+			<defaultAttribute name="fps" value="6"/>
+			<defaultAttribute name="quality" value="70"/>
+			<defaultAttribute name="keyframeInterval" value="18"/>
+			<defaultAttribute name="captureWidthHeightFactor" value="1"/>
+		
+		</component>
+				
+		<component name="WebcamSubscriber" namespace="rtc" category="lccs" displayName="WebcamSubscriber">
+				
+			<mxmlProperties>
+				<textfield id="accessModel" name="Access Role:" />
+				<textfield id="publishModel" name="Publish Role:" />
+				<textfield id="publisherIDs" name="Array of User IDs:" />
+				<combo id="displayUserBars" name="UserBar Display:" />
+			</mxmlProperties>
+			
+			<defaultAttribute name="displayUserBars" value="true"/>
+
+		</component>
+		
+		
+		
+		<component name="FileShare" namespace="rtc" category="lccs" displayName="FileShare">
+						
+			<mxmlProperties>
+				<combo id="clearUponSessionEnd" name="Clear on Session End:" />
+				<combo id="useSSL" name="Use SSL:" />
+			</mxmlProperties>
+			
+			<defaultAttribute name="useSSL" value="true"/>
+			<defaultAttribute name="clearUponSessionEnd" value="false"/>
+			
+		</component>
+		
+		
+		<component name="Note" namespace="rtc" category="lccs" displayName="Note">
+								
+			<mxmlProperties>
+				<combo id="sessionDependentItems" name="Data depends on Session:" />
+			</mxmlProperties>
+			
+			<defaultAttribute name="sessionDependentItems" value="false"/>
+		
+		</component>
+		
+		<component name="Roster" namespace="rtc" category="lccs" displayName="Roster">
+								
+			<mxmlProperties>
+				<combo id="displaySelection" name="Display Selection:" />
+				<combo id="showMenuButtons" name="Show Menu Buttons:" />
+				<combo id="useRoleHeaders" name="Show Role Headers:" />
+			</mxmlProperties>
+				
+			<defaultAttribute name="displaySelection" value="false"/>
+			<defaultAttribute name="showMenuButtons" value="true"/>
+			<defaultAttribute name="useRoleHeaders" value="true"/>
+				
+		</component>
+		
+		<component name="SharedWhiteBoard" namespace="rtc" category="lccs" displayName="SharedWhiteBoard">
+								
+			<mxmlProperties>
+				<combo id="sessionDependent" name="Depends on Session:" />				
+			</mxmlProperties>
+			
+			<defaultAttribute name="sessionDependent" value="false"/>
+		</component>
+		
+		<component name="SimpleChat" namespace="rtc" category="lccs" displayName="SimpleChat">
+								
+			<mxmlProperties>
+				<textfield id="newMessageColor" name="Color of new Message:" />	
+				<combo id="sessionDependent" name="Depends on Session:" />
+				<combo id="useExternalContextMenu" name="External Menu on Right-Click:" />
+			</mxmlProperties>
+			
+			<defaultAttribute name="sessionDependent" value="true"/>
+			<defaultAttribute name="useExternalContextMenu" value="false"/>
+			<defaultAttribute name="newMessageColor" value="0x000000"/>
+		</component>
+		
+		<component name="WebCamera" namespace="rtc" category="lccs" displayName="WebCamera">
+								
+			<mxmlProperties>
+								
+			</mxmlProperties>
+								
+		</component>
+		
+		
+		<component name="EmoticonTextArea" namespace="coreUI" category="lccs" displayName="EmoticonTextArea">
+																
+			<mxmlProperties>
+																
+			</mxmlProperties>
+																
+		</component>
+		
+		
+		
+		
+
+	</components>
+
+</design>
